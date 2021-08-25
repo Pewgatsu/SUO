@@ -14,7 +14,14 @@ class CreateStoragesTable extends Migration
     public function up()
     {
         Schema::create('storages', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('component_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->primary('component_id');
+            $table->string('storage_type');
+            $table->integer('storage_capacity');
+            $table->string('interface');
+            $table->string('storage_form_factor');
+            $table->integer('storage_cache')->nullable();
+            $table->boolean('nvme');
             $table->timestamps();
         });
     }

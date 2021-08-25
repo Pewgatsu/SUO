@@ -13,8 +13,13 @@ class CreateCPUCoolersTable extends Migration
      */
     public function up()
     {
-        Schema::create('c_p_u_coolers', function (Blueprint $table) {
-            $table->id();
+        Schema::create('cpu_coolers', function (Blueprint $table) {
+            $table->foreignId('component_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->primary('component_id');
+            $table->string('cpu_socket');
+            $table->string('fan_speed')->nullable();
+            $table->string('noise_level')->nullable();
+            $table->string('water_cooled_support')->nullable();
             $table->timestamps();
         });
     }

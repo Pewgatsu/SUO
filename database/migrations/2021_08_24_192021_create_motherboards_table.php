@@ -14,7 +14,27 @@ class CreateMotherboardsTable extends Migration
     public function up()
     {
         Schema::create('motherboards', function (Blueprint $table) {
-            $table->id();
+            $table->foreignId('component_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->primary('component_id');
+            $table->string('cpu_socket');
+            $table->string('mobo_form_factor');
+            $table->string('mobo_chipset');
+            $table->tinyInteger('memory_slot');
+            $table->string('memory_type');
+            $table->integer('max_mem_support')->nullable();
+            $table->string('mem_speed_support')->nullable();
+            $table->tinyInteger('pcie_x16_slot')->nullable();
+            $table->tinyInteger('pcie_x8_slot')->nullable();
+            $table->tinyInteger('pcie_x4_slot')->nullable();
+            $table->tinyInteger('pcie_x1_slot')->nullable();
+            $table->tinyInteger('pci_slot')->nullable();
+            $table->tinyInteger('m2_slot')->nullable();
+            $table->tinyInteger('sata_6gb_slot')->nullable();
+            $table->tinyInteger('sata_3gb_slot')->nullable();
+            $table->string('multigraphics_support')->nullable();
+            $table->boolean('ecc_support');
+            $table->boolean('raid_support');
+            $table->string('wireless_support')->nullable();
             $table->timestamps();
         });
     }

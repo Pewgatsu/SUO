@@ -15,6 +15,15 @@ class CreateComponentsTable extends Migration
     {
         Schema::create('components', function (Blueprint $table) {
             $table->id();
+            $table->string('image_path')->nullable();
+            $table->string('name');
+            $table->string('manufacturer')->nullable();
+            $table->string('series')->nullable();
+            $table->string('model')->nullable();
+            $table->string('color')->nullable();
+            $table->decimal('length')->nullable();
+            $table->decimal('width')->nullable();
+            $table->decimal('height')->nullable();
             $table->timestamps();
         });
     }
