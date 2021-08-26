@@ -11,17 +11,14 @@
 
     <script src="{{asset('js/app.js')}}"></script>
 
-
-
-
 </head>
 
 
 <body>
 
+<form action="{{route('register')}}" method="POST">
+    @csrf
 
-
-<form onsubmit="validateFields()" action="register.php" method="POST" name="registerForm" id="registerForm" class="needs-validation" novalidate>
     <div class="container vh-250">
         <div class="container h-250">
             <div class="row d-flex justify-content-center align-items-center h-250">
@@ -36,28 +33,38 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 mb-3 fa-fw"></i>
                                         <div class="form-floating flex-fill mb-0">
-                                            <input type="text" id="regUsername" class="form-control" placeholder="#"
-                                                   name="regUsername" required>
-                                            <label for="regUsername">Username</label>
+                                            <input type="text" id="username" class="form-control @error('username') is-invalid @enderror" value="{{old('username')}}" placeholder="#" name="username">
+                                            <label for="username">Username</label>
+                                            @error('username')
+                                            <div class="invalid-tooltip position-relative">{{$errors->first('username')}}</div>
+                                            @enderror
                                         </div>
+
+
 
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-floating  flex-fill mb-0">
-                                            <input type="text" id="regPassword" class="form-control" placeholder="#"
-                                                   name="regPassword" required>
-                                            <label for="regUsername">Password</label>
+                                            <input type="text" id="password" class="form-control @error('password') is-invalid @enderror" value="{{old('password')}}" placeholder="#"
+                                                   name="password">
+                                            <label for="password">Password</label>
+                                            @error('password')
+                                            <div class="invalid-tooltip position-relative">{{$errors->first('password')}}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-key fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-floating flex-fill mb-0">
-                                            <input type="text" id="regConfirmPass" class="form-control"
-                                                   placeholder="#" name="regConfirmPassword" required>
-                                            <label for="regConfirmPass">Confirm Password</label>
+                                            <input type="text" id="confirmPassword" class="form-control @error('password_confirmation') is-invalid @enderror" value="{{old('password_confirmation')}}"
+                                                   placeholder="#" name="password_confirmation">
+                                            <label for="confirmPassword">Confirm Password</label>
+                                            @error('password_confirmation')
+                                            <div class="invalid-tooltip position-relative">{{$errors->first('password_confirmation')}}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -65,21 +72,28 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user-circle fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <select class="form-select" id="accountType" name="accountType" required>
+                                            <select class="form-select @error('accountType') is-invalid @enderror" id="accountType" name="accountType">
                                                 <option value="">Account Type</option>
-                                                <option value="customer">Customer</option>
-                                                <option value="seller">PC Seller</option>
+                                                <option value="customer" @if (old('accountType') == "customer") selected @endif>Customer</option>
+                                                <option value="seller" @if (old('accountType') == "seller") selected @endif>PC Seller</option>
                                             </select>
+                                            @error('accountType')
+                                            <div class="invalid-tooltip position-relative">{{$errors->first('accountType')}}</div>
+                                            @enderror
+
                                         </div>
+
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-envelope fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-floating flex-fill mb-0">
-                                            <input type="text" id="email" class="form-control" placeholder="#"
-                                                   name="email" required>
+                                            <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="#"
+                                                   name="email">
                                             <label for="email">Email</label>
-
+                                            @error('email')
+                                            <div class="invalid-tooltip position-relative">{{$errors->first('email')}}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -110,18 +124,25 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-floating" style="padding-left:  2px;">
-                                                    <input type="text" id="firstname" class="form-control"
-                                                           placeholder="#" name="firstname" required/>
+                                                    <input type="text" id="firstname" class="form-control @error('firstname') is-invalid @enderror"
+                                                           placeholder="#" name="firstname"/>
                                                     <label for="firstname">First name</label>
+                                                    @error('firstname')
+                                                    <div class="invalid-tooltip position-relative">{{$errors->first('firstname')}}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="col">
                                                 <div class="form-floating ">
-                                                    <input type="text" id="lastname" class="form-control"
-                                                           placeholder="#" name="lastname" required/>
+                                                    <input type="text" id="lastname" class="form-control @error('lastname') is-invalid  @enderror"
+                                                           placeholder="#" name="lastname"/>
                                                     <label for="lastname">Last name</label>
+                                                    @error('lastname')
+                                                    <div class="invalid-tooltip position-relative">{{$errors->first('lastname')}}</div>
+                                                    @enderror
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -130,21 +151,27 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-calendar fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-floating flex-fill">
-                                            <input class="form-control" id="birthdate" name="date" placeholder="#"
+                                            <input class="form-control @error('date') is-invalid @enderror" id="birthdate" name="date" placeholder="#"
                                                    type="text" autocomplete="off"/>
                                             <label for="birthdate">Date of Birth</label>
+                                            @error('date')
+                                            <div class="invalid-tooltip position-relative">{{$errors->first('date')}}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-venus-mars fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
-                                            <select class="form-select" id="genderOptions" name="genderOptions" required>
+                                            <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender">
                                                 <option value="">Select Gender</option>
-                                                <option value="m">Male</option>
-                                                <option value="f">Female</option>
-                                                <option value="o">Other</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
                                             </select>
+                                            @error('gender')
+                                            <div class="invalid-tooltip position-relative">{{$errors->first('gender')}}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -152,9 +179,12 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-home fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-floating flex-fill mb-0">
-                                            <input type="text" id="address" class="form-control" placeholder="#"
-                                                   name="address" required>
+                                            <input type="text" id="address" class="form-control @error('address') is-invalid @enderror" placeholder="#"
+                                                   name="address">
                                             <label for="address">Address</label>
+                                            @error('address')
+                                            <div class="invalid-tooltip position-relative">{{$errors->first('address')}}</div>
+                                            @enderror
                                         </div>
 
                                     </div>
@@ -162,9 +192,12 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-phone-square-alt fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-floating flex-fill mb-0">
-                                            <input type="text" id="contact" class="form-control" placeholder="#"
-                                                   name="contact"required>
+                                            <input type="text" id="contact" class="form-control @error('contact') is-invalid @enderror" placeholder="#"
+                                                   name="contact">
                                             <label for="contact">Contact Number</label>
+                                            @error('contact')
+                                            <div class="invalid-tooltip position-relative">{{$errors->first('contact')}}</div>
+                                            @enderror
                                         </div>
 
                                     </div>
@@ -201,8 +234,6 @@
 
 
 </body>
-
-
 
 
 <!-- Include jQuery -->
