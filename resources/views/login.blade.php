@@ -11,19 +11,33 @@
             </svg>
 
             <div class="col-md-10 mx-auto col-lg-5">
-                <form  class="needs-validation p-4 p-md-5 border rounded-3 bg-light"
+
+                @if($message = Session::get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{$message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+
+                <form  action="{{route('login')}}" class="needs-validation p-4 p-md-5 border rounded-3 bg-light"
                       method="POST" >
+                    @csrf
 
-
-                    <div class="form-floating mb-4 ">
-                        <input type="text" id="usernameField" name="usernameField" class="form-control" placeholder="#">
+                    <div class="form-floating flex-fill mb-4 ">
+                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" value="{{old('username')}}" placeholder="#" autocomplete="username" autofocus>
                         <label for="usernameField">Username</label>
-
+                        @error('username')
+                        <div class="invalid-tooltip position-relative">Field must not be empty!</div>
+                        @enderror
                     </div>
 
-                    <div class="form-floating mb-4 ">
-                        <input type="text" id="passwordField" name="passwordField" class="form-control" placeholder="#">
+                    <div class="form-floating flex-fill mb-4 ">
+                        <input type="text" id="passwordField" name="password" class="form-control @error('password') is-invalid @enderror" value="{{old('password')}}" placeholder="#">
                         <label for="usernameField">Password</label>
+                        @error('password')
+                        <div class="invalid-tooltip position-relative">Field must not be empty!</div>
+                        @enderror
                     </div>
 
                     <div class="row mb-4">
@@ -45,7 +59,7 @@
 
 
                     <div class="text-center">
-                        <p>Not Yet Registered?<a href="registration"> Create an Account</a></p>
+                        <p>Not Yet Registered?<a href="{{route('register')}}"> Create an Account</a></p>
                     </div>
 
                 </form>
