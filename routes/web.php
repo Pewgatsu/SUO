@@ -21,17 +21,20 @@ Auth::routes();
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
+Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
 
-Route::get('/login',[App\Http\Controllers\LoginController::class,'index'])->name('login');
+Route::post('/register',[App\Http\Controllers\AuthController::class,'registerUser']);
+Route::post('/login',[\App\Http\Controllers\AuthController::class,'login'])->name('login');
 
-Route::get('registration',function(){
-    return view('registration');
+
+Route::get('/dashboard', function(){
+    return view('dashboard');
 });
 
-
-Route::get('/dashboard', function (){
-   return view('dashboard');
+Route::get('/register2', function (){
+    return view('auth.register');
 });
+
 
 
