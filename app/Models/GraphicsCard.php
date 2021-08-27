@@ -9,6 +9,8 @@ class GraphicsCard extends Model
 {
     use HasFactory;
 
+    protected $table = 'graphics_cards';
+
     protected $primaryKey = 'component_id';
 
     protected $fillable = [

@@ -9,6 +9,8 @@ class ComputerCase extends Model
 {
     use HasFactory;
 
+    protected $table = 'computer_cases';
+
     protected $primaryKey = 'component_id';
 
     protected $fillable = [

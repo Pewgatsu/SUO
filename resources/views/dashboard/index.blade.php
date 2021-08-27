@@ -46,35 +46,35 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Motherboard
-                            <span class="badge bg-primary rounded-pill">1</span>
+                            <span class="badge bg-primary rounded-pill">{{ $motherboards->count() }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             CPU
-                            <span class="badge bg-primary rounded-pill">1</span>
+                            <span class="badge bg-primary rounded-pill">{{ $cpus->count() }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             CPU Cooler
-                            <span class="badge bg-primary rounded-pill">1</span>
+                            <span class="badge bg-primary rounded-pill">{{ $cpu_coolers->count() }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Graphics Card
-                            <span class="badge bg-primary rounded-pill">1</span>
+                            <span class="badge bg-primary rounded-pill">{{ $graphics_cards->count() }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             RAM
-                            <span class="badge bg-primary rounded-pill">1</span>
+                            <span class="badge bg-primary rounded-pill">{{ $rams->count() }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Storage
-                            <span class="badge bg-primary rounded-pill">1</span>
+                            <span class="badge bg-primary rounded-pill">{{ $storages->count() }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             PSU
-                            <span class="badge bg-primary rounded-pill">1</span>
+                            <span class="badge bg-primary rounded-pill">{{ $psus->count() }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Computer Case
-                            <span class="badge bg-primary rounded-pill">1</span>
+                            <span class="badge bg-primary rounded-pill">{{ $computer_cases->count() }}</span>
                         </li>
                     </ul>
                 </div>
@@ -89,7 +89,7 @@
                                     <div class="card card-body bg-light">
                                         <div class="h3">
                                             <i class="bi bi-person"></i>
-                                            <small>69</small>
+                                            <small>{{ $accounts->count() }}</small>
                                         </div>
                                         Users
                                     </div>
@@ -98,7 +98,7 @@
                                     <div class="card card-body bg-light">
                                         <div class="h3">
                                             <i class="bi bi-cpu"></i>
-                                            <small>69</small>
+                                            <small>{{ $components->count() }}</small>
                                         </div>
                                         Components
                                     </div>
@@ -107,7 +107,7 @@
                                     <div class="card card-body bg-light">
                                         <div class="h3">
                                             <i class="bi bi-bar-chart"></i>
-                                            <small>69</small>
+                                            <small>0</small>
                                         </div>
                                         Visitors
                                     </div>
@@ -122,56 +122,36 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title p-2 text-center">Latest Users</h4>
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>User ID</th>
-                                        <th>Username</th>
-                                        <th>Account Type</th>
-                                        <th>Verified</th>
-                                        <th>Date Joined</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                    </tr>
-                                    <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                    </tr>
-                                    <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                    </tr>
-                                    <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                    </tr>
-                                    <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            @if($accounts->count())
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>Username</th>
+                                            <th>Account Type</th>
+                                            <th>Verified</th>
+                                            <th>Date Joined</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($accounts as $account)
+                                        <tr>
+                                            <td>{{ $account->id }}</td>
+                                            <td>{{ $account->username }}</td>
+                                            <td>{{ $account->account_type }}</td>
+                                            <td>{{ $account->is_verified }}</td>
+                                            <td>{{ $account->created_at }}</td>
+                                        </tr>
+                                            @break($loop->iteration == 5)
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <p class="lead text-center">No Users</p>
+                            @endif
+
                         </div>
                     </div>
                 </div>
@@ -181,6 +161,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title p-2 text-center">Latest Components</h4>
+                            @if($components->count())
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover">
                                     <thead>
@@ -193,44 +174,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($components as $component)
                                     <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
+                                        <td>{{ $component->id }}</td>
+                                        <td>{{ $component->name }}</td>
+                                        <td>{{ $component->type() }}</td>
+                                        <td>{{ $component->manufacturer }}</td>
+                                        <td>{{ $component->updated_at }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                    </tr>
-                                    <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                    </tr>
-                                    <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                    </tr>
-                                    <tr>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                        <td>[Data]</td>
-                                    </tr>
+                                        @break($loop->iteration == 5)
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
+                            @else
+                                <p class="lead text-center">No Components</p>
+                            @endif
                         </div>
                     </div>
                 </div>
