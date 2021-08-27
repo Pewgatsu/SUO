@@ -9,6 +9,8 @@ class PSU extends Model
 {
     use HasFactory;
 
+    protected $table = 'psus';
+
     protected $primaryKey = 'component_id';
 
     protected $fillable = [

@@ -9,6 +9,8 @@ class Motherboard extends Model
 {
     use HasFactory;
 
+    protected $table = 'motherboards';
+
     protected $primaryKey = 'component_id';
 
     protected $fillable = [

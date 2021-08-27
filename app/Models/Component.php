@@ -9,6 +9,8 @@ class Component extends Model
 {
     use HasFactory;
 
+    protected $table = 'components';
+
     protected $fillable = [
         'image_path',
         'name',
@@ -20,6 +22,10 @@ class Component extends Model
         'width',
         'height'
     ];
+
+    public function type(){
+        return "type";
+    }
 
     public function motherboard(){
         return $this->hasOne(Motherboard::class);

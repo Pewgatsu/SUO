@@ -9,6 +9,8 @@ class CPU extends Model
 {
     use HasFactory;
 
+    protected $table = 'cpus';
+
     protected $primaryKey = 'component_id';
 
     protected $fillable = [
