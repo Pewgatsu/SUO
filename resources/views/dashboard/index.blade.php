@@ -123,7 +123,7 @@
                         <div class="card-body">
                             <h4 class="card-title p-2 text-center">Latest Users</h4>
                             @if($accounts->count())
-                                <div class="table-responsive">
+                                <div class="table-responsive text-center">
                                     <table class="table table-striped table-hover">
                                         <thead>
                                         <tr>
@@ -141,7 +141,7 @@
                                             <td>{{ $account->username }}</td>
                                             <td>{{ $account->account_type }}</td>
                                             <td>{{ $account->is_verified }}</td>
-                                            <td>{{ $account->created_at }}</td>
+                                            <td>{{ $account->created_at->diffForHumans() }}</td>
                                         </tr>
                                             @break($loop->iteration == 5)
                                         @endforeach
@@ -162,7 +162,7 @@
                         <div class="card-body">
                             <h4 class="card-title p-2 text-center">Latest Components</h4>
                             @if($components->count())
-                            <div class="table-responsive">
+                            <div class="table-responsive text-center">
                                 <table class="table table-striped table-hover">
                                     <thead>
                                     <tr>
@@ -180,7 +180,7 @@
                                         <td>{{ $component->name }}</td>
                                         <td>{{ $component->type() }}</td>
                                         <td>{{ $component->manufacturer }}</td>
-                                        <td>{{ $component->updated_at }}</td>
+                                        <td>{{ $component->updated_at->diffForHumans() }}</td>
                                     </tr>
                                         @break($loop->iteration == 5)
                                     @endforeach
