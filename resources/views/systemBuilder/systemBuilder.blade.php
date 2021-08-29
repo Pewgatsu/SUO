@@ -1,0 +1,249 @@
+@extends('layouts.app')
+@section('content')
+
+<div class="container-sm p-3 my-3">
+    <table class="table table-hover">
+        <thead>
+            <tr >
+                <th class="text-center" width="15%">Components</th>
+                <th class="text-center" width="40%">Selection</th>
+                <th class="text-center" width="10%">Price</th>
+                <th class="text-center" width="10%">Owned</th>
+                <th class="text-center" width="15%"></th>
+            </tr>
+        </thead>
+        <tbody>
+        <!--MOTHERBOARD-->
+            <tr>
+                <td>Motherboard</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="selectedMotherboard">
+                        <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
+                    </form>
+                </td>
+                <td class="text-center">PRICE</td>
+                <td class="text-center">
+                    <form name="ownedComponent" method="post">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="hidden" name="ownedMotherboard" value="">
+                                <input type="checkbox" id="ownedComponentMotherboard" name="ownedComponentMotherboard" class="form-check-input">Owned
+                            </label>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="orderComponentMotherboard">
+                        <button type="submit" class="btn btn-info col-12" name="orderComponent">Order</button>
+                    </form>
+                </td>
+            </tr>
+        <!--CPU-->
+            <tr>
+                <td>CPU</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="selectedCpu">
+                        <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
+                    </form>
+                </td>
+                <td class="text-center">PRICE</td>
+                <td class="text-center">
+                    <form name="ownedComponent" method="post">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="hidden" name="ownedCpu" value="">
+                                <input type="checkbox" id="ownedComponentCpu" name="ownedComponentCpu" class="form-check-input">Owned
+                            </label>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="orderComponentCpu">
+                        <button type="submit" class="btn btn-info col-12" name="orderComponent">Order</button>
+                    </form>
+                </td>
+            </tr>
+        <!--CPU COOLER-->
+            <tr>
+                <td>CPU Cooler</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="selectedCpuCooler">
+                        <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
+                    </form>
+                </td>
+                <td class="text-center">PRICE</td>
+                <td class="text-center">
+                    <form name="ownedComponent" method="post">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="hidden" name="ownedCpuCooler" value="">
+                                <input type="checkbox" id="ownedComponentCpuCooler" name="ownedComponentCpuCooler" class="form-check-input">Owned
+                            </label>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="orderComponentCpuCooler">
+                        <button type="submit" class="btn btn-info col-12" name="orderComponent">Order</button>
+                    </form>
+                </td>
+            </tr>
+        <!--GRAPHICS CARD-->
+            <tr>
+                <td>Graphics Card</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="selectedGpu">
+                        <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
+                    </form>
+                </td>
+                <td class="text-center">PRICE</td>
+                <td class="text-center">
+                    <form name="ownedComponent" method="post">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="hidden" name="ownedGpu" value="">
+                                <input type="checkbox" id="ownedComponentGpu" name="ownedComponentGpu" class="form-check-input">Owned
+                            </label>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="orderComponentGpu">
+                        <button type="submit" class="btn btn-info col-12" name="orderComponent">Order</button>
+                    </form>
+                </td>
+            </tr>
+        <!--RAM-->
+            <tr>
+                <td>RAM</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="selectedRam">
+                        <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
+                    </form>
+                </td>
+                <td class="text-center">PRICE</td>
+                <td class="text-center">
+                    <form name="ownedComponent" method="post">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="hidden" name="ownedRam" value="">
+                                <input type="checkbox" id="ownedComponentRam" name="ownedComponentRam" class="form-check-input">Owned
+                            </label>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="orderComponentRam">
+                        <button type="submit" class="btn btn-info col-12" name="orderComponent">Order</button>
+                    </form>
+                </td>
+            </tr>
+        <!--STORAGE-->
+            <tr>
+                <td>Storage</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="selectedStorage">
+                        <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
+                    </form>
+                </td>
+                <td class="text-center">PRICE</td>
+                <td class="text-center">
+                    <form name="ownedComponent" method="post">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="hidden" name="ownedStorage" value="">
+                                <input type="checkbox" id="ownedComponentStorage" name="ownedComponentStorage" class="form-check-input">Owned
+                            </label>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="orderComponentStorage">
+                        <button type="submit" class="btn btn-info col-12" name="orderComponent">Order</button>
+                    </form>
+                </td>
+            </tr>
+        <!--PSU-->
+            <tr>
+                <td>Power Supply</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="selectedPowerSupply">
+                        <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
+                    </form>
+                </td>
+                <td class="text-center">PRICE</td>
+                <td class="text-center">
+                    <form name="ownedComponent" method="post">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="hidden" name="ownedPowerSupply" value="">
+                                <input type="checkbox" id="ownedComponentPowerSupply" name="ownedComponentPowerSupply" class="form-check-input">Owned
+                            </label>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="orderComponentPowerSupply">
+                        <button type="submit" class="btn btn-info col-12" name="orderComponent">Order</button>
+                    </form>
+                </td>
+            </tr>
+        <!--COMPUTER CASE-->
+        <tr>
+            <td>Computer Case</td>
+            <td>
+                <form method="post">
+                    <input type="hidden" name="selectedComputerCase">
+                    <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
+                </form>
+            </td>
+            <td class="text-center">PRICE</td>
+            <td class="text-center">
+                <form name="ownedComponent" method="post">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="hidden" name="ownedComputerCase" value="">
+                            <input type="checkbox" id="ownedComponentComputerCase" name="ownedComponentComputerCase" class="form-check-input">Owned
+                        </label>
+                    </div>
+                </form>
+            </td>
+            <td>
+                <form method="post">
+                    <input type="hidden" name="orderComponentComputerCase">
+                    <button type="submit" class="btn btn-info col-12" name="orderComponent">Order</button>
+                </form>
+            </td>
+        </tr>
+        <!--Name and Save-->
+        <tr>
+            <form class="form-inline" action="" method="post">
+                <td style="text-align:right">
+                    <label for="form-label"> Build Name: </label></td>
+                <td colspan="2">
+                    <input type="text" class="form-control" id="buildName" name="buildName">
+                </td>
+                <td><button type="submit" name="saveButton" class="btn btn-info btn-block ">Save Build</button></td>
+            </form>
+            <td></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+@endsection
