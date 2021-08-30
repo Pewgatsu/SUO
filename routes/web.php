@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,20 +23,18 @@ Auth::routes();
 
 
 
-Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
-Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
+Route::get('/login',[AuthController::class,'loginPage'])->name('login');
+Route::get('/register',[AuthController::class,'registerPage'])->name('register');
 
-Route::post('/register',[App\Http\Controllers\AuthController::class,'registerUser']);
-Route::post('/login',[\App\Http\Controllers\AuthController::class,'login'])->name('login');
+Route::post('/register',[AuthController::class,'registerUser']);
+Route::post('/login',[AuthController::class,'login'])->name('login');
 
 
 Route::get('/dashboard', function(){
     return view('dashboard');
 });
 
-Route::get('/register2', function (){
-    return view('auth.register');
-});
+
 
 
 
