@@ -9,6 +9,8 @@ class RAM extends Model
 {
     use HasFactory;
 
+    protected $table = 'rams';
+
     protected $primaryKey = 'component_id';
 
     protected $fillable = [

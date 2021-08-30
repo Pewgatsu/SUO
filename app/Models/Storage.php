@@ -9,6 +9,8 @@ class Storage extends Model
 {
     use HasFactory;
 
+    protected $table = 'storages';
+
     protected $primaryKey = 'component_id';
 
     protected $fillable = [

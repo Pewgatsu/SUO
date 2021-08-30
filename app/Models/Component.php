@@ -9,6 +9,8 @@ class Component extends Model
 {
     use HasFactory;
 
+    protected $table = 'components';
+
     protected $fillable = [
         'image_path',
         'name',
@@ -20,6 +22,36 @@ class Component extends Model
         'width',
         'height'
     ];
+
+    public function type(){
+        if ($this->motherboard()->find($this->id)){
+            return 'Motherboard';
+        }
+        elseif ($this->cpu()->find($this->id)){
+            return 'CPU';
+        }
+        elseif ($this->cpu_cooler()->find($this->id)){
+            return 'CPU Cooler';
+        }
+        elseif ($this->graphics_card()->find($this->id)){
+            return 'Graphics Card';
+        }
+        elseif ($this->ram()->find($this->id)){
+            return 'RAM';
+        }
+        elseif ($this->storage()->find($this->id)){
+            return 'Storage';
+        }
+        elseif ($this->psu()->find($this->id)){
+            return 'PSU';
+        }
+        elseif ($this->computer_case()->find($this->id)){
+            return 'Computer Case';
+        }
+        else {
+            return null;
+        }
+    }
 
     public function motherboard(){
         return $this->hasOne(Motherboard::class);
