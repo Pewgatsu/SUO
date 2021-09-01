@@ -47,6 +47,8 @@ Route::get('/users', [UsersController::class, 'index'])->name('users');
 
 //System Builder
 Route::get('/systemBuilder', [SystemBuilderController::class, 'index'])->name('index');
+Route::post('/componentButton', [\App\Http\Controllers\ComponentsButtonController::class, 'print'])->name('buttonAction');
+//Route::get('/ComponentsButtonController','ComponentsButtonController@returnData');
 
 
 
