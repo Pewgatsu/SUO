@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title','System Builder')
 @section('content')
 
 <div class="container-sm p-3 my-3">
@@ -18,7 +17,7 @@
             <tr>
                 <td>Motherboard</td>
                 <td>
-                    <form action="/componentButton" method="post">
+                    <form action="/components" method="post">
                         <input type="hidden" name="selectedComponents" value="motherboards">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="{{'+'}}" class="btn btn-info col-12">
@@ -46,7 +45,7 @@
             <tr>
                 <td>CPU</td>
                 <td>
-                    <form action="/componentButton" method="post">
+                    <form action="/components" method="post">
                         <input type="hidden" name="selectedComponents" value="cpus">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
@@ -74,7 +73,7 @@
             <tr>
                 <td>CPU Cooler</td>
                 <td>
-                    <form action="/componentButton" method="post">
+                    <form action="/components" method="post">
                         <input type="hidden" name="selectedComponents" value="cpu_coolers">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
@@ -102,7 +101,7 @@
             <tr>
                 <td>Graphics Card</td>
                 <td>
-                    <form action="/componentButton" method="post">
+                    <form action="/components" method="post">
                         <input type="hidden" name="selectedComponents" value="graphics_cards">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
@@ -130,7 +129,7 @@
             <tr>
                 <td>RAM</td>
                 <td>
-                    <form action="/componentButton" method="post">
+                    <form action="/components" method="post">
                         <input type="hidden" name="selectedComponents" value="rams">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
@@ -158,7 +157,7 @@
             <tr>
                 <td>Storage</td>
                 <td>
-                    <form action="/componentButton" method="post">
+                    <form action="/components" method="post">
                         <input type="hidden" name="selectedComponents" value="storages">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
@@ -186,7 +185,7 @@
             <tr>
                 <td>Power Supply</td>
                 <td>
-                    <form action="/componentButton" method="post">
+                    <form action="/components" method="post">
                         <input type="hidden" name="selectedComponents" value="psus">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">
@@ -214,7 +213,7 @@
         <tr>
             <td>Computer Case</td>
             <td>
-                <form action="/componentButton" method="post">
+                <form action="/components" method="post">
                     <input type="hidden" name="selectedComponents" value="computer_cases">
                     {{csrf_field()}}
                     <input type="submit" name="selectedComponent" value="+" class="btn btn-info col-12">

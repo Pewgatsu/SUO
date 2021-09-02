@@ -37,12 +37,13 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/users', [UsersController::class, 'index'])->name('users');
 
+//components
+
+
+
 //System Builder
 Route::get('/systemBuilder', [SystemBuilderController::class, 'index'])->name('index');
-Route::post('/componentButton', [\App\Http\Controllers\ComponentsButtonController::class, 'print'])->name('buttonAction');
-//Route::get('/ComponentsButtonController','ComponentsButtonController@returnData');
-
-
+Route::post('/components', [\App\Http\Controllers\SystemBuilderController::class, 'print'])->name('components');
 
 Route::get('/register2', function (){
     return view('auth.register');
