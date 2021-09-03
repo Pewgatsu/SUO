@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models;
+use Illuminate\Support\Facades\DB;
 
 class SystemBuilderController extends Controller
 {
@@ -14,6 +15,7 @@ class SystemBuilderController extends Controller
 
 
     public function print(Request $request){
+        $holder = array();
         $components=array(
             'motherboards' => '+',
             'cpus'=> '+',
@@ -32,28 +34,52 @@ class SystemBuilderController extends Controller
 
                 switch ($key){
                     case "motherboards":
-                        $holder = Models\Motherboard::all();
+                        foreach (Models\Motherboard::all() as $hold){
+                            $id = DB::table('components')->find($hold->component_id);
+                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
+                        }
                         break;
                     case "cpus":
-                        $holder = Models\CPU::all();
+                        foreach ( Models\CPU::all() as $hold){
+                            $id = DB::table('components')->find($hold->component_id);
+                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
+                        }
                         break;
                     case "cpu_coolers":
-                        $holder = Models\CPUCooler::all();
+                        foreach ( Models\CPUCooler::all() as $hold){
+                            $id = DB::table('components')->find($hold->component_id);
+                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
+                        }
                         break;
                     case "graphics_cards":
-                        $holder = Models\GraphicsCard::all();
+                        foreach (Models\GraphicsCard::all() as $hold){
+                            $id = DB::table('components')->find($hold->component_id);
+                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
+                        }
                         break;
                     case "rams":
-                        $holder = Models\RAM::all();
+                        foreach (Models\RAM::all() as $hold){
+                            $id = DB::table('components')->find($hold->component_id);
+                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
+                        }
                         break;
                     case "storages":
-                        $holder = Models\Storage::all();
+                        foreach (Models\Storage::all() as $hold){
+                            $id = DB::table('components')->find($hold->component_id);
+                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
+                        }
                         break;
                     case "psus":
-                        $holder = Models\PSU::all();
+                        foreach (Models\PSU::all() as $hold){
+                            $id = DB::table('components')->find($hold->component_id);
+                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
+                        }
                         break;
                     case "computer_cases":
-                        $holder = Models\ComputerCase::all();
+                        foreach (Models\ComputerCase::all() as $hold){
+                            $id = DB::table('components')->find($hold->component_id);
+                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
+                        }
                         break;
                 }
             }
