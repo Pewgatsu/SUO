@@ -9,7 +9,7 @@ class SystemBuilderController extends Controller
 {
     //
     public function index(){
-        return view('systemBuilder/systemBuilder');
+        return view('systemBuilder.builder');
     }
 
 
