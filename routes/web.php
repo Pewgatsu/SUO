@@ -29,9 +29,10 @@ Auth::routes();
 
 Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
 Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
+Route::get('/loguout',[\App\Http\Controllers\AuthController::class,'logout'])->name('logout');
 
-Route::post('/register',[App\Http\Controllers\AuthController::class,'registerUser']);
-Route::post('/login',[\App\Http\Controllers\AuthController::class,'login'])->name('login');
+Route::post('/register',[App\Http\Controllers\AuthController::class, 'registerUser']);
+Route::post('/login',[App\Http\Controllers\AuthController::class,'login']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::post('/dashboard/add/motherboard', [DashboardController::class, 'add_motherboard'])->name('dashboard.add_motherboard');
@@ -49,7 +50,7 @@ Route::get('/users', [UsersController::class, 'index'])->name('users');
 
 
 //System Builder
-Route::get('/systemBuilder', [SystemBuilderController::class, 'index'])->name('index');
+Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
 Route::post('/components', [\App\Http\Controllers\SystemBuilderController::class, 'print'])->name('components');
 
 
