@@ -20,13 +20,24 @@ class AuthController extends Controller
         return view('auth.registration');
     }
 
+    public function logout(){
+        auth()->logout();
+
+        return redirect('/');
+    }
+
     public function login(LoginRequest $request){
 
         $credentials = $request->only('username','password');
         $account = Account::where('username',$request->username)->first();
 
         if(Auth::attempt($credentials)){
-            return view('systemBuilder.builder');
+            if(auth()->user()->account_type == 'customer'){
+                return redirect()->route('builder');
+            }else{
+                return redirect()->route('dashboard');
+            }
+
         }else{
             return redirect()->back()->with('error','Invalid Credentials');
         }
