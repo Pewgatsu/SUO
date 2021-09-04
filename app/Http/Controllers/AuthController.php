@@ -13,23 +13,25 @@ class AuthController extends Controller
 {
     //
     public function loginPage(){
-        return view('login');
+        return view('auth.login');
     }
 
     public function registerPage(){
-        return view('registration');
+        return view('auth.login');
     }
 
-    public function login(LoginRequest $request){
+    public function login(LoginRequest $request,$account){
 
         $credentials = $request->only('username','password');
         $account = Account::where('username',$request->username)->first();
 
-        if(Auth::attempt($credentials)){
-            return view('dashboard');
-        }else{
-            return redirect()->back()->with('error','Invalid Credentials');
-        }
+
+
+//        if(Auth::attempt($credentials) && $credentials->'account_type' == ){
+//            return redirect()->route('builder');
+//        }else{
+//            return redirect()->back()->with('error','Invalid Credentials');
+//        }
     }
 
     //validate the input in request
