@@ -25,7 +25,7 @@ class AuthController extends Controller
         $credentials = $request->only('username','password');
         $account = Account::where('username',$request->username)->first();
 
-
+        
 
 //        if(Auth::attempt($credentials) && $credentials->'account_type' == ){
 //            return redirect()->route('builder');
