@@ -1,22 +1,14 @@
+@extends('layouts.master')
+
+@push('scripts')
+    <script src="{{asset('js/validate_register.js')}}" defer></script>
+@endpush
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+@section('content')
 
 
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-
-    <script src="{{asset('js/app.js')}}"></script>
-
-</head>
-
-
-<body>
-
-<form action="{{route('register')}}" method="POST">
+<form action="{{route('register')}}" method="POST" class="needs-validation" id="registerForm">
     @csrf
 
     <div class="container vh-250">
@@ -33,24 +25,23 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-user fa-lg me-3 mb-3 fa-fw"></i>
                                         <div class="form-floating flex-fill mb-0">
-                                            <input type="text" id="username" class="form-control @error('username') is-invalid @enderror" value="{{old('username')}}" placeholder="#" name="username">
+                                            <input type="text" id="regUsername" class="form-control @error('username') is-invalid @enderror" placeholder="#" name="username">
                                             <label for="username">Username</label>
+                                            <div class="valid-tooltip position-relative">Looks Good!</div>
                                             @error('username')
                                             <div class="invalid-tooltip position-relative">{{$errors->first('username')}}</div>
                                             @enderror
                                         </div>
-
-
-
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-lock fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-floating  flex-fill mb-0">
-                                            <input type="text" id="password" class="form-control @error('password') is-invalid @enderror" value="{{old('password')}}" placeholder="#"
+                                            <input type="text" id="regPassword" class="form-control @error('password') is-invalid @enderror" value="{{old('password')}}" placeholder="#"
                                                    name="password">
                                             <label for="password">Password</label>
                                             @error('password')
+
                                             <div class="invalid-tooltip position-relative">{{$errors->first('password')}}</div>
                                             @enderror
                                         </div>
@@ -59,7 +50,7 @@
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <i class="fas fa-key fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="form-floating flex-fill mb-0">
-                                            <input type="text" id="confirmPassword" class="form-control @error('password_confirmation') is-invalid @enderror" value="{{old('password_confirmation')}}"
+                                            <input type="text" id="regConfirmPass" class="form-control @error('password_confirmation') is-invalid @enderror" value="{{old('password_confirmation')}}"
                                                    placeholder="#" name="password_confirmation">
                                             <label for="confirmPassword">Confirm Password</label>
                                             @error('password_confirmation')
@@ -123,11 +114,15 @@
                                         <i class="fas fa-user fa-lg me-3 mb-2 fa-fw"></i>
                                         <div class="row">
                                             <div class="col">
-                                                <div class="form-floating" style="padding-left:  2px;">
+                                                <div class="form-floating">
                                                     <input type="text" id="firstname" class="form-control @error('firstname') is-invalid @enderror"
                                                            placeholder="#" name="firstname"/>
                                                     <label for="firstname">First name</label>
                                                     @error('firstname')
+                                                    <script>
+                                                        const firstname = document.getElementById('firstname');
+                                                        firstname.addEventListener('blur',validateFirstname);
+                                                    </script>
                                                     <div class="invalid-tooltip position-relative">{{$errors->first('firstname')}}</div>
                                                     @enderror
                                                 </div>
@@ -135,7 +130,7 @@
 
                                             <div class="col">
                                                 <div class="form-floating ">
-                                                    <input type="text" id="lastname" class="form-control @error('lastname') is-invalid  @enderror"
+                                                    <input type="text" id="lastname" class="form-control ps-4 @error('lastname') is-invalid  @enderror"
                                                            placeholder="#" name="lastname"/>
                                                     <label for="lastname">Last name</label>
                                                     @error('lastname')
@@ -203,7 +198,7 @@
                                     </div>
 
                                     <div class="d-grid gap  pt-3">
-                                        <button type="submit" name="register" class="btn btn-primary" >Register</button>
+                                        <button type="submit" name="register" class="btn btn-primary">Register</button>
                                     </div>
 
                                     <p class="text-center text-muted mt-5 mb-0">Already have an account? <a
@@ -232,30 +227,32 @@
 
 </form>
 
+@endsection
 
-</body>
+@push('datepicker')
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
-<!-- Include jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'mm/dd/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
+    <script>
+        $(document).ready(function(){
+            var date_input=$('input[id="birthdate"]'); //our date input has the name "date"
+            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
         })
-    })
-</script>
+    </script>
+@endpush
 
 
 
-</html>
+
+

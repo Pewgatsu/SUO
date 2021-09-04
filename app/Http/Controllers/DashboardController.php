@@ -42,4 +42,36 @@ class DashboardController extends Controller
             'computer_cases' => $computer_cases
         ]);
     }
+
+    public function add_motherboard(){
+
+    }
+
+    public function add_cpu(){
+
+    }
+
+    public function add_cpu_cooler(){
+
+    }
+
+    public function add_graphics_card(){
+
+    }
+
+    public function add_ram(){
+
+    }
+
+    public function add_storage(){
+
+    }
+
+    public function add_psu(){
+
+    }
+
+    public function add_computer_case(){
+
+    }
 }

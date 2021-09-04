@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
     <div class="container">
         <div class="d-sm-flex my-2 justify-content-between align-items-center">

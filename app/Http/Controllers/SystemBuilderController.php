@@ -4,19 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models;
-use Illuminate\Support\Facades\DB;
 
 class SystemBuilderController extends Controller
 {
     //
     public function index(){
-
         return view('systemBuilder.builder');
     }
 
 
     public function print(Request $request){
-        $holder = array();
         $components=array(
             'motherboards' => '+',
             'cpus'=> '+',
@@ -50,6 +47,7 @@ class SystemBuilderController extends Controller
                             session(['motherboards'=> 'pressed motherboard','motherboardsPrice'=>'00','motherboardsCheckBox'=>' ','motherboardsOrder'=>' ']);
                         }
 
+                        $holder = Models\Motherboard::all();
                         break;
 
                     case "cpus":
@@ -66,6 +64,7 @@ class SystemBuilderController extends Controller
                             session(['cpus'=> 'pressed cpus','cpusPrice'=>'00','cpusCheckBox'=>' ','cpusOrder'=>' ']);
                         }
 
+                        $holder = Models\CPU::all();
                         break;
 
                     case "cpu_coolers":
@@ -97,6 +96,10 @@ class SystemBuilderController extends Controller
                             session(['graphics_cards'=> 'pressed graphics_cards','graphics_cardsPrice'=>'00','graphics_cardsCheckBox'=>' ','graphics_cardsOrder'=>' ']);
                         }
 
+                        $holder = Models\CPUCooler::all();
+                        break;
+                    case "graphics_cards":
+                        $holder = Models\GraphicsCard::all();
                         break;
 
                     case "rams":
@@ -113,6 +116,7 @@ class SystemBuilderController extends Controller
                             session(['rams'=> 'pressed rams','ramsPrice'=>'00','ramsCheckBox'=>' ','ramsOrder'=>' ']);
                         }
 
+                        $holder = Models\RAM::all();
                         break;
 
                     case "storages":
@@ -129,6 +133,7 @@ class SystemBuilderController extends Controller
                             session(['storages'=> 'pressed storages','storagesPrice'=>'00','storagesCheckBox'=>' ','storagesOrder'=>' ']);
                         }
 
+                        $holder = Models\Storage::all();
                         break;
 
                     case "psus":
@@ -160,6 +165,10 @@ class SystemBuilderController extends Controller
                             session(['computer_cases'=> 'pressed computer_cases','computer_casesPrice'=>'00','computer_casesCheckBox'=>' ','computer_casesOrder'=>' ']);
                         }
 
+                        $holder = Models\PSU::all();
+                        break;
+                    case "computer_cases":
+                        $holder = Models\ComputerCase::all();
                         break;
                 }
             }
