@@ -1,11 +1,12 @@
 
+id ---------------- name
+<hr><br><br>
 @foreach($holder as $hold)
-
-    {{$hold->component_id}}
+    {{$hold['id']}}  ---  {{$hold["name"]}}
+    <hr>
 @endforeach
 
-{{$holder}}
-<pre>{{print_r($holder)}} </pre>
+
 
 
 
