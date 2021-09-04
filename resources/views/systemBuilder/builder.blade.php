@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('content')
 
-<div class="container-sm p-3 my-3">
-    <table class="table table-hover">
-        <thead>
+    <div class="container-sm p-3 my-3">
+        <table class="table table-hover">
+            <thead>
             <tr >
                 <th class="text-center" width="15%">Components</th>
                 <th class="text-center" width="40%">Selection</th>
@@ -11,9 +11,9 @@
                 <th class="text-center" width="10%">Owned</th>
                 <th class="text-center" width="15%"></th>
             </tr>
-        </thead>
-        <tbody>
-        <!--MOTHERBOARD-->
+            </thead>
+            <tbody>
+            <!--MOTHERBOARD-->
             <tr>
                 <td>Motherboard</td>
                 <td>
@@ -41,7 +41,7 @@
                     </form>
                 </td>
             </tr>
-        <!--CPU-->
+            <!--CPU-->
             <tr>
                 <td>CPU</td>
                 <td>
@@ -69,7 +69,7 @@
                     </form>
                 </td>
             </tr>
-        <!--CPU COOLER-->
+            <!--CPU COOLER-->
             <tr>
                 <td>CPU Cooler</td>
                 <td>
@@ -97,7 +97,7 @@
                     </form>
                 </td>
             </tr>
-        <!--GRAPHICS CARD-->
+            <!--GRAPHICS CARD-->
             <tr>
                 <td>Graphics Card</td>
                 <td>
@@ -125,7 +125,7 @@
                     </form>
                 </td>
             </tr>
-        <!--RAM-->
+            <!--RAM-->
             <tr>
                 <td>RAM</td>
                 <td>
@@ -153,7 +153,7 @@
                     </form>
                 </td>
             </tr>
-        <!--STORAGE-->
+            <!--STORAGE-->
             <tr>
                 <td>Storage</td>
                 <td>
@@ -181,7 +181,7 @@
                     </form>
                 </td>
             </tr>
-        <!--PSU-->
+            <!--PSU-->
             <tr>
                 <td>Power Supply</td>
                 <td>
@@ -209,49 +209,49 @@
                     </form>
                 </td>
             </tr>
-        <!--COMPUTER CASE-->
-        <tr>
-            <td>Computer Case</td>
-            <td>
-                <form action="/components" method="post">
-                    <input type="hidden" name="selectedComponents" value="computer_cases">
-                    {{csrf_field()}}
-                    <input type="submit" name="selectedComponent" value="{{session('computer_cases','+')}}" class="btn btn-info col-12">
-                </form>
-            </td>
-            <td class="text-center">{{session('computer_casesPrice','--')}}</td>
-            <td class="text-center">
-                <form name="ownedComponent" method="post">
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input type="hidden" name="ownedComputerCase" value="">
-                            <input type="checkbox" id="ownedComponentComputerCase" name="ownedComponentComputerCase" {{session('computer_casesCheckBox','disabled')}} class="form-check-input">Owned
-                        </label>
-                    </div>
-                </form>
-            </td>
-            <td>
-                <form method="post">
-                    <input type="hidden" name="orderComponentComputerCase">
-                    <button type="submit" class="btn btn-info col-12" {{session('computer_casesOrder','disabled')}} name="orderComponent">Order</button>
-                </form>
-            </td>
-        </tr>
-        <!--Name and Save-->
-        <tr>
-            <form class="form-inline" action="" method="post">
-                <td style="text-align:right">
-                    <label for="form-label"> Build Name: </label></td>
-                <td colspan="2">
-                    <input type="text" class="form-control" id="buildName" name="buildName">
+            <!--COMPUTER CASE-->
+            <tr>
+                <td>Computer Case</td>
+                <td>
+                    <form action="/components" method="post">
+                        <input type="hidden" name="selectedComponents" value="computer_cases">
+                        {{csrf_field()}}
+                        <input type="submit" name="selectedComponent" value="{{session('computer_cases','+')}}" class="btn btn-info col-12">
+                    </form>
                 </td>
-                <td><button type="submit" name="saveButton" class="btn btn-info btn-block ">Save Build</button></td>
-            </form>
-            <td></td>
+                <td class="text-center">{{session('computer_casesPrice','--')}}</td>
+                <td class="text-center">
+                    <form name="ownedComponent" method="post">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="hidden" name="ownedComputerCase" value="">
+                                <input type="checkbox" id="ownedComponentComputerCase" name="ownedComponentComputerCase" {{session('computer_casesCheckBox','disabled')}} class="form-check-input">Owned
+                            </label>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="orderComponentComputerCase">
+                        <button type="submit" class="btn btn-info col-12" {{session('computer_casesOrder','disabled')}} name="orderComponent">Order</button>
+                    </form>
+                </td>
+            </tr>
+            <!--Name and Save-->
+            <tr>
+                <form class="form-inline" action="" method="post">
+                    <td style="text-align:right">
+                        <label for="form-label"> Build Name: </label></td>
+                    <td colspan="2">
+                        <input type="text" class="form-control" id="buildName" name="buildName">
+                    </td>
+                    <td><button type="submit" name="saveButton" class="btn btn-info btn-block ">Save Build</button></td>
+                </form>
+                <td></td>
 
-        </tr>
-        </tbody>
-    </table>
+            </tr>
+            </tbody>
+        </table>
 
-</div>
+    </div>
 @endsection
