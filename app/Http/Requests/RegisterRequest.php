@@ -49,7 +49,7 @@ class RegisterRequest extends FormRequest
             'accountType.required' => 'You must select an account type!',
             'gender.required' => 'You must specify your gender!',
             'date.before_or_equal' => 'Date cannot be ahead of time!',
-            'contact.digits_between' => 'Contact number must start with +639 or +09'
+            'contact.digits_between' => 'Contact number must start with 639 or 09'
         ];
     }
 }
