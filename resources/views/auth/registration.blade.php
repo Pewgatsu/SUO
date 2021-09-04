@@ -7,6 +7,7 @@
 
 @section('content')
 
+
 <form action="{{route('register')}}" method="POST" class="needs-validation" id="registerForm">
     @csrf
 
