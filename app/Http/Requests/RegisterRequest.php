@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -27,7 +28,7 @@ class RegisterRequest extends FormRequest
         return [
             //
             'username' => ['required','unique:accounts,username'],
-            'password' => ['required','min:6','alpha_num','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/'],
+            'password' => ['required','min:6','alpha_num'],
             'password_confirmation' => ['required','same:password'],
             'email' => ['required','email','unique:accounts','email'],
             'accountType' => ['required'],
@@ -36,7 +37,7 @@ class RegisterRequest extends FormRequest
             'date' => ['required', 'date_format:m/d/Y','before_or_equal:'.$date_now],
             'gender' => ['required'],
             'address' => ['required'],
-            'contact' => ['required', 'digits_between:11,12']
+            'contact' => ['required', 'min:11']
         ];
     }
 
@@ -52,4 +53,6 @@ class RegisterRequest extends FormRequest
             'contact.digits_between' => 'Contact number must start with 639 or 09'
         ];
     }
+
+
 }
