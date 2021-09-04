@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('login');
 });
 
 Auth::routes();
@@ -50,10 +50,12 @@ Route::get('/users', [UsersController::class, 'index'])->name('users');
 
 
 //System Builder
-Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
-
+Route::get('/systemBuilder', [SystemBuilderController::class, 'index'])->name('index');
 Route::post('/components', [\App\Http\Controllers\SystemBuilderController::class, 'print'])->name('components');
 
+Route::get('/register2', function (){
+    return view('auth.register');
+});
 
 
 
