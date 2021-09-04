@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @push('scripts')
     <script src="{{asset('js/validate_register.js')}}" defer></script>
