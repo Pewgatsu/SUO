@@ -48,14 +48,11 @@ Route::get('/users', [UsersController::class, 'index'])->name('users');
 //components
 
 
-
 //System Builder
 Route::get('/systemBuilder', [SystemBuilderController::class, 'index'])->name('index');
 Route::post('/components', [\App\Http\Controllers\SystemBuilderController::class, 'print'])->name('components');
 
-Route::get('/register2', function (){
-    return view('auth.register');
-});
+
 
 
 
