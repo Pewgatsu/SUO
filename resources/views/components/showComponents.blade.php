@@ -4,6 +4,7 @@ id ---------------- name
 @foreach($holder as $hold)
     {{$hold['id']}}  ---  {{$hold["name"]}}
     <hr>
+    <hr>
 @endforeach
 
 
