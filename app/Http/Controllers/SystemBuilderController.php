@@ -26,11 +26,13 @@ class SystemBuilderController extends Controller
             'psus' => '+' ,
             'computer_cases' => '+'
         );
+
         $component=array('type'=>'');
         $component['type'] = $request->input('selectedComponents');
         foreach ($components as $key=> $comp) {
             if ($key == $component['type'] ){
                 $components[$key]=$component['type'];
+
 
                 switch ($key){
                     case "motherboards":
@@ -85,7 +87,6 @@ class SystemBuilderController extends Controller
             }
         }
 
-        //dd($holder);
         return view('components/showComponents',compact('holder'));
     }
 
