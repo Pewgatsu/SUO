@@ -24,7 +24,7 @@ class CreateAccountsTable extends Migration
             $table->string('lastname');
             $table->string('birthdate');
             $table->string('gender');
-            $table->integer('contact');
+            $table->string('contact');
             $table->string('address');
             $table->boolean('is_verified')->nullable();
             $table->boolean('is_active')->nullable();
