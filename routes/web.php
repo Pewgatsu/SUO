@@ -50,6 +50,7 @@ Route::get('/users', [UsersController::class, 'index'])->name('users');
 
 
 //System Builder
+Route::get('/builder', [SystemBuilderController::class, 'index'])->name('index');
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
 Route::post('/components', [\App\Http\Controllers\SystemBuilderController::class, 'print'])->name('components');
 
