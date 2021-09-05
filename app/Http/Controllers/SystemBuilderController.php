@@ -4,17 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SystemBuilderController extends Controller
 {
     //
     public function index(){
+        //checks if user is logged in and creates a session to enable saving and naming builds
+        if (Auth::check())
+        {
+            $userId = Auth::user()->getAuthIdentifier();
+            session(['userId' => $userId]);
+            session(['saveForm'=> ' ']);
+        }else{
+                session()->forget(['saveForm', 'userId']);
+        }
+
         return view('systemBuilder.builder');
+
     }
 
 
     public function print(Request $request){
+
         $holder = array();
         $components=array(
             'motherboards' => '+',
@@ -163,7 +176,6 @@ class SystemBuilderController extends Controller
                 }
             }
         }
-
         return view('components/showComponents',compact('holder'));
     }
 
