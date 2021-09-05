@@ -45,6 +45,17 @@ Route::post('/dashboard/add/computer_case', [DashboardController::class, 'add_co
 
 Route::get('/users', [UsersController::class, 'index'])->name('users');
 
+<<<<<<< Updated upstream
+=======
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
+
+Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('aboutsystem');
+//components
+
+
+>>>>>>> Stashed changes
 //System Builder
 Route::get('/systemBuilder', [SystemBuilderController::class, 'index'])->name('index');
 
