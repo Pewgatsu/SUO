@@ -1,10 +1,18 @@
 @extends('layouts.master')
 @section('content')
 
-    <div class="container-sm p-3 my-3">
-        <table class="table table-hover">
+<style>
+    tr {
+        width: 100%;
+        height:80px;
+    }
+
+</style>
+
+    <div class="container-xl  ">
+        <table class="table table-hover align-middle">
             <thead>
-            <tr >
+            <tr>
                 <th class="text-center" width="15%">Components</th>
                 <th class="text-center" width="40%">Selection</th>
                 <th class="text-center" width="10%">Price</th>
