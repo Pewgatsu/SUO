@@ -43,35 +43,105 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function add_motherboard(){
+    public function add_motherboard(Request $request){
+
+        // validate
+        $this->validate($request, [
+            // General Attributes
+            'mobo_image' => 'nullable|image|max:5048',
+            'mobo_name' => 'required|string',
+            'mobo_manufacturer' => 'nullable|string',
+            'mobo_series' => 'nullable|string',
+            'mobo_model' => 'nullable|string',
+            'mobo_color' => 'nullable|string',
+            'mobo_length' => 'nullable|numeric',
+            'mobo_width' => 'nullable|numeric',
+            'mobo_height' => 'nullable|numeric',
+            // Specific Attributes
+            'mobo_cpu_socket' => 'required|string',
+            'mobo_form_factor' => 'required|string',
+            'mobo_chipset' => 'required|string',
+            'mobo_memory_slot' => 'required|numeric|min:0|max:16',
+            'mobo_memory_type' => 'required|string',
+            'mobo_max_mem_support' => 'nullable|numeric|min:0|max:1024',
+            'mobo_mem_speed_support' => 'nullable|string',
+            'mobo_pcie_x16_slot' => 'nullable|numeric|min:0|max:16',
+            'mobo_pcie_x8_slot' => 'nullable|numeric|min:0|max:16',
+            'mobo_pcie_x4_slot' => 'nullable|numeric|min:0|max:16',
+            'mobo_pcie_x1_slot' => 'nullable|numeric|min:0|max:16',
+            'mobo_pci_slot' => 'nullable|numeric|min:0|max:16',
+            'mobo_m2_slot' => 'nullable|numeric|min:0|max:16',
+            'mobo_sata_6gb_slot' => 'nullable|numeric|min:0|max:16',
+            'mobo_sata_3gb_slot' => 'nullable|numeric|min:0|max:16',
+            'mobo_multigraphics_support' => 'nullable|string',
+            'mobo_ecc_support' => 'required|boolean',
+            'mobo_raid_support' => 'required|boolean',
+            'mobo_wireless_support' => 'nullable|string'
+        ]);
+
+        // Store
+        $component = Component::create([
+            'image_path' => $request->mobo_image,
+            'name' => $request->mobo_name,
+            'manufacturer' => $request->mobo_manufacturer,
+            'series' => $request->mobo_series,
+            'model' => $request->mobo_model,
+            'color' => $request->mobo_color,
+            'length' => $request->mobo_length,
+            'width' => $request->mobo_width,
+            'height' => $request->mobo_height
+        ]);
+
+        Motherboard::create([
+            'component_id'=> $component->id,
+            'cpu_socket' => $request->mobo_cpu_socket,
+            'mobo_form_factor' => $request->mobo_form_factor,
+            'mobo_chipset' => $request->mobo_chipset,
+            'memory_slot' => $request->mobo_memory_slot,
+            'memory_type' => $request->mobo_memory_type,
+            'max_mem_support' => $request->mobo_max_mem_support,
+            'mem_speed_support' => $request->mobo_mem_speed_support,
+            'pcie_x16_slot' => $request->mobo_pcie_x16_slot,
+            'pcie_x8_slot' => $request->mobo_pcie_x8_slot,
+            'pcie_x4_slot' => $request->mobo_pcie_x4_slot,
+            'pcie_x1_slot' => $request->mobo_pcie_x1_slot,
+            'pci_slot' => $request->mobo_pci_slot,
+            'm2_slot' => $request->mobo_m2_slot,
+            'sata_6gb_slot' => $request->mobo_sata_6gb_slot,
+            'sata_3gb_slot' => $request->mobo_sata_3gb_slot,
+            'multigraphics_support' => $request->mobo_multigraphics_support,
+            'ecc_support' => $request->mobo_ecc_support,
+            'raid_support' => $request->mobo_raid_support,
+            'wireless_support' => $request->mobo_wireless_support
+        ]);
+
+        return redirect()->route('dashboard');
+    }
+
+    public function add_cpu(Request $request){
+    }
+
+    public function add_cpu_cooler(Request $request){
 
     }
 
-    public function add_cpu(){
+    public function add_graphics_card(Request $request){
 
     }
 
-    public function add_cpu_cooler(){
+    public function add_ram(Request $request){
 
     }
 
-    public function add_graphics_card(){
+    public function add_storage(Request $request){
 
     }
 
-    public function add_ram(){
+    public function add_psu(Request $request){
 
     }
 
-    public function add_storage(){
-
-    }
-
-    public function add_psu(){
-
-    }
-
-    public function add_computer_case(){
+    public function add_computer_case(Request $request){
 
     }
 }

@@ -152,6 +152,39 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        // Motherboard
+        'mobo_image' => 'Component Image',
+        'mobo_name' => 'Component Name',
+        'mobo_manufacturer' => 'Manufacturer',
+        'mobo_series' => 'Series',
+        'mobo_model' => 'Model',
+        'mobo_color' => 'Color',
+        'mobo_length' => 'Length',
+        'mobo_width' => 'Width',
+        'mobo_height' => 'Height',
+
+        'mobo_cpu_socket' => 'CPU Socket',
+        'mobo_form_factor' => 'Form Factor',
+        'mobo_chipset' => 'Chipset',
+        'mobo_memory_slot' => 'Memory Slot',
+        'mobo_memory_type' => 'Memory Type',
+        'mobo_max_mem_support' => 'Maximum Memory Support',
+        'mobo_mem_speed_support' => 'Memory Speed Support',
+        'mobo_pcie_x16_slot' => 'PCIe x16 Slot',
+        'mobo_pcie_x8_slot' => 'PCIe x8 Slot',
+        'mobo_pcie_x4_slot' => 'PCIe x4 Slot',
+        'mobo_pcie_x1_slot' => 'PCIe x1 Slot',
+        'mobo_pci_slot' => 'PCI Slot',
+        'mobo_m2_slot' => 'M.2 Slot',
+        'mobo_sata_6gb_slot' => 'SATA 6 Gb/s Slot',
+        'mobo_sata_3gb_slot' => 'SATA 3 Gb/s Slot',
+        'mobo_multigraphics_support' => 'Multigraphics Support',
+        'mobo_ecc_support' => 'ECC Support',
+        'mobo_raid_support' => 'RAID Support',
+        'mobo_wireless_support' => 'Wireless Support',
+
+        // CPU
+    ],
 
 ];
