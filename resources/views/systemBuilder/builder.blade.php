@@ -1,6 +1,8 @@
+@section('head')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @extends('layouts.master')
 @section('content')
-
 <style>
     tr {
         width: 100%;
@@ -25,7 +27,7 @@
             <tr>
                 <td>Motherboard</td>
                 <td>
-                    <form action="/components" method="post">
+                    <form action="/components" method="post"> <!-- Motherboards Button -->
                         <input type="hidden" name="selectedComponents" value="motherboards">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="{{session('motherboards','+')}}" class="btn btn-info col-12">
@@ -33,11 +35,17 @@
                 </td>
                 <td class="text-center">{{session('motherboardsPrice','--')}}</td>
                 <td class="text-center">
-                    <form name="ownedComponent" method="post">
+                    <form name="ownedComponent">  <!-- Motherboards Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="hidden" name="ownedMotherboard" value="">
-                                <input type="checkbox" id="ownedComponentMotherboard" name="ownedComponentMotherboard" {{session('motherboardsCheckBox','disabled')}} class="form-check-input">
+                                <input type="checkbox"
+                                       id="ownedComponent"
+                                       value="motherboards"
+                                       {{session('motherboardsOwned',' ')}}
+                                       name="ownedComponentMotherboard"
+                                       {{session('motherboardsCheckBox','disabled')}}
+                                       class="form-check-input"
+                                >
                             </label>
                         </div>
                     </form>
@@ -53,7 +61,7 @@
             <tr>
                 <td>CPU</td>
                 <td>
-                    <form action="/components" method="post">
+                    <form action="/components" method="post">   <!-- CPU Button -->
                         <input type="hidden" name="selectedComponents" value="cpus">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="{{session('cpus','+')}}" class="btn btn-info col-12">
@@ -61,11 +69,17 @@
                 </td>
                 <td class="text-center">{{session('cpusPrice','--')}}</td>
                 <td class="text-center">
-                    <form name="ownedComponent" method="post">
+                    <form name="ownedComponent">                            <!-- CPU Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="hidden" name="ownedCpu" value="">
-                                <input type="checkbox" id="ownedComponentCpu" name="ownedComponentCpu" {{session('cpusCheckBox','disabled')}} class="form-check-input">
+                                <input type="checkbox"
+                                       id="ownedComponent"
+                                       {{session('cpusOwned',' ')}}
+                                       value="cpus"
+                                       name="ownedComponentCpu"
+                                       {{session('cpusCheckBox','disabled')}}
+                                       class="form-check-input"
+                                >
                             </label>
                         </div>
                     </form>
@@ -81,7 +95,7 @@
             <tr>
                 <td>CPU Cooler</td>
                 <td>
-                    <form action="/components" method="post">
+                    <form action="/components" method="post">            <!-- CPU Cooler  Button -->
                         <input type="hidden" name="selectedComponents" value="cpu_coolers">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="{{session('cpu_coolers','+')}}" class="btn btn-info col-12">
@@ -89,11 +103,17 @@
                 </td>
                 <td class="text-center">{{session('cpu_coolersPrice','--')}}</td>
                 <td class="text-center">
-                    <form name="ownedComponent" method="post">
+                    <form name="ownedComponent">              <!-- CPU Cooler Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="hidden" name="ownedCpuCooler" value="">
-                                <input type="checkbox" id="ownedComponentCpuCooler" name="ownedComponentCpuCooler" {{session('cpu_coolersCheckBox','disabled')}} class="form-check-input">
+                                <input type="checkbox"
+                                       id="ownedComponent"
+                                       value="cpu_coolers"
+                                       {{session('cpu_coolersOwned',' ')}}
+                                       name="ownedComponentCpuCooler"
+                                       {{session('cpu_coolersCheckBox','disabled')}}
+                                       class="form-check-input"
+                                >
                             </label>
                         </div>
                     </form>
@@ -117,11 +137,17 @@
                 </td>
                 <td class="text-center">{{session('graphics_cardsPrice','--')}}</td>
                 <td class="text-center">
-                    <form name="ownedComponent" method="post">
+                    <form name="ownedComponent" method="post">                          <!-- Graphics Card Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="hidden" name="ownedGpu" value="">
-                                <input type="checkbox" id="ownedComponentGpu" name="ownedComponentGpu" {{session('graphics_cardsCheckBox','disabled')}} class="form-check-input">
+                                <input type="checkbox"
+                                       id="ownedComponent"
+                                       {{session('graphics_cardsOwned',' ')}}
+                                       value="graphics_cards"
+                                       name="ownedComponentGpu"
+                                       {{session('graphics_cardsCheckBox','disabled')}}
+                                       class="form-check-input"
+                                >
                             </label>
                         </div>
                     </form>
@@ -137,7 +163,7 @@
             <tr>
                 <td>RAM</td>
                 <td>
-                    <form action="/components" method="post">
+                    <form action="/components" method="post">                       <!-- RAMS Button -->
                         <input type="hidden" name="selectedComponents" value="rams">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="{{session('rams','+')}}" class="btn btn-info col-12">
@@ -145,11 +171,17 @@
                 </td>
                 <td class="text-center">{{session('ramsPrice','--')}}</td>
                 <td class="text-center">
-                    <form name="ownedComponent" method="post">
+                    <form name="ownedComponent" >                     <!-- RAMS Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="hidden" name="ownedRam" value="">
-                                <input type="checkbox" id="ownedComponentRam" name="ownedComponentRam" {{session('ramsCheckBox','disabled')}} class="form-check-input">
+                                <input type="checkbox"
+                                       id="ownedComponent"
+                                       {{session('ramsOwned',' ')}}
+                                       value="rams"
+                                       name="ownedComponentRam"
+                                       {{session('ramsCheckBox','disabled')}}
+                                       class="form-check-input"
+                                >
                             </label>
                         </div>
                     </form>
@@ -165,7 +197,7 @@
             <tr>
                 <td>Storage</td>
                 <td>
-                    <form action="/components" method="post">
+                    <form action="/components" method="post">               <!-- Storages Button -->
                         <input type="hidden" name="selectedComponents" value="storages">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="{{session('storages','+')}}" class="btn btn-info col-12">
@@ -173,11 +205,17 @@
                 </td>
                 <td class="text-center">{{session('storagesPrice','--')}}</td>
                 <td class="text-center">
-                    <form name="ownedComponent" method="post">
+                    <form name="ownedComponent">              <!-- Storages Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="hidden" name="ownedStorage" value="">
-                                <input type="checkbox" id="ownedComponentStorage" name="ownedComponentStorage" {{session('storagesCheckBox','disabled')}} class="form-check-input">
+                                <input type="checkbox"
+                                       id="ownedComponent"
+                                       {{session('storagesOwned',' ')}}
+                                       value="storages"
+                                       name="ownedComponentStorage"
+                                       {{session('storagesCheckBox','disabled')}}
+                                       class="form-check-input"
+                                >
                             </label>
                         </div>
                     </form>
@@ -193,7 +231,7 @@
             <tr>
                 <td>Power Supply</td>
                 <td>
-                    <form action="/components" method="post">
+                    <form action="/components" method="post">               <!-- PSUS Button -->
                         <input type="hidden" name="selectedComponents" value="psus">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="{{session('psus','+')}}" class="btn btn-info col-12">
@@ -201,11 +239,17 @@
                 </td>
                 <td class="text-center">{{session('psusPrice','--')}}</td>
                 <td class="text-center">
-                    <form name="ownedComponent" method="post">
+                    <form name="ownedComponent">                            <!-- PSUS Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="hidden" name="ownedPowerSupply" value="">
-                                <input type="checkbox" id="ownedComponentPowerSupply" name="ownedComponentPowerSupply" {{session('psusCheckBox','disabled')}} class="form-check-input">
+                                <input type="checkbox"
+                                       id="ownedComponent"
+                                       {{session('psusOwned',' ')}}
+                                       value="psus"
+                                       name="ownedComponentPowerSupply"
+                                       {{session('psusCheckBox','disabled')}}
+                                       class="form-check-input"
+                                >
                             </label>
                         </div>
                     </form>
@@ -221,7 +265,7 @@
             <tr>
                 <td>Computer Case</td>
                 <td>
-                    <form action="/components" method="post">
+                    <form action="/components" method="post">                   <!-- Computer Cases Button -->
                         <input type="hidden" name="selectedComponents" value="computer_cases">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="{{session('computer_cases','+')}}" class="btn btn-info col-12">
@@ -229,11 +273,17 @@
                 </td>
                 <td class="text-center">{{session('computer_casesPrice','--')}}</td>
                 <td class="text-center">
-                    <form name="ownedComponent" method="post">
+                    <form name="ownedComponent" >              <!-- Computer Cases Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="hidden" name="ownedComputerCase" value="">
-                                <input type="checkbox" id="ownedComponentComputerCase" name="ownedComponentComputerCase" {{session('computer_casesCheckBox','disabled')}} class="form-check-input">
+                                <input type="checkbox"
+                                       id="ownedComponent"
+                                       {{session('computer_casesOwned',' ')}}
+                                       value="computer_cases"
+                                       name="ownedComponentComputerCase"
+                                       {{session('computer_casesCheckBox','disabled')}}
+                                       class="form-check-input"
+                                >
                             </label>
                         </div>
                     </form>
@@ -246,9 +296,9 @@
                 </td>
             </tr>
             <!--Name and Save-->
-            <tr>
-                <form class="form-inline" action="" method="post">
-                    <td style="text-align:right">
+            <tr {{session('saveForm','style=display:none;')}}>
+                <form class="form-inline" action="" method="post" >
+                    <td style="text-align:right;">
                         <label for="form-label"> Build Name: </label></td>
                     <td colspan="2">
                         <input type="text" class="form-control" id="buildName" {{session('saveForm','disabled')}} name="buildName">
@@ -256,10 +306,39 @@
                     <td><button type="submit" name="saveButton" {{session('saveForm','disabled')}} class="btn btn-info btn-block ">Save Build</button></td>
                 </form>
                 <td></td>
-
             </tr>
             </tbody>
-        </table>
 
+        </table>
     </div>
+
+<script>
+    let checkArray = new Array();
+    let holder;
+    let _token   = $('meta[name="csrf-token"]').attr('content');
+    function countCheck(){
+        checkArray=[];
+        $('input[type=checkbox]').each(function (){
+            $(this).is(':checked') ? checkArray.push("1") : checkArray.push("0");
+        });
+        holder=checkArray.join();
+        console.log(holder);
+
+        $.ajax({
+            type:'POST',
+            url:"{{route('checkBoxState')}}",
+            data:{
+                hold:holder,
+                _token: _token
+            },
+            success:function (data){
+                console.log(data.success);
+            }
+        })
+        location.reload();
+    }
+    $("input[type=checkbox]").on("click",countCheck);
+</script>
+
 @endsection
+
