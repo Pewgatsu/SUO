@@ -1,10 +1,18 @@
 @extends('layouts.master')
 @section('content')
 
-    <div class="container-sm p-3 my-3">
-        <table class="table table-hover">
+<style>
+    tr {
+        width: 100%;
+        height:80px;
+    }
+
+</style>
+
+    <div class="container-xl  ">
+        <table class="table table-hover align-middle">
             <thead>
-            <tr >
+            <tr>
                 <th class="text-center" width="15%">Components</th>
                 <th class="text-center" width="40%">Selection</th>
                 <th class="text-center" width="10%">Price</th>
@@ -29,7 +37,7 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="hidden" name="ownedMotherboard" value="">
-                                <input type="checkbox" id="ownedComponentMotherboard" name="ownedComponentMotherboard" {{session('motherboardsCheckBox','disabled')}} class="form-check-input">Owned
+                                <input type="checkbox" id="ownedComponentMotherboard" name="ownedComponentMotherboard" {{session('motherboardsCheckBox','disabled')}} class="form-check-input">
                             </label>
                         </div>
                     </form>
@@ -57,7 +65,7 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="hidden" name="ownedCpu" value="">
-                                <input type="checkbox" id="ownedComponentCpu" name="ownedComponentCpu" {{session('cpusCheckBox','disabled')}} class="form-check-input">Owned
+                                <input type="checkbox" id="ownedComponentCpu" name="ownedComponentCpu" {{session('cpusCheckBox','disabled')}} class="form-check-input">
                             </label>
                         </div>
                     </form>
@@ -85,7 +93,7 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="hidden" name="ownedCpuCooler" value="">
-                                <input type="checkbox" id="ownedComponentCpuCooler" name="ownedComponentCpuCooler" {{session('cpu_coolersCheckBox','disabled')}} class="form-check-input">Owned
+                                <input type="checkbox" id="ownedComponentCpuCooler" name="ownedComponentCpuCooler" {{session('cpu_coolersCheckBox','disabled')}} class="form-check-input">
                             </label>
                         </div>
                     </form>
@@ -113,7 +121,7 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="hidden" name="ownedGpu" value="">
-                                <input type="checkbox" id="ownedComponentGpu" name="ownedComponentGpu" {{session('graphics_cardsCheckBox','disabled')}} class="form-check-input">Owned
+                                <input type="checkbox" id="ownedComponentGpu" name="ownedComponentGpu" {{session('graphics_cardsCheckBox','disabled')}} class="form-check-input">
                             </label>
                         </div>
                     </form>
@@ -141,7 +149,7 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="hidden" name="ownedRam" value="">
-                                <input type="checkbox" id="ownedComponentRam" name="ownedComponentRam" {{session('ramsCheckBox','disabled')}} class="form-check-input">Owned
+                                <input type="checkbox" id="ownedComponentRam" name="ownedComponentRam" {{session('ramsCheckBox','disabled')}} class="form-check-input">
                             </label>
                         </div>
                     </form>
@@ -169,7 +177,7 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="hidden" name="ownedStorage" value="">
-                                <input type="checkbox" id="ownedComponentStorage" name="ownedComponentStorage" {{session('storagesCheckBox','disabled')}} class="form-check-input">Owned
+                                <input type="checkbox" id="ownedComponentStorage" name="ownedComponentStorage" {{session('storagesCheckBox','disabled')}} class="form-check-input">
                             </label>
                         </div>
                     </form>
@@ -197,7 +205,7 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="hidden" name="ownedPowerSupply" value="">
-                                <input type="checkbox" id="ownedComponentPowerSupply" name="ownedComponentPowerSupply" {{session('psusCheckBox','disabled')}} class="form-check-input">Owned
+                                <input type="checkbox" id="ownedComponentPowerSupply" name="ownedComponentPowerSupply" {{session('psusCheckBox','disabled')}} class="form-check-input">
                             </label>
                         </div>
                     </form>
@@ -225,7 +233,7 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="hidden" name="ownedComputerCase" value="">
-                                <input type="checkbox" id="ownedComponentComputerCase" name="ownedComponentComputerCase" {{session('computer_casesCheckBox','disabled')}} class="form-check-input">Owned
+                                <input type="checkbox" id="ownedComponentComputerCase" name="ownedComponentComputerCase" {{session('computer_casesCheckBox','disabled')}} class="form-check-input">
                             </label>
                         </div>
                     </form>
@@ -243,9 +251,9 @@
                     <td style="text-align:right">
                         <label for="form-label"> Build Name: </label></td>
                     <td colspan="2">
-                        <input type="text" class="form-control" id="buildName" name="buildName">
+                        <input type="text" class="form-control" id="buildName" {{session('saveForm','disabled')}} name="buildName">
                     </td>
-                    <td><button type="submit" name="saveButton" class="btn btn-info btn-block ">Save Build</button></td>
+                    <td><button type="submit" name="saveButton" {{session('saveForm','disabled')}} class="btn btn-info btn-block ">Save Build</button></td>
                 </form>
                 <td></td>
 
