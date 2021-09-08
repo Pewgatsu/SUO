@@ -53,6 +53,7 @@ Route::get('/users', [UsersController::class, 'index'])->name('users');
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('index');
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
 Route::post('/components', [\App\Http\Controllers\SystemBuilderController::class, 'print'])->name('components');
+Route::post('/builder', [\App\Http\Controllers\SystemBuilderController::class, 'checkBoxState'])->name('checkBoxState');
 
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SystemBuilderController extends Controller
 {
@@ -177,6 +178,23 @@ class SystemBuilderController extends Controller
             }
         }
         return view('components/showComponents',compact('holder'));
+    }
+
+    public function checkBoxState(Request $request){
+        $components=array('motherboards' ,'cpus', 'cpu_coolers', 'graphics_cards', 'rams', 'storages', 'psus' , 'computer_cases');
+        $data= $request->hold;
+        $loops = explode("," ,$data);
+        foreach ($components as $key=>$component){
+            if($loops[$key]==1){
+                session([$component.'Owned' => 'checked']);
+            }else{
+                session([$component.'Owned' => ' ']);
+            }
+        }
+        //$data = explode("," ,$data);
+        //return view('systemBuilder.builder',compact('data'));
+        Log::info($data);
+        return response()->json(['success'=> $data]);
     }
 
 
