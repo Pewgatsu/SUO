@@ -212,10 +212,10 @@
         $(document).ready(function () {
             @if($errors->has('mobo_*'))
             $('#add_motherboard').modal('show');
-            @elseif($errors->has('cpu_*'))
-            $('#add_cpu').modal('show');
             @elseif($errors->has('cpu_cooler_*'))
             $('#add_cpu_cooler').modal('show');
+            @elseif($errors->has('cpu_*'))
+            $('#add_cpu').modal('show');
             @elseif($errors->has('graphics_card_*'))
             $('#add_graphics_card').modal('show');
             @elseif($errors->has('ram_*'))
@@ -548,7 +548,7 @@
                         <div class="mb-3">
                             <label for="cpu_image" class="form-label">Component Image</label>
                             <input class="form-control @error('cpu_image') is-invalid @enderror" type="file"
-                                   id="cpu_image" name="cpu_image" value="{{ old('cpu_image') }}">
+                                   id="cpu_image" name="cpu_image">
                             @error('cpu_image')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
@@ -759,57 +759,97 @@
 
                         <div class="mb-3">
                             <label for="cpu_cooler_image" class="form-label">Component Image</label>
-                            <input class="form-control" type="file" id="cpu_cooler_image" name="cpu_cooler_image">
+                            <input class="form-control @error('cpu_cooler_image') is-invalid @enderror" type="file"
+                                   id="cpu_cooler_image" name="cpu_cooler_image">
+                            @error('cpu_cooler_image')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpu_cooler_name" name="cpu_cooler_name"
-                                   placeholder="Component Name">
+                            <input type="text" class="form-control @error('cpu_cooler_name') is-invalid @enderror"
+                                   id="cpu_cooler_name" name="cpu_cooler_name"
+                                   placeholder="Component Name" value="{{ old('cpu_cooler_name') }}">
                             <label for="cpu_cooler_name">Component Name</label>
+                            @error('cpu_cooler_name')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpu_cooler_manufacturer"
+                            <input type="text"
+                                   class="form-control @error('cpu_cooler_manufacturer') is-invalid @enderror"
+                                   id="cpu_cooler_manufacturer"
                                    name="cpu_cooler_manufacturer"
-                                   placeholder="Manufacturer">
+                                   placeholder="Manufacturer" value="{{ old('cpu_cooler_manufacturer') }}">
                             <label for="cpu_cooler_manufacturer">Manufacturer</label>
+                            @error('cpu_cooler_manufacturer')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpu_cooler_series" name="cpu_cooler_series"
-                                   placeholder="Series">
+                            <input type="text" class="form-control @error('cpu_cooler_series') is-invalid @enderror"
+                                   id="cpu_cooler_series" name="cpu_cooler_series"
+                                   placeholder="Series" value="{{ old('cpu_cooler_series') }}">
                             <label for="cpu_cooler_series">Series</label>
+                            @error('cpu_cooler_series')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpu_cooler_model" name="cpu_cooler_model"
-                                   placeholder="Model">
+                            <input type="text" class="form-control @error('cpu_cooler_model') is-invalid @enderror"
+                                   id="cpu_cooler_model" name="cpu_cooler_model"
+                                   placeholder="Model" value="{{ old('cpu_cooler_model') }}">
                             <label for="cpu_cooler_model">Model</label>
+                            @error('cpu_cooler_model')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpu_cooler_color" name="cpu_cooler_color"
-                                   placeholder="Color">
+                            <input type="text" class="form-control @error('cpu_cooler_color') is-invalid @enderror"
+                                   id="cpu_cooler_color" name="cpu_cooler_color"
+                                   placeholder="Color" value="{{ old('cpu_cooler_color') }}">
                             <label for="cpu_cooler_color">Color</label>
+                            @error('cpu_cooler_color')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="cpu_cooler_length"
+                                    <input type="text"
+                                           class="form-control @error('cpu_cooler_length') is-invalid @enderror"
+                                           id="cpu_cooler_length"
                                            name="cpu_cooler_length"
-                                           placeholder="Length (mm)">
+                                           placeholder="Length (mm)" value="{{ old('cpu_cooler_length') }}">
                                     <label for="cpu_cooler_length">Length (mm)</label>
+                                    @error('cpu_cooler_length')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="cpu_cooler_width"
+                                    <input type="text"
+                                           class="form-control @error('cpu_cooler_width') is-invalid @enderror"
+                                           id="cpu_cooler_width"
                                            name="cpu_cooler_width"
-                                           placeholder="Width (mm)">
+                                           placeholder="Width (mm)" value="{{ old('cpu_cooler_width') }}">
                                     <label for="cpu_cooler_width">Width (mm)</label>
+                                    @error('cpu_cooler_width')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="cpu_cooler_height"
+                                    <input type="text"
+                                           class="form-control @error('cpu_cooler_height') is-invalid @enderror"
+                                           id="cpu_cooler_height"
                                            name="cpu_cooler_height"
-                                           placeholder="Height (mm)">
+                                           placeholder="Height (mm)" value="{{ old('cpu_cooler_height') }}">
                                     <label for="cpu_cooler_height">Height (mm)</label>
+                                    @error('cpu_cooler_height')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -817,33 +857,52 @@
                         <!-- CPU Cooler Attributes -->
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpu_cooler_cpu_socket"
-                                   name="cpu_cooler_cpu_socket" placeholder="CPU Socket">
+                            <input type="text" class="form-control @error('cpu_cooler_cpu_socket') is-invalid @enderror"
+                                   id="cpu_cooler_cpu_socket"
+                                   name="cpu_cooler_cpu_socket" placeholder="CPU Socket"
+                                   value="{{ old('cpu_cooler_cpu_socket') }}">
                             <label for="cpu_cooler_cpu_socket">CPU Socket</label>
+                            @error('cpu_cooler_cpu_socket')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpu_cooler_fan_speed"
+                            <input type="text" class="form-control @error('cpu_cooler_fan_speed') is-invalid @enderror"
+                                   id="cpu_cooler_fan_speed"
                                    name="cpu_cooler_fan_speed"
-                                   placeholder="Fan Speed (rpm)">
+                                   placeholder="Fan Speed (rpm)" value="{{ old('cpu_cooler_fan_speed') }}">
                             <label for="cpu_cooler_fan_speed">Fan Speed (rpm)</label>
+                            @error('cpu_cooler_fan_speed')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpu_cooler_noise_level"
+                            <input type="text"
+                                   class="form-control @error('cpu_cooler_noise_level') is-invalid @enderror"
+                                   id="cpu_cooler_noise_level"
                                    name="cpu_cooler_noise_level"
-                                   placeholder="Noise Level (dB)">
+                                   placeholder="Noise Level (dB)" value="{{ old('cpu_cooler_noise_level') }}">
                             <label for="cpu_cooler_noise_level">Noise Level (dB)</label>
+                            @error('cpu_cooler_noise_level')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="cpu_cooler_water_cooled"
+                            <input type="text"
+                                   class="form-control @error('cpu_cooler_water_cooled') is-invalid @enderror"
+                                   id="cpu_cooler_water_cooled"
                                    name="cpu_cooler_water_cooled"
-                                   placeholder="Water Cooled Support">
+                                   placeholder="Water Cooled Support" value="{{ old('cpu_cooler_water_cooled') }}">
                             <label for="cpu_cooler_water_cooled">Water Cooled Support</label>
+                            @error('cpu_cooler_water_cooled')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
                 </div>
             </form>
@@ -867,57 +926,98 @@
 
                         <div class="mb-3">
                             <label for="graphics_card_image" class="form-label">Component Image</label>
-                            <input class="form-control" type="file" id="graphics_card_image" name="graphics_card_image">
+                            <input class="form-control @error('graphics_card_image') is-invalid @enderror" type="file"
+                                   id="graphics_card_image" name="graphics_card_image">
+                            @error('graphics_card_image')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_name" name="graphics_card_name"
-                                   placeholder="Component Name">
+                            <input type="text" class="form-control @error('graphics_card_name') is-invalid @enderror"
+                                   id="graphics_card_name" name="graphics_card_name"
+                                   placeholder="Component Name" value="{{ old('graphics_card_name') }}">
                             <label for="graphics_card_name">Component Name</label>
+                            @error('graphics_card_name')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_manufacturer"
+                            <input type="text"
+                                   class="form-control @error('graphics_card_manufacturer') is-invalid @enderror"
+                                   id="graphics_card_manufacturer"
                                    name="graphics_card_manufacturer"
-                                   placeholder="Manufacturer">
+                                   placeholder="Manufacturer" value="{{ old('graphics_card_manufacturer') }}">
                             <label for="graphics_card_manufacturer">Manufacturer</label>
+                            @error('graphics_card_manufacturer')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_series"
-                                   name="graphics_card_series" placeholder="Series">
+                            <input type="text" class="form-control @error('graphics_card_series') is-invalid @enderror"
+                                   id="graphics_card_series"
+                                   name="graphics_card_series" placeholder="Series"
+                                   value="{{ old('graphics_card_series') }}">
                             <label for="graphics_card_series">Series</label>
+                            @error('graphics_card_series')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_model" name="graphics_card_model"
-                                   placeholder="Model">
+                            <input type="text" class="form-control @error('graphics_card_model') is-invalid @enderror"
+                                   id="graphics_card_model" name="graphics_card_model"
+                                   placeholder="Model" value="{{ old('graphics_card_model') }}">
                             <label for="graphics_card_model">Model</label>
+                            @error('graphics_card_model')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_color" name="graphics_card_color"
-                                   placeholder="Color">
+                            <input type="text" class="form-control @error('graphics_card_color') is-invalid @enderror"
+                                   id="graphics_card_color" name="graphics_card_color"
+                                   placeholder="Color" value="{{ old('graphics_card_color') }}">
                             <label for="graphics_card_color">Color</label>
+                            @error('graphics_card_color')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="row g-3 mb-3">
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="graphics_card_length"
+                                    <input type="text"
+                                           class="form-control @error('graphics_card_length') is-invalid @enderror"
+                                           id="graphics_card_length"
                                            name="graphics_card_length"
-                                           placeholder="Length (mm)">
+                                           placeholder="Length (mm)" value="{{ old('graphics_card_length') }}">
                                     <label for="graphics_card_length">Length (mm)</label>
+                                    @error('graphics_card_length')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="graphics_card_width"
+                                    <input type="text"
+                                           class="form-control @error('graphics_card_width') is-invalid @enderror"
+                                           id="graphics_card_width"
                                            name="graphics_card_width"
-                                           placeholder="Width (mm)">
+                                           placeholder="Width (mm)" value="{{ old('graphics_card_width') }}">
                                     <label for="graphics_card_width">Width (mm)</label>
+                                    @error('graphics_card_width')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="graphics_card_height"
+                                    <input type="text"
+                                           class="form-control @error('graphics_card_height') is-invalid @enderror"
+                                           id="graphics_card_height"
                                            name="graphics_card_height"
-                                           placeholder="Height (mm)">
+                                           placeholder="Height (mm)" value="{{ old('graphics_card_height') }}">
                                     <label for="graphics_card_height">Height (mm)</label>
+                                    @error('graphics_card_height')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -925,115 +1025,200 @@
                         <!-- Graphics Card Attributes -->
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_chipset"
+                            <input type="text" class="form-control @error('graphics_card_chipset') is-invalid @enderror"
+                                   id="graphics_card_chipset"
                                    name="graphics_card_chipset"
-                                   placeholder="GPU Chipset">
+                                   placeholder="GPU Chipset" value="{{ old('graphics_card_chipset') }}">
                             <label for="graphics_card_chipset">GPU Chipset</label>
+                            @error('graphics_card_chipset')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_memory"
-                                   name="graphics_card_memory" placeholder="GPU Memory">
+                            <input type="text" class="form-control @error('graphics_card_memory') is-invalid @enderror"
+                                   id="graphics_card_memory"
+                                   name="graphics_card_memory" placeholder="GPU Memory"
+                                   value="{{ old('graphics_card_memory') }}">
                             <label for="graphics_card_memory">GPU Memory</label>
+                            @error('graphics_card_memory')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_memory_type"
+                            <input type="text"
+                                   class="form-control @error('graphics_card_memory_type') is-invalid @enderror"
+                                   id="graphics_card_memory_type"
                                    name="graphics_card_memory_type"
-                                   placeholder="GPU Memory Type">
+                                   placeholder="GPU Memory Type" value="{{ old('graphics_card_memory_type') }}">
                             <label for="graphics_card_memory_type">GPU Memory Type</label>
+                            @error('graphics_card_memory_type')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_base_clock"
+                            <input type="text"
+                                   class="form-control @error('graphics_card_base_clock') is-invalid @enderror"
+                                   id="graphics_card_base_clock"
                                    name="graphics_card_base_clock"
-                                   placeholder="Base Clock (MHz)">
+                                   placeholder="Base Clock (MHz)" value="{{ old('graphics_card_base_clock') }}">
                             <label for="graphics_card_base_clock">Base Clock (MHz)</label>
+                            @error('graphics_card_base_clock')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_boost_clock"
+                            <input type="text"
+                                   class="form-control @error('graphics_card_boost_clock') is-invalid @enderror"
+                                   id="graphics_card_boost_clock"
                                    name="graphics_card_boost_clock"
-                                   placeholder="Boost Clock (MHz)">
+                                   placeholder="Boost Clock (MHz)" value="{{ old('graphics_card_boost_clock') }}">
                             <label for="graphics_card_boost_clock">Boost Clock (MHz)</label>
+                            @error('graphics_card_boost_clock')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_interface"
+                            <input type="text"
+                                   class="form-control @error('graphics_card_interface') is-invalid @enderror"
+                                   id="graphics_card_interface"
                                    name="graphics_card_interface"
-                                   placeholder="Interface">
+                                   placeholder="Interface" value="{{ old('graphics_card_interface') }}">
                             <label for="graphics_card_interface">Interface</label>
+                            @error('graphics_card_interface')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_tdp" name="graphics_card_tdp"
-                                   placeholder="TDP (W)">
+                            <input type="text" class="form-control @error('graphics_card_tdp') is-invalid @enderror"
+                                   id="graphics_card_tdp" name="graphics_card_tdp"
+                                   placeholder="TDP (W)" value="{{ old('graphics_card_tdp') }}">
                             <label for="graphics_card_tdp">TDP (W)</label>
+                            @error('graphics_card_tdp')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_multigraphics_support"
+                            <input type="text"
+                                   class="form-control @error('graphics_card_multigraphics_support') is-invalid @enderror"
+                                   id="graphics_card_multigraphics_support"
                                    name="graphics_card_multigraphics_support"
-                                   placeholder="Multigraphics Support">
+                                   placeholder="Multigraphics Support"
+                                   value="{{ old('graphics_card_multigraphics_support') }}">
                             <label for="graphics_card_multigraphics_support">Multigraphics Support</label>
+                            @error('graphics_card_multigraphics_support')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_frame_sync"
+                            <input type="text"
+                                   class="form-control @error('graphics_card_frame_sync') is-invalid @enderror"
+                                   id="graphics_card_frame_sync"
                                    name="graphics_card_frame_sync"
-                                   placeholder="Frame Sync">
+                                   placeholder="Frame Sync" value="{{ old('graphics_card_frame_sync') }}">
                             <label for="graphics_card_frame_sync">Frame Sync</label>
+                            @error('graphics_card_frame_sync')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="graphics_card_dvi_port"
+                            <input type="number"
+                                   class="form-control @error('graphics_card_dvi_port') is-invalid @enderror"
+                                   id="graphics_card_dvi_port"
                                    name="graphics_card_dvi_port" min="0"
                                    max="8"
-                                   placeholder="DVI Port">
+                                   placeholder="DVI Port" value="{{ old('graphics_card_dvi_port') }}">
                             <label for="graphics_card_dvi_port">DVI Port</label>
+                            @error('graphics_card_dvi_port')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="graphics_card_hdmi_port"
+                            <input type="number"
+                                   class="form-control @error('graphics_card_hdmi_port') is-invalid @enderror"
+                                   id="graphics_card_hdmi_port"
                                    name="graphics_card_hdmi_port" min="0"
                                    max="8"
-                                   placeholder="HDMI Port">
+                                   placeholder="HDMI Port" value="{{ old('graphics_card_hdmi_port') }}">
                             <label for="graphics_card_hdmi_port">HDMI Port</label>
+                            @error('graphics_card_hdmi_port')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="graphics_card_mini_hdmi_port"
+                            <input type="number"
+                                   class="form-control @error('graphics_card_mini_hdmi_port') is-invalid @enderror"
+                                   id="graphics_card_mini_hdmi_port"
                                    name="graphics_card_mini_hdmi_port" min="0"
                                    max="8"
-                                   placeholder="Mini-HDMI Port">
+                                   placeholder="Mini-HDMI Port" value="{{ old('graphics_card_mini_hdmi_port') }}">
                             <label for="graphics_card_mini_hdmi_port">Mini-HDMI Port</label>
+                            @error('graphics_card_mini_hdmi_port')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="graphics_card_displayport_port"
+                            <input type="number"
+                                   class="form-control @error('graphics_card_displayport_port') is-invalid @enderror"
+                                   id="graphics_card_displayport_port"
                                    name="graphics_card_displayport_port" min="0"
                                    max="8"
-                                   placeholder="DisplayPort Port">
+                                   placeholder="DisplayPort Port" value="{{ old('graphics_card_displayport_port') }}">
                             <label for="graphics_card_displayport_port">DisplayPort Port</label>
+                            @error('graphics_card_displayport_port')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="graphics_card_mini_displayport_port"
+                            <input type="number"
+                                   class="form-control @error('graphics_card_mini_displayport_port') is-invalid @enderror"
+                                   id="graphics_card_mini_displayport_port"
                                    name="graphics_card_mini_displayport_port" min="0"
                                    max="8"
-                                   placeholder="Mini-DisplayPort Port">
+                                   placeholder="Mini-DisplayPort Port"
+                                   value="{{ old('graphics_card_mini_displayport_port') }}">
                             <label for="graphics_card_mini_displayport_port">Mini-DisplayPort Port</label>
+                            @error('graphics_card_mini_displayport_port')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" class="form-control" id="graphics_card_e_slot_width"
+                            <input type="number"
+                                   class="form-control @error('graphics_card_e_slot_width') is-invalid @enderror"
+                                   id="graphics_card_e_slot_width"
                                    name="graphics_card_e_slot_width" min="0"
                                    max="8"
-                                   placeholder="Expansion Slot Width">
+                                   placeholder="Expansion Slot Width" value="{{ old('graphics_card_e_slot_width') }}">
                             <label for="graphics_card_e_slot_width">Expansion Slot Width</label>
+                            @error('graphics_card_e_slot_width')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_external_power"
+                            <input type="text"
+                                   class="form-control @error('graphics_card_external_power') is-invalid @enderror"
+                                   id="graphics_card_external_power"
                                    name="graphics_card_external_power"
-                                   placeholder="External Power">
+                                   placeholder="External Power" value="{{ old('graphics_card_external_power') }}">
                             <label for="graphics_card_external_power">External Power</label>
+                            @error('graphics_card_external_power')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="graphics_card_cooling"
-                                   name="graphics_card_cooling" placeholder="Cooling">
+                            <input type="text" class="form-control @error('graphics_card_cooling') is-invalid @enderror"
+                                   id="graphics_card_cooling"
+                                   name="graphics_card_cooling" placeholder="Cooling"
+                                   value="{{ old('graphics_card_cooling') }}">
                             <label for="graphics_card_cooling">Cooling</label>
+                            @error('graphics_card_cooling')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary">Add</button>
                     </div>
                 </div>
             </form>
