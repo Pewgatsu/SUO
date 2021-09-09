@@ -185,6 +185,27 @@ return [
         'mobo_wireless_support' => 'Wireless Support',
 
         // CPU
+        'cpu_image' => 'Component Image',
+        'cpu_name' => 'Component Name',
+        'cpu_manufacturer' => 'Manufacturer',
+        'cpu_series' => 'Series',
+        'cpu_model' => 'Model',
+        'cpu_color' => 'Color',
+        'cpu_length' => 'Length',
+        'cpu_width' => 'Width',
+        'cpu_height' => 'Height',
+
+        'cpu_socket' => 'CPU Socket',
+        'cpu_microarchitecture' => 'Microarchitecture',
+        'cpu_core_count' => 'Core Count',
+        'cpu_thread_count' => 'Thread Count',
+        'cpu_base_clock' => 'Base Clock',
+        'cpu_boost_clock' => 'Boost Clock',
+        'cpu_max_mem_support' => 'Maximum Memory Support',
+        'cpu_tdp' => 'TDP',
+        'cpu_smt_support' => 'SMT Support',
+        'cpu_ecc_support' => 'ECC Support',
+        'cpu_integrated_graphics' => 'Integrated Graphics'
     ],
 
 ];
