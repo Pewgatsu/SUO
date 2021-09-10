@@ -50,13 +50,12 @@ Route::get('/users', [UsersController::class, 'index'])->name('users');
 
 
 //System Builder
-Route::get('/builder', [SystemBuilderController::class, 'index'])->name('index');
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
 
 Route::post('/components', [\App\Http\Controllers\SystemBuilderController::class, 'print'])->name('components');
 Route::post('/', [\App\Http\Controllers\SystemBuilderController::class, 'checkBoxState'])->name('checkBoxState');
-Route::post('/builder', [\App\Http\Controllers\SystemBuilderController::class, 'saveBuild'])->name('saveBuild');
-Route::post('/order', [\App\Http\Controllers\SystemBuilderController::class, 'orderComponent'])->name('orderComponent');
+Route::post('/builder/save', [\App\Http\Controllers\SystemBuilderController::class, 'saveBuild'])->name('saveBuild');
+Route::post('/builder', [\App\Http\Controllers\SystemBuilderController::class, 'orderComponent'])->name('orderComponent');
 
 
 

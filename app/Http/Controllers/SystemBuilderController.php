@@ -213,8 +213,7 @@ class SystemBuilderController extends Controller
     }
 
     public function orderComponent(Request $request){
-        var_dump($this->components) ;
-        dd('entered');
+        //var_dump($this->components) ;
         return view('systemBuilder.builder');
 
 
