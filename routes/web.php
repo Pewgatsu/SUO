@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\AboutSystemController;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +34,10 @@ Auth::routes();
 
 Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
 Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
+<<<<<<< Updated upstream
+=======
+Route::get('/loguout',[AuthController::class,'logout'])->name('logout');
+>>>>>>> Stashed changes
 
 Route::post('/register',[App\Http\Controllers\AuthController::class,'registerUser']);
 Route::post('/login',[\App\Http\Controllers\AuthController::class,'login'])->name('login');
@@ -45,8 +54,23 @@ Route::post('/dashboard/add/computer_case', [DashboardController::class, 'add_co
 
 Route::get('/users', [UsersController::class, 'index'])->name('users');
 
+<<<<<<< Updated upstream
 //System Builder
 Route::get('/systemBuilder', [SystemBuilderController::class, 'index'])->name('index');
+=======
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+
+Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
+
+Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('aboutsystem');
+//components
+Route::get('/search', [ComponentInfoController::class, 'index'])->name('componentinfo');
+
+//System Builder
+Route::get('/builder', [SystemBuilderController::class, 'index'])->name('index');
+Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
+Route::post('/components', [SystemBuilderController::class, 'print'])->name('components');
+>>>>>>> Stashed changes
 
 
 
