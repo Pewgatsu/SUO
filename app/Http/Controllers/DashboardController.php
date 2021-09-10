@@ -242,15 +242,15 @@ class DashboardController extends Controller
         // validate
         $this->validate($request, [
             // General Attributes
-            'cpu_cooler_image' => 'nullable|image|max:5048',
-            'cpu_cooler_name' => 'required|string',
-            'cpu_cooler_manufacturer' => 'nullable|string',
-            'cpu_cooler_series' => 'nullable|string',
-            'cpu_cooler_model' => 'nullable|string',
-            'cpu_cooler_color' => 'nullable|string',
-            'cpu_cooler_length' => 'nullable|numeric|min:0',
-            'cpu_cooler_width' => 'nullable|numeric|min:0',
-            'cpu_cooler_height' => 'nullable|numeric|min:0',
+            'graphics_card_image' => 'nullable|image|max:5048',
+            'graphics_card_name' => 'required|string',
+            'graphics_card_manufacturer' => 'nullable|string',
+            'graphics_card_series' => 'nullable|string',
+            'graphics_card_model' => 'nullable|string',
+            'graphics_card_color' => 'nullable|string',
+            'graphics_card_length' => 'nullable|numeric|min:0',
+            'graphics_card_width' => 'nullable|numeric|min:0',
+            'graphics_card_height' => 'nullable|numeric|min:0',
             // Specific Attributes
             'graphics_card_chipset' => 'required|string',
             'graphics_card_memory' => 'required|numeric|min:0',
@@ -315,21 +315,253 @@ class DashboardController extends Controller
 
     public function add_ram(Request $request)
     {
+        // validate
+        $this->validate($request, [
+            // General Attributes
+            'ram_image' => 'nullable|image|max:5048',
+            'ram_name' => 'required|string',
+            'ram_manufacturer' => 'nullable|string',
+            'ram_series' => 'nullable|string',
+            'ram_model' => 'nullable|string',
+            'ram_color' => 'nullable|string',
+            'ram_length' => 'nullable|numeric|min:0',
+            'ram_width' => 'nullable|numeric|min:0',
+            'ram_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'ram_memory_type' => 'required|string',
+            'ram_memory_speed' => 'required|numeric|min:0',
+            'ram_memory_capacity' => 'required|numeric|min:0',
+            'ram_form_factor' => 'required|string',
+            'ram_modules' => 'nullable|string',
+            'ram_voltage' => 'nullable|numeric|min:0',
+            'ram_timings' => 'nullable|string',
+            'ram_ecc_memory' => 'required|boolean',
+            'ram_registered_memory' => 'required|boolean',
+            'ram_heat_spreader' => 'required|boolean'
+        ]);
 
+        // Image Upload
+        $ram_image_filename = time().'-'.$request->ram_name.'.'.$request->ram_image->extension();
+
+        $request->ram_image->move(public_path('images/rams'), $ram_image_filename);
+
+        // Store
+        $component = Component::create([
+            'image_path' => $ram_image_filename,
+            'name' => $request->ram_name,
+            'manufacturer' => $request->ram_manufacturer,
+            'series' => $request->ram_series,
+            'model' => $request->ram_model,
+            'color' => $request->ram_color,
+            'length' => $request->ram_length,
+            'width' => $request->ram_width,
+            'height' => $request->ram_height
+        ]);
+
+        RAM::create([
+            'component_id' => $component->id,
+            'memory_type' => $request->ram_memory_type,
+            'memory_speed' => $request->ram_memory_speed,
+            'memory_capacity' => $request->ram_memory_capacity,
+            'memory_form_factor' => $request->ram_form_factor,
+            'modules' => $request->ram_modules,
+            'memory_voltage' => $request->ram_voltage,
+            'memory_timings' => $request->ram_timings,
+            'ecc' => $request->ram_ecc_memory,
+            'registered' => $request->ram_registered_memory,
+            'heat_spreader' => $request->ram_heat_spreader
+        ]);
+
+        return redirect()->route('dashboard');
     }
 
     public function add_storage(Request $request)
     {
+        // validate
+        $this->validate($request, [
+            // General Attributes
+            'storage_image' => 'nullable|image|max:5048',
+            'storage_name' => 'required|string',
+            'storage_manufacturer' => 'nullable|string',
+            'storage_series' => 'nullable|string',
+            'storage_model' => 'nullable|string',
+            'storage_color' => 'nullable|string',
+            'storage_length' => 'nullable|numeric|min:0',
+            'storage_width' => 'nullable|numeric|min:0',
+            'storage_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'storage_type' => 'required|string',
+            'storage_capacity' => 'required|numeric|min:0',
+            'storage_interface' => 'required|string',
+            'storage_form_factor' => 'required|string',
+            'storage_cache' => 'nullable|numeric|min:0',
+            'storage_nvme' => 'required|boolean'
+        ]);
 
+        // Image Upload
+        $storage_image_filename = time().'-'.$request->storage_name.'.'.$request->storage_image->extension();
+
+        $request->storage_image->move(public_path('images/storages'), $storage_image_filename);
+
+        // Store
+        $component = Component::create([
+            'image_path' => $storage_image_filename,
+            'name' => $request->storage_name,
+            'manufacturer' => $request->storage_manufacturer,
+            'series' => $request->storage_series,
+            'model' => $request->storage_model,
+            'color' => $request->storage_color,
+            'length' => $request->storage_length,
+            'width' => $request->storage_width,
+            'height' => $request->storage_height
+        ]);
+
+        Storage::create([
+            'component_id' => $component->id,
+            'storage_type' => $request->storage_type,
+            'storage_capacity' => $request->storage_capacity,
+            'interface' => $request->storage_interface,
+            'storage_form_factor' => $request->storage_form_factor,
+            'storage_cache' => $request->storage_cache,
+            'nvme' => $request->storage_nvme
+        ]);
+
+        return redirect()->route('dashboard');
     }
 
     public function add_psu(Request $request)
     {
+        // validate
+        $this->validate($request, [
+            // General Attributes
+            'psu_image' => 'nullable|image|max:5048',
+            'psu_name' => 'required|string',
+            'psu_manufacturer' => 'nullable|string',
+            'psu_series' => 'nullable|string',
+            'psu_model' => 'nullable|string',
+            'psu_color' => 'nullable|string',
+            'psu_length' => 'nullable|numeric|min:0',
+            'psu_width' => 'nullable|numeric|min:0',
+            'psu_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'psu_form_factor' => 'required|string',
+            'psu_wattage' => 'required|numeric|min:0',
+            'psu_efficiency_rating' => 'required|string',
+            'psu_modular' => 'required|string',
+            'psu_atx_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_eps_connector'=> 'nullable|numeric|min:0|max:16',
+            'psu_sata_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_molex_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_pcie_8pin_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_pcie_62pin_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_pcie_6pin_connector' => 'nullable|numeric|min:0|max:16'
+        ]);
 
+        // Image Upload
+        $psu_image_filename = time().'-'.$request->psu_name.'.'.$request->psu_image->extension();
+
+        $request->psu_image->move(public_path('images/psus'), $psu_image_filename);
+
+        // Store
+        $component = Component::create([
+            'image_path' => $psu_image_filename,
+            'name' => $request->psu_name,
+            'manufacturer' => $request->psu_manufacturer,
+            'series' => $request->psu_series,
+            'model' => $request->psu_model,
+            'color' => $request->psu_color,
+            'length' => $request->psu_length,
+            'width' => $request->psu_width,
+            'height' => $request->psu_height
+        ]);
+
+        PSU::create([
+            'component_id' => $component->id,
+            'psu_form_factor' => $request->psu_form_factor,
+            'wattage' => $request->psu_wattage,
+            'efficiency_rating' => $request->psu_efficiency_rating,
+            'modular' => $request->psu_modular,
+            'atx_connector' => $request->psu_atx_connector,
+            'eps_connector' => $request->psu_eps_connector,
+            'sata_connector' => $request->psu_sata_connector,
+            'molex_4pin_connector' => $request->psu_molex_connector,
+            'pcie_8pin_connector' => $request->psu_pcie_8pin_connector,
+            'pcie_6+2pin_connector' => $request->psu_pcie_62pin_connector,
+            'pcie_6pin_connector' => $request->psu_pcie_6pin_connector
+        ]);
+
+        return redirect()->route('dashboard');
     }
 
     public function add_computer_case(Request $request)
     {
+        // validate
+        $this->validate($request, [
+            // General Attributes
+            'case_image' => 'nullable|image|max:5048',
+            'case_name' => 'required|string',
+            'case_manufacturer' => 'nullable|string',
+            'case_series' => 'nullable|string',
+            'case_model' => 'nullable|string',
+            'case_color' => 'nullable|string',
+            'case_length' => 'nullable|numeric|min:0',
+            'case_width' => 'nullable|numeric|min:0',
+            'case_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'case_type' => 'required|string',
+            'case_mobo_form_factor' => 'required|string',
+            'case_power_supply' => 'nullable|string',
+            'case_power_supply_shroud' => 'required|boolean',
+            'case_side_panel_window' => 'nullable|string',
+            'case_water_cooled_support' => 'nullable|boolean',
+            'case_cooler_clearance' => 'nullable|numeric|min:0',
+            'case_graphics_clearance' => 'nullable|numeric|min:0',
+            'case_psu_clearance' => 'nullable|numeric|min:0',
+            'case_full_height_e_slot' => 'nullable|numeric|min:0|max:16',
+            'case_half_height_e_slot' => 'nullable|numeric|min:0|max:16',
+            'case_external_525_bay' => 'nullable|numeric|min:0|max:16',
+            'case_external_350_bay' => 'nullable|numeric|min:0|max:16',
+            'case_internal_350_bay' => 'nullable|numeric|min:0|max:16',
+            'case_internal_250_bay' => 'nullable|numeric|min:0|max:16'
+        ]);
 
+        // Image Upload
+        $case_image_filename = time().'-'.$request->case_name.'.'.$request->case_image->extension();
+
+        $request->case_image->move(public_path('images/computer_cases'), $case_image_filename);
+
+        // Store
+        $component = Component::create([
+            'image_path' => $case_image_filename,
+            'name' => $request->case_name,
+            'manufacturer' => $request->case_manufacturer,
+            'series' => $request->case_series,
+            'model' => $request->case_model,
+            'color' => $request->case_color,
+            'length' => $request->case_length,
+            'width' => $request->case_width,
+            'height' => $request->case_height
+        ]);
+
+        ComputerCase::create([
+            'component_id' => $component->id,
+            'case_type' => $request->case_type,
+            'mobo_form_factor' => $request->case_mobo_form_factor,
+            'power_supply' => $request->case_power_supply,
+            'power_supply_shroud' => $request->case_power_supply_shroud,
+            'side_panel_window' => $request->case_side_panel_window,
+            'water_cooled_support' => $request->case_water_cooled_support,
+            'cooler_clearance' => $request->case_cooler_clearance,
+            'graphics_clearance' => $request->case_graphics_clearance,
+            'psu_clearance' => $request->case_psu_clearance,
+            'full_height_e_slot' => $request->case_full_height_e_slot,
+            'half_height_e_slot' => $request->case_half_height_e_slot,
+            'external_525_bay' => $request->case_external_525_bay,
+            'external_350_bay' => $request->case_external_350_bay,
+            'internal_350_bay' => $request->case_internal_350_bay,
+            'internal_250_bay' => $request->case_internal_250_bay
+        ]);
+
+        return redirect()->route('dashboard');
     }
 }
