@@ -28,7 +28,6 @@ class SystemBuilderController extends Controller
 
     }
 
-
     public function print(Request $request){
 
         $holder = array();

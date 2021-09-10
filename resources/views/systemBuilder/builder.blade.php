@@ -26,8 +26,8 @@
             <!--MOTHERBOARD-->
             <tr>
                 <td>Motherboard</td>
-                <td>
-                    <form action="/components" method="post">                               <!-- Motherboards Button -->
+                <td>                                                                     <!-- Motherboards Button -->
+                    <form action="/components" method="post">
                         <input type="hidden" name="selectedComponents" value="motherboards">
                         {{csrf_field()}}
                         <input type="submit" name="selectedComponent" value="{{session('motherboards','+')}}" class="btn btn-info col-12">
