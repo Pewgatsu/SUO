@@ -1,4 +1,6 @@
+
 @extends('layouts.master')
+
 @section('content')
 
     <div class="p-5 card mx-auto" style="margin-top: 58px; width: 50rem; ">

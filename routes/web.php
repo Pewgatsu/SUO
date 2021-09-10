@@ -34,10 +34,7 @@ Auth::routes();
 
 Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
 Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
-<<<<<<< Updated upstream
-=======
 Route::get('/loguout',[AuthController::class,'logout'])->name('logout');
->>>>>>> Stashed changes
 
 Route::post('/register',[App\Http\Controllers\AuthController::class,'registerUser']);
 Route::post('/login',[\App\Http\Controllers\AuthController::class,'login'])->name('login');
@@ -54,10 +51,10 @@ Route::post('/dashboard/add/computer_case', [DashboardController::class, 'add_co
 
 Route::get('/users', [UsersController::class, 'index'])->name('users');
 
-<<<<<<< Updated upstream
+
 //System Builder
 Route::get('/systemBuilder', [SystemBuilderController::class, 'index'])->name('index');
-=======
+
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
@@ -70,7 +67,7 @@ Route::get('/search', [ComponentInfoController::class, 'index'])->name('componen
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('index');
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
 Route::post('/components', [SystemBuilderController::class, 'print'])->name('components');
->>>>>>> Stashed changes
+
 
 
 

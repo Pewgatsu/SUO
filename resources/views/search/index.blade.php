@@ -1,4 +1,8 @@
+
 @extends('layouts.master')
+
+@extends('layouts.app')
+
 @section('content')
     <!-- SearchPage Table -->
     <section class="mb-3">
