@@ -360,6 +360,5 @@
     }
     $("input[type=checkbox]").on("click",countCheck);
 </script>
-
 @endsection
 
