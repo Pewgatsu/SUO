@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 class SystemBuilderController extends Controller
 {
     //
+    private $components=array('motherboards' ,'cpus', 'cpu_coolers', 'graphics_cards', 'rams', 'storages', 'psus' , 'computer_cases');
+
     public function index(){
         //checks if user is logged in and creates a session to enable saving and naming builds
         if (Auth::check())
@@ -19,13 +21,12 @@ class SystemBuilderController extends Controller
             session(['userId' => $userId]);
             session(['saveForm'=> ' ']);
         }else{
-                session()->forget(['saveForm', 'userId']);
+            session()->forget(['saveForm', 'userId']);
         }
 
         return view('systemBuilder.builder');
 
     }
-
 
     public function print(Request $request){
 
@@ -198,4 +199,22 @@ class SystemBuilderController extends Controller
     }
 
 
+    public function saveBuild(Request $request){
+        //dd('entered here');
+        if($request->filled('buildName')) {
+            session()->forget(['alert']);
+        } else {
+            session(['alert' => 'is-invalid']);
+
+        }
+        return view('systemBuilder.builder');
+
+    }
+
+    public function orderComponent(Request $request){
+        //var_dump($this->components) ;
+        return view('systemBuilder.builder');
+
+
+    }
 }
