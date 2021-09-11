@@ -25,11 +25,10 @@ class AccountFactory extends Factory
     {
         return [
             //
-            'id' => $this->faker->unique()->randomDigit(),
             'username'=> $this->faker->name(),
             'password'=> $this->faker->password(),
             'email'=> $this->faker->safeEmail(),
-            'account_type' => $this->faker->randomElement(['Admin','Customer']),
+            'account_type' => $this->faker->randomElement(['Seller','Customer']),
             'profile_path'=> $this->faker->name(),
             'firstname'=> $this->faker->firstName(),
             'lastname'=> $this->faker->lastName(),
