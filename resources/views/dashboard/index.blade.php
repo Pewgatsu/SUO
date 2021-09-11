@@ -144,9 +144,9 @@
                                                 <td>{{ $account->account_type }}</td>
                                                 <td>
                                                     @if($account->is_verified)
-                                                        True
+                                                        Yes
                                                     @else
-                                                        False
+                                                        No
                                                     @endif
                                                 </td>
                                                 <td>{{ $account->created_at->diffForHumans() }}</td>
@@ -497,15 +497,15 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="mobo_ecc_support" name="mobo_ecc_support">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('mobo_ecc_support')) selected @endif>No</option>
+                                <option value="1" @if (old('mobo_ecc_support')) selected @endif>Yes</option>
                             </select>
                             <label for="mobo_ecc_support">ECC Support</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="mobo_raid_support" name="mobo_raid_support">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('mobo_raid_support')) selected @endif>No</option>
+                                <option value="1" @if (old('mobo_raid_support')) selected @endif>Yes</option>
                             </select>
                             <label for="mobo_raid_support">RAID Support</label>
                         </div>
@@ -708,15 +708,15 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="cpu_smt_support" name="cpu_smt_support">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('cpu_smt_support')) selected @endif>No</option>
+                                <option value="1" @if (old('cpu_smt_support')) selected @endif>Yes</option>
                             </select>
                             <label for="cpu_smt_support">SMT Support</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="cpu_ecc_support" name="cpu_ecc_support">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('cpu_ecc_support')) selected @endif>No</option>
+                                <option value="1" @if (old('cpu_ecc_support')) selected @endif>Yes</option>
                             </select>
                             <label for="cpu_ecc_support">ECC Support</label>
                         </div>
@@ -1394,22 +1394,22 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="ram_ecc_memory" name="ram_ecc_memory">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('ram_ecc_memory')) selected @endif>No</option>
+                                <option value="1" @if (old('ram_ecc_memory')) selected @endif>Yes</option>
                             </select>
                             <label for="ram_ecc_memory">ECC Memory</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="ram_registered_memory" name="ram_registered_memory">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('ram_registered_memory')) selected @endif>No</option>
+                                <option value="1" @if (old('ram_registered_memory')) selected @endif>Yes</option>
                             </select>
                             <label for="ram_registered_memory">Registered Memory</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="ram_heat_spreader" name="ram_heat_spreader">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('ram_heat_spreader')) selected @endif>No</option>
+                                <option value="1" @if (old('ram_heat_spreader')) selected @endif>Yes</option>
                             </select>
                             <label for="ram_heat_spreader">Heat Spreader</label>
                         </div>
@@ -1580,8 +1580,8 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="storage_nvme" name="storage_nvme">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('storage_nvme')) selected @endif>No</option>
+                                <option value="1" @if (old('storage_nvme')) selected @endif>Yes</option>
                             </select>
                             <label for="storage_nvme">NVMe</label>
                         </div>
@@ -1963,8 +1963,8 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="case_power_supply_shroud" name="case_power_supply_shroud">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('case_power_supply_shroud')) selected @endif>No</option>
+                                <option value="1" @if (old('case_power_supply_shroud')) selected @endif>Yes</option>
                             </select>
                             <label for="case_power_supply_shroud">Power Supply Shroud</label>
                         </div>
@@ -1981,8 +1981,8 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" id="case_water_cooled_support" name="case_water_cooled_support">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option>
+                                <option value="0" @if (!old('case_water_cooled_support')) selected @endif>No</option>
+                                <option value="1" @if (old('case_water_cooled_support')) selected @endif>Yes</option>
                             </select>
                             <label for="case_water_cooled_support">Water Cooled Support</label>
                         </div>
