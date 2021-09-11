@@ -45,6 +45,7 @@ Route::post('/dashboard/add/psu', [DashboardController::class, 'add_psu'])->name
 Route::post('/dashboard/add/computer_case', [DashboardController::class, 'add_computer_case'])->name('dashboard.add_computer_case');
 
 Route::get('/users', [UsersController::class, 'index'])->name('users');
+Route::delete('/users/{account}', [UsersController::class, 'destroy'])->name('users.destroy');
 
 //components
 
