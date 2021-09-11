@@ -15,9 +15,23 @@ class UsersController extends Controller
         ]);
     }
 
-    public function destroy(Account $account)
+    public function remove(Account $account)
     {
         $account->delete();
+        return back();
+    }
+
+    public function suspend(Account $account)
+    {
+        $account->is_active = 0;
+        $account->save();
+        return back();
+    }
+
+    public function unsuspend(Account $account)
+    {
+        $account->is_active = 1;
+        $account->save();
         return back();
     }
 }

@@ -51,22 +51,89 @@
                                         </td>
                                         <td>{{ $account->created_at->diffForHumans() }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-warning">Suspend</button>
+                                            @if($account->is_active)
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                        data-bs-target="#suspend_user_{{ $account->id }}">Suspend
+                                                </button>
+                                            @else
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                        data-bs-target="#unsuspend_user_{{ $account->id }}">Unsuspend
+                                                </button>
+                                            @endif
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                     data-bs-target="#remove_user_{{ $account->id }}">Remove
                                             </button>
                                         </td>
                                     </tr>
 
-                                    <!-- Modal -->
+                                    <!-- Suspend Modal -->
+                                    @if($account->is_active)
+                                        <div class="modal fade" id="suspend_user_{{ $account->id }}" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="suspend_user_{{ $account->id }}_label">
+                                                            Suspend User</h5>
+                                                        <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"></button>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        Do you want to suspend {{ $account->username }}?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cancel
+                                                        </button>
+                                                        <form action="{{ route('users.suspend',$account) }}"
+                                                              method="post">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-primary">Suspend
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="modal fade" id="unsuspend_user_{{ $account->id }}" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="unsuspend_user_{{ $account->id }}_label">
+                                                            Unsuspend User</h5>
+                                                        <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"></button>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        Do you want to unsuspend {{ $account->username }}?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cancel
+                                                        </button>
+                                                        <form action="{{ route('users.unsuspend',$account) }}"
+                                                              method="post">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-primary">Unsuspend
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    <!-- Remove Modal -->
                                     <div class="modal fade" id="remove_user_{{ $account->id }}" tabindex="-1">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="remove_user_{{ $account->id }}_label">
                                                         Remove User</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                                    <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal"></button>
                                                 </div>
                                                 <div class="modal-body text-center">
                                                     Do you want to remove {{ $account->username }}?
@@ -75,7 +142,7 @@
                                                     <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cancel
                                                     </button>
-                                                    <form action="{{ route('users.destroy',$account) }}" method="post">
+                                                    <form action="{{ route('users.remove',$account) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-primary">Remove</button>

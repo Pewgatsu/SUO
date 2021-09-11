@@ -45,7 +45,9 @@ Route::post('/dashboard/add/psu', [DashboardController::class, 'add_psu'])->name
 Route::post('/dashboard/add/computer_case', [DashboardController::class, 'add_computer_case'])->name('dashboard.add_computer_case');
 
 Route::get('/users', [UsersController::class, 'index'])->name('users');
-Route::delete('/users/{account}', [UsersController::class, 'destroy'])->name('users.destroy');
+Route::delete('/users/remove/{account}', [UsersController::class, 'remove'])->name('users.remove');
+Route::post('/users/suspend/{account}', [UsersController::class, 'suspend'])->name('users.suspend');
+Route::post('/users/unsuspend/{account}', [UsersController::class, 'unsuspend'])->name('users.unsuspend');
 
 //components
 
