@@ -144,9 +144,9 @@
                                                 <td>{{ $account->account_type }}</td>
                                                 <td>
                                                     @if($account->is_verified)
-                                                        True
+                                                        Yes
                                                     @else
-                                                        False
+                                                        No
                                                     @endif
                                                 </td>
                                                 <td>{{ $account->created_at->diffForHumans() }}</td>
