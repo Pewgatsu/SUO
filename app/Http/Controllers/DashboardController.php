@@ -18,28 +18,32 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $accounts = Account::latest()->get();
-        $components = Component::latest()->get();
-        $motherboards = Motherboard::get();
-        $cpus = CPU::get();
-        $cpu_coolers = CPUCooler::get();
-        $graphics_cards = GraphicsCard::get();
-        $rams = RAM::get();
-        $storages = Storage::get();
-        $psus = PSU::get();
-        $computer_cases = ComputerCase::get();
+        $accounts_count = Account::count();
+        $components_count = Component::count();
+        $motherboards_count = Motherboard::count();
+        $cpus_count = CPU::count();
+        $cpu_coolers_count = CPUCooler::count();
+        $graphics_cards_count = GraphicsCard::count();
+        $rams_count = RAM::count();
+        $storages_count = Storage::count();
+        $psus_count = PSU::count();
+        $computer_cases_count = ComputerCase::count();
+        $recent_accounts = Account::latest()->limit(5)->get();
+        $recent_components = Component::latest()->limit(5)->get();
 
         return view('dashboard.index', [
-            'accounts' => $accounts,
-            'components' => $components,
-            'motherboards' => $motherboards,
-            'cpus' => $cpus,
-            'cpu_coolers' => $cpu_coolers,
-            'graphics_cards' => $graphics_cards,
-            'rams' => $rams,
-            'storages' => $storages,
-            'psus' => $psus,
-            'computer_cases' => $computer_cases
+            'accounts_count' => $accounts_count,
+            'components_count' => $components_count,
+            'motherboards_count' => $motherboards_count,
+            'cpus_count' => $cpus_count,
+            'cpu_coolers_count' => $cpu_coolers_count,
+            'graphics_cards_count' => $graphics_cards_count,
+            'rams_count' => $rams_count,
+            'storages_count' => $storages_count,
+            'psus_count' => $psus_count,
+            'computer_cases_count' => $computer_cases_count,
+            'recent_accounts' => $recent_accounts,
+            'recent_components' => $recent_components
         ]);
     }
 
@@ -88,6 +92,7 @@ class DashboardController extends Controller
         $component = Component::create([
             'image_path' => $mobo_image_filename,
             'name' => $request->mobo_name,
+            'type' => 'Motherboard',
             'manufacturer' => $request->mobo_manufacturer,
             'series' => $request->mobo_series,
             'model' => $request->mobo_model,
@@ -160,6 +165,7 @@ class DashboardController extends Controller
         $component = Component::create([
             'image_path' => $cpu_image_filename,
             'name' => $request->cpu_name,
+            'type' => 'CPU',
             'manufacturer' => $request->cpu_manufacturer,
             'series' => $request->cpu_series,
             'model' => $request->cpu_model,
@@ -217,6 +223,7 @@ class DashboardController extends Controller
         $component = Component::create([
             'image_path' => $cpu_cooler_image_filename,
             'name' => $request->cpu_cooler_name,
+            'type' => 'CPU Cooler',
             'manufacturer' => $request->cpu_cooler_manufacturer,
             'series' => $request->cpu_cooler_series,
             'model' => $request->cpu_cooler_model,
@@ -280,6 +287,7 @@ class DashboardController extends Controller
         $component = Component::create([
             'image_path' => $graphics_card_image_filename,
             'name' => $request->graphics_card_name,
+            'type' => 'Graphics Card',
             'manufacturer' => $request->graphics_card_manufacturer,
             'series' => $request->graphics_card_series,
             'model' => $request->graphics_card_model,
@@ -349,6 +357,7 @@ class DashboardController extends Controller
         $component = Component::create([
             'image_path' => $ram_image_filename,
             'name' => $request->ram_name,
+            'type' => 'RAM',
             'manufacturer' => $request->ram_manufacturer,
             'series' => $request->ram_series,
             'model' => $request->ram_model,
@@ -407,6 +416,7 @@ class DashboardController extends Controller
         $component = Component::create([
             'image_path' => $storage_image_filename,
             'name' => $request->storage_name,
+            'type' => 'Storage',
             'manufacturer' => $request->storage_manufacturer,
             'series' => $request->storage_series,
             'model' => $request->storage_model,
@@ -466,6 +476,7 @@ class DashboardController extends Controller
         $component = Component::create([
             'image_path' => $psu_image_filename,
             'name' => $request->psu_name,
+            'type' => 'PSU',
             'manufacturer' => $request->psu_manufacturer,
             'series' => $request->psu_series,
             'model' => $request->psu_model,
@@ -534,6 +545,7 @@ class DashboardController extends Controller
         $component = Component::create([
             'image_path' => $case_image_filename,
             'name' => $request->case_name,
+            'type' => 'Computer Case',
             'manufacturer' => $request->case_manufacturer,
             'series' => $request->case_series,
             'model' => $request->case_model,
