@@ -48,35 +48,35 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Motherboard
-                            <span class="badge bg-primary rounded-pill">{{ $motherboards->count() }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ $motherboards_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             CPU
-                            <span class="badge bg-primary rounded-pill">{{ $cpus->count() }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ $cpus_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             CPU Cooler
-                            <span class="badge bg-primary rounded-pill">{{ $cpu_coolers->count() }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ $cpu_coolers_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Graphics Card
-                            <span class="badge bg-primary rounded-pill">{{ $graphics_cards->count() }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ $graphics_cards_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             RAM
-                            <span class="badge bg-primary rounded-pill">{{ $rams->count() }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ $rams_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Storage
-                            <span class="badge bg-primary rounded-pill">{{ $storages->count() }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ $storages_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             PSU
-                            <span class="badge bg-primary rounded-pill">{{ $psus->count() }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ $psus_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Computer Case
-                            <span class="badge bg-primary rounded-pill">{{ $computer_cases->count() }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ $computer_cases_count }}</span>
                         </li>
                     </ul>
                 </div>
@@ -91,7 +91,7 @@
                                     <div class="card card-body bg-light">
                                         <div class="h3">
                                             <i class="bi bi-person"></i>
-                                            <small>{{ $accounts->count() }}</small>
+                                            <small>{{ $accounts_count }}</small>
                                         </div>
                                         Users
                                     </div>
@@ -100,7 +100,7 @@
                                     <div class="card card-body bg-light">
                                         <div class="h3">
                                             <i class="bi bi-cpu"></i>
-                                            <small>{{ $components->count() }}</small>
+                                            <small>{{ $components_count }}</small>
                                         </div>
                                         Components
                                     </div>
@@ -124,7 +124,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title p-2 text-center">Latest Users</h4>
-                            @if($accounts->count())
+                            @if($recent_accounts->count())
                                 <div class="table-responsive text-center">
                                     <table class="table table-striped table-hover">
                                         <thead>
@@ -137,7 +137,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($accounts as $account)
+                                        @foreach($recent_accounts as $account)
                                             <tr>
                                                 <td>{{ $account->id }}</td>
                                                 <td>{{ $account->username }}</td>
@@ -151,7 +151,6 @@
                                                 </td>
                                                 <td>{{ $account->created_at->diffForHumans() }}</td>
                                             </tr>
-                                            @break($loop->iteration == 5)
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -169,7 +168,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title p-2 text-center">Latest Components</h4>
-                            @if($components->count())
+                            @if($recent_components->count())
                                 <div class="table-responsive text-center">
                                     <table class="table table-striped table-hover">
                                         <thead>
@@ -182,15 +181,14 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($components as $component)
+                                        @foreach($recent_components as $component)
                                             <tr>
                                                 <td>{{ $component->id }}</td>
                                                 <td>{{ $component->name }}</td>
-                                                <td>{{ $component->type() }}</td>
+                                                <td>{{ $component->type }}</td>
                                                 <td>{{ $component->manufacturer }}</td>
                                                 <td>{{ $component->updated_at->diffForHumans() }}</td>
                                             </tr>
-                                            @break($loop->iteration == 5)
                                         @endforeach
                                         </tbody>
                                     </table>

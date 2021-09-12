@@ -17,6 +17,7 @@ class CreateComponentsTable extends Migration
             $table->id();
             $table->string('image_path')->nullable();
             $table->string('name');
+            $table->string('type');
             $table->string('manufacturer')->nullable();
             $table->string('series')->nullable();
             $table->string('model')->nullable();

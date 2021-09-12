@@ -39,8 +39,8 @@ class AccountFactory extends Factory
             'is_verified' => $this->faker->boolean(50),
             'is_active' => $this->faker->boolean(50),
             'is_admin' => $this->faker->boolean(50),
-            'created_at' => $this->faker->date('Y-m-d','now'),
-            'updated_at' => $this->faker->date('Y-m-d','now')
+            'created_at' => $this->faker->date() . ' ' . $this->faker->time(),
+            'updated_at' => $this->faker->date() . ' ' . $this->faker->time()
         ];
     }
 }

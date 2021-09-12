@@ -22,7 +22,15 @@ class ComponentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->word(),
+            'type' => $this->faker->randomElement(['Motherboard','CPU','CPU Cooler','Graphics Card','RAM','Storage','PSU','Computer Case']),
+            'manufacturer' => $this->faker->company(),
+            'series' => $this->faker->word(),
+            'model' => $this->faker->word(),
+            'color' => $this->faker->colorName(),
+            'length' => $this->faker->randomFloat(2,0,1000),
+            'width' => $this->faker->randomFloat(2,0,1000),
+            'height' => $this->faker->randomFloat(2,0,1000),
         ];
     }
 }
