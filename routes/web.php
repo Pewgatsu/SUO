@@ -56,10 +56,7 @@ Route::post('/users/unsuspend/{account}', [UsersController::class, 'unsuspend'])
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
 
 Route::post('/components', [SystemBuilderController::class, 'print'])->name('components');
-Route::post('/builder', [SystemBuilderController::class, 'checkBoxState'])->name('checkBoxState');
-Route::post('/builder/saved', [SystemBuilderController::class, 'saveBuild'])->name('saveBuild');
-Route::post('/', [SystemBuilderController::class, 'orderComponent'])->name('orderComponent');
-
+Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
 
 
 
