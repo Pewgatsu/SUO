@@ -9,7 +9,7 @@
                     <!-- Grid column -->
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a class="nav-link" href="{{ route('aboutus') }}">About Us</a>
+                            <a href="#!" class="text-white">About us</a>
                         </h6>
                     </div>
                     <!-- Grid column -->

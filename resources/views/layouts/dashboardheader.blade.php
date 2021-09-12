@@ -28,9 +28,6 @@
                            data-bs-target="#computer_case">Computer Case</a></li>
                 </ul>
             </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" href="{{ route('search') }}">Search</a>
-            </li>
         </ul>
     </div>
 </header>

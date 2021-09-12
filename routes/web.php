@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\AboutSystemController;
-use App\Http\Controllers\AboutUsController;
-use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
@@ -52,12 +49,6 @@ Route::delete('/users/remove/{account}', [UsersController::class, 'remove'])->na
 Route::post('/users/suspend/{account}', [UsersController::class, 'suspend'])->name('users.suspend');
 Route::post('/users/unsuspend/{account}', [UsersController::class, 'unsuspend'])->name('users.unsuspend');
 
-
-Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
-
-Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('aboutsystem');
-
-Route::get('/search', [ComponentInfoController::class, 'index'])->name('search');
 //components
 
 
