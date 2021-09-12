@@ -50,8 +50,4 @@ class Account extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function builds(){
-        return $this->hasMany(Build::class);
-    }
 }
