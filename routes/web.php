@@ -32,7 +32,7 @@ Auth::routes();
 
 Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
 Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
-Route::get('/loguout',[\App\Http\Controllers\AuthController::class,'logout'])->name('logout');
+Route::get('/logout',[\App\Http\Controllers\AuthController::class,'logout'])->name('logout');
 
 Route::post('/register',[App\Http\Controllers\AuthController::class, 'registerUser']);
 Route::post('/login',[App\Http\Controllers\AuthController::class,'login']);
@@ -59,6 +59,10 @@ Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('about
 
 Route::get('/search', [ComponentInfoController::class, 'index'])->name('search');
 //components
+Route::get('test',[\App\Http\Controllers\ComponentsPageController::class,'index'])->name('test');
+
+
+
 
 
 //System Builder
@@ -68,6 +72,8 @@ Route::post('/components', [SystemBuilderController::class, 'print'])->name('com
 Route::post('/builder', [SystemBuilderController::class, 'checkBoxState'])->name('checkBoxState');
 Route::post('/builder/saved', [SystemBuilderController::class, 'saveBuild'])->name('saveBuild');
 Route::post('/', [SystemBuilderController::class, 'orderComponent'])->name('orderComponent');
+
+
 
 
 

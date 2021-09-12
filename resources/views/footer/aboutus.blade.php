@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
     <body>
         <div class="p-5 card mx-auto" style="margin-top: 58px; width: 50rem; ">

@@ -6,6 +6,6 @@ class AboutUsController extends Controller
 {
     public function index()
     {
-        return view('footer/aboutus');
+        return view('footer.aboutus');
     }
 }

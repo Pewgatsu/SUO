@@ -6,6 +6,6 @@ class AboutSystemController extends Controller
 {
     public function index()
     {
-        return view('footer/aboutsystem');
+        return view('footer.aboutsystem');
     }
 }
