@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">About Us</a>
+                        <a class="nav-link" href="{{ route('aboutus') }}">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Contact</a>
