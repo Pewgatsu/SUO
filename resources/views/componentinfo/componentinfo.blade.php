@@ -27,6 +27,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< Updated upstream
             <!-- Right Column -->
             <div class="w3-rest">
                 <div class="w3-row-padding" >
@@ -55,6 +56,12 @@
                         </div>
                     </div>
                 </div>
+=======
+            <div>
+                
+                <button type="button" class="btn btn-info">Edit</button>
+            </div>
+>>>>>>> Stashed changes
 
             </div>
         </div>
