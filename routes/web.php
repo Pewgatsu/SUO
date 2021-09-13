@@ -5,6 +5,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
 use Illuminate\Support\Facades\Auth;
@@ -57,7 +58,8 @@ Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
 
 Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('aboutsystem');
 
-Route::get('/search', [ComponentInfoController::class, 'index'])->name('search');
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('search');
 //components
 Route::get('test',[\App\Http\Controllers\ComponentsPageController::class,'index'])->name('test');
 
