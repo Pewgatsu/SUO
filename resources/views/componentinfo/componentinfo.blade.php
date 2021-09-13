@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-
+    @include('layouts.dashboardheader')
     <div class="container" style="margin-top: 58px; width: 50rem;">
         <div id="card" class="card-header">
             <h3 class="card-title">Product Info</h3> {{--how to display component info name here--}}
@@ -9,12 +9,14 @@
 
             </div>
         </div>
+    </div>
 
+    <div class="row">
         <!-- left Column -->
         <div class="d-flex align-items-start bg-light mb-3">
             <div class="card">
-                <div class= "card-body" style="overflow-x:auto;">
-                    <img src="" alt="" width="100%" height="400" />
+                <div class= "card-body" style="width: min-content">
+                    <img src="" alt="" width="100%" height="200" />
                 </div>
             </div>
         </div>

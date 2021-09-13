@@ -1,12 +1,12 @@
 @extends('layouts.master')
 @section('content')
+    @include('layouts.dashboardheader')
     <!-- SearchPage Table -->
     <section class="mb-3">
         <div class="container" style="width:100%">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-
                         <table id="searchpagecomponents_table" class="table table-striped table-hover" style="width:100%">
                             <thead>
                             <tr>
