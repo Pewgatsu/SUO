@@ -42,14 +42,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data as $item)    {{--proper info here subject to change --}}
-                                    <tr class="item{{$item->component_id}}">
-                                        <td>{{$item->component_image}}</td>
-                                        <td>{{$item->component_name}}</td>
-                                        <td>{{$item->component_type}}</td>
-                                        <td>{{$item->component_price}}</td>
-                                    </tr>
-                                @endforeach
+
                                 </tbody>
                             </table>
                         </div>

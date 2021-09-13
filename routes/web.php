@@ -59,11 +59,11 @@ Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
 Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('aboutsystem');
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('search');
+
 //components
 Route::get('test',[\App\Http\Controllers\ComponentsPageController::class,'index'])->name('test');
 
-
+Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('search');
 
 
 
