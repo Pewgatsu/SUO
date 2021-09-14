@@ -24,7 +24,7 @@
 
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-white">Help</a>
+                            <a href="{{route('aboutsystem')}}" class="text-white">About System</a>
                         </h6>
                     </div>
                 </div>

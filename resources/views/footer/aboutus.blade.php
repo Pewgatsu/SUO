@@ -2,13 +2,13 @@
 @section('content')
     <body>
         <div class="p-5 card mx-auto" style="margin-top: 58px; width: 50rem; ">
-            <h3 class="card-title">Mission & Vission</h3>
+            <h3 class="card-title">Mission & Vision</h3>
             <div class="card-body">
                 <div class="p-5 card mx-auto" style="margin-top: 58px; width: 40rem; ">
                     <p class="text-center">
                         Mission: The developers aim to provide a platform for both consumers and seller/s, to build system units and sell components to consumers.</p>
                     <p class="text-center">
-                        Vission: To ease the process of building a system unit and increase the quality of purchases.
+                        Vision: To ease the process of building a system unit and increase the quality of purchases.
                     </p>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
     <div class="container">
 
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{route('home')}}">
             <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
             System Unit Optimizer
         </a>
@@ -20,6 +20,7 @@
             </ul>
         </div>
         @endauth
+
         @guest
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
