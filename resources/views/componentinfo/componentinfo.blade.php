@@ -10,10 +10,10 @@
 
     <div class="row">
         <!-- left Column -->
-        <div class="col-md-3">
-            <div class="card">
-                <div class= "card-body" style="width: min-content">
-                    <img src="" alt="" width="100%" height="200" />
+        <div class="p-5 col-md-3">
+            <div class="card" style="width: 28.5rem">
+                <div class= "card-body" style="width: 28.5rem">
+                    <img src="" alt="" width="100%" height="300" />
                 </div>
             </div>
 
@@ -29,28 +29,22 @@
         </div>
 
         <!-- Right Column -->
-        <div class="col-md-3">
-            <div class="card" style="margin-top: 58px; width: 30rem;">
-                <div class= "card-body" >
-                    <table id="component_info" class="table table-striped table-hover" style="width:100%">
-                        <thead>
-                        <tr>
-                            <th>DATA</th> {{--how to display component info here--}}
-                            <th>DATA</th> {{--how to display component info here--}}
-                            <th>DATA</th> {{--how to display component info here--}}
-                            <th>DATA</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
+        <div class="p-5 col-md-3">
+            <div class="card" style="margin-top: 1px; width: 70rem;height: 21rem;">
+                <div class= "card-body">
+                    <h6 class="card-text"> Gen Info 1: </h6>
+                    <h6 class="card-text"> Gen Info 1: </h6>
+                    <h6 class="card-text"> Gen Info 1: </h6>
+                    <h6 class="card-text"> Gen Info 1: </h6>
+                    <h6 class="card-text"> Gen Info 1: </h6>
                 </div>
+
             </div>
-            <div>
-                <button type="button" class="btn btn-info">Edit</button>
+            <div class="p-3 container justify-content-center" style="margin-top: 116px; width: 28.5rem;">
+                <button type="button" class="btn btn-info">Edit Information</button>
             </div>
 
         </div>
     </div>
+
 @endsection
