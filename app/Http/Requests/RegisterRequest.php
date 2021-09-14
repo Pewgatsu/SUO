@@ -27,9 +27,9 @@ class RegisterRequest extends FormRequest
         $date_now = date('m/d/Y');
         return [
             //
-            'username' => ['required','unique:accounts,username'],
-            'password' => ['required','min:6','alpha_num'],
-            'password_confirmation' => ['required','same:password'],
+            'regUsername' => ['required','unique:accounts,username'],
+            'regPassword' => ['required','min:6','alpha_num'],
+            'regConfirmPass' => ['required','same:regPassword'],
             'email' => ['required','email','unique:accounts','email'],
             'accountType' => ['required'],
             'firstname' => ['required', 'alpha'],
@@ -46,7 +46,8 @@ class RegisterRequest extends FormRequest
         return [
             'required' => 'Field must not be empty!',
             'unique' => ':Attribute already exists!',
-            'password_confirmation.required' => 'Does not match!',
+            'regConfirmPass.required' => 'Password does not match!',
+            'regPassword.required' => 'Password does not match!',
             'accountType.required' => 'You must select an account type!',
             'gender.required' => 'You must specify your gender!',
             'date.before_or_equal' => 'Date cannot be ahead of time!',

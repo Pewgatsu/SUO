@@ -1,14 +1,14 @@
-const regUsername = document.getElementById('regUsername');
-const regPassword = document.getElementById('regPassword');
-const regConfirmPassword = document.getElementById('regConfirmPass');
-const regAccountType = document.getElementById('accountType');
-const regEmail = document.getElementById('email');
-const regFirstname = document.getElementById('firstname');
-const regLastname = document.getElementById('lastname');
-const regBirthdate = document.getElementById('birthdate');
-const regGender = document.getElementById('genderOptions');
-const regAddress = document.getElementById('address');
-const regContact = document.getElementById('contact');
+// const regUsername = document.getElementById('regUsername');
+// const regPassword = document.getElementById('regPassword');
+// const regConfirmPassword = document.getElementById('regConfirmPass');
+// const regAccountType = document.getElementById('accountType');
+// const regEmail = document.getElementById('email');
+// const regFirstname = document.getElementById('firstname');
+// const regLastname = document.getElementById('lastname');
+// const regBirthdate = document.getElementById('birthdate');
+// const regGender = document.getElementById('genderOptions');
+// const regAddress = document.getElementById('address');
+// const regContact = document.getElementById('contact');
 
 const reSpaces = /^\S*$/;
 
@@ -24,20 +24,17 @@ const reContact = /^[0][1-9]\d{9}|^[6][1-9]\d{10}/; //Regular expression accepti
 
 
 
-function addBlur(){
-    regUsername.addEventListener('blur', validateUsername);
-    regPassword.addEventListener('blur', validatePassword);
-    regConfirmPassword.addEventListener('blur', validateConfirmPassword);
-    regAccountType.addEventListener('blur', validateAccountType);
-    regEmail.addEventListener('blur',validateEmail);
-    regFirstname.addEventListener('blur',validateFirstname);
-    regLastname.addEventListener('blur',validateLastname);
-    regBirthdate.addEventListener('blur',validateBirthdate);
-    regGender.addEventListener('blur', validateGender);
-    regAddress.addEventListener('blur',validateAddress);
-    regContact.addEventListener('blur',validateContact);
-}
-
+test.addEventListener('blur', validateUsername);
+test2.addEventListener('blur', validatePassword);
+test3.addEventListener('blur', validateConfirmPassword);
+// regAccountType.addEventListener('blur', validateAccountType);
+// regEmail.addEventListener('blur',validateEmail);
+// regFirstname.addEventListener('blur',validateFirstname);
+// regLastname.addEventListener('blur',validateLastname);
+// regBirthdate.addEventListener('blur',validateBirthdate);
+// regGender.addEventListener('blur', validateGender);
+// regAddress.addEventListener('blur',validateAddress);
+// regContact.addEventListener('blur',validateContact);
 
 
 
