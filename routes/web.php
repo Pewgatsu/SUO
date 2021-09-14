@@ -7,6 +7,7 @@ use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
+use App\Http\Controllers\StoreProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -69,12 +70,10 @@ Route::get('test',[\App\Http\Controllers\ComponentsPageController::class,'index'
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
 
 Route::post('/components', [SystemBuilderController::class, 'print'])->name('components');
-Route::post('/builder', [SystemBuilderController::class, 'checkBoxState'])->name('checkBoxState');
-Route::post('/builder/saved', [SystemBuilderController::class, 'saveBuild'])->name('saveBuild');
-Route::post('/', [SystemBuilderController::class, 'orderComponent'])->name('orderComponent');
+Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
 
-
-
+//Store Ppofile
+Route::get('/storeProfile', [StoreProfileController::class, 'index'])->name('storeProfile');
 
 
 
