@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\Account;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 
 class AuthController extends Controller
@@ -46,9 +47,9 @@ class AuthController extends Controller
     //validate the input in request
     public function registerUser(RegisterRequest $request){
 
-        $account = Account::create([
-            'username' => $request->input('username'),
-            'password' => Hash::make($request->input()['password']),
+        Account::create([
+            'username' => $request->input('regUsername'),
+            'password' => Hash::make($request->input()['regPassword']),
             'email' => $request->input('email'),
             'account_type' => $request->input('accountType'),
             'firstname' => $request->input('firstname'),
@@ -59,7 +60,7 @@ class AuthController extends Controller
             'address' =>$request->input('address'),
         ]);
 
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
 }
