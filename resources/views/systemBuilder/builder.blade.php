@@ -51,7 +51,7 @@
                     </form>
                 </td>
                 <td>                                                                <!-- Motherboards Order Button -->
-                    <form method="post" action="{{route('orderComponent')}}">
+                    <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="motherboards">
                         {{csrf_field()}}
                         <button type="submit" class="btn btn-info col-12" {{session('motherboardsOrder','disabled')}} name="orderComponent">Order</button>
@@ -86,7 +86,7 @@
                     </form>
                 </td>
                 <td>                                                                        <!-- CPU Order Button -->
-                    <form method="post"  action="{{route('orderComponent')}}" >
+                    <form method="post"  action="{{route('control')}}" >
                         <input type="hidden" name="orderComponents" value="cpus">
                         {{csrf_field()}}
                         <button type="submit" class="btn btn-info col-12" {{session('cpusOrder','disabled')}} name="orderComponent">Order</button>
@@ -121,7 +121,7 @@
                     </form>
                 </td>
                 <td>                                                                    <!-- CPU cooler Order Button -->
-                    <form method="post" action="{{route('orderComponent')}}">
+                    <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="cpu_coolers">
                         {{csrf_field()}}
                         <button type="submit" class="btn btn-info col-12" {{session('cpu_coolersOrder','disabled')}} name="orderComponent">Order</button>
@@ -156,7 +156,7 @@
                     </form>
                 </td>
                 <td>                                                                <!-- Graphics card Order Button -->
-                    <form method="post" action="{{route('orderComponent')}}">
+                    <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="graphics_cards">
                         {{csrf_field()}}
                         <button type="submit" class="btn btn-info col-12" {{session('graphics_cardsOrder','disabled')}} name="orderComponent">Order</button>
@@ -191,7 +191,7 @@
                     </form>
                 </td>
                 <td>                                                                         <!-- RAM Order Button -->
-                    <form method="post" action="{{route('orderComponent')}}">
+                    <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="rams">
                         {{csrf_field()}}
                         <button type="submit" class="btn btn-info col-12" {{session('ramsOrder','disabled')}} name="orderComponent">Order</button>
@@ -226,7 +226,7 @@
                     </form>
                 </td>
                 <td>                                                                      <!-- Storages Order Button -->
-                    <form method="post" action="{{route('orderComponent')}}">
+                    <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="storages">
                         {{csrf_field()}}
                         <button type="submit" class="btn btn-info col-12" {{session('storagesOrder','disabled')}} name="orderComponent">Order</button>
@@ -261,7 +261,7 @@
                     </form>
                 </td>
                 <td>                                                                        <!-- PSU Order Button -->
-                    <form method="post" action="{{route('orderComponent')}}">
+                    <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="psus">
                         {{csrf_field()}}
                         <button type="submit" class="btn btn-info col-12" {{session('psusOrder','disabled')}} name="orderComponent">Order</button>
@@ -296,7 +296,7 @@
                     </form>
                 </td>
                 <td>                                                                 <!-- Computer Case Order Button -->
-                    <form method="post" action="{{route('orderComponent')}}">
+                    <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="computer_cases">
                         {{csrf_field()}}
                         <button type="submit" class="btn btn-info col-12" {{session('computer_casesOrder','disabled')}} name="orderComponent">Order</button>
@@ -314,7 +314,7 @@
                 @endif
             <!--Name and Save-->
             <tr {{session('saveForm','style=display:none;')}}>
-                <form class="form-inline" action="{{route('saveBuild')}}" method="post" >
+                <form class="form-inline" action="{{route('control')}}" method="post" >
                     <td style="text-align:right;">
                         {{csrf_field()}}
                         <label for="form-label"> Build Name: </label></td>
@@ -347,7 +347,7 @@
 
         $.ajax({
             type:'POST',
-            url:"{{route('checkBoxState')}}",
+            url:"{{route('control')}}",
             data:{
                 hold:holder,
                 _token: _token
