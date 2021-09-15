@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Components extends Model
+class Store extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'component_image',
-        'component_name',
-        'component_type',
-        'component_price',
-    ];
+
+    protected $table = 'stores';
+
+    public function account(){
+        return $this->belongsTo(Account::class);
+    }
 
     public function product(){
         return $this->hasMany(Product::class);
     }
+
 }

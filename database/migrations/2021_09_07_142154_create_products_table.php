@@ -15,6 +15,8 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('store_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('component_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->float('price');
             $table->dateTime('date_added');
             $table->string('status');
