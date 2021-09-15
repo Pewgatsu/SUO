@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row container-fluid">
         <!-- left Column -->
         <div class="p-5 col-md-3">
             <div class="card" style="width: 28.5rem">
@@ -29,7 +29,7 @@
         </div>
 
         <!-- Right Column -->
-        <div class="p-5 col-md-3">
+        <div class="p-5 col-lg-auto container-fluid">
             <div class="card" style="margin-top: 1px; width: 70rem;height: 21rem;">
                 <div class= "card-body">
                     <h6 class="card-text"> Gen Info 1: </h6>
