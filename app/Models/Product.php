@@ -10,6 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
+    protected $primaryKey = 'id';
 
     public function buildProduct(){
         return $this->hasMany(BuildProducts::class);

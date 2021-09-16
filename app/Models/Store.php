@@ -11,6 +11,8 @@ class Store extends Model
 
     protected $table = 'stores';
 
+    protected $primaryKey = 'id';
+
     public function account(){
         return $this->belongsTo(Account::class);
     }
