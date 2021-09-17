@@ -21,12 +21,6 @@ class AuthController extends Controller
         return view('auth.registration');
     }
 
-    public function logout(){
-        auth()->logout();
-
-        return redirect('/');
-    }
-
     public function login(LoginRequest $request){
 
         $credentials = $request->only('username','password');
