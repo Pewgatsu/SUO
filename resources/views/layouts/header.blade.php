@@ -25,6 +25,9 @@
             <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        <a class="nav-link" href="{{route('login')}}">Login</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('aboutus') }}">About Us</a>
                     </li>
                     <li class="nav-item">
@@ -35,3 +38,5 @@
         @endguest
     </div>
 </nav>
+
+
