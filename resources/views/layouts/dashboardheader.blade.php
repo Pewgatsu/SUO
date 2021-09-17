@@ -14,16 +14,16 @@
                 </button>
 
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{route('test',['model' => \App\Models\Motherboard::class])}}">Motherboard</a></li>
-                    <li><a class="dropdown-item" href="{{route('test')}}">CPU</a></li>
-                    <li><a class="dropdown-item" href="{{route('test')}}">CPU
+                    <li><a class="dropdown-item" href="">Motherboard</a></li>
+                    <li><a class="dropdown-item" href="">CPU</a></li>
+                    <li><a class="dropdown-item" href="">CPU
                             Cooler</a></li>
-                    <li><a class="dropdown-item" href="{{route('test')}}">Graphics Card</a></li>
-                    <li><a class="dropdown-item" href="{{route('test')}}">RAM</a></li>
-                    <li><a class="dropdown-item" href="{{route('test')}}">Storage</a>
+                    <li><a class="dropdown-item" href="">Graphics Card</a></li>
+                    <li><a class="dropdown-item" href="">RAM</a></li>
+                    <li><a class="dropdown-item" href="">Storage</a>
                     </li>
-                    <li><a class="dropdown-item" href="{{route('test')}}">PSU</a></li>
-                    <li><a class="dropdown-item" href="{{route('test')}}">Computer Case</a></li>
+                    <li><a class="dropdown-item" href="">PSU</a></li>
+                    <li><a class="dropdown-item" href="">Computer Case</a></li>
                 </ul>
             </li>
             <li class="nav-item" role="presentation">
