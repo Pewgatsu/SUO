@@ -10,7 +10,7 @@ class Build extends Model
     use HasFactory;
 
     protected $table = 'builds';
-
+    protected $primaryKey = 'id';
 
     public function account(){
         return $this->belongsTo(Account::class);

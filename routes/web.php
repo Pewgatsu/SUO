@@ -8,7 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
-use App\Http\Controllers\StoreProfileController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -75,8 +75,9 @@ Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder
 Route::post('/components', [SystemBuilderController::class, 'print'])->name('components');
 Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
 
-//Store Ppofile
-Route::get('/storeProfile', [StoreProfileController::class, 'index'])->name('storeProfile');
+//Store
+Route::get('/store', [StoreController::class, 'index'])->name('store');
+Route::get('/store/{id}', [StoreController::class, 'view'])->name('view');
 
 
 
