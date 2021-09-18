@@ -23,7 +23,7 @@
                        </div>
 
                        <div class="col-md-6 mx-5 mt-3">
-                           <button class="btn btn-primary btn-sm">upload photo</button>
+                           <button class="btn btn-dark btn-sm">upload photo</button>
                        </div>
 
                    </form>
