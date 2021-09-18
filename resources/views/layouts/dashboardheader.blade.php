@@ -2,10 +2,10 @@
     <div class="container my-1">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" href="{{ route('users') }}">Users</a>
+                <a class="nav-link" href="{{ route('admin.users') }}">Users</a>
             </li>
             <li class="nav-item dropdown" role="presentation">
                 <button class="nav-link dropdown-toggle" id="profile-tab" data-bs-toggle="dropdown"
@@ -14,16 +14,19 @@
                 </button>
 
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="">Motherboard</a></li>
-                    <li><a class="dropdown-item" href="">CPU</a></li>
-                    <li><a class="dropdown-item" href="">CPU
-                            Cooler</a></li>
-                    <li><a class="dropdown-item" href="">Graphics Card</a></li>
-                    <li><a class="dropdown-item" href="">RAM</a></li>
-                    <li><a class="dropdown-item" href="">Storage</a>
+                    <li><a class="dropdown-item" href="{{ route('admin.components.motherboards') }}">Motherboard</a>
                     </li>
-                    <li><a class="dropdown-item" href="">PSU</a></li>
-                    <li><a class="dropdown-item" href="">Computer Case</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.components.cpus') }}">CPU</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.components.cpu_coolers') }}">CPU
+                            Cooler</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.components.graphics_cards') }}">Graphics Card</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('admin.components.rams') }}">RAM</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.components.storages') }}">Storage</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('admin.components.psus') }}">PSU</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.components.computer_cases') }}">Computer Case</a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item" role="presentation">
