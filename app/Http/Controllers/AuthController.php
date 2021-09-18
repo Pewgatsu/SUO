@@ -30,7 +30,7 @@ class AuthController extends Controller
             if(auth()->user()->account_type == 'customer'){
                 return redirect()->route('builder');
             }else{
-                return redirect()->route('dashboard');
+                return redirect()->route('admin.dashboard');
             }
 
         }else{
