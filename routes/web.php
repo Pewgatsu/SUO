@@ -33,7 +33,7 @@ Auth::routes();
 
 Route::get('/home',[\App\Http\Controllers\HomeController::class,'index'])->name('home');
 
-
+Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('profile');
 
 Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
 Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
