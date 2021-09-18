@@ -23,6 +23,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <script>
     $(document).ready(function () {
     $('#searchpagecomponents_table').DataTable({
@@ -42,12 +43,13 @@
 
 
 <div id="app" >
-    <main class="flex-fill">
+    <main class="bg-light">
         @include('layouts.header')
         @yield('content')
         @include('layouts.footer')
     </main>
 </div>
+
 @stack('datepicker')
 
 
