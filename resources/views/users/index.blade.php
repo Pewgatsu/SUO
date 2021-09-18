@@ -85,7 +85,7 @@
                                                         <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
-                                                        <form action="{{ route('users.suspend',$account) }}"
+                                                        <form action="{{ route('admin.users.suspend',$account) }}"
                                                               method="post">
                                                             @csrf
                                                             <button type="submit" class="btn btn-primary">Suspend
@@ -113,7 +113,7 @@
                                                         <button type="button" class="btn btn-secondary"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
-                                                        <form action="{{ route('users.unsuspend',$account) }}"
+                                                        <form action="{{ route('admin.users.unsuspend',$account) }}"
                                                               method="post">
                                                             @csrf
                                                             <button type="submit" class="btn btn-primary">Unsuspend
@@ -142,7 +142,7 @@
                                                     <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Cancel
                                                     </button>
-                                                    <form action="{{ route('users.remove',$account) }}" method="post">
+                                                    <form action="{{ route('admin.users.remove',$account) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-primary">Remove</button>

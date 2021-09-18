@@ -233,7 +233,7 @@
     <div class="modal fade" id="add_motherboard" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_motherboard_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_motherboard') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_motherboard') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -532,7 +532,7 @@
     <div class="modal fade" id="add_cpu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_cpu_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_cpu') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_cpu') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -744,7 +744,7 @@
     <div class="modal fade" id="add_cpu_cooler" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_cpu_cooler_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_cpu_cooler') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_cpu_cooler') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -911,7 +911,7 @@
     <div class="modal fade" id="add_graphics_card" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_graphics_card_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_graphics_card') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_graphics_card') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1227,7 +1227,7 @@
     <div class="modal fade" id="add_ram" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_ram_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_ram') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_ram') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1426,7 +1426,7 @@
     <div class="modal fade" id="add_storage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_storage_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_storage') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_storage') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1598,7 +1598,7 @@
     <div class="modal fade" id="add_psu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_psu_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_psu') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_psu') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1829,7 +1829,7 @@
     <div class="modal fade" id="add_computer_case" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_computer_case_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_computer_case') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_computer_case') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
