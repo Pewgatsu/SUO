@@ -16,7 +16,6 @@ class CreateCPUCoolersTable extends Migration
         Schema::create('cpu_coolers', function (Blueprint $table) {
             $table->foreignId('component_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->primary('component_id');
-            $table->string('cpu_socket');
             $table->string('fan_speed')->nullable();
             $table->string('noise_level')->nullable();
             $table->string('water_cooled_support')->nullable();
@@ -31,6 +30,6 @@ class CreateCPUCoolersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('c_p_u_coolers');
+        Schema::dropIfExists('cpu_coolers');
     }
 }
