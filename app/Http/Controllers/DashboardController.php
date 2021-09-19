@@ -7,10 +7,12 @@ use App\Models\Component;
 use App\Models\ComputerCase;
 use App\Models\CPU;
 use App\Models\CPUCooler;
+use App\Models\CPUSocket;
 use App\Models\GraphicsCard;
 use App\Models\Motherboard;
 use App\Models\PSU;
 use App\Models\RAM;
+use App\Models\SocketCooler;
 use App\Models\Storage;
 use Illuminate\Http\Request;
 
@@ -31,6 +33,8 @@ class DashboardController extends Controller
         $recent_accounts = Account::latest()->limit(5)->get();
         $recent_components = Component::latest()->limit(5)->get();
 
+        $cpu_sockets = CPUSocket::all();
+
         return view('dashboard.index', [
             'accounts_count' => $accounts_count,
             'components_count' => $components_count,
@@ -43,7 +47,8 @@ class DashboardController extends Controller
             'psus_count' => $psus_count,
             'computer_cases_count' => $computer_cases_count,
             'recent_accounts' => $recent_accounts,
-            'recent_components' => $recent_components
+            'recent_components' => $recent_components,
+            'cpu_sockets' => $cpu_sockets
         ]);
     }
 
@@ -83,14 +88,15 @@ class DashboardController extends Controller
             'mobo_wireless_support' => 'nullable|string'
         ]);
 
-        // Image Upload
-        $mobo_image_filename = time().'-'.$request->mobo_name.'.'.$request->mobo_image->extension();
-
-        $request->mobo_image->move(public_path('images/motherboards'), $mobo_image_filename);
+        if (isset($request->mobo_image)){
+            // Image Upload
+            $mobo_image_filename = time() . '-' . $request->mobo_name . '.' . $request->mobo_image->extension();
+            $request->mobo_image->move(public_path('images/motherboards'), $mobo_image_filename);
+        }
 
         // Store
         $component = Component::create([
-            'image_path' => $mobo_image_filename,
+            'image_path' => $mobo_image_filename ?? null,
             'name' => $request->mobo_name,
             'type' => 'Motherboard',
             'manufacturer' => $request->mobo_manufacturer,
@@ -125,7 +131,7 @@ class DashboardController extends Controller
             'wireless_support' => $request->mobo_wireless_support
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     public function add_cpu(Request $request)
@@ -156,14 +162,15 @@ class DashboardController extends Controller
             'cpu_integrated_graphics' => 'nullable|string'
         ]);
 
-        // Image Upload
-        $cpu_image_filename = time().'-'.$request->cpu_name.'.'.$request->cpu_image->extension();
-
-        $request->cpu_image->move(public_path('images/cpus'), $cpu_image_filename);
+        if (isset($request->cpu_image)){
+            // Image Upload
+            $cpu_image_filename = time() . '-' . $request->cpu_name . '.' . $request->cpu_image->extension();
+            $request->cpu_image->move(public_path('images/cpus'), $cpu_image_filename);
+        }
 
         // Store
         $component = Component::create([
-            'image_path' => $cpu_image_filename,
+            'image_path' => $cpu_image_filename ?? null,
             'name' => $request->cpu_name,
             'type' => 'CPU',
             'manufacturer' => $request->cpu_manufacturer,
@@ -190,7 +197,7 @@ class DashboardController extends Controller
             'integrated_graphics' => $request->cpu_integrated_graphics
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     public function add_cpu_cooler(Request $request)
@@ -208,20 +215,21 @@ class DashboardController extends Controller
             'cpu_cooler_width' => 'nullable|numeric|min:0',
             'cpu_cooler_height' => 'nullable|numeric|min:0',
             // Specific Attributes
-            'cpu_cooler_cpu_socket' => 'required|string',
+            'cpu_cooler_cpu_socket' => 'required|array',
             'cpu_cooler_fan_speed' => 'nullable',
             'cpu_cooler_noise_level' => 'nullable',
             'cpu_cooler_water_cooled' => 'nullable|string'
         ]);
 
-        // Image Upload
-        $cpu_cooler_image_filename = time().'-'.$request->cpu_cooler_name.'.'.$request->cpu_cooler_image->extension();
-
-        $request->cpu_cooler_image->move(public_path('images/cpu_coolers'), $cpu_cooler_image_filename);
+        if (isset($request->cpu_cooler_image)) {
+            // Image Upload
+            $cpu_cooler_image_filename = time() . '-' . $request->cpu_cooler_name . '.' . $request->cpu_cooler_image->extension();
+            $request->cpu_cooler_image->move(public_path('images/cpu_coolers'), $cpu_cooler_image_filename);
+        }
 
         // Store
         $component = Component::create([
-            'image_path' => $cpu_cooler_image_filename,
+            'image_path' => $cpu_cooler_image_filename ?? null,
             'name' => $request->cpu_cooler_name,
             'type' => 'CPU Cooler',
             'manufacturer' => $request->cpu_cooler_manufacturer,
@@ -235,13 +243,19 @@ class DashboardController extends Controller
 
         CPUCooler::create([
             'component_id' => $component->id,
-            'cpu_socket' => $request->cpu_cooler_cpu_socket,
             'fan_speed' => $request->cpu_cooler_fan_speed,
             'noise_level' => $request->cpu_cooler_noise_level,
             'water_cooled_support' => $request->cpu_cooler_water_cooled
         ]);
 
-        return redirect()->route('dashboard');
+        foreach ($request->cpu_cooler_cpu_socket as $cpu_socket_id) {
+            SocketCooler::create([
+                'component_id' => $component->id,
+                'cpu_socket_id' => $cpu_socket_id
+            ]);
+        }
+
+        return redirect()->route('admin.dashboard');
     }
 
     public function add_graphics_card(Request $request)
@@ -278,14 +292,15 @@ class DashboardController extends Controller
             'graphics_card_cooling' => 'nullable|string'
         ]);
 
-        // Image Upload
-        $graphics_card_image_filename = time().'-'.$request->graphics_card_name.'.'.$request->graphics_card_image->extension();
-
-        $request->graphics_card_image->move(public_path('images/graphics_cards'), $graphics_card_image_filename);
+        if (isset($request->graphics_card_image)){
+            // Image Upload
+            $graphics_card_image_filename = time() . '-' . $request->graphics_card_name . '.' . $request->graphics_card_image->extension();
+            $request->graphics_card_image->move(public_path('images/graphics_cards'), $graphics_card_image_filename);
+        }
 
         // Store
         $component = Component::create([
-            'image_path' => $graphics_card_image_filename,
+            'image_path' => $graphics_card_image_filename ?? null,
             'name' => $request->graphics_card_name,
             'type' => 'Graphics Card',
             'manufacturer' => $request->graphics_card_manufacturer,
@@ -318,7 +333,7 @@ class DashboardController extends Controller
             'cooling' => $request->graphics_card_cooling
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     public function add_ram(Request $request)
@@ -348,14 +363,15 @@ class DashboardController extends Controller
             'ram_heat_spreader' => 'required|boolean'
         ]);
 
-        // Image Upload
-        $ram_image_filename = time().'-'.$request->ram_name.'.'.$request->ram_image->extension();
-
-        $request->ram_image->move(public_path('images/rams'), $ram_image_filename);
+        if (isset($request->ram_image)){
+            // Image Upload
+            $ram_image_filename = time() . '-' . $request->ram_name . '.' . $request->ram_image->extension();
+            $request->ram_image->move(public_path('images/rams'), $ram_image_filename);
+        }
 
         // Store
         $component = Component::create([
-            'image_path' => $ram_image_filename,
+            'image_path' => $ram_image_filename ?? null,
             'name' => $request->ram_name,
             'type' => 'RAM',
             'manufacturer' => $request->ram_manufacturer,
@@ -381,7 +397,7 @@ class DashboardController extends Controller
             'heat_spreader' => $request->ram_heat_spreader
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     public function add_storage(Request $request)
@@ -407,14 +423,15 @@ class DashboardController extends Controller
             'storage_nvme' => 'required|boolean'
         ]);
 
-        // Image Upload
-        $storage_image_filename = time().'-'.$request->storage_name.'.'.$request->storage_image->extension();
-
-        $request->storage_image->move(public_path('images/storages'), $storage_image_filename);
+        if (isset($request->storage_image)){
+            // Image Upload
+            $storage_image_filename = time() . '-' . $request->storage_name . '.' . $request->storage_image->extension();
+            $request->storage_image->move(public_path('images/storages'), $storage_image_filename);
+        }
 
         // Store
         $component = Component::create([
-            'image_path' => $storage_image_filename,
+            'image_path' => $storage_image_filename ?? null,
             'name' => $request->storage_name,
             'type' => 'Storage',
             'manufacturer' => $request->storage_manufacturer,
@@ -436,7 +453,7 @@ class DashboardController extends Controller
             'nvme' => $request->storage_nvme
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     public function add_psu(Request $request)
@@ -459,7 +476,7 @@ class DashboardController extends Controller
             'psu_efficiency_rating' => 'required|string',
             'psu_modular' => 'required|string',
             'psu_atx_connector' => 'nullable|numeric|min:0|max:16',
-            'psu_eps_connector'=> 'nullable|numeric|min:0|max:16',
+            'psu_eps_connector' => 'nullable|numeric|min:0|max:16',
             'psu_sata_connector' => 'nullable|numeric|min:0|max:16',
             'psu_molex_connector' => 'nullable|numeric|min:0|max:16',
             'psu_pcie_8pin_connector' => 'nullable|numeric|min:0|max:16',
@@ -467,14 +484,15 @@ class DashboardController extends Controller
             'psu_pcie_6pin_connector' => 'nullable|numeric|min:0|max:16'
         ]);
 
-        // Image Upload
-        $psu_image_filename = time().'-'.$request->psu_name.'.'.$request->psu_image->extension();
-
-        $request->psu_image->move(public_path('images/psus'), $psu_image_filename);
+        if (isset($request->psu_image)){
+            // Image Upload
+            $psu_image_filename = time() . '-' . $request->psu_name . '.' . $request->psu_image->extension();
+            $request->psu_image->move(public_path('images/psus'), $psu_image_filename);
+        }
 
         // Store
         $component = Component::create([
-            'image_path' => $psu_image_filename,
+            'image_path' => $psu_image_filename ?? null,
             'name' => $request->psu_name,
             'type' => 'PSU',
             'manufacturer' => $request->psu_manufacturer,
@@ -501,7 +519,7 @@ class DashboardController extends Controller
             'pcie_6pin_connector' => $request->psu_pcie_6pin_connector
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     public function add_computer_case(Request $request)
@@ -536,14 +554,15 @@ class DashboardController extends Controller
             'case_internal_250_bay' => 'nullable|numeric|min:0|max:16'
         ]);
 
-        // Image Upload
-        $case_image_filename = time().'-'.$request->case_name.'.'.$request->case_image->extension();
-
-        $request->case_image->move(public_path('images/computer_cases'), $case_image_filename);
+        if (isset($request->case_image)){
+            // Image Upload
+            $case_image_filename = time() . '-' . $request->case_name . '.' . $request->case_image->extension();
+            $request->case_image->move(public_path('images/computer_cases'), $case_image_filename);
+        }
 
         // Store
         $component = Component::create([
-            'image_path' => $case_image_filename,
+            'image_path' => $case_image_filename ?? null,
             'name' => $request->case_name,
             'type' => 'Computer Case',
             'manufacturer' => $request->case_manufacturer,
@@ -574,6 +593,6 @@ class DashboardController extends Controller
             'internal_250_bay' => $request->case_internal_250_bay
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
     }
 }
