@@ -853,13 +853,15 @@
                         </div>
 
                         <!-- CPU Cooler Attributes -->
-
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('cpu_cooler_cpu_socket') is-invalid @enderror"
-                                   id="cpu_cooler_cpu_socket"
-                                   name="cpu_cooler_cpu_socket" placeholder="CPU Socket"
-                                   value="{{ old('cpu_cooler_cpu_socket') }}">
-                            <label for="cpu_cooler_cpu_socket">CPU Socket</label>
+                            <select class="selectpicker" data-width="100%" title="CPU Socket" multiple
+                                    name="cpu_cooler_cpu_socket[]" id="cpu_cooler_cpu_socket">
+                                @foreach($cpu_sockets as $cpu_socket)
+                                    <option
+                                        @if(old('cpu_cooler_cpu_socket') !== null && in_array($cpu_socket->id,old('cpu_cooler_cpu_socket'))) selected
+                                        @endif value="{{ $cpu_socket->id }}">{{ $cpu_socket->name }}</option>
+                                @endforeach
+                            </select>
                             @error('cpu_cooler_cpu_socket')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
