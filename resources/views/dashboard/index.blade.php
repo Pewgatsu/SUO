@@ -187,7 +187,7 @@
                                                 <td>{{ $component->name }}</td>
                                                 <td>{{ $component->type }}</td>
                                                 <td>{{ $component->manufacturer }}</td>
-                                                <td>{{ $component->updated_at->diffForHumans() }}</td>
+{{--                                                <td>{{ $component->updated_at->diffForHumans() }}</td>--}}
                                             </tr>
                                         @endforeach
                                         </tbody>
