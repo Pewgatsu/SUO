@@ -25,6 +25,6 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.4",
-        "startbootstrap-grayscale": "^7.0.3"
+        "bootstrap-select": "^1.13.18"
     }
 }
