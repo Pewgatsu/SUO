@@ -5,6 +5,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EditStoreController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
@@ -81,8 +82,15 @@ Route::post('/components', [SystemBuilderController::class, 'print'])->name('com
 Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
 
 //Store
-Route::get('/store', [StoreController::class, 'index'])->name('store');
-Route::get('/store/{id}', [StoreController::class, 'view'])->name('view');
+
+Route::prefix('store')->group(function () {
+
+    Route::get('/{id}', [StoreController::class, 'index'])->name('viewStore');
+    Route::get('/editStore/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
+    Route::get('/edit/myStore', [EditStoreController::class, 'index'])->name('editStore');
+
+});
+
 
 
 
