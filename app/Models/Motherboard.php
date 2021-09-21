@@ -9,7 +9,7 @@ class Motherboard extends Model
 {
     use HasFactory;
 
-    protected $table = 'motherboards';
+    protected $table = 'motherboard';
 
     protected $primaryKey = 'component_id';
 

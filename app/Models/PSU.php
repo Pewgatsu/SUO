@@ -9,7 +9,7 @@ class PSU extends Model
 {
     use HasFactory;
 
-    protected $table = 'psus';
+    protected $table = 'psu';
 
     protected $primaryKey = 'component_id';
 
