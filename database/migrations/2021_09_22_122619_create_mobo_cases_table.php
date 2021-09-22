@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCPUCoolersTable extends Migration
+class CreateMOBOCasesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateCPUCoolersTable extends Migration
      */
     public function up()
     {
-        Schema::create('cpu_coolers', function (Blueprint $table) {
+        Schema::create('mobo_cases', function (Blueprint $table) {
             $table->foreignId('component_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->primary('component_id');
-            $table->string('fan_speed')->nullable();
-            $table->string('noise_level')->nullable();
-            $table->string('water_cooled_support')->nullable();
+            $table->foreignId('mobo_form_factor_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->primary(['component_id','mobo_form_factor_id']);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateCPUCoolersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cpu_coolers');
+        Schema::dropIfExists('mobo_cases');
     }
 }

@@ -222,7 +222,7 @@
             $('#add_storage').modal('show');
             @elseif($errors->has('psu_*'))
             $('#add_psu').modal('show');
-            @elseif($errors->has('computer_case_*'))
+            @elseif($errors->has('case_*'))
             $('#add_computer_case').modal('show');
             @endif
         });
@@ -233,7 +233,7 @@
     <div class="modal fade" id="add_motherboard" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_motherboard_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_motherboard') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_motherboard') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -392,12 +392,21 @@
                             @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text"
-                                   class="form-control @error('mobo_mem_speed_support') is-invalid @enderror"
-                                   id="mobo_mem_speed_support"
-                                   name="mobo_mem_speed_support"
-                                   placeholder="Memory Speed Support" value="{{ old('mobo_mem_speed_support') }}">
-                            <label for="mobo_mem_speed_support">Memory Speed Support</label>
+                            <select class="mobo_mem_speed_support form-control" multiple="multiple" style="width: 100%"
+                                    name="mobo_mem_speed_support[]" id="mobo_mem_speed_support">
+                                @foreach($memory_speeds as $memory_speed)
+                                    <option
+                                        @if(old('mobo_mem_speed_support') !== null && in_array($memory_speed->id,old('mobo_mem_speed_support'))) selected
+                                        @endif value="{{ $memory_speed->id }}">{{ $memory_speed->name }}</option>
+                                @endforeach
+                                @if(old('mobo_mem_speed_support') !== null)
+                                    @foreach(old('mobo_mem_speed_support') as $memory_speed_name)
+                                        @if(!filter_var($memory_speed_name,FILTER_VALIDATE_INT))
+                                            <option selected value="{{ $memory_speed_name }}">{{ $memory_speed_name }}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </select>
                             @error('mobo_mem_speed_support')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
@@ -532,7 +541,7 @@
     <div class="modal fade" id="add_cpu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_cpu_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_cpu') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_cpu') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -744,7 +753,7 @@
     <div class="modal fade" id="add_cpu_cooler" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_cpu_cooler_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_cpu_cooler') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_cpu_cooler') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -853,17 +862,27 @@
                         </div>
 
                         <!-- CPU Cooler Attributes -->
-
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('cpu_cooler_cpu_socket') is-invalid @enderror"
-                                   id="cpu_cooler_cpu_socket"
-                                   name="cpu_cooler_cpu_socket" placeholder="CPU Socket"
-                                   value="{{ old('cpu_cooler_cpu_socket') }}">
-                            <label for="cpu_cooler_cpu_socket">CPU Socket</label>
+                            <select class="cpu_cooler_cpu_socket form-control" multiple="multiple" style="width: 100%"
+                                    name="cpu_cooler_cpu_socket[]" id="cpu_cooler_cpu_socket">
+                                @foreach($cpu_sockets as $cpu_socket)
+                                    <option
+                                        @if(old('cpu_cooler_cpu_socket') !== null && in_array($cpu_socket->id,old('cpu_cooler_cpu_socket'))) selected
+                                        @endif value="{{ $cpu_socket->id }}">{{ $cpu_socket->name }}</option>
+                                @endforeach
+                            </select>
                             @error('cpu_cooler_cpu_socket')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
+                            @if(old('cpu_cooler_cpu_socket') !== null)
+                                @foreach(old('cpu_cooler_cpu_socket') as $cpu_socket_name)
+                                    @if(!filter_var($cpu_socket_name,FILTER_VALIDATE_INT))
+                                        <option selected value="{{ $cpu_socket_name }}">{{ $cpu_socket_name }}</option>
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
+
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control @error('cpu_cooler_fan_speed') is-invalid @enderror"
                                    id="cpu_cooler_fan_speed"
@@ -911,7 +930,7 @@
     <div class="modal fade" id="add_graphics_card" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_graphics_card_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_graphics_card') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_graphics_card') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1227,7 +1246,7 @@
     <div class="modal fade" id="add_ram" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_ram_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_ram') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_ram') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1426,7 +1445,7 @@
     <div class="modal fade" id="add_storage" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_storage_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_storage') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_storage') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1598,7 +1617,7 @@
     <div class="modal fade" id="add_psu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_psu_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_psu') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_psu') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1829,7 +1848,7 @@
     <div class="modal fade" id="add_computer_case" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="add_computer_case_label" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="{{ route('dashboard.add_computer_case') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dashboard.add_computer_case') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -1941,11 +1960,21 @@
                             @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('case_mobo_form_factor') is-invalid @enderror"
-                                   id="case_mobo_form_factor"
-                                   name="case_mobo_form_factor"
-                                   placeholder="Motherboard Form Factor" value="{{ old('case_mobo_form_factor') }}">
-                            <label for="case_mobo_form_factor">Motherboard Form Factor</label>
+                            <select class="case_mobo_form_factor form-control" multiple="multiple" style="width: 100%"
+                                    name="case_mobo_form_factor[]" id="case_mobo_form_factor">
+                                @foreach($mobo_form_factors as $mobo_form_factor)
+                                    <option
+                                        @if(old('case_mobo_form_factor') !== null && in_array($mobo_form_factor->id,old('case_mobo_form_factor'))) selected
+                                        @endif value="{{ $mobo_form_factor->id }}">{{ $mobo_form_factor->name }}</option>
+                                @endforeach
+                                    @if(old('case_mobo_form_factor') !== null)
+                                        @foreach(old('case_mobo_form_factor') as $mobo_form_factor_name)
+                                            @if(!filter_var($mobo_form_factor_name,FILTER_VALIDATE_INT))
+                                                <option selected value="{{ $mobo_form_factor_name }}">{{ $mobo_form_factor_name }}</option>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                            </select>
                             @error('case_mobo_form_factor')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
@@ -2106,3 +2135,28 @@
         </div>
     </div>
 @endsection
+
+@push('select2')
+    <script>
+        $(document).ready(function () {
+            $('.cpu_cooler_cpu_socket').select2({
+                dropdownParent: $('#add_cpu_cooler'),
+                placeholder: "CPU Socket",
+                allowClear: true,
+                tags: true
+            });
+            $('.case_mobo_form_factor').select2({
+                dropdownParent: $('#add_computer_case'),
+                placeholder: "Motherboard Form Factor",
+                allowClear: true,
+                tags: true
+            });
+            $('.mobo_mem_speed_support').select2({
+                dropdownParent: $('#add_motherboard'),
+                placeholder: "Motherboard Speed Support",
+                allowClear: true,
+                tags: true
+            });
+        });
+    </script>
+@endpush

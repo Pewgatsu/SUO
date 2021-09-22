@@ -39,4 +39,8 @@ class Motherboard extends Model
     public function component(){
         return $this->belongsTo(Component::class);
     }
+
+    public function memory_speeds(){
+        return $this->belongsToMany(MemorySpeed::class,'mobo_memory_speeds','component_id','memory_speed_id');
+    }
 }

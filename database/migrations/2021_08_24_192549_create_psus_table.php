@@ -38,6 +38,6 @@ class CreatePSUSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('p_s_u_s');
+        Schema::dropIfExists('psus');
     }
 }

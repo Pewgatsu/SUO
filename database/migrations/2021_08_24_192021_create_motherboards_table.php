@@ -22,7 +22,6 @@ class CreateMotherboardsTable extends Migration
             $table->tinyInteger('memory_slot');
             $table->string('memory_type');
             $table->integer('max_mem_support')->nullable();
-            $table->string('mem_speed_support')->nullable();
             $table->tinyInteger('pcie_x16_slot')->nullable();
             $table->tinyInteger('pcie_x8_slot')->nullable();
             $table->tinyInteger('pcie_x4_slot')->nullable();

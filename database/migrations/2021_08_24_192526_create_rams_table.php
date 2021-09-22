@@ -37,6 +37,6 @@ class CreateRAMSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('r_a_m_s');
+        Schema::dropIfExists('rams');
     }
 }
