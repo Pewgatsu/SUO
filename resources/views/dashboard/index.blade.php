@@ -399,6 +399,13 @@
                                         @if(old('mobo_mem_speed_support') !== null && in_array($memory_speed->id,old('mobo_mem_speed_support'))) selected
                                         @endif value="{{ $memory_speed->id }}">{{ $memory_speed->name }}</option>
                                 @endforeach
+                                @if(old('mobo_mem_speed_support') !== null)
+                                    @foreach(old('mobo_mem_speed_support') as $memory_speed_name)
+                                        @if(!filter_var($memory_speed_name,FILTER_VALIDATE_INT))
+                                            <option selected value="{{ $memory_speed_name }}">{{ $memory_speed_name }}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </select>
                             @error('mobo_mem_speed_support')
                             <p class="text-danger">{{ $message }}</p>
@@ -867,6 +874,13 @@
                             @error('cpu_cooler_cpu_socket')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
+                            @if(old('cpu_cooler_cpu_socket') !== null)
+                                @foreach(old('cpu_cooler_cpu_socket') as $cpu_socket_name)
+                                    @if(!filter_var($cpu_socket_name,FILTER_VALIDATE_INT))
+                                        <option selected value="{{ $cpu_socket_name }}">{{ $cpu_socket_name }}</option>
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
 
                         <div class="form-floating mb-3">
@@ -1953,6 +1967,13 @@
                                         @if(old('case_mobo_form_factor') !== null && in_array($mobo_form_factor->id,old('case_mobo_form_factor'))) selected
                                         @endif value="{{ $mobo_form_factor->id }}">{{ $mobo_form_factor->name }}</option>
                                 @endforeach
+                                    @if(old('case_mobo_form_factor') !== null)
+                                        @foreach(old('case_mobo_form_factor') as $mobo_form_factor_name)
+                                            @if(!filter_var($mobo_form_factor_name,FILTER_VALIDATE_INT))
+                                                <option selected value="{{ $mobo_form_factor_name }}">{{ $mobo_form_factor_name }}</option>
+                                            @endif
+                                        @endforeach
+                                    @endif
                             </select>
                             @error('case_mobo_form_factor')
                             <p class="text-danger">{{ $message }}</p>
