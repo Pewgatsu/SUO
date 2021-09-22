@@ -15,7 +15,6 @@ class CPUCooler extends Model
 
     protected $fillable = [
         'component_id',
-        'cpu_socket',
         'fan_speed',
         'noise_level',
         'water_cooled_support'
@@ -23,5 +22,9 @@ class CPUCooler extends Model
 
     public function component(){
         return $this->belongsTo(Component::class);
+    }
+
+    public function cpu_sockets(){
+        return $this->belongsToMany(CPUSocket::class,'SocketCooler','component_id','cpu_socket_id');
     }
 }

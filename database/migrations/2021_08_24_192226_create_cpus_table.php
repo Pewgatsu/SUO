@@ -38,6 +38,6 @@ class CreateCPUSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('c_p_u_s');
+        Schema::dropIfExists('cpus');
     }
 }

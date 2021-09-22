@@ -1,5 +1,5 @@
  <!-- Footer -->
-    <footer class="text-center bg-dark text-light">
+    <footer class="text-center bg-black text-light">
         <!-- Grid container -->
         <div class="container">
             <!-- Section: Links -->
@@ -9,7 +9,7 @@
                     <!-- Grid column -->
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="{{ route('aboutus') }}" class="text-white">About Us</a>
+                            <a href="{{ route('aboutus') }}" class="text-decoration-none text-white">About Us</a>
                         </h6>
                     </div>
                     <!-- Grid column -->
@@ -17,14 +17,14 @@
                     <!-- Grid column -->
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-white">Contact</a>
+                            <a href="#!" class="text-decoration-none text-white">Contact</a>
                         </h6>
                     </div>
                     <!-- Grid column -->
 
                     <div class="col-md-2">
-                        <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-white">Help</a>
+                        <h6 class="text-uppercase font-weight-bold ">
+                            <a href="{{route('aboutsystem')}}" class="text-decoration-none text-white">About System</a>
                         </h6>
                     </div>
                 </div>
