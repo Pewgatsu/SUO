@@ -6,14 +6,24 @@
 @section('content')
     <div class="container-xl mt-3">
 
-        <div class="bg-image" style="background-image: url({{asset("/images/placeholder.jpg")}});
+        'featured_motherboards'
+        'featured_cpus'
+        'featured_cpu_coolers'
+        'featured_graphics_cards'
+        'featured_rams'
+        'featured_storages'
+        'featured_psus'
+        'featured_computer_cases'
+
+        <div class="bg-image" style="background-image: url({{asset( session('banner','/images/placeholder.jpg')) }}) ;
             height:50vh;" >
 
             <br><br><br><br><br><br><br>
-            <span class="align-middle"> <h1 class="p-5 align-middle"> FEU INSTITUTE OF TECHNOLOGY</h1> </span>
+            <span class="align-middle"> <h1 class="p-5 align-middle"> {{session('storeName','LOREM IPSUM DOLOR')}}</h1> </span>
 
-            <form class="d-inline">
-                <button type="submit" name="editStore" {{session('seller','style=display:none;')}} class="btn btn-info btn-block float-end">Edit Profile</button>
+            <form class="d-inline" method="get" action="{{route('editStore')}}">
+                @csrf
+                <button type="submit" name="editStore"  {{session('seller','style=display:none;')}} class="btn btn-info btn-block float-end">Edit Profile</button>
             </form>
         </div>
 
@@ -21,19 +31,19 @@
             <div class="row">
 
                 <div class="col-4 ">INFORMATION
+
                     <div class="map-responsive">
-
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.9114666827854!2d120.9864360146647!3d14.60411898980019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9f8b14eb259%3A0xad4d12caac9a068e!2sFEU%20Institute%20of%20Technology!5e0!3m2!1sen!2sph!4v1631811317034!5m2!1sen!2sph" width="400" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-
+                        <iframe src="{{session('storeAddress','LOREM IPSUM DOLOR')}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
+
                     <table class="table table-hover align-middle">
                         <tr>
                             <td>Location</td>
-                            <td>This is the Location</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>Description</td>
-                            <td>This is the Description</td>
+                            <td>{{session('storeDescription','LOREM IPSUM DOLOR')}}</td>
                         </tr>
                     </table>
                 </div>

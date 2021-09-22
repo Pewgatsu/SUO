@@ -13,6 +13,22 @@ class Store extends Model
 
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'account_id',
+        'banner',
+        'name',
+        'address',
+        'description',
+        'featured_motherboards',
+        'featured_cpus',
+        'featured_cpu_coolers',
+        'featured_graphics_cards',
+        'featured_rams',
+        'featured_storages',
+        'featured_psus',
+        'featured_computer_cases'
+    ];
+
     public function account(){
         return $this->belongsTo(Account::class);
     }
