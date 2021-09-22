@@ -9,6 +9,10 @@ use App\Models\CPU;
 use App\Models\CPUCooler;
 use App\Models\CPUSocket;
 use App\Models\GraphicsCard;
+use App\Models\MemorySpeed;
+use App\Models\MOBOCase;
+use App\Models\MOBOFormFactor;
+use App\Models\MOBOMemorySpeed;
 use App\Models\Motherboard;
 use App\Models\PSU;
 use App\Models\RAM;
@@ -34,6 +38,8 @@ class DashboardController extends Controller
         $recent_components = Component::latest()->limit(5)->get();
 
         $cpu_sockets = CPUSocket::all();
+        $mobo_form_factors = MOBOFormFactor::all();
+        $memory_speeds = MemorySpeed::all();
 
         return view('dashboard.index', [
             'accounts_count' => $accounts_count,
@@ -48,7 +54,9 @@ class DashboardController extends Controller
             'computer_cases_count' => $computer_cases_count,
             'recent_accounts' => $recent_accounts,
             'recent_components' => $recent_components,
-            'cpu_sockets' => $cpu_sockets
+            'cpu_sockets' => $cpu_sockets,
+            'mobo_form_factors' => $mobo_form_factors,
+            'memory_speeds' => $memory_speeds
         ]);
     }
 
@@ -73,7 +81,7 @@ class DashboardController extends Controller
             'mobo_memory_slot' => 'required|numeric|min:0|max:16',
             'mobo_memory_type' => 'required|string',
             'mobo_max_mem_support' => 'nullable|numeric|min:0',
-            'mobo_mem_speed_support' => 'nullable|string',
+            'mobo_mem_speed_support' => 'nullable|array',
             'mobo_pcie_x16_slot' => 'nullable|numeric|min:0|max:16',
             'mobo_pcie_x8_slot' => 'nullable|numeric|min:0|max:16',
             'mobo_pcie_x4_slot' => 'nullable|numeric|min:0|max:16',
@@ -116,7 +124,6 @@ class DashboardController extends Controller
             'memory_slot' => $request->mobo_memory_slot,
             'memory_type' => $request->mobo_memory_type,
             'max_mem_support' => $request->mobo_max_mem_support,
-            'mem_speed_support' => $request->mobo_mem_speed_support,
             'pcie_x16_slot' => $request->mobo_pcie_x16_slot,
             'pcie_x8_slot' => $request->mobo_pcie_x8_slot,
             'pcie_x4_slot' => $request->mobo_pcie_x4_slot,
@@ -130,6 +137,20 @@ class DashboardController extends Controller
             'raid_support' => $request->mobo_raid_support,
             'wireless_support' => $request->mobo_wireless_support
         ]);
+
+        foreach ($request->mobo_mem_speed_support as $memory_speed) {
+            $memory_speed_id = $memory_speed;
+            if(!filter_var($memory_speed, FILTER_VALIDATE_INT)){
+                $memory_speed_row = MemorySpeed::create([
+                    'name' => $memory_speed
+                ]);
+                $memory_speed_id = $memory_speed_row->id;
+            }
+            MOBOMemorySpeed::create([
+                'component_id' => $component->id,
+                'memory_speed_id' => $memory_speed_id
+            ]);
+        }
 
         return redirect()->route('admin.dashboard');
     }
@@ -248,7 +269,14 @@ class DashboardController extends Controller
             'water_cooled_support' => $request->cpu_cooler_water_cooled
         ]);
 
-        foreach ($request->cpu_cooler_cpu_socket as $cpu_socket_id) {
+        foreach ($request->cpu_cooler_cpu_socket as $cpu_socket) {
+            $cpu_socket_id = $cpu_socket;
+            if(!filter_var($cpu_socket,FILTER_VALIDATE_INT)){
+                $cpu_socket_row = CPUSocket::create([
+                    'name' => $cpu_socket
+                ]);
+                $cpu_socket_id = $cpu_socket_row->id;
+            }
             SocketCooler::create([
                 'component_id' => $component->id,
                 'cpu_socket_id' => $cpu_socket_id
@@ -538,7 +566,7 @@ class DashboardController extends Controller
             'case_height' => 'nullable|numeric|min:0',
             // Specific Attributes
             'case_type' => 'required|string',
-            'case_mobo_form_factor' => 'required|string',
+            'case_mobo_form_factor' => 'required|array',
             'case_power_supply' => 'nullable|string',
             'case_power_supply_shroud' => 'required|boolean',
             'case_side_panel_window' => 'nullable|string',
@@ -577,7 +605,6 @@ class DashboardController extends Controller
         ComputerCase::create([
             'component_id' => $component->id,
             'case_type' => $request->case_type,
-            'mobo_form_factor' => $request->case_mobo_form_factor,
             'power_supply' => $request->case_power_supply,
             'power_supply_shroud' => $request->case_power_supply_shroud,
             'side_panel_window' => $request->case_side_panel_window,
@@ -592,6 +619,20 @@ class DashboardController extends Controller
             'internal_350_bay' => $request->case_internal_350_bay,
             'internal_250_bay' => $request->case_internal_250_bay
         ]);
+
+        foreach ($request->case_mobo_form_factor as $mobo_form_factor) {
+            $mobo_form_factor_id = $mobo_form_factor;
+            if(!filter_var($mobo_form_factor,FILTER_VALIDATE_INT)){
+                $mobo_form_factor_row = MOBOFormFactor::create([
+                    'name' => $mobo_form_factor
+                ]);
+                $mobo_form_factor_id = $mobo_form_factor_row->id;
+            }
+            MOBOCase::create([
+                'component_id' => $component->id,
+                'mobo_form_factor_id' => $mobo_form_factor_id
+            ]);
+        }
 
         return redirect()->route('admin.dashboard');
     }
