@@ -9,7 +9,7 @@ class GraphicsCard extends Model
 {
     use HasFactory;
 
-    protected $table = 'graphics_cards';
+    protected $table = 'graphics_card';
 
     protected $primaryKey = 'component_id';
 

@@ -9,7 +9,7 @@ class ComputerCase extends Model
 {
     use HasFactory;
 
-    protected $table = 'computer_cases';
+    protected $table = 'computer_case';
 
     protected $primaryKey = 'component_id';
 

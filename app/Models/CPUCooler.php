@@ -9,7 +9,7 @@ class CPUCooler extends Model
 {
     use HasFactory;
 
-    protected $table = 'cpu_coolers';
+    protected $table = 'cpu_cooler';
 
     protected $primaryKey = 'component_id';
 

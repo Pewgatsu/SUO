@@ -9,7 +9,7 @@ class RAM extends Model
 {
     use HasFactory;
 
-    protected $table = 'rams';
+    protected $table = 'ram';
 
     protected $primaryKey = 'component_id';
 
