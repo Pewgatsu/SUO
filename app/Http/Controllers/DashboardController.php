@@ -138,7 +138,14 @@ class DashboardController extends Controller
             'wireless_support' => $request->mobo_wireless_support
         ]);
 
-        foreach ($request->mobo_mem_speed_support as $memory_speed_id) {
+        foreach ($request->mobo_mem_speed_support as $memory_speed) {
+            $memory_speed_id = $memory_speed;
+            if(!filter_var($memory_speed, FILTER_VALIDATE_INT)){
+                $memory_speed_row = MemorySpeed::create([
+                    'name' => $memory_speed
+                ]);
+                $memory_speed_id = $memory_speed_row->id;
+            }
             MOBOMemorySpeed::create([
                 'component_id' => $component->id,
                 'memory_speed_id' => $memory_speed_id
@@ -262,7 +269,14 @@ class DashboardController extends Controller
             'water_cooled_support' => $request->cpu_cooler_water_cooled
         ]);
 
-        foreach ($request->cpu_cooler_cpu_socket as $cpu_socket_id) {
+        foreach ($request->cpu_cooler_cpu_socket as $cpu_socket) {
+            $cpu_socket_id = $cpu_socket;
+            if(!filter_var($cpu_socket,FILTER_VALIDATE_INT)){
+                $cpu_socket_row = CPUSocket::create([
+                    'name' => $cpu_socket
+                ]);
+                $cpu_socket_id = $cpu_socket_row->id;
+            }
             SocketCooler::create([
                 'component_id' => $component->id,
                 'cpu_socket_id' => $cpu_socket_id
@@ -606,7 +620,14 @@ class DashboardController extends Controller
             'internal_250_bay' => $request->case_internal_250_bay
         ]);
 
-        foreach ($request->case_mobo_form_factor as $mobo_form_factor_id) {
+        foreach ($request->case_mobo_form_factor as $mobo_form_factor) {
+            $mobo_form_factor_id = $mobo_form_factor;
+            if(!filter_var($mobo_form_factor,FILTER_VALIDATE_INT)){
+                $mobo_form_factor_row = MOBOFormFactor::create([
+                    'name' => $mobo_form_factor
+                ]);
+                $mobo_form_factor_id = $mobo_form_factor_row->id;
+            }
             MOBOCase::create([
                 'component_id' => $component->id,
                 'mobo_form_factor_id' => $mobo_form_factor_id

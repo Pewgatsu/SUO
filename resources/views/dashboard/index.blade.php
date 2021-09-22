@@ -2122,19 +2122,19 @@
                 dropdownParent: $('#add_cpu_cooler'),
                 placeholder: "CPU Socket",
                 allowClear: true,
-                closeOnSelect: false
+                tags: true
             });
             $('.case_mobo_form_factor').select2({
                 dropdownParent: $('#add_computer_case'),
                 placeholder: "Motherboard Form Factor",
                 allowClear: true,
-                closeOnSelect: false
+                tags: true
             });
             $('.mobo_mem_speed_support').select2({
                 dropdownParent: $('#add_motherboard'),
                 placeholder: "Motherboard Speed Support",
                 allowClear: true,
-                closeOnSelect: false
+                tags: true
             });
         });
     </script>
