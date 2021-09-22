@@ -84,7 +84,7 @@ Route::post('/builder', [SystemBuilderController::class, 'control'])->name('cont
 //Store
 
 Route::prefix('store')->group(function () {
-
+    Route::get('/mystore', [StoreController::class, 'myStore'])->name('myStore');
     Route::get('/{id}', [StoreController::class, 'index'])->name('viewStore');
     Route::get('/editStore/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
     Route::get('/edit/myStore', [EditStoreController::class, 'index'])->name('editStore');
