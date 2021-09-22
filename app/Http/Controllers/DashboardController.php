@@ -9,6 +9,8 @@ use App\Models\CPU;
 use App\Models\CPUCooler;
 use App\Models\CPUSocket;
 use App\Models\GraphicsCard;
+use App\Models\MOBOCase;
+use App\Models\MOBOFormFactor;
 use App\Models\Motherboard;
 use App\Models\PSU;
 use App\Models\RAM;
@@ -34,6 +36,7 @@ class DashboardController extends Controller
         $recent_components = Component::latest()->limit(5)->get();
 
         $cpu_sockets = CPUSocket::all();
+        $mobo_form_factors = MOBOFormFactor::all();
 
         return view('dashboard.index', [
             'accounts_count' => $accounts_count,
@@ -48,7 +51,8 @@ class DashboardController extends Controller
             'computer_cases_count' => $computer_cases_count,
             'recent_accounts' => $recent_accounts,
             'recent_components' => $recent_components,
-            'cpu_sockets' => $cpu_sockets
+            'cpu_sockets' => $cpu_sockets,
+            'mobo_form_factors' => $mobo_form_factors
         ]);
     }
 
@@ -538,7 +542,7 @@ class DashboardController extends Controller
             'case_height' => 'nullable|numeric|min:0',
             // Specific Attributes
             'case_type' => 'required|string',
-            'case_mobo_form_factor' => 'required|string',
+            'case_mobo_form_factor' => 'required|array',
             'case_power_supply' => 'nullable|string',
             'case_power_supply_shroud' => 'required|boolean',
             'case_side_panel_window' => 'nullable|string',
@@ -577,7 +581,6 @@ class DashboardController extends Controller
         ComputerCase::create([
             'component_id' => $component->id,
             'case_type' => $request->case_type,
-            'mobo_form_factor' => $request->case_mobo_form_factor,
             'power_supply' => $request->case_power_supply,
             'power_supply_shroud' => $request->case_power_supply_shroud,
             'side_panel_window' => $request->case_side_panel_window,
@@ -592,6 +595,13 @@ class DashboardController extends Controller
             'internal_350_bay' => $request->case_internal_350_bay,
             'internal_250_bay' => $request->case_internal_250_bay
         ]);
+
+        foreach ($request->case_mobo_form_factor as $mobo_form_factor_id) {
+            MOBOCase::create([
+                'component_id' => $component->id,
+                'mobo_form_factor_id' => $mobo_form_factor_id
+            ]);
+        }
 
         return redirect()->route('admin.dashboard');
     }

@@ -222,7 +222,7 @@
             $('#add_storage').modal('show');
             @elseif($errors->has('psu_*'))
             $('#add_psu').modal('show');
-            @elseif($errors->has('computer_case_*'))
+            @elseif($errors->has('case_*'))
             $('#add_computer_case').modal('show');
             @endif
         });
@@ -854,7 +854,7 @@
 
                         <!-- CPU Cooler Attributes -->
                         <div class="form-floating mb-3">
-                            <select class="js-select-basic-multiple form-control" multiple="multiple" style="width: 100%"
+                            <select class="cpu_cooler_cpu_socket form-control" multiple="multiple" style="width: 100%"
                                     name="cpu_cooler_cpu_socket[]" id="cpu_cooler_cpu_socket">
                                 @foreach($cpu_sockets as $cpu_socket)
                                     <option
@@ -1944,11 +1944,14 @@
                             @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('case_mobo_form_factor') is-invalid @enderror"
-                                   id="case_mobo_form_factor"
-                                   name="case_mobo_form_factor"
-                                   placeholder="Motherboard Form Factor" value="{{ old('case_mobo_form_factor') }}">
-                            <label for="case_mobo_form_factor">Motherboard Form Factor</label>
+                            <select class="case_mobo_form_factor form-control" multiple="multiple" style="width: 100%"
+                                    name="case_mobo_form_factor[]" id="case_mobo_form_factor">
+                                @foreach($mobo_form_factors as $mobo_form_factor)
+                                    <option
+                                        @if(old('case_mobo_form_factor') !== null && in_array($mobo_form_factor->id,old('case_mobo_form_factor'))) selected
+                                        @endif value="{{ $mobo_form_factor->id }}">{{ $mobo_form_factor->name }}</option>
+                                @endforeach
+                            </select>
                             @error('case_mobo_form_factor')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
@@ -2112,10 +2115,16 @@
 
 @push('select2')
     <script>
-        $(document).ready(function() {
-            $('.js-select-basic-multiple').select2({
+        $(document).ready(function () {
+            $('.cpu_cooler_cpu_socket').select2({
                 dropdownParent: $('#add_cpu_cooler'),
                 placeholder: "CPU Socket",
+                allowClear: true,
+                closeOnSelect: false
+            });
+            $('.case_mobo_form_factor').select2({
+                dropdownParent: $('#add_computer_case'),
+                placeholder: "Motherboard Form Factor",
                 allowClear: true,
                 closeOnSelect: false
             });
