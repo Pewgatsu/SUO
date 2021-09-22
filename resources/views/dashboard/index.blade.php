@@ -187,7 +187,7 @@
                                                 <td>{{ $component->name }}</td>
                                                 <td>{{ $component->type }}</td>
                                                 <td>{{ $component->manufacturer }}</td>
-{{--                                                <td>{{ $component->updated_at->diffForHumans() }}</td>--}}
+                                                <td>{{ $component->updated_at->diffForHumans() }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -854,7 +854,7 @@
 
                         <!-- CPU Cooler Attributes -->
                         <div class="form-floating mb-3">
-                            <select class="selectpicker" data-width="100%" title="CPU Socket" multiple
+                            <select class="js-select-basic-multiple form-control" multiple="multiple" style="width: 100%"
                                     name="cpu_cooler_cpu_socket[]" id="cpu_cooler_cpu_socket">
                                 @foreach($cpu_sockets as $cpu_socket)
                                     <option
@@ -866,6 +866,7 @@
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
+
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control @error('cpu_cooler_fan_speed') is-invalid @enderror"
                                    id="cpu_cooler_fan_speed"
@@ -2108,3 +2109,16 @@
         </div>
     </div>
 @endsection
+
+@push('select2')
+    <script>
+        $(document).ready(function() {
+            $('.js-select-basic-multiple').select2({
+                dropdownParent: $('#add_cpu_cooler'),
+                placeholder: "CPU Socket",
+                allowClear: true,
+                closeOnSelect: false
+            });
+        });
+    </script>
+@endpush
