@@ -9,7 +9,7 @@ class CPU extends Model
 {
     use HasFactory;
 
-    protected $table = 'cpu';
+    protected $table = 'cpus';
 
     protected $primaryKey = 'component_id';
 

@@ -9,7 +9,7 @@ class Storage extends Model
 {
     use HasFactory;
 
-    protected $table = 'storage';
+    protected $table = 'storages';
 
     protected $primaryKey = 'component_id';
 
