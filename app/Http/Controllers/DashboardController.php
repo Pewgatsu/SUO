@@ -9,8 +9,10 @@ use App\Models\CPU;
 use App\Models\CPUCooler;
 use App\Models\CPUSocket;
 use App\Models\GraphicsCard;
+use App\Models\MemorySpeed;
 use App\Models\MOBOCase;
 use App\Models\MOBOFormFactor;
+use App\Models\MOBOMemorySpeed;
 use App\Models\Motherboard;
 use App\Models\PSU;
 use App\Models\RAM;
@@ -37,6 +39,7 @@ class DashboardController extends Controller
 
         $cpu_sockets = CPUSocket::all();
         $mobo_form_factors = MOBOFormFactor::all();
+        $memory_speeds = MemorySpeed::all();
 
         return view('dashboard.index', [
             'accounts_count' => $accounts_count,
@@ -52,7 +55,8 @@ class DashboardController extends Controller
             'recent_accounts' => $recent_accounts,
             'recent_components' => $recent_components,
             'cpu_sockets' => $cpu_sockets,
-            'mobo_form_factors' => $mobo_form_factors
+            'mobo_form_factors' => $mobo_form_factors,
+            'memory_speeds' => $memory_speeds
         ]);
     }
 
@@ -77,7 +81,7 @@ class DashboardController extends Controller
             'mobo_memory_slot' => 'required|numeric|min:0|max:16',
             'mobo_memory_type' => 'required|string',
             'mobo_max_mem_support' => 'nullable|numeric|min:0',
-            'mobo_mem_speed_support' => 'nullable|string',
+            'mobo_mem_speed_support' => 'nullable|array',
             'mobo_pcie_x16_slot' => 'nullable|numeric|min:0|max:16',
             'mobo_pcie_x8_slot' => 'nullable|numeric|min:0|max:16',
             'mobo_pcie_x4_slot' => 'nullable|numeric|min:0|max:16',
@@ -120,7 +124,6 @@ class DashboardController extends Controller
             'memory_slot' => $request->mobo_memory_slot,
             'memory_type' => $request->mobo_memory_type,
             'max_mem_support' => $request->mobo_max_mem_support,
-            'mem_speed_support' => $request->mobo_mem_speed_support,
             'pcie_x16_slot' => $request->mobo_pcie_x16_slot,
             'pcie_x8_slot' => $request->mobo_pcie_x8_slot,
             'pcie_x4_slot' => $request->mobo_pcie_x4_slot,
@@ -134,6 +137,13 @@ class DashboardController extends Controller
             'raid_support' => $request->mobo_raid_support,
             'wireless_support' => $request->mobo_wireless_support
         ]);
+
+        foreach ($request->mobo_mem_speed_support as $memory_speed_id) {
+            MOBOMemorySpeed::create([
+                'component_id' => $component->id,
+                'memory_speed_id' => $memory_speed_id
+            ]);
+        }
 
         return redirect()->route('admin.dashboard');
     }
