@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('component_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->float('price');
             $table->dateTime('date_added');
+            $table->string('type');
             $table->string('status');
             $table->dateTime('status_date');
             $table->string('description');
