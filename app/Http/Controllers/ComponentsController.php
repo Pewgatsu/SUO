@@ -18,7 +18,7 @@ class ComponentsController extends Controller
     public function index_motherboards()
     {
         $motherboards = Motherboard::with('component')->paginate(10);
-        return view('components.index', [
+        return view('admin.components.index', [
             'motherboards' => $motherboards
         ]);
     }
@@ -26,7 +26,7 @@ class ComponentsController extends Controller
     public function index_cpus()
     {
         $cpus = CPU::with('component')->paginate(10);
-        return view('components.index', [
+        return view('admin.components.index', [
             'cpus' => $cpus
         ]);
     }
@@ -34,7 +34,7 @@ class ComponentsController extends Controller
     public function index_cpu_coolers()
     {
         $cpu_coolers = CPUCooler::with('component')->paginate(10);
-        return view('components.index', [
+        return view('admin.components.index', [
             'cpu_coolers' => $cpu_coolers
         ]);
     }
@@ -42,7 +42,7 @@ class ComponentsController extends Controller
     public function index_graphics_cards()
     {
         $graphics_cards = GraphicsCard::with('component')->paginate(10);
-        return view('components.index', [
+        return view('admin.components.index', [
             'graphics_cards' => $graphics_cards
         ]);
     }
@@ -50,7 +50,7 @@ class ComponentsController extends Controller
     public function index_rams()
     {
         $rams = RAM::with('component')->paginate(10);
-        return view('components.index', [
+        return view('admin.components.index', [
             'rams' => $rams
         ]);
     }
@@ -58,7 +58,7 @@ class ComponentsController extends Controller
     public function index_storages()
     {
         $storages = Storage::with('component')->paginate(10);
-        return view('components.index', [
+        return view('admin.components.index', [
             'storages' => $storages
         ]);
     }
@@ -66,7 +66,7 @@ class ComponentsController extends Controller
     public function index_psus()
     {
         $psus = PSU::with('component')->paginate(10);
-        return view('components.index', [
+        return view('admin.components.index', [
             'psus' => $psus
         ]);
     }
@@ -74,7 +74,7 @@ class ComponentsController extends Controller
     public function index_computer_cases()
     {
         $computer_cases = ComputerCase::with('component')->paginate(10);
-        return view('components.index', [
+        return view('admin.components.index', [
             'computer_cases' => $computer_cases
         ]);
     }

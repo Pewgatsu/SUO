@@ -41,7 +41,7 @@ class DashboardController extends Controller
         $mobo_form_factors = MOBOFormFactor::all();
         $memory_speeds = MemorySpeed::all();
 
-        return view('dashboard.index', [
+        return view('admin.dashboard.index', [
             'accounts_count' => $accounts_count,
             'components_count' => $components_count,
             'motherboards_count' => $motherboards_count,

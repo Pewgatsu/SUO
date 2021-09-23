@@ -10,7 +10,7 @@ class UsersController extends Controller
     public function index()
     {
         $accounts = Account::paginate(10);
-        return view('users.index', [
+        return view('admin.users.index', [
             'accounts' => $accounts
         ]);
     }
