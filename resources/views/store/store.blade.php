@@ -6,15 +6,12 @@
 @section('content')
     <div class="container-xl mt-3">
 
-        'featured_motherboards'
-        'featured_cpus'
-        'featured_cpu_coolers'
-        'featured_graphics_cards'
-        'featured_rams'
-        'featured_storages'
-        'featured_psus'
-        'featured_computer_cases'
-
+        'Contact us'->number ->email
+        'image upload'->editStore.blade
+        'image display' -> store.blade components and banner
+        'linking of the components'
+        'old value or hint in the editStore.blade'->components
+        <!-- Background image or store banner -->
         <div class="bg-image" style="background-image: url({{asset( session('banner','/images/placeholder.jpg')) }}) ;
             height:50vh;" >
 
@@ -27,40 +24,46 @@
             </form>
         </div>
 
+        <!-- Map and address and Featured components -->
         <div class="container-xl mt-3 mb-3 p3">
             <div class="row">
-
-                <div class="col-4 ">INFORMATION
-
+                <!-- Left Column-->
+                <div class="col-4 "><h6>STORE INFORMATIONS</h6>
+                    <!-- Map -->
                     <div class="map-responsive">
-                        <iframe src="{{session('storeAddress','LOREM IPSUM DOLOR')}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        <iframe src="{{session('storeLocation','LOREM IPSUM DOLOR')}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
-
+                    <!-- address -->
                     <table class="table table-hover align-middle">
                         <tr>
-                            <td>Location</td>
-                            <td></td>
+                            <td colspan="2" class="text-center"><h3>{{session('storeAddress','LOREM IPSUM DOLOR')}}</h3></td>
                         </tr>
                         <tr>
-                            <td>Description</td>
-                            <td>{{session('storeDescription','LOREM IPSUM DOLOR')}}</td>
+                            <td colspan="2" class="text-center" ><p>{{session('storeDescription','LOREM IPSUM DOLOR')}}</p></td>
                         </tr>
                     </table>
                 </div>
 
-                <div class="col-8 ">FEATURED PRODUCTS
+                <!-- Featured components -->
+                <div class="col-8 "><h6>FEATURED PRODUCTS</h6>
 
                     <div class="row">   <!--MOTHERBOARD -->
                         <div class="col mt-2">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body"> <!-- dd(session('productsArray.motherboards.0.price') ); -->
                                     <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
                                 </div>
                                 <div class="card-body bg-light text-center">
                                     <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">Toshiba Notebook with 500GB HDD & 8GB RAM</a> </h6> <a href="#" class="text-muted" data-abc="true">MOTHERBOARD</a>
+                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.motherboards.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">MOTHERBOARD</a>
                                     </div>
-                                    <h3 class="mb-0 font-weight-semibold">Price</h3>
+                                    <h4 class="mb-0 font-weight-semibold">
+                                        @if(session('productsArray.motherboards.0.price')==0)
+                                            ---
+                                        @else
+                                            ₱ {{ number_format(session('productsArray.motherboards.0.price'),2) }}
+                                        @endif
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -71,9 +74,15 @@
                                 </div>
                                 <div class="card-body bg-light text-center">
                                     <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">Toshiba Notebook with 500GB HDD & 8GB RAM</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU</a>
+                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.cpus.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU</a>
                                     </div>
-                                    <h3 class="mb-0 font-weight-semibold">PRICE</h3>
+                                    <h4 class="mb-0 font-weight-semibold">
+                                        @if(session('productsArray.cpus.0.price')==0)
+                                            ---
+                                        @else
+                                            ₱ {{ number_format(session('productsArray.cpus.0.price'),2) }}
+                                        @endif
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -84,9 +93,15 @@
                                 </div>
                                 <div class="card-body bg-light text-center">
                                     <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">Toshiba Notebook with 500GB HDD & 8GB RAM</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU COOLER</a>
+                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.cpu_coolers.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU COOLER</a>
                                     </div>
-                                    <h3 class="mb-0 font-weight-semibold">PRICE</h3>
+                                    <h4 class="mb-0 font-weight-semibold">
+                                        @if(session('productsArray.cpu_coolers.0.price')==0)
+                                            ---
+                                        @else
+                                            ₱ {{ number_format(session('productsArray.cpu_coolers.0.price'),2) }}
+                                        @endif
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -97,9 +112,15 @@
                                 </div>
                                 <div class="card-body bg-light text-center">
                                     <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">Toshiba Notebook with 500GB HDD & 8GB RAM</a> </h6> <a href="#" class="text-muted" data-abc="true">GRAPHICS CARD</a>
+                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.graphics_cards.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">GRAPHICS CARD</a>
                                     </div>
-                                    <h3 class="mb-0 font-weight-semibold">PRICE</h3>
+                                    <h4 class="mb-0 font-weight-semibold">
+                                        @if(session('productsArray.graphics_cards.0.price')==0)
+                                            ---
+                                        @else
+                                            ₱ {{ number_format(session('productsArray.graphics_cards.0.price'),2) }}
+                                        @endif
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -113,9 +134,15 @@
                                 </div>
                                 <div class="card-body bg-light text-center">
                                     <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">Toshiba Notebook with 500GB HDD & 8GB RAM</a> </h6> <a href="#" class="text-muted" data-abc="true">RAM</a>
+                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.rams.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">RAM</a>
                                     </div>
-                                    <h3 class="mb-0 font-weight-semibold">PRICE</h3>
+                                    <h4 class="mb-0 font-weight-semibold">
+                                        @if(session('productsArray.rams.0.price')==0)
+                                            ---
+                                        @else
+                                            ₱ {{ number_format(session('productsArray.rams.0.price'),2) }}
+                                        @endif
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -126,9 +153,15 @@
                                 </div>
                                 <div class="card-body bg-light text-center">
                                     <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">Toshiba Notebook with 500GB HDD & 8GB RAM</a> </h6> <a href="#" class="text-muted" data-abc="true">STORAGES</a>
+                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.storages.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">STORAGES</a>
                                     </div>
-                                    <h3 class="mb-0 font-weight-semibold">PRICE</h3>
+                                    <h4 class="mb-0 font-weight-semibold">
+                                        @if(session('productsArray.storages.0.price')==0)
+                                            ---
+                                        @else
+                                            ₱ {{ number_format(session('productsArray.storages.0.price'),2) }}
+                                        @endif
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -139,9 +172,15 @@
                                 </div>
                                 <div class="card-body bg-light text-center">
                                     <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">Toshiba Notebook with 500GB HDD & 8GB RAM</a> </h6> <a href="#" class="text-muted" data-abc="true">PSU</a>
+                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.psus.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">PSU</a>
                                     </div>
-                                    <h3 class="mb-0 font-weight-semibold">PRICE</h3>
+                                    <h4 class="mb-0 font-weight-semibold">
+                                        @if(session('productsArray.psus.0.price')==0)
+                                            ---
+                                        @else
+                                            ₱ {{ number_format(session('productsArray.psus.0.price'),2) }}
+                                        @endif
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -152,9 +191,16 @@
                                 </div>
                                 <div class="card-body bg-light text-center">
                                     <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">Toshiba Notebook with 500GB HDD & 8GB RAM</a> </h6> <a href="#" class="text-muted" data-abc="true">COMPUTER CASE</a>
+                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.computer_cases.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">COMPUTER CASE</a>
                                     </div>
-                                    <h3 class="mb-0 font-weight-semibold">PRICE</h3>
+                                    <h4 class="mb-0 font-weight-semibold">
+                                        @if(session('productsArray.computer_cases.0.price')==0)
+                                            ---
+                                        @else
+                                            {{ number_format(session('productsArray.computer_cases.0.price'),2) }} ₱
+                                        @endif
+
+                                    </h4>
                                 </div>
                             </div>
                         </div>
@@ -165,6 +211,11 @@
 
             </div>
 
+        </div>
+
+        <div class="container-xl mt-3 mb-3 p3 bg-black">
+            <h4 class="text-white">Contact us @:</h4>
+            <br><br><br>
         </div>
         <br>
 
