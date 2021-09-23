@@ -74,6 +74,8 @@ Route::get('/admin/components/storages', [ComponentsController::class, 'index_st
 Route::get('/admin/components/psus', [ComponentsController::class, 'index_psus'])->name('admin.components.psus')->middleware('auth');
 Route::get('/admin/components/computer_cases', [ComponentsController::class, 'index_computer_cases'])->name('admin.components.computer_cases')->middleware('auth');
 
+Route::post('/admin/components/motherboards/edit/{component}', [ComponentsController::class, 'edit_motherboard'])->name('admin.components.motherboards.edit');
+
 Route::delete('/admin/components/motherboards/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.motherboards.delete');
 Route::delete('/admin/components/cpus/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.cpus.delete');
 Route::delete('/admin/components/cpu_coolers/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.cpu_coolers.delete');
