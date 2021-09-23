@@ -1,20 +1,21 @@
 @extends('layouts.master')
 @section('content')
     @include('layouts.dashboardheader')
+
     <!-- SearchPage Table -->
     <section class="mb-3">
         <div class="container" style="width:100%">
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="searchpagecomponents_table" class="table table-striped table-hover" style="width:100%">
+                        <table id="componentstable" class="table table-striped table-hover" style="width:100%">
                             <thead>
-                            <tr>
-                                <th>Component Image</th>
-                                <th>Component Name</th>
-                                <th>Component Type</th>
-                                <th>Price</th>
-                            </tr>
+                                <tr>
+                                    <th>Component Image</th>
+                                    <th>Component Name</th>
+                                    <th>Component Type</th>
+                                    <th>Price</th>
+                                </tr>
                             </thead>
                             <tbody>
                             @foreach($data as $item)
@@ -76,3 +77,4 @@
         </div>
     </section>
 @endsection
+
