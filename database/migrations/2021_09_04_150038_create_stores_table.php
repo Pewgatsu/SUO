@@ -19,6 +19,7 @@ class CreateStoresTable extends Migration
             $table->string('banner');
             $table->string('name');
             $table->longText('address');
+            $table->string('location');
             $table->string('description');
             $table->bigInteger('featured_motherboards');
             $table->bigInteger('featured_cpus');

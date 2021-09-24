@@ -19,6 +19,7 @@ class Store extends Model
         'name',
         'address',
         'description',
+         'location',
         'featured_motherboards',
         'featured_cpus',
         'featured_cpu_coolers',
