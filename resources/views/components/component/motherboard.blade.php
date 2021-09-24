@@ -177,12 +177,12 @@
                                 name="{{ $setMemorySpeedID() }}[]" id="{{ $setMemorySpeedID() }}">
                             @foreach($memorySpeeds as $memory_speed)
                                 <option
-                                    @if((old('mobo_mem_speed_support') !== null && in_array($memory_speed->id,old('mobo_mem_speed_support'))) ||
+                                    @if((old($setMemorySpeedID()) !== null && in_array($memory_speed->id,old($setMemorySpeedID()))) ||
                                     $oldMemorySpeedField() !== null && in_array($memory_speed->id,$oldMemorySpeedField())) selected
                                     @endif value="{{ $memory_speed->id }}">{{ $memory_speed->name }}</option>
                             @endforeach
-                            @if(old('mobo_mem_speed_support') !== null)
-                                @foreach(old('mobo_mem_speed_support') as $memory_speed_name)
+                            @if(old($setMemorySpeedID()) !== null)
+                                @foreach(old($setMemorySpeedID()) as $memory_speed_name)
                                     @if(!filter_var($memory_speed_name,FILTER_VALIDATE_INT))
                                         <option selected
                                                 value="{{ $memory_speed_name }}">{{ $memory_speed_name }}</option>
@@ -190,7 +190,7 @@
                                 @endforeach
                             @endif
                         </select>
-                        @error('mobo_mem_speed_support')
+                        @error($setMemorySpeedID())
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
