@@ -128,6 +128,11 @@ class ComponentsController extends Controller
         $validator->validate();
 
         if (isset($request->mobo_image)) {
+            // Remove Old Image
+            if (file_exists(public_path('images/motherboards/' . $component->image_path))){
+                unlink(public_path('images/motherboards/' . $component->image_path));
+            }
+
             // Image Upload
             $mobo_image_filename = time() . '-' . $request->mobo_name . '.' . $request->mobo_image->extension();
             $request->mobo_image->move(public_path('images/motherboards'), $mobo_image_filename);
@@ -199,7 +204,43 @@ class ComponentsController extends Controller
 
     public function delete_component(Component $component)
     {
+        $profile_path = '';
+        switch ($component->type){
+            case 'Motherboard':
+                $profile_path = 'images/motherboards/';
+                break;
+            case 'CPU':
+                $profile_path = 'images/cpus/';
+                break;
+            case 'CPU Cooler':
+                $profile_path = 'images/cpu_coolers/';
+                break;
+            case 'Graphics Card':
+                $profile_path = 'images/graphics_cards/';
+                break;
+            case 'RAM':
+                $profile_path = 'images/rams/';
+                break;
+            case 'Storage':
+                $profile_path = 'images/storages/';
+                break;
+            case 'PSU':
+                $profile_path = 'images/psus/';
+                break;
+            case 'Computer Case':
+                $profile_path = 'images/computer_cases/';
+                break;
+            default:
+                $profile_path = null;
+        }
+
+        // Delete Image
+        if (file_exists(public_path($profile_path . $component->image_path))){
+            unlink(public_path($profile_path . $component->image_path));
+        }
+
         $component->delete();
+
         return back();
     }
 }
