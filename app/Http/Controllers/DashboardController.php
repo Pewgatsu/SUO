@@ -41,7 +41,7 @@ class DashboardController extends Controller
         $mobo_form_factors = MOBOFormFactor::all();
         $memory_speeds = MemorySpeed::all();
 
-        return view('dashboard.index', [
+        return view('admin.dashboard.index', [
             'accounts_count' => $accounts_count,
             'components_count' => $components_count,
             'motherboards_count' => $motherboards_count,
@@ -138,18 +138,20 @@ class DashboardController extends Controller
             'wireless_support' => $request->mobo_wireless_support
         ]);
 
-        foreach ($request->mobo_mem_speed_support as $memory_speed) {
-            $memory_speed_id = $memory_speed;
-            if(!filter_var($memory_speed, FILTER_VALIDATE_INT)){
-                $memory_speed_row = MemorySpeed::create([
-                    'name' => $memory_speed
+        if (isset($request->mobo_mem_speed_support)){
+            foreach ($request->mobo_mem_speed_support as $memory_speed) {
+                $memory_speed_id = $memory_speed;
+                if(!filter_var($memory_speed, FILTER_VALIDATE_INT)){
+                    $memory_speed_row = MemorySpeed::create([
+                        'name' => $memory_speed
+                    ]);
+                    $memory_speed_id = $memory_speed_row->id;
+                }
+                MOBOMemorySpeed::create([
+                    'component_id' => $component->id,
+                    'memory_speed_id' => $memory_speed_id
                 ]);
-                $memory_speed_id = $memory_speed_row->id;
             }
-            MOBOMemorySpeed::create([
-                'component_id' => $component->id,
-                'memory_speed_id' => $memory_speed_id
-            ]);
         }
 
         return redirect()->route('admin.dashboard');

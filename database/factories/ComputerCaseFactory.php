@@ -39,19 +39,6 @@ class ComputerCaseFactory extends Factory
                 'Mini ITX Test Bench',
                 'Mini ITX Tower'
             ]),
-            'mobo_form_factor' => $this->faker->randomElement([
-                'ATX',
-                'EATX',
-                'Flex ATX',
-                'HPTX',
-                'Micro ATX',
-                'Mini ITX',
-                'Thin Mini ITX',
-                'Mini DTX',
-                'SSI CEB',
-                'SSI EEB',
-                'XL ATX'
-            ]),
             'power_supply' => $this->faker->optional()->numerify('### W'),
             'power_supply_shroud' => $this->faker->boolean(),
             'side_panel_window' => $this->faker->optional()->randomElement([

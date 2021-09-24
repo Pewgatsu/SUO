@@ -21,7 +21,6 @@ class Motherboard extends Model
         'memory_slot',
         'memory_type',
         'max_mem_support',
-        'mem_speed_support',
         'pcie_x16_slot',
         'pcie_x8_slot',
         'pcie_x4_slot',

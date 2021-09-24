@@ -16,7 +16,6 @@ class ComputerCase extends Model
     protected $fillable = [
         'component_id',
         'case_type',
-        'mobo_form_factor',
         'power_supply',
         'power_supply_shroud',
         'side_panel_window',

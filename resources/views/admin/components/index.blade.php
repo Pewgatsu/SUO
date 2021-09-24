@@ -33,6 +33,15 @@
         </div>
     </div>
 
+    <!-- Modals -->
+    @if(count($errors) > 0)
+        <script>
+            $(document).ready(function () {
+                $('#{{ session('modal_id') }}').modal('show');
+            });
+        </script>
+    @endif
+
     <!-- Motherboard Table -->
     <section class="mb-3">
         <div class="container">
@@ -61,13 +70,17 @@
                                             <td>{{ $motherboard->mobo_form_factor }}</td>
                                             <td>{{ $motherboard->mobo_chipset }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="submit" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_motherboard_{{ $motherboard->component->id }}">Edit</button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_motherboard_{{ $motherboard->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Motherboard -->
+                                        <x-component.motherboard :memorySpeeds="$memory_speeds" mode="edit" :motherboard="$motherboard" />
 
                                         <!-- Delete Motherboard -->
                                         <div class="modal fade"
@@ -636,4 +649,15 @@
             </div>
         </div>
     </section>
+
+
+
 @endsection
+
+@push('select2')
+    <script>
+        $(document).ready(function () {
+            @stack('select2_modals')
+        });
+    </script>
+@endpush
