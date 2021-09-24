@@ -385,6 +385,98 @@ class ComponentsController extends Controller
         return back();
     }
 
+    public function edit_graphics_card(Component $component, Request $request){
+        // validate
+        $validator = Validator::make($request->all(), [
+            // General Attributes
+            'graphics_card_image' => 'nullable|image|max:5048',
+            'graphics_card_name' => 'required|string',
+            'graphics_card_manufacturer' => 'nullable|string',
+            'graphics_card_series' => 'nullable|string',
+            'graphics_card_model' => 'nullable|string',
+            'graphics_card_color' => 'nullable|string',
+            'graphics_card_length' => 'nullable|numeric|min:0',
+            'graphics_card_width' => 'nullable|numeric|min:0',
+            'graphics_card_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'graphics_card_chipset' => 'required|string',
+            'graphics_card_memory' => 'required|numeric|min:0',
+            'graphics_card_memory_type' => 'required|string',
+            'graphics_card_base_clock' => 'required|numeric|min:0',
+            'graphics_card_boost_clock' => 'nullable|numeric|min:0',
+            'graphics_card_interface' => 'required|string',
+            'graphics_card_tdp' => 'required|numeric|integer|min:0',
+            'graphics_card_multigraphics_support' => 'nullable|string',
+            'graphics_card_frame_sync' => 'nullable|string',
+            'graphics_card_dvi_port' => 'nullable|numeric|min:0|max:8',
+            'graphics_card_hdmi_port' => 'nullable|numeric|min:0|max:8',
+            'graphics_card_mini_hdmi_port' => 'nullable|numeric|min:0|max:8',
+            'graphics_card_displayport_port' => 'nullable|numeric|min:0|max:8',
+            'graphics_card_mini_displayport_port' => 'nullable|numeric|min:0|max:8',
+            'graphics_card_e_slot_width' => 'nullable|numeric|min:0|max:8',
+            'graphics_card_external_power' => 'nullable|string',
+            'graphics_card_cooling' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('modal_id', 'edit_graphics_card_' . $component->id)->withErrors($validator)->withInput();
+        }
+
+        $validator->validate();
+
+        if (isset($request->graphics_card_image)) {
+            // Remove Old Image
+            if (isset($component->image_path) && file_exists(public_path('images/graphics_cards/' . $component->image_path))) {
+                unlink(public_path('images/graphics_cards/' . $component->image_path));
+            }
+
+            // Image Upload
+            $graphics_card_image_filename = time() . '-' . $request->graphics_card_name . '.' . $request->graphics_card_image->extension();
+            $request->graphics_card_image->move(public_path('images/graphics_cards'), $graphics_card_image_filename);
+        }
+
+        // Component Attributes
+        $component->image_path = $graphics_card_image_filename ?? $component->image_path ?? null;
+        $component->name = $request->graphics_card_name;
+        $component->type = 'Graphics Card';
+        $component->manufacturer = $request->graphics_card_manufacturer;
+        $component->series = $request->graphics_card_series;
+        $component->model = $request->graphics_card_model;
+        $component->color = $request->graphics_card_color;
+        $component->length = $request->graphics_card_length;
+        $component->width = $request->graphics_card_width;
+        $component->height = $request->graphics_card_height;
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
+
+        // Graphics Card Attributes
+        $component->graphics_card->gpu_chipset = $request->graphics_card_chipset;
+        $component->graphics_card->gpu_memory = $request->graphics_card_memory;
+        $component->graphics_card->gpu_memory_type = $request->graphics_card_memory_type;
+        $component->graphics_card->base_clock = $request->graphics_card_base_clock;
+        $component->graphics_card->boost_clock = $request->graphics_card_boost_clock;
+        $component->graphics_card->interface = $request->graphics_card_interface;
+        $component->graphics_card->tdp = $request->graphics_card_tdp;
+        $component->graphics_card->multigraphics_support = $request->graphics_card_multigraphics_support;
+        $component->graphics_card->frame_sync = $request->graphics_card_frame_sync;
+        $component->graphics_card->dvi_port = $request->graphics_card_dvi_port;
+        $component->graphics_card->hdmi_port = $request->graphics_card_hdmi_port;
+        $component->graphics_card->mini_hdmi_port = $request->graphics_card_mini_hdmi_port;
+        $component->graphics_card->displayport_port = $request->graphics_card_displayport_port;
+        $component->graphics_card->mini_displayport_port = $request->graphics_card_mini_displayport_port;
+        $component->graphics_card->e_slot_width = $request->graphics_card_e_slot_width;
+        $component->graphics_card->external_power = $request->graphics_card_external_power;
+        $component->graphics_card->cooling = $request->graphics_card_cooling;
+
+        if ($component->graphics_card->isDirty()) {
+            $component->graphics_card->save();
+        }
+
+        return back();
+    }
+
     public function delete_component(Component $component)
     {
         $profile_path = '';

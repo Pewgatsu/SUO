@@ -305,13 +305,19 @@
                                             <td>{{ $graphics_card->base_clock }}</td>
                                             <td>{{ $graphics_card->interface }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_graphics_card_{{ $graphics_card->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_graphics_card_{{ $graphics_card->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Graphics Card -->
+                                        <x-component.graphics-card mode="edit" :graphicsCard="$graphics_card"/>
 
                                         <!-- Delete Graphics Card -->
                                         <div class="modal fade"
