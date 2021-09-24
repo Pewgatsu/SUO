@@ -555,6 +555,76 @@ class ComponentsController extends Controller
         return back();
     }
 
+    public function edit_storage(Component $component, Request $request){
+        // validate
+        $validator = Validator::make($request->all(), [
+            // General Attributes
+            'storage_image' => 'nullable|image|max:5048',
+            'storage_name' => 'required|string',
+            'storage_manufacturer' => 'nullable|string',
+            'storage_series' => 'nullable|string',
+            'storage_model' => 'nullable|string',
+            'storage_color' => 'nullable|string',
+            'storage_length' => 'nullable|numeric|min:0',
+            'storage_width' => 'nullable|numeric|min:0',
+            'storage_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'storage_type' => 'required|string',
+            'storage_capacity' => 'required|numeric|min:0',
+            'storage_interface' => 'required|string',
+            'storage_form_factor' => 'required|string',
+            'storage_cache' => 'nullable|numeric|min:0',
+            'storage_nvme' => 'required|boolean'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('modal_id', 'edit_storage_' . $component->id)->withErrors($validator)->withInput();
+        }
+
+        $validator->validate();
+
+        if (isset($request->storage_image)) {
+            // Remove Old Image
+            if (isset($component->image_path) && file_exists(public_path('images/storages/' . $component->image_path))) {
+                unlink(public_path('images/storages/' . $component->image_path));
+            }
+
+            // Image Upload
+            $storage_image_filename = time() . '-' . $request->storage_name . '.' . $request->storage_image->extension();
+            $request->storage_image->move(public_path('images/storages'), $storage_image_filename);
+        }
+
+        // Component Attributes
+        $component->image_path = $storage_image_filename ?? $component->image_path ?? null;
+        $component->name = $request->storage_name;
+        $component->type = 'Storage';
+        $component->manufacturer = $request->storage_manufacturer;
+        $component->series = $request->storage_series;
+        $component->model = $request->storage_model;
+        $component->color = $request->storage_color;
+        $component->length = $request->storage_length;
+        $component->width = $request->storage_width;
+        $component->height = $request->storage_height;
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
+
+        // Storage Attributes
+        $component->storage->storage_type = $request->storage_type;
+        $component->storage->storage_capacity = $request->storage_capacity;
+        $component->storage->interface = $request->storage_interface;
+        $component->storage->storage_form_factor = $request->storage_form_factor;
+        $component->storage->storage_cache = $request->storage_cache;
+        $component->storage->nvme = $request->storage_nvme;
+
+        if ($component->storage->isDirty()) {
+            $component->storage->save();
+        }
+
+        return back();
+    }
+
     public function delete_component(Component $component)
     {
         $profile_path = '';

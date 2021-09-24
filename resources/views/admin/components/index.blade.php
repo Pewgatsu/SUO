@@ -462,13 +462,19 @@
                                             <td>{{ $storage->interface }}</td>
                                             <td>{{ $storage->storage_form_factor }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_storage_{{ $storage->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_storage_{{ $storage->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Storage -->
+                                        <x-component.storage mode="edit" :storage="$storage"/>
 
                                         <!-- Delete Storage -->
                                         <div class="modal fade"
