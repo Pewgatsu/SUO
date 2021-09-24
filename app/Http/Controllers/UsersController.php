@@ -18,7 +18,7 @@ class UsersController extends Controller
     public function remove(Account $account)
     {
         // Delete Profile Pic
-        if (file_exists(public_path('images/accounts/' . $account->profile_path))){
+        if (isset($account->profile_path) && file_exists(public_path('images/accounts/' . $account->profile_path))){
             unlink(public_path('images/accounts/' . $account->profile_path));
         }
 
