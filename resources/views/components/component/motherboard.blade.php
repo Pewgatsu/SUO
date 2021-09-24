@@ -295,7 +295,7 @@
                     <div class="form-floating mb-3">
                         <select class="form-select" id="mobo_ecc_support" name="mobo_ecc_support">
                             <option value="0"
-                                    @if (!(old('mobo_ecc_support')) ?? $oldField('mobo_ecc_support')) selected @endif>No
+                                    @if (!(old('mobo_ecc_support') ?? $oldField('mobo_ecc_support'))) selected @endif>No
                             </option>
                             <option value="1"
                                     @if (old('mobo_ecc_support') ?? $oldField('mobo_ecc_support')) selected @endif>Yes
@@ -306,7 +306,7 @@
                     <div class="form-floating mb-3">
                         <select class="form-select" id="mobo_raid_support" name="mobo_raid_support">
                             <option value="0"
-                                    @if (!(old('mobo_raid_support')) ?? $oldField('mobo_raid_support')) selected @endif>
+                                    @if (!(old('mobo_raid_support') ?? $oldField('mobo_raid_support'))) selected @endif>
                                 No
                             </option>
                             <option value="1"

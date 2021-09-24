@@ -190,7 +190,7 @@
                     </div>
                     <div class="form-floating mb-3">
                         <select class="form-select" id="cpu_smt_support" name="cpu_smt_support">
-                            <option value="0" @if (!(old('cpu_smt_support')) ?? $oldField('cpu_smt_support')) selected @endif>
+                            <option value="0" @if (!(old('cpu_smt_support') ?? $oldField('cpu_smt_support'))) selected @endif>
                                 No
                             </option>
                             <option value="1" @if (old('cpu_smt_support') ?? $oldField('cpu_smt_support')) selected @endif>
@@ -201,7 +201,7 @@
                     </div>
                     <div class="form-floating mb-3">
                         <select class="form-select" id="cpu_ecc_support" name="cpu_ecc_support">
-                            <option value="0" @if (!(old('cpu_ecc_support')) ?? $oldField('cpu_ecc_support')) selected @endif>
+                            <option value="0" @if (!(old('cpu_ecc_support') ?? $oldField('cpu_ecc_support'))) selected @endif>
                                 No
                             </option>
                             <option value="1" @if (old('cpu_ecc_support') ?? $oldField('cpu_ecc_support')) selected @endif>
