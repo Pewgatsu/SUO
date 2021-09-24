@@ -541,13 +541,18 @@
                                             <td>{{ $psu->wattage }}</td>
                                             <td>{{ $psu->efficiency_rating }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_psu_{{ $psu->component->id }}">Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_psu_{{ $psu->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit PSU -->
+                                        <x-component.psu mode="edit" :psu="$psu"/>
 
                                         <!-- Delete PSU -->
                                         <div class="modal fade"

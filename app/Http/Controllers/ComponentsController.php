@@ -625,6 +625,86 @@ class ComponentsController extends Controller
         return back();
     }
 
+    public function edit_psu(Component $component, Request $request){
+        // validate
+        $validator = Validator::make($request->all(), [
+            // General Attributes
+            'psu_image' => 'nullable|image|max:5048',
+            'psu_name' => 'required|string',
+            'psu_manufacturer' => 'nullable|string',
+            'psu_series' => 'nullable|string',
+            'psu_model' => 'nullable|string',
+            'psu_color' => 'nullable|string',
+            'psu_length' => 'nullable|numeric|min:0',
+            'psu_width' => 'nullable|numeric|min:0',
+            'psu_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'psu_form_factor' => 'required|string',
+            'psu_wattage' => 'required|numeric|min:0',
+            'psu_efficiency_rating' => 'required|string',
+            'psu_modular' => 'required|string',
+            'psu_atx_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_eps_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_sata_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_molex_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_pcie_8pin_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_pcie_62pin_connector' => 'nullable|numeric|min:0|max:16',
+            'psu_pcie_6pin_connector' => 'nullable|numeric|min:0|max:16'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('modal_id', 'edit_psu_' . $component->id)->withErrors($validator)->withInput();
+        }
+
+        $validator->validate();
+
+        if (isset($request->psu_image)) {
+            // Remove Old Image
+            if (isset($component->image_path) && file_exists(public_path('images/psus/' . $component->image_path))) {
+                unlink(public_path('images/psus/' . $component->image_path));
+            }
+
+            // Image Upload
+            $psu_image_filename = time() . '-' . $request->psu_name . '.' . $request->psu_image->extension();
+            $request->psu_image->move(public_path('images/psus'), $psu_image_filename);
+        }
+
+        // Component Attributes
+        $component->image_path = $psu_image_filename ?? $component->image_path ?? null;
+        $component->name = $request->psu_name;
+        $component->type = 'PSU';
+        $component->manufacturer = $request->psu_manufacturer;
+        $component->series = $request->psu_series;
+        $component->model = $request->psu_model;
+        $component->color = $request->psu_color;
+        $component->length = $request->psu_length;
+        $component->width = $request->psu_width;
+        $component->height = $request->psu_height;
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
+
+        // PSU Attributes
+        $component->psu->psu_form_factor = $request->psu_form_factor;
+        $component->psu->wattage = $request->psu_wattage;
+        $component->psu->efficiency_rating = $request->psu_efficiency_rating;
+        $component->psu->modular = $request->psu_modular;
+        $component->psu->atx_connector = $request->psu_atx_connector;
+        $component->psu->eps_connector = $request->psu_eps_connector;
+        $component->psu->sata_connector = $request->psu_sata_connector;
+        $component->psu->molex_4pin_connector = $request->psu_molex_connector;
+        $component->psu->pcie_8pin_connector = $request->psu_pcie_8pin_connector;
+        $component->psu->{'pcie_6+2pin_connector'} = $request->psu_pcie_62pin_connector;
+        $component->psu->pcie_6pin_connector = $request->psu_pcie_6pin_connector;
+
+        if ($component->psu->isDirty()) {
+            $component->psu->save();
+        }
+
+        return back();
+    }
+
     public function delete_component(Component $component)
     {
         $profile_path = '';
