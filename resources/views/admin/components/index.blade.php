@@ -384,13 +384,18 @@
                                             <td>{{ $ram->memory_speed }}</td>
                                             <td>{{ $ram->memory_form_factor }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_ram_{{ $ram->component->id }}">Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_ram_{{ $ram->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit RAM -->
+                                        <x-component.ram mode="edit" :ram="$ram"/>
 
                                         <!-- Delete RAM -->
                                         <div class="modal fade"

@@ -477,6 +477,84 @@ class ComponentsController extends Controller
         return back();
     }
 
+    public function edit_ram(Component $component, Request $request){
+        // validate
+        $validator = Validator::make($request->all(), [
+            // General Attributes
+            'ram_image' => 'nullable|image|max:5048',
+            'ram_name' => 'required|string',
+            'ram_manufacturer' => 'nullable|string',
+            'ram_series' => 'nullable|string',
+            'ram_model' => 'nullable|string',
+            'ram_color' => 'nullable|string',
+            'ram_length' => 'nullable|numeric|min:0',
+            'ram_width' => 'nullable|numeric|min:0',
+            'ram_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'ram_memory_type' => 'required|string',
+            'ram_memory_speed' => 'required|numeric|min:0',
+            'ram_memory_capacity' => 'required|numeric|min:0',
+            'ram_form_factor' => 'required|string',
+            'ram_modules' => 'nullable|string',
+            'ram_voltage' => 'nullable|numeric|min:0',
+            'ram_timings' => 'nullable|string',
+            'ram_ecc_memory' => 'required|boolean',
+            'ram_registered_memory' => 'required|boolean',
+            'ram_heat_spreader' => 'required|boolean'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('modal_id', 'edit_ram_' . $component->id)->withErrors($validator)->withInput();
+        }
+
+        $validator->validate();
+
+        if (isset($request->ram_image)) {
+            // Remove Old Image
+            if (isset($component->image_path) && file_exists(public_path('images/rams/' . $component->image_path))) {
+                unlink(public_path('images/rams/' . $component->image_path));
+            }
+
+            // Image Upload
+            $ram_image_filename = time() . '-' . $request->ram_name . '.' . $request->ram_image->extension();
+            $request->ram_image->move(public_path('images/rams'), $ram_image_filename);
+        }
+
+        // Component Attributes
+        $component->image_path = $ram_image_filename ?? $component->image_path ?? null;
+        $component->name = $request->ram_name;
+        $component->type = 'RAM';
+        $component->manufacturer = $request->ram_manufacturer;
+        $component->series = $request->ram_series;
+        $component->model = $request->ram_model;
+        $component->color = $request->ram_color;
+        $component->length = $request->ram_length;
+        $component->width = $request->ram_width;
+        $component->height = $request->ram_height;
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
+
+        // RAM Attributes
+        $component->ram->memory_type = $request->ram_memory_type;
+        $component->ram->memory_speed = $request->ram_memory_speed;
+        $component->ram->memory_capacity = $request->ram_memory_capacity;
+        $component->ram->memory_form_factor = $request->ram_form_factor;
+        $component->ram->modules = $request->ram_modules;
+        $component->ram->memory_voltage = $request->ram_voltage;
+        $component->ram->memory_timings = $request->ram_timings;
+        $component->ram->ecc = $request->ram_ecc_memory;
+        $component->ram->registered = $request->ram_registered_memory;
+        $component->ram->heat_spreader = $request->ram_heat_spreader;
+
+        if ($component->ram->isDirty()) {
+            $component->ram->save();
+        }
+
+        return back();
+    }
+
     public function delete_component(Component $component)
     {
         $profile_path = '';
