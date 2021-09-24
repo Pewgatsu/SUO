@@ -70,7 +70,7 @@
                                             <td>{{ $motherboard->mobo_form_factor }}</td>
                                             <td>{{ $motherboard->mobo_chipset }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-info" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_motherboard_{{ $motherboard->component->id }}">Edit</button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_motherboard_{{ $motherboard->component->id }}">
@@ -146,13 +146,17 @@
                                             <td>{{ $cpu->microarchitecture }}</td>
                                             <td>{{ $cpu->base_clock }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_cpu_{{ $cpu->component->id }}">Edit</button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_cpu_{{ $cpu->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit CPU -->
+                                        <x-component.cpu mode="edit" :cpu="$cpu" />
 
                                         <!-- Delete CPU -->
                                         <div class="modal fade"

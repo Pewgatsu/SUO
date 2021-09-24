@@ -1,4 +1,4 @@
-<div class="modal fade" id="{{ $setID() }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade text-start" id="{{ $setID() }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="{{ $setID() }}_label" aria-hidden="true">
     <div class="modal-dialog">
         <form action="{{ $setRoute() }}" method="post" enctype="multipart/form-data">
@@ -8,7 +8,7 @@
                     <h5 class="modal-title" id="{{ $setID() }}_label">{{ $setTitle() }} Motherboard</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body text-start">
+                <div class="modal-body">
 
                     <!-- Component Attributes -->
 

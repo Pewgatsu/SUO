@@ -129,7 +129,7 @@ class ComponentsController extends Controller
 
         if (isset($request->mobo_image)) {
             // Remove Old Image
-            if (file_exists(public_path('images/motherboards/' . $component->image_path))){
+            if (isset($component->image_path) && file_exists(public_path('images/motherboards/' . $component->image_path))){
                 unlink(public_path('images/motherboards/' . $component->image_path));
             }
 
@@ -138,6 +138,7 @@ class ComponentsController extends Controller
             $request->mobo_image->move(public_path('images/motherboards'), $mobo_image_filename);
         }
 
+        // Component Attributes
         $component->image_path = $mobo_image_filename ?? $component->image_path ?? null;
         $component->name = $request->mobo_name;
         $component->type = 'Motherboard';
@@ -153,6 +154,7 @@ class ComponentsController extends Controller
             $component->save();
         }
 
+        // Motherboard Attributes
         $component->motherboard->cpu_socket = $request->mobo_cpu_socket;
         $component->motherboard->mobo_form_factor = $request->mobo_form_factor;
         $component->motherboard->mobo_chipset = $request->mobo_chipset;
@@ -176,27 +178,108 @@ class ComponentsController extends Controller
             $component->motherboard->save();
         }
 
-        if (MOBOMemorySpeed::find($component->id) === null &&
-            $request->input('mobo_mem_speed_support_' . $component->id) === null) {
-            // Do Nothing
-        } elseif (MOBOMemorySpeed::find($component->id) !== null &&
-            $request->input('mobo_mem_speed_support_' . $component->id) === null) {
-            MOBOMemorySpeed::where('component_id', $component->id)->delete();
-        } elseif ($request->input('mobo_mem_speed_support_' . $component->id) !== null) {
-            MOBOMemorySpeed::where('component_id', $component->id)->delete();
-            foreach ($request->input('mobo_mem_speed_support_' . $component->id) as $memory_speed) {
-                $memory_speed_id = $memory_speed;
-                if (!filter_var($memory_speed, FILTER_VALIDATE_INT)) {
-                    $memory_speed_row = MemorySpeed::create([
-                        'name' => $memory_speed
+        // Memory Speeds
+        if (MOBOMemorySpeed::find($component->id) !== null ||
+            $request->input('mobo_mem_speed_support_' . $component->id) !== null) {
+            if (MOBOMemorySpeed::find($component->id) !== null &&
+                $request->input('mobo_mem_speed_support_' . $component->id) === null) {
+                MOBOMemorySpeed::where('component_id', $component->id)->delete();
+            } elseif ($request->input('mobo_mem_speed_support_' . $component->id) !== null) {
+                MOBOMemorySpeed::where('component_id', $component->id)->delete();
+                foreach ($request->input('mobo_mem_speed_support_' . $component->id) as $memory_speed) {
+                    $memory_speed_id = $memory_speed;
+                    if (!filter_var($memory_speed, FILTER_VALIDATE_INT)) {
+                        $memory_speed_row = MemorySpeed::create([
+                            'name' => $memory_speed
+                        ]);
+                        $memory_speed_id = $memory_speed_row->id;
+                    }
+                    MOBOMemorySpeed::create([
+                        'component_id' => $component->id,
+                        'memory_speed_id' => $memory_speed_id
                     ]);
-                    $memory_speed_id = $memory_speed_row->id;
                 }
-                MOBOMemorySpeed::create([
-                    'component_id' => $component->id,
-                    'memory_speed_id' => $memory_speed_id
-                ]);
             }
+        }
+
+        return back();
+    }
+
+    public function edit_cpu(Component $component, Request $request){
+        // validate
+        $validator = Validator::make($request->all(), [
+            // General Attributes
+            'cpu_image' => 'nullable|image|max:5048',
+            'cpu_name' => 'required|string',
+            'cpu_manufacturer' => 'nullable|string',
+            'cpu_series' => 'nullable|string',
+            'cpu_model' => 'nullable|string',
+            'cpu_color' => 'nullable|string',
+            'cpu_length' => 'nullable|numeric|min:0',
+            'cpu_width' => 'nullable|numeric|min:0',
+            'cpu_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'cpu_socket' => 'required|string',
+            'cpu_microarchitecture' => 'required|string',
+            'cpu_core_count' => 'required|numeric|integer|min:0',
+            'cpu_thread_count' => 'required|numeric|integer|min:0',
+            'cpu_base_clock' => 'required|numeric|min:0',
+            'cpu_boost_clock' => 'nullable|numeric|min:0',
+            'cpu_max_mem_support' => 'nullable|numeric|min:0',
+            'cpu_tdp' => 'required|numeric|min:0',
+            'cpu_smt_support' => 'required|boolean',
+            'cpu_ecc_support' => 'required|boolean',
+            'cpu_integrated_graphics' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('modal_id', 'edit_cpu_' . $component->id)->withErrors($validator)->withInput();
+        }
+
+        $validator->validate();
+
+        if (isset($request->cpu_image)) {
+            // Remove Old Image
+            if (isset($component->image_path) && file_exists(public_path('images/cpus/' . $component->image_path))){
+                unlink(public_path('images/cpus/' . $component->image_path));
+            }
+
+            // Image Upload
+            $cpu_image_filename = time() . '-' . $request->cpu_name . '.' . $request->cpu_image->extension();
+            $request->cpu_image->move(public_path('images/cpus'), $cpu_image_filename);
+        }
+
+        // Component Attributes
+        $component->image_path = $cpu_image_filename ?? $component->image_path ?? null;
+        $component->name = $request->cpu_name;
+        $component->type = 'CPU';
+        $component->manufacturer = $request->cpu_manufacturer;
+        $component->series = $request->cpu_series;
+        $component->model = $request->cpu_model;
+        $component->color = $request->cpu_color;
+        $component->length = $request->cpu_length;
+        $component->width = $request->cpu_width;
+        $component->height = $request->cpu_height;
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
+
+        // CPU Attributes
+        $component->cpu->cpu_socket = $request->cpu_socket;
+        $component->cpu->microarchitecture = $request->cpu_microarchitecture;
+        $component->cpu->core_count = $request->cpu_core_count;
+        $component->cpu->thread_count = $request->cpu_thread_count;
+        $component->cpu->base_clock = $request->cpu_base_clock;
+        $component->cpu->boost_clock = $request->cpu_boost_clock;
+        $component->cpu->max_mem_support = $request->cpu_max_mem_support;
+        $component->cpu->tdp = $request->cpu_tdp;
+        $component->cpu->smt_support = $request->cpu_smt_support;
+        $component->cpu->ecc_support = $request->cpu_ecc_support;
+        $component->cpu->integrated_graphics = $request->cpu_integrated_graphics;
+
+        if ($component->cpu->isDirty()) {
+            $component->cpu->save();
         }
 
         return back();
@@ -235,7 +318,7 @@ class ComponentsController extends Controller
         }
 
         // Delete Image
-        if (file_exists(public_path($profile_path . $component->image_path))){
+        if (isset($component->image_path) && file_exists(public_path($profile_path . $component->image_path))){
             unlink(public_path($profile_path . $component->image_path));
         }
 
