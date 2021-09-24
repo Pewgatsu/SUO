@@ -6,12 +6,14 @@ use App\Models\Component;
 use App\Models\ComputerCase;
 use App\Models\CPU;
 use App\Models\CPUCooler;
+use App\Models\CPUSocket;
 use App\Models\GraphicsCard;
 use App\Models\MemorySpeed;
 use App\Models\MOBOMemorySpeed;
 use App\Models\Motherboard;
 use App\Models\PSU;
 use App\Models\RAM;
+use App\Models\SocketCooler;
 use App\Models\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +22,7 @@ class ComponentsController extends Controller
 {
     public function index_motherboards()
     {
-        $motherboards = Motherboard::with(['component','memory_speeds'])->paginate(10);
+        $motherboards = Motherboard::with(['component', 'memory_speeds'])->paginate(10);
         $memory_speeds = MemorySpeed::all();
 
         return view('admin.components.index', [
@@ -39,9 +41,12 @@ class ComponentsController extends Controller
 
     public function index_cpu_coolers()
     {
-        $cpu_coolers = CPUCooler::with('component')->paginate(10);
+        $cpu_coolers = CPUCooler::with(['component', 'cpu_sockets'])->paginate(10);
+        $cpu_sockets = CPUSocket::all();
+
         return view('admin.components.index', [
-            'cpu_coolers' => $cpu_coolers
+            'cpu_coolers' => $cpu_coolers,
+            'cpu_sockets' => $cpu_sockets
         ]);
     }
 
@@ -129,7 +134,7 @@ class ComponentsController extends Controller
 
         if (isset($request->mobo_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/motherboards/' . $component->image_path))){
+            if (isset($component->image_path) && file_exists(public_path('images/motherboards/' . $component->image_path))) {
                 unlink(public_path('images/motherboards/' . $component->image_path));
             }
 
@@ -178,13 +183,17 @@ class ComponentsController extends Controller
             $component->motherboard->save();
         }
 
+        $component_speeds = MOBOMemorySpeed::where('component_id', $component->id)->get();
+        $speeds = array();
+        foreach ($component_speeds as $component_speed) {
+            $speeds[] = $component_speed->memory_speed_id;
+        }
+
         // Memory Speeds
-        if (MOBOMemorySpeed::find($component->id) !== null ||
-            $request->input('mobo_mem_speed_support_' . $component->id) !== null) {
-            if (MOBOMemorySpeed::find($component->id) !== null &&
-                $request->input('mobo_mem_speed_support_' . $component->id) === null) {
+        if ($speeds != $request->input('mobo_mem_speed_support_' . $component->id)) {
+            if ($request->input('mobo_mem_speed_support_' . $component->id) === null) {
                 MOBOMemorySpeed::where('component_id', $component->id)->delete();
-            } elseif ($request->input('mobo_mem_speed_support_' . $component->id) !== null) {
+            } else {
                 MOBOMemorySpeed::where('component_id', $component->id)->delete();
                 foreach ($request->input('mobo_mem_speed_support_' . $component->id) as $memory_speed) {
                     $memory_speed_id = $memory_speed;
@@ -205,7 +214,8 @@ class ComponentsController extends Controller
         return back();
     }
 
-    public function edit_cpu(Component $component, Request $request){
+    public function edit_cpu(Component $component, Request $request)
+    {
         // validate
         $validator = Validator::make($request->all(), [
             // General Attributes
@@ -240,7 +250,7 @@ class ComponentsController extends Controller
 
         if (isset($request->cpu_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/cpus/' . $component->image_path))){
+            if (isset($component->image_path) && file_exists(public_path('images/cpus/' . $component->image_path))) {
                 unlink(public_path('images/cpus/' . $component->image_path));
             }
 
@@ -285,10 +295,100 @@ class ComponentsController extends Controller
         return back();
     }
 
+    public function edit_cpu_cooler(Component $component, Request $request)
+    {
+        // validate
+        $validator = Validator::make($request->all(), [
+            // General Attributes
+            'cpu_cooler_image' => 'nullable|image|max:5048',
+            'cpu_cooler_name' => 'required|string',
+            'cpu_cooler_manufacturer' => 'nullable|string',
+            'cpu_cooler_series' => 'nullable|string',
+            'cpu_cooler_model' => 'nullable|string',
+            'cpu_cooler_color' => 'nullable|string',
+            'cpu_cooler_length' => 'nullable|numeric|min:0',
+            'cpu_cooler_width' => 'nullable|numeric|min:0',
+            'cpu_cooler_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'cpu_cooler_cpu_socket_' . $component->id => 'required|array',
+            'cpu_cooler_fan_speed' => 'nullable',
+            'cpu_cooler_noise_level' => 'nullable',
+            'cpu_cooler_water_cooled' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('modal_id', 'edit_cpu_cooler_' . $component->id)->withErrors($validator)->withInput();
+        }
+
+        $validator->validate();
+
+        if (isset($request->cpu_cooler_image)) {
+            // Remove Old Image
+            if (isset($component->image_path) && file_exists(public_path('images/cpu_coolers/' . $component->image_path))) {
+                unlink(public_path('images/cpu_coolers/' . $component->image_path));
+            }
+
+            // Image Upload
+            $cpu_cooler_image_filename = time() . '-' . $request->cpu_cooler_name . '.' . $request->cpu_cooler_image->extension();
+            $request->cpu_cooler_image->move(public_path('images/cpu_coolers'), $cpu_cooler_image_filename);
+        }
+
+        // Component Attributes
+        $component->image_path = $cpu_cooler_image_filename ?? $component->image_path ?? null;
+        $component->name = $request->cpu_cooler_name;
+        $component->type = 'CPU Cooler';
+        $component->manufacturer = $request->cpu_cooler_manufacturer;
+        $component->series = $request->cpu_cooler_series;
+        $component->model = $request->cpu_cooler_model;
+        $component->color = $request->cpu_cooler_color;
+        $component->length = $request->cpu_cooler_length;
+        $component->width = $request->cpu_cooler_width;
+        $component->height = $request->cpu_cooler_height;
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
+
+        // CPU Cooler Attributes
+        $component->cpu_cooler->fan_speed = $request->cpu_cooler_fan_speed;
+        $component->cpu_cooler->noise_level = $request->cpu_cooler_noise_level;
+        $component->cpu_cooler->water_cooled_support = $request->cpu_cooler_water_cooled;
+
+        if ($component->cpu_cooler->isDirty()) {
+            $component->cpu_cooler->save();
+        }
+
+        $component_sockets = SocketCooler::where('component_id', $component->id)->get();
+        $sockets = array();
+        foreach ($component_sockets as $component_socket) {
+            $sockets[] = $component_socket->cpu_socket_id;
+        }
+
+        // CPU Sockets
+        if ($sockets != $request->input('cpu_cooler_cpu_socket_' . $component->id)) {
+            SocketCooler::where('component_id', $component->id)->delete();
+            foreach ($request->input('cpu_cooler_cpu_socket_' . $component->id) as $cpu_socket) {
+                $cpu_socket_id = $cpu_socket;
+                if (!filter_var($cpu_socket, FILTER_VALIDATE_INT)) {
+                    $cpu_socket_row = MemorySpeed::create([
+                        'name' => $cpu_socket
+                    ]);
+                    $cpu_socket_id = $cpu_socket_row->id;
+                }
+                SocketCooler::create([
+                    'component_id' => $component->id,
+                    'cpu_socket_id' => $cpu_socket_id
+                ]);
+            }
+        }
+
+        return back();
+    }
+
     public function delete_component(Component $component)
     {
         $profile_path = '';
-        switch ($component->type){
+        switch ($component->type) {
             case 'Motherboard':
                 $profile_path = 'images/motherboards/';
                 break;
@@ -318,7 +418,7 @@ class ComponentsController extends Controller
         }
 
         // Delete Image
-        if (isset($component->image_path) && file_exists(public_path($profile_path . $component->image_path))){
+        if (isset($component->image_path) && file_exists(public_path($profile_path . $component->image_path))) {
             unlink(public_path($profile_path . $component->image_path));
         }
 

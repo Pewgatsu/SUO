@@ -71,7 +71,9 @@
                                             <td>{{ $motherboard->mobo_chipset }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                        data-bs-target="#edit_motherboard_{{ $motherboard->component->id }}">Edit</button>
+                                                        data-bs-target="#edit_motherboard_{{ $motherboard->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_motherboard_{{ $motherboard->component->id }}">
                                                     Delete
@@ -80,7 +82,8 @@
                                         </tr>
 
                                         <!-- Edit Motherboard -->
-                                        <x-component.motherboard :memorySpeeds="$memory_speeds" mode="edit" :motherboard="$motherboard" />
+                                        <x-component.motherboard :memorySpeeds="$memory_speeds" mode="edit"
+                                                                 :motherboard="$motherboard"/>
 
                                         <!-- Delete Motherboard -->
                                         <div class="modal fade"
@@ -147,7 +150,8 @@
                                             <td>{{ $cpu->base_clock }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                        data-bs-target="#edit_cpu_{{ $cpu->component->id }}">Edit</button>
+                                                        data-bs-target="#edit_cpu_{{ $cpu->component->id }}">Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_cpu_{{ $cpu->component->id }}">
                                                     Delete
@@ -156,7 +160,7 @@
                                         </tr>
 
                                         <!-- Edit CPU -->
-                                        <x-component.cpu mode="edit" :cpu="$cpu" />
+                                        <x-component.cpu mode="edit" :cpu="$cpu"/>
 
                                         <!-- Delete CPU -->
                                         <div class="modal fade"
@@ -222,13 +226,20 @@
                                             <td>{{ $cpu_cooler->noise_level }}</td>
                                             <td>{{ $cpu_cooler->water_cooled_support }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_cpu_cooler_{{ $cpu_cooler->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_cpu_cooler_{{ $cpu_cooler->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit CPU Cooler -->
+                                        <x-component.cpu-cooler :cpuSockets="$cpu_sockets" mode="edit"
+                                                                :cpuCooler="$cpu_cooler"/>
 
                                         <!-- Delete CPU Cooler -->
                                         <div class="modal fade"

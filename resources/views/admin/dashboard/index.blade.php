@@ -187,7 +187,7 @@
                                                 <td>{{ $component->name }}</td>
                                                 <td>{{ $component->type }}</td>
                                                 <td>{{ $component->manufacturer }}</td>
-                                                <td>{{ $component->updated_at->diffForHumans() }}</td>
+                                                <td>{{ $component->created_at->diffForHumans() }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -236,181 +236,7 @@
     <x-component.cpu mode="add" />
 
     <!-- Add CPU Cooler -->
-    <div class="modal fade" id="add_cpu_cooler" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="add_cpu_cooler_label" aria-hidden="true">
-        <div class="modal-dialog">
-            <form action="{{ route('admin.dashboard.add_cpu_cooler') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="add_cpu_cooler_label">CPU Cooler</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        <!-- Component Attributes -->
-
-                        <div class="mb-3">
-                            <label for="cpu_cooler_image" class="form-label">Component Image</label>
-                            <input class="form-control @error('cpu_cooler_image') is-invalid @enderror" type="file"
-                                   id="cpu_cooler_image" name="cpu_cooler_image">
-                            @error('cpu_cooler_image')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('cpu_cooler_name') is-invalid @enderror"
-                                   id="cpu_cooler_name" name="cpu_cooler_name"
-                                   placeholder="Component Name" value="{{ old('cpu_cooler_name') }}">
-                            <label for="cpu_cooler_name">Component Name</label>
-                            @error('cpu_cooler_name')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text"
-                                   class="form-control @error('cpu_cooler_manufacturer') is-invalid @enderror"
-                                   id="cpu_cooler_manufacturer"
-                                   name="cpu_cooler_manufacturer"
-                                   placeholder="Manufacturer" value="{{ old('cpu_cooler_manufacturer') }}">
-                            <label for="cpu_cooler_manufacturer">Manufacturer</label>
-                            @error('cpu_cooler_manufacturer')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('cpu_cooler_series') is-invalid @enderror"
-                                   id="cpu_cooler_series" name="cpu_cooler_series"
-                                   placeholder="Series" value="{{ old('cpu_cooler_series') }}">
-                            <label for="cpu_cooler_series">Series</label>
-                            @error('cpu_cooler_series')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('cpu_cooler_model') is-invalid @enderror"
-                                   id="cpu_cooler_model" name="cpu_cooler_model"
-                                   placeholder="Model" value="{{ old('cpu_cooler_model') }}">
-                            <label for="cpu_cooler_model">Model</label>
-                            @error('cpu_cooler_model')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('cpu_cooler_color') is-invalid @enderror"
-                                   id="cpu_cooler_color" name="cpu_cooler_color"
-                                   placeholder="Color" value="{{ old('cpu_cooler_color') }}">
-                            <label for="cpu_cooler_color">Color</label>
-                            @error('cpu_cooler_color')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="row g-3 mb-3">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input type="text"
-                                           class="form-control @error('cpu_cooler_length') is-invalid @enderror"
-                                           id="cpu_cooler_length"
-                                           name="cpu_cooler_length"
-                                           placeholder="Length (mm)" value="{{ old('cpu_cooler_length') }}">
-                                    <label for="cpu_cooler_length">Length (mm)</label>
-                                    @error('cpu_cooler_length')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input type="text"
-                                           class="form-control @error('cpu_cooler_width') is-invalid @enderror"
-                                           id="cpu_cooler_width"
-                                           name="cpu_cooler_width"
-                                           placeholder="Width (mm)" value="{{ old('cpu_cooler_width') }}">
-                                    <label for="cpu_cooler_width">Width (mm)</label>
-                                    @error('cpu_cooler_width')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <input type="text"
-                                           class="form-control @error('cpu_cooler_height') is-invalid @enderror"
-                                           id="cpu_cooler_height"
-                                           name="cpu_cooler_height"
-                                           placeholder="Height (mm)" value="{{ old('cpu_cooler_height') }}">
-                                    <label for="cpu_cooler_height">Height (mm)</label>
-                                    @error('cpu_cooler_height')
-                                    <p class="text-danger">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CPU Cooler Attributes -->
-                        <div class="form-floating mb-3">
-                            <select class="cpu_cooler_cpu_socket form-control" multiple="multiple" style="width: 100%"
-                                    name="cpu_cooler_cpu_socket[]" id="cpu_cooler_cpu_socket">
-                                @foreach($cpu_sockets as $cpu_socket)
-                                    <option
-                                        @if(old('cpu_cooler_cpu_socket') !== null && in_array($cpu_socket->id,old('cpu_cooler_cpu_socket'))) selected
-                                        @endif value="{{ $cpu_socket->id }}">{{ $cpu_socket->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('cpu_cooler_cpu_socket')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                            @if(old('cpu_cooler_cpu_socket') !== null)
-                                @foreach(old('cpu_cooler_cpu_socket') as $cpu_socket_name)
-                                    @if(!filter_var($cpu_socket_name,FILTER_VALIDATE_INT))
-                                        <option selected value="{{ $cpu_socket_name }}">{{ $cpu_socket_name }}</option>
-                                    @endif
-                                @endforeach
-                            @endif
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control @error('cpu_cooler_fan_speed') is-invalid @enderror"
-                                   id="cpu_cooler_fan_speed"
-                                   name="cpu_cooler_fan_speed"
-                                   placeholder="Fan Speed (rpm)" value="{{ old('cpu_cooler_fan_speed') }}">
-                            <label for="cpu_cooler_fan_speed">Fan Speed (rpm)</label>
-                            @error('cpu_cooler_fan_speed')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text"
-                                   class="form-control @error('cpu_cooler_noise_level') is-invalid @enderror"
-                                   id="cpu_cooler_noise_level"
-                                   name="cpu_cooler_noise_level"
-                                   placeholder="Noise Level (dB)" value="{{ old('cpu_cooler_noise_level') }}">
-                            <label for="cpu_cooler_noise_level">Noise Level (dB)</label>
-                            @error('cpu_cooler_noise_level')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text"
-                                   class="form-control @error('cpu_cooler_water_cooled') is-invalid @enderror"
-                                   id="cpu_cooler_water_cooled"
-                                   name="cpu_cooler_water_cooled"
-                                   placeholder="Water Cooled Support" value="{{ old('cpu_cooler_water_cooled') }}">
-                            <label for="cpu_cooler_water_cooled">Water Cooled Support</label>
-                            @error('cpu_cooler_water_cooled')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    <x-component.cpu-cooler :cpuSockets="$cpu_sockets" mode="add" />
 
     <!-- Add Graphics Card -->
     <div class="modal fade" id="add_graphics_card" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -1626,12 +1452,6 @@
 @push('select2')
     <script>
         $(document).ready(function () {
-            $('.cpu_cooler_cpu_socket').select2({
-                dropdownParent: $('#add_cpu_cooler'),
-                placeholder: "CPU Socket",
-                allowClear: true,
-                tags: true
-            });
             $('.case_mobo_form_factor').select2({
                 dropdownParent: $('#add_computer_case'),
                 placeholder: "Motherboard Form Factor",

@@ -76,6 +76,7 @@ Route::get('/admin/components/computer_cases', [ComponentsController::class, 'in
 
 Route::post('/admin/components/motherboards/edit/{component}', [ComponentsController::class, 'edit_motherboard'])->name('admin.components.motherboards.edit');
 Route::post('/admin/components/cpus/edit/{component}', [ComponentsController::class, 'edit_cpu'])->name('admin.components.cpus.edit');
+Route::post('/admin/components/cpu_coolers/edit/{component}', [ComponentsController::class, 'edit_cpu_cooler'])->name('admin.components.cpu_coolers.edit');
 
 Route::delete('/admin/components/motherboards/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.motherboards.delete');
 Route::delete('/admin/components/cpus/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.cpus.delete');
