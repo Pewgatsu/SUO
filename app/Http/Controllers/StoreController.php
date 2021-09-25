@@ -60,7 +60,8 @@ class StoreController extends Controller
     public function getContent($id){
         $findId=Store::where('id',$id)->get();
         //dd($findId);
-        session(['banner'=>$findId[0]->banner,
+        $banner = explode('\\', $findId[0]->banner);
+        session(['banner'=> '/images/Store_Banner/'.end($banner) ,
             'storeName'=>$findId[0]->name,
             'storeAddress' =>$findId[0]->address,
             'storeLocation' =>$findId[0]->location,
@@ -75,6 +76,14 @@ class StoreController extends Controller
             'featured_computer_cases'=>$findId[0]->featured_computer_cases
         ]);
 
+
+        $contact = Store::select('name')->where('id',$id)->addSelect(['contact' => Account::select('contact')
+            ->whereColumn('account_id','accounts.id')
+            ])->addSelect(['email' => Account::select('email')
+            ->whereColumn('account_id','accounts.id')
+        ])->get();
+        session()->put('contacts',$contact);
+
         $productsArray = array('motherboards' => array(),
             'cpus' => array(),
             'cpu_coolers' => array(),
@@ -88,47 +97,46 @@ class StoreController extends Controller
         $productsArray['motherboards'] = Component::select('image_path','name')->where('id',session('featured_motherboards') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
-                ->where('store_id', session('htmlId'))
+                ->where('store_id', $id)
 
             ])->get();
         $productsArray['cpus'] = Component::select('image_path','name')->where('id',session('featured_cpus') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
-                ->where('store_id', session('htmlId'))
+                ->where('store_id', $id)
             ])->get();
         $productsArray['cpu_coolers'] = Component::select('image_path','name')->where('id',session('featured_cpu_coolers') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
-                ->where('store_id', session('htmlId'))
+                ->where('store_id', $id)
             ])->get();
         $productsArray['graphics_cards'] = Component::select('image_path','name')->where('id',session('featured_graphics_cards') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
-                ->where('store_id', session('htmlId'))
+                ->where('store_id', $id)
             ])->get();
         $productsArray['rams'] = Component::select('image_path','name')->where('id',session('featured_rams') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
-                ->where('store_id', session('htmlId'))
+                ->where('store_id', $id)->limit(1)
             ])->get();
         $productsArray['storages'] = Component::select('image_path','name')->where('id',session('featured_storages') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
-                ->where('store_id', session('htmlId'))
+                ->where('store_id', $id)
             ])->get();
         $productsArray['psus'] = Component::select('image_path','name')->where('id',session('featured_psus') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
-                ->where('store_id', session('htmlId'))
+                ->where('store_id', $id)
             ])->get();
         $productsArray['computer_cases'] = Component::select('image_path','name')->where('id',session('featured_computer_cases') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
-                ->where('store_id', session('htmlId'))
+                ->where('store_id', $id)
             ])->get();
 
         session()->put('productsArray', $productsArray);
-
 
         if(strlen(session('banner')) <=4){
             //{{session('banner')}}

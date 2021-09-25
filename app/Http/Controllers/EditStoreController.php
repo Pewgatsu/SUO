@@ -54,7 +54,7 @@ class EditStoreController extends Controller
             if($userId == session('presentStoreId') ){
 
                 $this->validate($request, [
-                    'storeBanner' => 'nullable|image|max:5048',
+                    'storeBanner' => 'nullable|image|max:1000',
                     'storeName' => 'required|string',
                     'storeLocation' => 'required|string|starts_with:https://www.google.com/maps/embed?pb|ends_with:sph',
                     'storeAddress' => 'required|string',

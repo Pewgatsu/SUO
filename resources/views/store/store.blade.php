@@ -6,21 +6,23 @@
 @section('content')
     <div class="container-xl mt-3">
 
-        'Contact us'->number ->email
-        'image upload'->editStore.blade
-        'image display' -> store.blade components and banner
+
+        <!--
+        'image display' -> store.blade components
         'linking of the components'
         'old value or hint in the editStore.blade'->components
+        -->
         <!-- Background image or store banner -->
         <div class="bg-image" style="background-image: url({{asset( session('banner','/images/placeholder.jpg')) }}) ;
             height:50vh;" >
 
-            <br><br><br><br><br><br><br>
-            <span class="align-middle"> <h1 class="p-5 align-middle"> {{session('storeName','LOREM IPSUM DOLOR')}}</h1> </span>
+            <br><br><br><br><br><br>
+            <span class="align-middle"> <h1 class="p-1 ps-4 align-middle bg-black text-white"> {{session('storeName','LOREM IPSUM DOLOR')}}</h1> </span>
 
+            <br><br>
             <form class="d-inline" method="get" action="{{route('editStore')}}">
                 @csrf
-                <button type="submit" name="editStore"  {{session('seller','style=display:none;')}} class="btn btn-info btn-block float-end">Edit Profile</button>
+                <button type="submit" name="editStore"  {{session('seller','style=display:none;')}} class="btn btn-info btn-block float-end ">Edit Profile</button>
             </form>
         </div>
 
@@ -213,9 +215,21 @@
 
         </div>
 
-        <div class="container-xl mt-3 mb-3 p3 bg-black">
-            <h4 class="text-white">Contact us @:</h4>
-            <br><br><br>
+        <div class="container-xl mt-3 mb-3 p3 bg-black text-white">
+            <div class="row">
+                <div class="col-md-2">
+                    <br><br>
+                    <h4 class="text-white align-middle">Contact us @:</h4>
+                </div>
+
+                <div class="col-md-8 align-middle">
+                    <br><br>
+                    <h3 class="text-white text-center">{{session('contacts.0.contact')}} </h3>
+                                <h6 class="text-white text-center">or</h6>
+                    <h3 class="text-white text-center"> {{session('contacts.0.email')}}</h3>
+                </div>
+            </div>
+            <br><br>
         </div>
         <br>
 
