@@ -123,12 +123,12 @@
 
                     <!-- CPU Cooler Attributes -->
                     <div class="form-floating mb-3">
-                        <select class="{{ $setCPUSocketID() }} form-control" multiple="multiple" style="width: 100%"
+                        <select class="{{ $setCPUSocketID() }} form-control @error($setCPUSocketID()) is-invalid @enderror" multiple="multiple" style="width: 100%"
                                 name="{{ $setCPUSocketID() }}[]" id="{{ $setCPUSocketID() }}">
                             @foreach($cpuSockets as $cpu_socket)
                                 <option
                                     @if((old($setCPUSocketID()) !== null && in_array($cpu_socket->id,old($setCPUSocketID()))) ||
-                                    $oldCPUSocketField() !== null && in_array($cpu_socket->id,$oldCPUSocketField())) selected
+                                    ($oldCPUSocketField() !== null && in_array($cpu_socket->id,$oldCPUSocketField()))) selected
                                     @endif value="{{ $cpu_socket->id }}">{{ $cpu_socket->name }}</option>
                             @endforeach
                             @if(old($setCPUSocketID()) !== null)

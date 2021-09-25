@@ -173,12 +173,12 @@
                         @enderror
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="{{ $setMemorySpeedID() }} form-control" multiple="multiple" style="width: 100%"
+                        <select class="{{ $setMemorySpeedID() }} form-control @error($setMemorySpeedID()) is-invalid @enderror" multiple="multiple" style="width: 100%"
                                 name="{{ $setMemorySpeedID() }}[]" id="{{ $setMemorySpeedID() }}">
                             @foreach($memorySpeeds as $memory_speed)
                                 <option
                                     @if((old($setMemorySpeedID()) !== null && in_array($memory_speed->id,old($setMemorySpeedID()))) ||
-                                    $oldMemorySpeedField() !== null && in_array($memory_speed->id,$oldMemorySpeedField())) selected
+                                    ($oldMemorySpeedField() !== null && in_array($memory_speed->id,$oldMemorySpeedField()))) selected
                                     @endif value="{{ $memory_speed->id }}">{{ $memory_speed->name }}</option>
                             @endforeach
                             @if(old($setMemorySpeedID()) !== null)
