@@ -31,13 +31,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/test', function(){
-    return view('dashboard.test');
-});
 
 Route::get('/home',[\App\Http\Controllers\HomeController::class,'index'])->name('home');
 
-Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('profile');
 
 Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
 Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
@@ -97,7 +93,6 @@ Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('c
 
 //System Builder
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
-
 Route::post('/components', [SystemBuilderController::class, 'print'])->name('components');
 Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
 
@@ -105,6 +100,13 @@ Route::post('/builder', [SystemBuilderController::class, 'control'])->name('cont
 Route::get('/store', [StoreController::class, 'index'])->name('store');
 Route::get('/store/{id}', [StoreController::class, 'view'])->name('view');
 
+
+//Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('profile');
+Route::get('/profile', function (){
+    return view('userProfile.test');
+})->name('user.profile');
+Route::post('/profile/update/account/{id}',[\App\Http\Controllers\UserProfileController::class,'updateAccountInfo'])->name('updateAccount');
+Route::post('/profile/update/password/{id}',[\App\Http\Controllers\UserProfileController::class,'updateAccountInfo'])->name('updatePassword');
 
 
 
