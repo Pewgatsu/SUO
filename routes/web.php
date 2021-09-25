@@ -81,6 +81,7 @@ Route::post('/admin/components/graphics_cards/edit/{component}', [ComponentsCont
 Route::post('/admin/components/rams/edit/{component}', [ComponentsController::class, 'edit_ram'])->name('admin.components.rams.edit');
 Route::post('/admin/components/storages/edit/{component}', [ComponentsController::class, 'edit_storage'])->name('admin.components.storages.edit');
 Route::post('/admin/components/psus/edit/{component}', [ComponentsController::class, 'edit_psu'])->name('admin.components.psus.edit');
+Route::post('/admin/components/computer_cases/edit/{component}', [ComponentsController::class, 'edit_computer_case'])->name('admin.components.computer_cases.edit');
 
 Route::delete('/admin/components/motherboards/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.motherboards.delete');
 Route::delete('/admin/components/cpus/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.cpus.delete');

@@ -631,13 +631,20 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_computer_case_{{ $computer_case->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_computer_case_{{ $computer_case->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Computer Case -->
+                                        <x-component.computer-case :moboFormFactors="$mobo_form_factors" mode="edit"
+                                                                   :computerCase="$computer_case"/>
 
                                         <!-- Delete Computer Case -->
                                         <div class="modal fade"

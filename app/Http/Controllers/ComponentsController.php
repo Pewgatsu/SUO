@@ -9,6 +9,8 @@ use App\Models\CPUCooler;
 use App\Models\CPUSocket;
 use App\Models\GraphicsCard;
 use App\Models\MemorySpeed;
+use App\Models\MOBOCase;
+use App\Models\MOBOFormFactor;
 use App\Models\MOBOMemorySpeed;
 use App\Models\Motherboard;
 use App\Models\PSU;
@@ -84,9 +86,12 @@ class ComponentsController extends Controller
 
     public function index_computer_cases()
     {
-        $computer_cases = ComputerCase::with('component')->paginate(10);
+        $computer_cases = ComputerCase::with(['component', 'mobo_form_factors'])->paginate(10);
+        $mobo_form_factors = MOBOFormFactor::all();
+
         return view('admin.components.index', [
-            'computer_cases' => $computer_cases
+            'computer_cases' => $computer_cases,
+            'mobo_form_factors' => $mobo_form_factors
         ]);
     }
 
@@ -370,7 +375,7 @@ class ComponentsController extends Controller
             foreach ($request->input('cpu_cooler_cpu_socket_' . $component->id) as $cpu_socket) {
                 $cpu_socket_id = $cpu_socket;
                 if (!filter_var($cpu_socket, FILTER_VALIDATE_INT)) {
-                    $cpu_socket_row = MemorySpeed::create([
+                    $cpu_socket_row = CPUSocket::create([
                         'name' => $cpu_socket
                     ]);
                     $cpu_socket_id = $cpu_socket_row->id;
@@ -700,6 +705,117 @@ class ComponentsController extends Controller
 
         if ($component->psu->isDirty()) {
             $component->psu->save();
+        }
+
+        return back();
+    }
+
+    public function edit_computer_case(Component $component, Request $request){
+        // validate
+        $validator = Validator::make($request->all(), [
+            // General Attributes
+            'case_image' => 'nullable|image|max:5048',
+            'case_name' => 'required|string',
+            'case_manufacturer' => 'nullable|string',
+            'case_series' => 'nullable|string',
+            'case_model' => 'nullable|string',
+            'case_color' => 'nullable|string',
+            'case_length' => 'nullable|numeric|min:0',
+            'case_width' => 'nullable|numeric|min:0',
+            'case_height' => 'nullable|numeric|min:0',
+            // Specific Attributes
+            'case_type' => 'required|string',
+            'case_mobo_form_factor_' . $component->id => 'required|array',
+            'case_power_supply' => 'nullable|string',
+            'case_power_supply_shroud' => 'required|boolean',
+            'case_side_panel_window' => 'nullable|string',
+            'case_water_cooled_support' => 'nullable|boolean',
+            'case_cooler_clearance' => 'nullable|numeric|min:0',
+            'case_graphics_clearance' => 'nullable|numeric|min:0',
+            'case_psu_clearance' => 'nullable|numeric|min:0',
+            'case_full_height_e_slot' => 'nullable|numeric|min:0|max:16',
+            'case_half_height_e_slot' => 'nullable|numeric|min:0|max:16',
+            'case_external_525_bay' => 'nullable|numeric|min:0|max:16',
+            'case_external_350_bay' => 'nullable|numeric|min:0|max:16',
+            'case_internal_350_bay' => 'nullable|numeric|min:0|max:16',
+            'case_internal_250_bay' => 'nullable|numeric|min:0|max:16'
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('modal_id', 'edit_computer_case_' . $component->id)->withErrors($validator)->withInput();
+        }
+
+        $validator->validate();
+
+        if (isset($request->case_image)) {
+            // Remove Old Image
+            if (isset($component->image_path) && file_exists(public_path('images/computer_cases/' . $component->image_path))) {
+                unlink(public_path('images/computer_cases/' . $component->image_path));
+            }
+
+            // Image Upload
+            $case_image_filename = time() . '-' . $request->case_name . '.' . $request->case_image->extension();
+            $request->case_image->move(public_path('images/computer_cases'), $case_image_filename);
+        }
+
+        // Component Attributes
+        $component->image_path = $case_image_filename ?? $component->image_path ?? null;
+        $component->name = $request->case_name;
+        $component->type = 'Computer Case';
+        $component->manufacturer = $request->case_manufacturer;
+        $component->series = $request->case_series;
+        $component->model = $request->case_model;
+        $component->color = $request->case_color;
+        $component->length = $request->case_length;
+        $component->width = $request->case_width;
+        $component->height = $request->case_height;
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
+
+        // Computer Case Attributes
+        $component->computer_case->case_type = $request->case_type;
+        $component->computer_case->power_supply = $request->case_power_supply;
+        $component->computer_case->power_supply_shroud = $request->case_power_supply_shroud;
+        $component->computer_case->side_panel_window = $request->case_side_panel_window;
+        $component->computer_case->water_cooled_support = $request->case_water_cooled_support;
+        $component->computer_case->cooler_clearance = $request->case_cooler_clearance;
+        $component->computer_case->graphics_clearance = $request->case_graphics_clearance;
+        $component->computer_case->psu_clearance = $request->case_psu_clearance;
+        $component->computer_case->full_height_e_slot = $request->case_full_height_e_slot;
+        $component->computer_case->half_height_e_slot = $request->case_half_height_e_slot;
+        $component->computer_case->external_525_bay = $request->case_external_525_bay;
+        $component->computer_case->external_350_bay = $request->case_external_350_bay;
+        $component->computer_case->internal_350_bay = $request->case_internal_350_bay;
+        $component->computer_case->internal_250_bay = $request->case_internal_250_bay;
+
+        if ($component->computer_case->isDirty()) {
+            $component->computer_case->save();
+        }
+
+        $component_form_factors = MOBOCase::where('component_id', $component->id)->get();
+        $form_factors = array();
+        foreach ($component_form_factors as $component_form_factor) {
+            $form_factors[] = $component_form_factor->mobo_form_factor_id;
+        }
+
+        // MOBO Form Factors
+        if ($form_factors != $request->input('case_mobo_form_factor_' . $component->id)) {
+            MOBOCase::where('component_id', $component->id)->delete();
+            foreach ($request->input('case_mobo_form_factor_' . $component->id) as $mobo_form_factor) {
+                $mobo_form_factor_id = $mobo_form_factor;
+                if (!filter_var($mobo_form_factor, FILTER_VALIDATE_INT)) {
+                    $mobo_form_factor_row = MOBOFormFactor::create([
+                        'name' => $mobo_form_factor
+                    ]);
+                    $mobo_form_factor_id = $mobo_form_factor_row->id;
+                }
+                MOBOCase::create([
+                    'component_id' => $component->id,
+                    'mobo_form_factor_id' => $mobo_form_factor_id
+                ]);
+            }
         }
 
         return back();
