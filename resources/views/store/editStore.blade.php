@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <form  class="mb-4"  method="get" action="{{route('saveInfo')}}" enctype="multipart/form-data">
+    <form  class="mb-4"  method="post" action="{{route('saveInfo')}}" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="storeBanner" class="form-label">Store Image Banner</label>
             <input class="form-control" type="file"
