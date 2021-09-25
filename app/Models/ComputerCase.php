@@ -16,7 +16,6 @@ class ComputerCase extends Model
     protected $fillable = [
         'component_id',
         'case_type',
-        'mobo_form_factor',
         'power_supply',
         'power_supply_shroud',
         'side_panel_window',
@@ -34,5 +33,9 @@ class ComputerCase extends Model
 
     public function component(){
         return $this->belongsTo(Component::class);
+    }
+
+    public function mobo_form_factors(){
+        return $this->belongsToMany(MOBOFormFactor::class,'mobo_cases','component_id','mobo_form_factor_id');
     }
 }

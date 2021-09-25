@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    @stack('scripts')
+{{--    @stack('scripts')--}}
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -18,21 +18,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <script>
-    $(document).ready(function () {
-    $('#searchpagecomponents_table').DataTable({
-    "processing":true,
-    "serverSide":true,
-    });
-    });
-    $(document).ready(function () {
-    $('#searchpagestore_table').DataTable();
-    });
-    </script>
 </head>
 <body>
 <!-- navbar -->
@@ -50,7 +37,7 @@
 
 @stack('datepicker')
 
-
+@stack('select2')
 
 </body>
 </html>

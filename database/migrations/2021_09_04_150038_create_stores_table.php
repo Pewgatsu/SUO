@@ -18,8 +18,18 @@ class CreateStoresTable extends Migration
             $table->foreignId('account_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('banner');
             $table->string('name');
-            $table->string('address');
+            $table->longText('address');
+            $table->string('location');
             $table->string('description');
+            $table->bigInteger('featured_motherboards');
+            $table->bigInteger('featured_cpus');
+            $table->bigInteger('featured_cpu_coolers');
+            $table->bigInteger('featured_graphics_cards');
+            $table->bigInteger('featured_rams');
+            $table->bigInteger('featured_storages');
+            $table->bigInteger('featured_psus');
+            $table->bigInteger('featured_computer_cases');
+
             $table->timestamps();
         });
     }

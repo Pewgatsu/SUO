@@ -25,6 +25,6 @@ class CPUCooler extends Model
     }
 
     public function cpu_sockets(){
-        return $this->belongsToMany(CPUSocket::class,'SocketCooler','component_id','cpu_socket_id');
+        return $this->belongsToMany(CPUSocket::class,'socket_coolers','component_id','cpu_socket_id');
     }
 }
