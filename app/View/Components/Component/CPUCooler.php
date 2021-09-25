@@ -99,6 +99,7 @@ class CPUCooler extends Component
                     return null;
             }
         }
+        return null;
     }
 
     public function oldCPUSocketField(){

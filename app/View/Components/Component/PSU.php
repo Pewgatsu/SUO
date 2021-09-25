@@ -97,6 +97,8 @@ class PSU extends Component
                     return $this->psu->{'pcie_6+2pin_connector'};
                 case 'psu_pcie_6pin_connector':
                     return $this->psu->pcie_6pin_connector;
+                default:
+                    return null;
             }
         }
         return null;
