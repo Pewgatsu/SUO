@@ -70,8 +70,10 @@
                                             <td>{{ $motherboard->mobo_form_factor }}</td>
                                             <td>{{ $motherboard->mobo_chipset }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-info" data-bs-toggle="modal"
-                                                        data-bs-target="#edit_motherboard_{{ $motherboard->component->id }}">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_motherboard_{{ $motherboard->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_motherboard_{{ $motherboard->component->id }}">
                                                     Delete
@@ -80,7 +82,8 @@
                                         </tr>
 
                                         <!-- Edit Motherboard -->
-                                        <x-component.motherboard :memorySpeeds="$memory_speeds" mode="edit" :motherboard="$motherboard" />
+                                        <x-component.motherboard :memorySpeeds="$memory_speeds" mode="edit"
+                                                                 :motherboard="$motherboard"/>
 
                                         <!-- Delete Motherboard -->
                                         <div class="modal fade"
@@ -146,13 +149,18 @@
                                             <td>{{ $cpu->microarchitecture }}</td>
                                             <td>{{ $cpu->base_clock }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_cpu_{{ $cpu->component->id }}">Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_cpu_{{ $cpu->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit CPU -->
+                                        <x-component.cpu mode="edit" :cpu="$cpu"/>
 
                                         <!-- Delete CPU -->
                                         <div class="modal fade"
@@ -218,13 +226,20 @@
                                             <td>{{ $cpu_cooler->noise_level }}</td>
                                             <td>{{ $cpu_cooler->water_cooled_support }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_cpu_cooler_{{ $cpu_cooler->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_cpu_cooler_{{ $cpu_cooler->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit CPU Cooler -->
+                                        <x-component.cpu-cooler :cpuSockets="$cpu_sockets" mode="edit"
+                                                                :cpuCooler="$cpu_cooler"/>
 
                                         <!-- Delete CPU Cooler -->
                                         <div class="modal fade"
@@ -290,13 +305,19 @@
                                             <td>{{ $graphics_card->base_clock }}</td>
                                             <td>{{ $graphics_card->interface }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_graphics_card_{{ $graphics_card->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_graphics_card_{{ $graphics_card->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Graphics Card -->
+                                        <x-component.graphics-card mode="edit" :graphicsCard="$graphics_card"/>
 
                                         <!-- Delete Graphics Card -->
                                         <div class="modal fade"
@@ -363,13 +384,18 @@
                                             <td>{{ $ram->memory_speed }}</td>
                                             <td>{{ $ram->memory_form_factor }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_ram_{{ $ram->component->id }}">Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_ram_{{ $ram->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit RAM -->
+                                        <x-component.ram mode="edit" :ram="$ram"/>
 
                                         <!-- Delete RAM -->
                                         <div class="modal fade"
@@ -436,13 +462,19 @@
                                             <td>{{ $storage->interface }}</td>
                                             <td>{{ $storage->storage_form_factor }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_storage_{{ $storage->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_storage_{{ $storage->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Storage -->
+                                        <x-component.storage mode="edit" :storage="$storage"/>
 
                                         <!-- Delete Storage -->
                                         <div class="modal fade"
@@ -509,13 +541,18 @@
                                             <td>{{ $psu->wattage }}</td>
                                             <td>{{ $psu->efficiency_rating }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_psu_{{ $psu->component->id }}">Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_psu_{{ $psu->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit PSU -->
+                                        <x-component.psu mode="edit" :psu="$psu"/>
 
                                         <!-- Delete PSU -->
                                         <div class="modal fade"
@@ -594,13 +631,20 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-info">Edit</button>
+                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_computer_case_{{ $computer_case->component->id }}">
+                                                    Edit
+                                                </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                         data-bs-target="#delete_computer_case_{{ $computer_case->component->id }}">
                                                     Delete
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Computer Case -->
+                                        <x-component.computer-case :moboFormFactors="$mobo_form_factors" mode="edit"
+                                                                   :computerCase="$computer_case"/>
 
                                         <!-- Delete Computer Case -->
                                         <div class="modal fade"

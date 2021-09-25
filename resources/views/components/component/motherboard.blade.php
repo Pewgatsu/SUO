@@ -1,4 +1,4 @@
-<div class="modal fade" id="{{ $setID() }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade text-start" id="{{ $setID() }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="{{ $setID() }}_label" aria-hidden="true">
     <div class="modal-dialog">
         <form action="{{ $setRoute() }}" method="post" enctype="multipart/form-data">
@@ -8,7 +8,7 @@
                     <h5 class="modal-title" id="{{ $setID() }}_label">{{ $setTitle() }} Motherboard</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body text-start">
+                <div class="modal-body">
 
                     <!-- Component Attributes -->
 
@@ -173,16 +173,16 @@
                         @enderror
                     </div>
                     <div class="form-floating mb-3">
-                        <select class="{{ $setMemorySpeedID() }} form-control" multiple="multiple" style="width: 100%"
+                        <select class="{{ $setMemorySpeedID() }} form-control @error($setMemorySpeedID()) is-invalid @enderror" multiple="multiple" style="width: 100%"
                                 name="{{ $setMemorySpeedID() }}[]" id="{{ $setMemorySpeedID() }}">
                             @foreach($memorySpeeds as $memory_speed)
                                 <option
-                                    @if((old('mobo_mem_speed_support') !== null && in_array($memory_speed->id,old('mobo_mem_speed_support'))) ||
-                                    $oldMemorySpeedField() !== null && in_array($memory_speed->id,$oldMemorySpeedField())) selected
+                                    @if((old($setMemorySpeedID()) !== null && in_array($memory_speed->id,old($setMemorySpeedID()))) ||
+                                    ($oldMemorySpeedField() !== null && in_array($memory_speed->id,$oldMemorySpeedField()))) selected
                                     @endif value="{{ $memory_speed->id }}">{{ $memory_speed->name }}</option>
                             @endforeach
-                            @if(old('mobo_mem_speed_support') !== null)
-                                @foreach(old('mobo_mem_speed_support') as $memory_speed_name)
+                            @if(old($setMemorySpeedID()) !== null)
+                                @foreach(old($setMemorySpeedID()) as $memory_speed_name)
                                     @if(!filter_var($memory_speed_name,FILTER_VALIDATE_INT))
                                         <option selected
                                                 value="{{ $memory_speed_name }}">{{ $memory_speed_name }}</option>
@@ -190,7 +190,7 @@
                                 @endforeach
                             @endif
                         </select>
-                        @error('mobo_mem_speed_support')
+                        @error($setMemorySpeedID())
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -295,7 +295,7 @@
                     <div class="form-floating mb-3">
                         <select class="form-select" id="mobo_ecc_support" name="mobo_ecc_support">
                             <option value="0"
-                                    @if (!(old('mobo_ecc_support')) ?? $oldField('mobo_ecc_support')) selected @endif>No
+                                    @if (!(old('mobo_ecc_support') ?? $oldField('mobo_ecc_support'))) selected @endif>No
                             </option>
                             <option value="1"
                                     @if (old('mobo_ecc_support') ?? $oldField('mobo_ecc_support')) selected @endif>Yes
@@ -306,7 +306,7 @@
                     <div class="form-floating mb-3">
                         <select class="form-select" id="mobo_raid_support" name="mobo_raid_support">
                             <option value="0"
-                                    @if (!(old('mobo_raid_support')) ?? $oldField('mobo_raid_support')) selected @endif>
+                                    @if (!(old('mobo_raid_support') ?? $oldField('mobo_raid_support'))) selected @endif>
                                 No
                             </option>
                             <option value="1"
