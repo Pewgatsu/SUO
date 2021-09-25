@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a href="{{route('profile')}}" class="nav-link">User Profile</a>
+                    <a href="{{route('user.profile')}}" class="nav-link">User Profile</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('logout')}}" class="nav-link">Logout</a>
