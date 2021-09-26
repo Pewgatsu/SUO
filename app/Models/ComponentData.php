@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ComponentData extends Model
 {
     use HasFactory;
-    protected $table="component";
+    protected $table="components";
 }
