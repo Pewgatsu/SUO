@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         @if($mode === 'edit' && isset($storage) && isset($storage->component->image_path))
                             <img class="img-fluid rounded mx-auto d-block mb-2"
-                                 src="{{ asset('images/storages/' . $storage->component->image_path) }}" alt="">
+                                 src="{{ asset('images/components/storages/' . $storage->component->image_path) }}" alt="">
                         @endif
                         <label for="storage_image" class="form-label">Component Image</label>
                         <input class="form-control @error('storage_image') is-invalid @enderror" type="file"

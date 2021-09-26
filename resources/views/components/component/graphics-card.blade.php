@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         @if($mode === 'edit' && isset($graphicsCard) && isset($graphicsCard->component->image_path))
                             <img class="img-fluid rounded mx-auto d-block mb-2"
-                                 src="{{ asset('images/graphics_cards/' . $graphicsCard->component->image_path) }}"
+                                 src="{{ asset('images/components/graphics_cards/' . $graphicsCard->component->image_path) }}"
                                  alt="">
                         @endif
                         <label for="graphics_card_image" class="form-label">Component Image</label>
