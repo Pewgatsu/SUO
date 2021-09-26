@@ -9,7 +9,7 @@ class Motherboard extends Model
 {
     use HasFactory;
 
-    protected $table = 'motherboard';
+    protected $table = 'motherboards';
 
     protected $primaryKey = 'component_id';
 
@@ -21,7 +21,6 @@ class Motherboard extends Model
         'memory_slot',
         'memory_type',
         'max_mem_support',
-        'mem_speed_support',
         'pcie_x16_slot',
         'pcie_x8_slot',
         'pcie_x4_slot',
@@ -38,5 +37,9 @@ class Motherboard extends Model
 
     public function component(){
         return $this->belongsTo(Component::class);
+    }
+
+    public function memory_speeds(){
+        return $this->belongsToMany(MemorySpeed::class,'mobo_memory_speeds','component_id','memory_speed_id');
     }
 }

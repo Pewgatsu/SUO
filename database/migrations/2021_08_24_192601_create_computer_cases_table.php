@@ -17,7 +17,6 @@ class CreateComputerCasesTable extends Migration
             $table->foreignId('component_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->primary('component_id');
             $table->string('case_type');
-            $table->string('mobo_form_factor');
             $table->string('power_supply')->nullable();
             $table->boolean('power_supply_shroud');
             $table->string('side_panel_window')->nullable();

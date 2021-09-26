@@ -9,10 +9,19 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $table = 'product';
-
     protected $table = 'products';
     protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'store_id ',
+        'component_id',
+        'price',
+        'date_added',
+        'type',
+        'status',
+        'status_date',
+        'description'
+    ];
 
     public function buildProduct(){
         return $this->hasMany(BuildProducts::class);

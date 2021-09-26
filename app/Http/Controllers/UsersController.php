@@ -10,14 +10,20 @@ class UsersController extends Controller
     public function index()
     {
         $accounts = Account::paginate(10);
-        return view('users.index', [
+        return view('admin.users.index', [
             'accounts' => $accounts
         ]);
     }
 
     public function remove(Account $account)
     {
+        // Delete Profile Pic
+        if (isset($account->profile_path) && file_exists(public_path('images/accounts/' . $account->profile_path))){
+            unlink(public_path('images/accounts/' . $account->profile_path));
+        }
+
         $account->delete();
+
         return back();
     }
 

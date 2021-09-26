@@ -5,6 +5,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EditStoreController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
@@ -31,13 +32,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/test', function(){
-    return view('dashboard.test');
-});
 
 Route::get('/home',[\App\Http\Controllers\HomeController::class,'index'])->name('home');
 
-Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('profile');
 
 Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
 Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
@@ -73,6 +70,15 @@ Route::get('/admin/components/storages', [ComponentsController::class, 'index_st
 Route::get('/admin/components/psus', [ComponentsController::class, 'index_psus'])->name('admin.components.psus')->middleware('auth');
 Route::get('/admin/components/computer_cases', [ComponentsController::class, 'index_computer_cases'])->name('admin.components.computer_cases')->middleware('auth');
 
+Route::post('/admin/components/motherboards/edit/{component}', [ComponentsController::class, 'edit_motherboard'])->name('admin.components.motherboards.edit');
+Route::post('/admin/components/cpus/edit/{component}', [ComponentsController::class, 'edit_cpu'])->name('admin.components.cpus.edit');
+Route::post('/admin/components/cpu_coolers/edit/{component}', [ComponentsController::class, 'edit_cpu_cooler'])->name('admin.components.cpu_coolers.edit');
+Route::post('/admin/components/graphics_cards/edit/{component}', [ComponentsController::class, 'edit_graphics_card'])->name('admin.components.graphics_cards.edit');
+Route::post('/admin/components/rams/edit/{component}', [ComponentsController::class, 'edit_ram'])->name('admin.components.rams.edit');
+Route::post('/admin/components/storages/edit/{component}', [ComponentsController::class, 'edit_storage'])->name('admin.components.storages.edit');
+Route::post('/admin/components/psus/edit/{component}', [ComponentsController::class, 'edit_psu'])->name('admin.components.psus.edit');
+Route::post('/admin/components/computer_cases/edit/{component}', [ComponentsController::class, 'edit_computer_case'])->name('admin.components.computer_cases.edit');
+
 Route::delete('/admin/components/motherboards/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.motherboards.delete');
 Route::delete('/admin/components/cpus/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.cpus.delete');
 Route::delete('/admin/components/cpu_coolers/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.cpu_coolers.delete');
@@ -97,14 +103,27 @@ Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('c
 
 //System Builder
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
-
 Route::post('/components', [SystemBuilderController::class, 'print'])->name('components');
 Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
 
 //Store
-Route::get('/store', [StoreController::class, 'index'])->name('store');
-Route::get('/store/{id}', [StoreController::class, 'view'])->name('view');
 
+Route::prefix('store')->group(function () {
+    Route::get('/mystore', [StoreController::class, 'myStore'])->name('myStore');
+    Route::get('/{id}', [StoreController::class, 'index'])->name('viewStore');
+    Route::any('/editStore/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
+    Route::get('/edit/myStore', [EditStoreController::class, 'index'])->name('editStore');
+
+});
+
+
+
+//Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('profile');
+Route::get('/profile', function (){
+    return view('userProfile.test');
+})->name('user.profile');
+Route::post('/profile/update/account/{id}',[\App\Http\Controllers\UserProfileController::class,'updateAccountInfo'])->name('updateAccount');
+Route::post('/profile/update/password/{id}',[\App\Http\Controllers\UserProfileController::class,'updateAccountInfo'])->name('updatePassword');
 
 
 
