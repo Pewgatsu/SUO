@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -13,9 +13,8 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
-    <!-- Fonts -->
+
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
@@ -38,7 +37,7 @@
 
 </head>
 <body>
-<!-- navbar -->
+
 
 <div id="app" >
     <main class="bg-light">

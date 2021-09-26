@@ -1,5 +1,5 @@
 window._ = require('lodash');
-import 'select2/dist/js/select2.min';
+import 'select2/dist/js/select2';
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
