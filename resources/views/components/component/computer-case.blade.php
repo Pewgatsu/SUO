@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         @if($mode === 'edit' && isset($computerCase) && isset($computerCase->component->image_path))
                             <img class="img-fluid rounded mx-auto d-block mb-2"
-                                 src="{{ asset('images/computer_cases/' . $computerCase->component->image_path) }}" alt="">
+                                 src="{{ asset('images/components/computer_cases/' . $computerCase->component->image_path) }}" alt="">
                         @endif
                         <label for="case_image" class="form-label">Component Image</label>
                         <input class="form-control @error('case_image') is-invalid @enderror" type="file"
