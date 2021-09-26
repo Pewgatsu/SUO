@@ -63,6 +63,12 @@
 
         </div>
 
+        <div class="py-8">
+            <div class="border-top border-dark"></div>
+        </div>
+
     </div>
+
+
 
 </div>

@@ -118,12 +118,10 @@ Route::prefix('store')->group(function () {
 
 
 
-//Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('profile');
-Route::get('/profile', function (){
-    return view('userProfile.test');
-})->name('user.profile');
-Route::post('/profile/update/account/{id}',[\App\Http\Controllers\UserProfileController::class,'updateAccountInfo'])->name('updateAccount');
-Route::post('/profile/update/password/{id}',[\App\Http\Controllers\UserProfileController::class,'updateAccountInfo'])->name('updatePassword');
+
+Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('user.profile');
+
+
 
 
 
