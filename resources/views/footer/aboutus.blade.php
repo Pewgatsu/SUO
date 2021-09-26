@@ -21,8 +21,7 @@
                     <div class="p-5 card mx-auto" style="margin-top: 60px; width: 40rem; ">
                         <p class="card-text">
                             The developers behind this web application are four Computer Science students Far Eastern University
-                            Institute of Technology. This application is created to comply for the final requirements of Applications
-                            Development and Emerging Technologies.</p>
+                            Institute of Technology. This application is created to comply for the final requirements of CS Project 1.</p>
                     </div>
                 </div>
             </div>
