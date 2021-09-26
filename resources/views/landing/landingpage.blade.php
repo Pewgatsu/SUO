@@ -30,8 +30,8 @@
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
-                            <h2 class="display-4">Insert Mission Here</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                            <h2 class="display-4">Mission</h2>
+                            <p>The developers aim to provide a platform for both consumers and seller/s, to build system units and sell components to consumers.</p>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="p-5">
-                            <h2 class="display-4">Insert Vision Here</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                            <h2 class="display-4">Vision</h2>
+                            <p>To ease the process of building a system unit and increase the quality of purchases.</p>
                         </div>
                     </div>
                 </div>
@@ -63,8 +63,8 @@
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="p-5">
-                        <h2 class="display-4">Insert Contact</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+                        <h2 class="display-4">Contact</h2>
+                        <p>blank</p>
                     </div>
                 </div>
             </div>
