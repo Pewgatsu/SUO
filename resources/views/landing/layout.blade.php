@@ -8,20 +8,22 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
-<!-- CSRF Token -->
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-@yield('head')
+    @yield('head')
 
-<!-- Scripts -->
+
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <!-- Fonts -->
+
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
-    <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="{{asset('js/scripts.js')}}"></script>
 
 
 
@@ -42,5 +44,8 @@
 
 
 
+
 </body>
 </html>
+
+

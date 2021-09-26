@@ -3,6 +3,8 @@
 @section('content')
 
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+    <script src="{{asset('js/scripts.js')}}"></script>
+
 
 
     <body id="page-top">
@@ -12,7 +14,7 @@
             <div class="container px-5">
                 <h1 class="masthead-heading mb-0">Insert Title</h1>
                 <h2 class="masthead-subheading mb-0">Insert Phrase</h2>
-                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#about_section">Learn More</a>
+                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#" onclick="$('#about_section').animatescroll()">Learn More</a>
             </div>
         </div>
         <div class="bg-circle-1 bg-circle"></div>
@@ -36,6 +38,8 @@
                     </div>
                 </div>
             </div>
+
+
 
         <!-- Content section 2-->
 
@@ -70,7 +74,6 @@
             </div>
         </div>
     </section>
-
 
 
 </body>

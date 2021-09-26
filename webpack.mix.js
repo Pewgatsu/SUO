@@ -19,5 +19,6 @@ mix.postCss('resources/css/styles.css','public/css');
 
 mix.js('resources/js/validate_login.js','public/js');
 mix.js('resources/js/validate_register.js','public/js');
+mix.js('resources/js/scripts.js','public/js');
 
 
