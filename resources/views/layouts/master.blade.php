@@ -48,6 +48,7 @@
 </div>
 
 @stack('datepicker')
+@stack('select2')
 
 
 </body>
