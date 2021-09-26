@@ -31,23 +31,16 @@
                         <label for="usernameField">Username</label>
                         <div class="valid-tooltip position-relative">Looks Good!</div>
                         @error('username')
-{{--                        <script>--}}
-{{--                            let username = document.getElementById('usernameField');--}}
-{{--                            username.addEventListener("blur", validateUsername);--}}
-{{--                        </script>--}}
                         <div class="invalid-tooltip position-relative">Field must not be empty!</div>
                         @enderror
                     </div>
 
                     <div class="form-floating flex-fill mb-4 ">
-                        <input type="text" id="passwordField" name="password" class="form-control @error('password') is-invalid @enderror"placeholder="#" autofocus value="{{old('password')}}">
+                        <input type="password" id="passwordField" name="password" class="form-control @error('password') is-invalid @enderror"placeholder="#" autofocus value="{{old('password')}}">
                         <label for="usernameField">Password</label>
                         <div class="valid-tooltip position-relative">Looks Good!</div>
                         @error('password')
-{{--                        <script>--}}
-{{--                            let password = document.getElementById('passwordField');--}}
-{{--                            password.addEventListener("blur", validatePassword);--}}
-{{--                        </script>--}}
+
                         <div class="invalid-tooltip position-relative">Field must not be empty!</div>
                         @enderror
                     </div>
