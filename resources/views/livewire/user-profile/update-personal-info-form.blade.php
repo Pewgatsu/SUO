@@ -11,7 +11,7 @@
             <div class="card mb-5 mt-3"  style="border-radius: 15px;">
 
 
-                <form wire:submit.prevent="save">
+                <form wire:submit.prevent="savePersonalInfo">
                     @csrf
                     <div id="personal_information_section">
 
@@ -20,7 +20,6 @@
                             <div class="col-md-3 ms-5">
                                 <label for="firstname" class="fs-6"><small>First Name</small></label>
                                 <input type="text" class="form-control" id="firstname" name="firstname" wire:model.defer="firstname" value="">
-                                <div class="invalid-tooltip position-relative">{{$errors->first('firstname')}}</div>
                                 @error('firstname') <span class="error" style="color: red"><small>{{ $message }}</small></span> @enderror
 
                             </div>
@@ -28,7 +27,7 @@
                             <div class="col-md-3 ms-4">
                                 <label for="lastname" class="fs-6"><small>Last Name</small></label>
                                 <input type="text" class="form-control" id="lastname" name="lastname" wire:model.defer="lastname" value="">
-                                <div class="invalid-tooltip position-relative">{{$errors->first('lastname')}}</div>
+
                                 @error('lastname') <span class="error" style="color: red"><small>{{ $message }}</small></span> @enderror
                             </div>
                         </div>
@@ -36,34 +35,32 @@
                         <div class="col-md-6 mx-5 mt-2">
                             <label for="birthdate" class="fs-6"><small>Date of Birth</small></label>
                             <input class="form-control" id="birthdate" name="birthdate" placeholder=""
-                                   type="text" autocomplete="off" value="" wire:model.defer="birthdate"/>
-                            <div class="invalid-tooltip position-relative">{{$errors->first('birthdate')}}</div>
+                                   type="text" autocomplete="off" value="" wire:model.defer="birthdate" onchange="this.dispatchEvent(new InputEvent('input'))"/>
+
                             @error('birthdate') <span class="error" style="color: red"><small>{{ $message }}</small></span> @enderror
                         </div>
 
                         <div class="col-md-6 mx-5 mt-2">
                             <label for="gender" class="fs-6"><small>Gender</small></label>
-                            <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender" wire:model.defer="gender">
+                            <select class="form-select" id="gender" name="gender" wire:model.defer="gender">
                                 <option value=""></option>
                                 <option value="male">Male</option>
                                 <option value="female"  >Female</option>
                                 <option value="other" >Other</option>
                             </select>
-                            <div class="invalid-tooltip position-relative">{{$errors->first('gender')}}</div>
+
                             @error('gender') <span class="error" style="color: red"><small>{{ $message }}</small></span> @enderror
                         </div>
 
                         <div class="col-md-6 mx-5 mt-2">
                             <label for="address" class="fs-6"><small>Address</small></label>
                             <input type="text" class="form-control" id="address" name="address" value="" wire:model.defer="address">
-                            <div class="invalid-tooltip position-relative">{{$errors->first('address')}}</div>
                             @error('address') <span class="error" style="color: red"><small>{{ $message }}</small></span> @enderror
                         </div>
 
                         <div class="col-md-6 mx-5 mt-2 mb-5">
                             <label for="contact" class="fs-6"><small>Contact</small></label>
                             <input type="text" class="form-control" id="contact" name="contact" value="" wire:model.defer="contact">
-                            <div class="invalid-tooltip position-relative">{{$errors->first('contact')}}</div>
                             @error('contact') <span class="error" style="color: red"><small>{{ $message }}</small></span> @enderror
                         </div>
 
@@ -71,7 +68,7 @@
 
                     <div class="text-md-end shadow-sm pe-5 py-3 bg-light"style="border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
                         {{--                           <button type="button" class="btn btn-dark me-2" style="width: 10%" name="editPersonalInfo" id="editPersonalInfo">Edit</button>--}}
-                        <button type="submit" class="btn btn-dark" style="width: 10%" id="save">Save</button>
+                        <button type="submit" class="btn btn-dark" style="width: 10%" id="save"><small>Save</small></button>
                     </div>
 
                 </form>

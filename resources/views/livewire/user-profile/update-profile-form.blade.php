@@ -28,31 +28,30 @@
 
                     </form>
 
-                    {{--                   form for Username, email, account type--}}
 
-                    <form wire:submit.prevent="save">
+                    <form wire:submit.prevent="saveProfile">
                         @csrf
 
                         <div id="account_information_section">
 
                             <div class="col-md-6 mx-5 mt-5" id="username_field">
                                 <label for="username" class="fs-6"><small>Username</small></label>
-                                <input type="text" class="form-control " id="username" name="username" wire:model.defer="username">
+                                <input type="text" class="form-control" id="username" name="username" wire:model.defer="username">
                                 @error('username') <span class="error" style="color: red"><small>{{ $message }}</small></span> @enderror
                             </div>
 
                             <div class="col-md-6 mx-5 mt-2 mb-5">
                                 <label for="email" class="fs-6"><small>Email</small></label>
                                 <input type="text" class="form-control" id="email" name="email" wire:model.defer="email">
-                                <div class="invalid-tooltip position-relative">{{$errors->first('email')}}</div>
                                 @error('email') <span class="error" style="color: red"><small>{{ $message }}</small></span> @enderror
                             </div>
+
 
                         </div>
 
                         <div class="text-md-end shadow-sm pe-5 py-3 bg-light"style="border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
                             {{--                           <button type="button" class="btn btn-dark me-2" style="width: 10%" name="edit" id="editAccountInfo">Edit</button>--}}
-                            <button type="submit" class="btn btn-dark" style="width: 10%" id="save">Save</button>
+                            <button type="submit" class="btn btn-dark" style="width: 10%" id="save"><small>Save</small></button>
                         </div>
 
                     </form>

@@ -38,7 +38,7 @@ class UpdatePasswordForm extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function save(){
+    public function savePassword(){
 
         $this->validate($this->getRules(),$this->getMessages());
         $account = Auth::user();

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\UserProfile;
 
-use App\Models\Account;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -11,6 +11,7 @@ class UpdateProfileForm extends Component
 {
     public $username;
     public $email;
+
 
     public function getUser(){
         $account = Auth::user();
@@ -25,8 +26,8 @@ class UpdateProfileForm extends Component
     public function getRules(){
         return [
             //
-            'username' => ['required','string',Rule::unique('accounts','username')->ignore(Auth::id())],
-            'email' => ['required','email',Rule::unique('accounts','email')->ignore(Auth::id())],
+            'username' => ['required','string', Rule::unique('accounts','username')->ignore(Auth::id())],
+            'email' => ['required','email', Rule::unique('accounts','email')->ignore(Auth::id())],
         ];
     }
 
@@ -37,11 +38,9 @@ class UpdateProfileForm extends Component
         ];
     }
 
-    public function updated($propertyName){
-        $this->validateOnly($propertyName);
-    }
 
-    public function save(){
+
+    public function saveProfile(){
         $this->validate($this->getRules(),$this->getMessages());
 
         $account = $this->getUser();
@@ -51,19 +50,17 @@ class UpdateProfileForm extends Component
             'email' => $this->email
         ]);
 
-        /*
-         * Another approach to update user
-        Account::find(Auth::id())->forceFill([
-            'username' => $this->username,
-            'email' => $this->email
-        ])->save();
-        */
+
+//        Account::find(Auth::id())->forceFill([
+//            'username' => $this->username,
+//            'email' => $this->email
+//        ])->save();
+
+
     }
 
     public function render()
     {
-
-
         return view('livewire.user-profile.update-profile-form');
     }
 }

@@ -9,7 +9,7 @@
                     <!-- Grid column -->
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="{{ route('aboutus') }}" class="text-decoration-none text-white">About Us</a>
+                            <a href="#" onclick="$('#about_section').animatescroll()" class="text-decoration-none text-white">About Us</a>
                         </h6>
                     </div>
                     <!-- Grid column -->
@@ -17,7 +17,7 @@
                     <!-- Grid column -->
                     <div class="col-md-2">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="#!" class="text-decoration-none text-white">Contact</a>
+                            <a href="#" onclick="$('#contact_section').animatescroll()" class="text-decoration-none text-white">Contact</a>
                         </h6>
                     </div>
                     <!-- Grid column -->
