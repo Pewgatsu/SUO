@@ -4,7 +4,7 @@ namespace App\Http\Livewire\UserProfile;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use function Sodium\add;
+
 
 class UpdatePersonalInfoForm extends Component
 {
@@ -61,7 +61,7 @@ class UpdatePersonalInfoForm extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function save(){
+    public function savePersonalInfo(){
 
         $this->validate($this->getRules(),$this->getMessages());
 
