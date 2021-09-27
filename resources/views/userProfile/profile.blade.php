@@ -27,16 +27,26 @@
 @livewire('user-profile.update-profile-form')
 @livewire('user-profile.update-personal-info-form')
 @livewire('user-profile.update-password-form')
+@livewire('user-profile.delete-account-form')
 @include('layouts.footer')
 
 
 
 @livewireScripts
 
-
-
-
 </body>
+
+<script>
+    window.addEventListener('show-delete-modal',event => {
+        $('#confirmationModal').modal('show');
+    })
+
+    window.addEventListener('hide-delete-modal',event => {
+        $('#confirmationModal').modal('hide');
+    })
+
+</script>
+
 
 @push('datepicker')
 
