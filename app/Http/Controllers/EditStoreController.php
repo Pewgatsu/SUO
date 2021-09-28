@@ -108,9 +108,10 @@ class EditStoreController extends Controller
                     $storeId=Store::select('id')->where('account_id',$userId)->get();
                     $storeId = $storeId[0]->id;
 
-                    Store::where('account_id', session('userId'))->update(
-                        ['account_id' => session('userId'),
-                            'banner' => $store_banner,
+                    if($store_banner != " "){
+                        Store::where('account_id', session('userId'))->update(
+                            ['account_id' => session('userId'),
+                                'banner' => $store_banner,
                                 'name' => $request->storeName,
                                 'address' => $request->storeAddress,
                                 'location' =>$request->storeLocation,
@@ -123,7 +124,25 @@ class EditStoreController extends Controller
                                 'featured_storages' => $request->storages,
                                 'featured_psus' => $request->psus,
                                 'featured_computer_cases' => $request->computer_cases]
-                    );
+                        );
+                    }else{
+                        Store::where('account_id', session('userId'))->update(
+                            ['account_id' => session('userId'),
+                                'name' => $request->storeName,
+                                'address' => $request->storeAddress,
+                                'location' =>$request->storeLocation,
+                                'description' => $request->storeDescription,
+                                'featured_motherboards' => $request->motherboards,
+                                'featured_cpus' => $request->cpus,
+                                'featured_cpu_coolers' => $request->cpu_coolers,
+                                'featured_graphics_cards' => $request->graphics_cards,
+                                'featured_rams' => $request->rams,
+                                'featured_storages' => $request->storages,
+                                'featured_psus' => $request->psus,
+                                'featured_computer_cases' => $request->computer_cases]
+                        );
+                    }
+
                     return redirect()->route('viewStore',$storeId);
                 }
 

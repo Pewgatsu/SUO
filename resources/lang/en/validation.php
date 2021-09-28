@@ -340,7 +340,19 @@ return [
         'case_external_525_bay' => 'External 5.25" Bay',
         'case_external_350_bay' => 'External 3.5" Bay',
         'case_internal_350_bay' => 'Internal 3.5" Bay',
-        'case_internal_250_bay' => 'Internal 2.5" Bay'
+        'case_internal_250_bay' => 'Internal 2.5" Bay',
+
+
+
+        'storeBanner' => 'Banner must be an Image ',
+        'storeName' => 'Store Name ',
+        'storeLocation' => 'Store Location ',
+        'storeAddress' => 'Store Address',
+        'storeDescription' => 'Store Description '
+
+
+
+
     ],
 
 ];

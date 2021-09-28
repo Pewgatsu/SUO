@@ -59,9 +59,22 @@ class StoreController extends Controller
 
     public function getContent($id){
         $findId=Store::where('id',$id)->get();
-        //dd($findId);
+
+        $contact = Store::select('name')->where('id',$id)->addSelect(['contact' => Account::select('contact')
+            ->whereColumn('account_id','accounts.id')
+        ])->addSelect(['email' => Account::select('email')
+            ->whereColumn('account_id','accounts.id')
+        ])->addSelect(['ownerFN' => Account::select('firstname')
+            ->whereColumn('account_id','accounts.id')
+        ])->addSelect(['ownerLN' => Account::select('lastname')
+            ->whereColumn('account_id','accounts.id')
+        ])->addSelect(['creation' => Account::select('created_at')
+            ->whereColumn('account_id','accounts.id')
+        ])->get();
+
         $banner = explode('\\', $findId[0]->banner);
-        session(['banner'=> '/images/Store_Banner/'.end($banner) ,
+        $storeInfo = array(
+            'banner'=> '/images/Store_Banner/'.end($banner) ,
             'storeName'=>$findId[0]->name,
             'storeAddress' =>$findId[0]->address,
             'storeLocation' =>$findId[0]->location,
@@ -73,16 +86,18 @@ class StoreController extends Controller
             'featured_rams'=>$findId[0]->featured_rams,
             'featured_storages'=>$findId[0]->featured_storages,
             'featured_psus'=>$findId[0]->featured_psus,
-            'featured_computer_cases'=>$findId[0]->featured_computer_cases
-        ]);
+            'featured_computer_cases'=>$findId[0]->featured_computer_cases,
+            'contact' =>$contact[0]['contact'],
+            'email'   =>$contact[0]['email'],
+            'ownerFN' =>$contact[0]['ownerFN'],
+            'ownerLN' =>$contact[0]['ownerLN'],
+            'creation'=>$contact[0]['creation']
+        );
+
+        session()->put('storeInfo',$storeInfo);
 
 
-        $contact = Store::select('name')->where('id',$id)->addSelect(['contact' => Account::select('contact')
-            ->whereColumn('account_id','accounts.id')
-            ])->addSelect(['email' => Account::select('email')
-            ->whereColumn('account_id','accounts.id')
-        ])->get();
-        session()->put('contacts',$contact);
+        //dd(session('storeInfo.banner'));
 
         $productsArray = array('motherboards' => array(),
             'cpus' => array(),
@@ -94,43 +109,43 @@ class StoreController extends Controller
             'computer_cases' => array()
         );
 
-        $productsArray['motherboards'] = Component::select('image_path','name')->where('id',session('featured_motherboards') )
+        $productsArray['motherboards'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_motherboards') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
 
             ])->get();
-        $productsArray['cpus'] = Component::select('image_path','name')->where('id',session('featured_cpus') )
+        $productsArray['cpus'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_cpus') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
             ])->get();
-        $productsArray['cpu_coolers'] = Component::select('image_path','name')->where('id',session('featured_cpu_coolers') )
+        $productsArray['cpu_coolers'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_cpu_coolers') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
             ])->get();
-        $productsArray['graphics_cards'] = Component::select('image_path','name')->where('id',session('featured_graphics_cards') )
+        $productsArray['graphics_cards'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_graphics_cards') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
             ])->get();
-        $productsArray['rams'] = Component::select('image_path','name')->where('id',session('featured_rams') )
+        $productsArray['rams'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_rams') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
             ])->get();
-        $productsArray['storages'] = Component::select('image_path','name')->where('id',session('featured_storages') )
+        $productsArray['storages'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_storages') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
             ])->get();
-        $productsArray['psus'] = Component::select('image_path','name')->where('id',session('featured_psus') )
+        $productsArray['psus'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_psus') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
             ])->get();
-        $productsArray['computer_cases'] = Component::select('image_path','name')->where('id',session('featured_computer_cases') )
+        $productsArray['computer_cases'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_computer_cases') )
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
@@ -139,8 +154,6 @@ class StoreController extends Controller
         session()->put('productsArray', $productsArray);
 
         if(strlen(session('banner')) <=4){
-            //{{session('banner')}}
-            //session(['banner'=> '{{asset("/images/placeholder.jpg") }}']);
             session()->forget(['banner']);
         }
     }
