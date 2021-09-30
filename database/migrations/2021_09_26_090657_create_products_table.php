@@ -17,14 +17,12 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->foreignId('store_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('component_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->float('price');
-            $table->dateTime('date_added');
+            $table->decimal('price');
             $table->string('type');
             $table->string('status');
-            $table->dateTime('status_date');
-            $table->string('description');
+            $table->timestamp('status_date');
+            $table->string('description')->nullable();
             $table->timestamps('');
-
         });
     }
 

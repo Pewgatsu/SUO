@@ -6,6 +6,7 @@ use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditStoreController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
@@ -87,6 +88,15 @@ Route::delete('/admin/components/rams/delete/{component}', [ComponentsController
 Route::delete('/admin/components/storages/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.storages.delete');
 Route::delete('/admin/components/psus/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.psus.delete');
 Route::delete('/admin/components/computer_cases/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.computer_cases.delete');
+
+Route::get('/seller/products/motherboards', [ProductsController::class, 'index_motherboards'])->name('seller.products.motherboards')->middleware('auth');
+Route::get('/seller/products/cpus', [ProductsController::class, 'index_cpus'])->name('seller.products.cpus')->middleware('auth');
+Route::get('/seller/products/cpu_coolers', [ProductsController::class, 'index_cpu_coolers'])->name('seller.products.cpu_coolers')->middleware('auth');
+Route::get('/seller/products/graphics_cards', [ProductsController::class, 'index_graphics_cards'])->name('seller.products.graphics_cards')->middleware('auth');
+Route::get('/seller/products/rams', [ProductsController::class, 'index_rams'])->name('seller.products.rams')->middleware('auth');
+Route::get('/seller/products/storages', [ProductsController::class, 'index_storages'])->name('seller.products.storages')->middleware('auth');
+Route::get('/seller/products/psus', [ProductsController::class, 'index_psus'])->name('seller.products.psus')->middleware('auth');
+Route::get('/seller/products/computer_cases', [ProductsController::class, 'index_computer_cases'])->name('seller.products.computer_cases')->middleware('auth');
 
 Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
 

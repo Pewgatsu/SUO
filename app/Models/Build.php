@@ -16,7 +16,7 @@ class Build extends Model
         return $this->belongsTo(Account::class);
     }
 
-    public function buildProduct(){
-        return $this->hasMany(BuildProducts::class);
+    public function products(){
+        return $this->belongsToMany(Product::class, 'build_products', 'build_id', 'product_id');
     }
 }
