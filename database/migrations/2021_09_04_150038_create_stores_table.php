@@ -16,19 +16,19 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->foreignId('account_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('banner');
+            $table->string('banner')->nullable();
             $table->string('name');
             $table->longText('address');
-            $table->longText('location');
-            $table->string('description');
-            $table->bigInteger('featured_motherboards');
-            $table->bigInteger('featured_cpus');
-            $table->bigInteger('featured_cpu_coolers');
-            $table->bigInteger('featured_graphics_cards');
-            $table->bigInteger('featured_rams');
-            $table->bigInteger('featured_storages');
-            $table->bigInteger('featured_psus');
-            $table->bigInteger('featured_computer_cases');
+            $table->longText('location')->nullable();
+            $table->string('description')->nullable();
+            $table->bigInteger('featured_motherboards')->nullable();
+            $table->bigInteger('featured_cpus')->nullable();
+            $table->bigInteger('featured_cpu_coolers')->nullable();
+            $table->bigInteger('featured_graphics_cards')->nullable();
+            $table->bigInteger('featured_rams')->nullable();
+            $table->bigInteger('featured_storages')->nullable();
+            $table->bigInteger('featured_psus')->nullable();
+            $table->bigInteger('featured_computer_cases')->nullable();
 
             $table->timestamps();
         });

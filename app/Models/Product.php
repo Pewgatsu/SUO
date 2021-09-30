@@ -10,32 +10,26 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
-    protected $primaryKey = 'id';
 
     protected $fillable = [
-        'store_id ',
+        'store_id',
         'component_id',
         'price',
-        'date_added',
         'type',
         'status',
         'status_date',
         'description'
     ];
 
-    public function buildProduct(){
-        return $this->hasMany(BuildProducts::class);
-    }
-
     public function component(){
-        return $this->hasOne(Component::class);
-    }
-
-    public function account(){
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(Component::class);
     }
 
     public function store(){
-        return $this->hasOne(Store::class);
+        return $this->belongsTo(Store::class);
+    }
+
+    public function builds(){
+        return $this->belongsToMany(Build::class, 'build_products', 'product_id', 'build_id');
     }
 }

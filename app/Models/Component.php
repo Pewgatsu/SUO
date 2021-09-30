@@ -54,4 +54,8 @@ class Component extends Model
     public function computer_case(){
         return $this->hasOne(ComputerCase::class);
     }
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
 }

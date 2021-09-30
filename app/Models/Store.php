@@ -34,8 +34,7 @@ class Store extends Model
         return $this->belongsTo(Account::class);
     }
 
-    public function product(){
+    public function products(){
         return $this->hasMany(Product::class);
     }
-
 }

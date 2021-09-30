@@ -16,10 +16,12 @@ class CreateBuildProductsTable extends Migration
         Schema::create('build_products', function (Blueprint $table) {
             $table->foreignId('build_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->primary('build_id');
-            $table->string('component_type');
+            $table->primary(['build_id','product_id']);
+            $table->decimal('price');
+            $table->string('type');
             $table->string('status');
-            $table->tinyInteger('owned');
+            $table->timestamp('status_date');
+            $table->boolean('owned');
             $table->timestamps();
         });
     }

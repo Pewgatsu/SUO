@@ -54,4 +54,8 @@ class Account extends Authenticatable
     public function builds(){
         return $this->hasMany(Build::class);
     }
+
+    public function store(){
+        return $this->hasOne(Store::class);
+    }
 }
