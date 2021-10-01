@@ -28,6 +28,7 @@ class SystemBuilderController extends Controller
     }
 
     public function control(Request $request){
+        //dd($request->hold);
         if($request->exists('orderComponents')){
             $this->orderComponent($request);
             return view('systemBuilder.builder');
@@ -41,153 +42,111 @@ class SystemBuilderController extends Controller
 
     public function print(Request $request)
     {
-        $holder = array();
+
+        $componentInfo = array("name"=>'default value',"price"=>0,'owned'=>'0');
         $key = $request->input('selectedComponents');;
         switch ($key) {
             case "motherboards":
-
-                //Fetch the name and component id in the database using eloquent and query builder
-                foreach (Models\Motherboard::all() as $hold) {
-                    $id = DB::table('components')->find($hold->component_id);
-                    array_push($holder, array('id' => $id->id, 'name' => $id->name));
-                }
                 //checks if session motherboards is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('motherboards')) {
-                    session(['motherboards' => 'pressed motherboard again', 'motherboardsPrice' => '10']);
+                if ($request->session()->has('motherboards.name')) {
+                    session(['motherboards.name'=>"Pressed motherboard twice"] );
+                    session(['motherboards.price'=>0] );
+                    session(['motherboards.owned'=>'0'] );
                 } else {
-                    session(['motherboards' => 'pressed motherboard', 'motherboardsPrice' => '00', 'motherboardsCheckBox' => ' ', 'motherboardsOrder' => ' ']);
+                    session()->put('motherboards', $componentInfo);
                 }
-
                 break;
-
             case "cpus":
-                //Fetch the name and component id in the database using eloquent and query builder
-                foreach (Models\CPU::all() as $hold) {
-                    $id = DB::table('components')->find($hold->component_id);
-                    array_push($holder, array('id' => $id->id, 'name' => $id->name));
-                }
                 //checks if session cpus is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('cpus')) {
-                    session(['cpus' => 'pressed cpus again', 'cpusPrice' => '10']);
+                if ($request->session()->has('cpus.name')) {
+                    session(['cpus.name'=>"Pressed cpu twice"] );
+                    session(['cpus.price'=>0] );
+                    session(['cpus.owned'=>'0'] );
                 } else {
-                    session(['cpus' => 'pressed cpus', 'cpusPrice' => '00', 'cpusCheckBox' => ' ', 'cpusOrder' => ' ']);
+                    session()->put('cpus', $componentInfo);
                 }
-
                 break;
-
             case "cpu_coolers":
-
-                //Fetch the name and component id in the database using eloquent and query builder
-                foreach (Models\CPUCooler::all() as $hold) {
-                    $id = DB::table('components')->find($hold->component_id);
-                    array_push($holder, array('id' => $id->id, 'name' => $id->name));
-                }
                 //checks if session cpu_coolers is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('cpu_coolers')) {
-                    session(['cpu_coolers' => 'pressed cpu_coolers again', 'cpu_coolersPrice' => '10']);
+                if ($request->session()->has('cpu_coolers.name')) {
+                    session(['cpu_coolers.name'=>"Pressed cpu_coolers twice"] );
+                    session(['cpu_coolers.price'=>0] );
+                    session(['cpu_coolers.owned'=>'0'] );
                 } else {
-                    session(['cpu_coolers' => 'pressed cpu_coolers', 'cpu_coolersPrice' => '00', 'cpu_coolersCheckBox' => ' ', 'cpu_coolersOrder' => ' ']);
+                    session()->put('cpu_coolers', $componentInfo);
                 }
-
                 break;
-
             case "graphics_cards":
-
-                //Fetch the name and component id in the database using eloquent and query builder
-                foreach (Models\GraphicsCard::all() as $hold) {
-                    $id = DB::table('components')->find($hold->component_id);
-                    array_push($holder, array('id' => $id->id, 'name' => $id->name));
-                }
                 //checks if session graphics_cards is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('graphics_cards')) {
-                    session(['graphics_cards' => 'pressed graphics_cards again', 'graphics_cardsPrice' => '10']);
+                if ($request->session()->has('graphics_cards.name')) {
+                    session(['graphics_cards.name'=>"Pressed graphics_cards twice"] );
+                    session(['graphics_cards.price'=>0] );
+                    session(['graphics_cards.owned'=>'0'] );
                 } else {
-                    session(['graphics_cards' => 'pressed graphics_cards', 'graphics_cardsPrice' => '00', 'graphics_cardsCheckBox' => ' ', 'graphics_cardsOrder' => ' ']);
+                    session()->put('graphics_cards', $componentInfo);
                 }
-
                 break;
 
             case "rams":
-
-                //Fetch the name and component id in the database using eloquent and query builder
-                foreach (Models\RAM::all() as $hold) {
-                    $id = DB::table('components')->find($hold->component_id);
-                    array_push($holder, array('id' => $id->id, 'name' => $id->name));
-                }
                 //checks if session rams is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('rams')) {
-                    session(['rams' => 'pressed rams again', 'ramsPrice' => '10']);
+                if ($request->session()->has('rams.name')) {
+                    session(['rams.name'=>"Pressed rams twice"] );
+                    session(['rams.price'=>0] );
+                    session(['rams.owned'=>'0'] );
                 } else {
-                    session(['rams' => 'pressed rams', 'ramsPrice' => '00', 'ramsCheckBox' => ' ', 'ramsOrder' => ' ']);
+                    session()->put('rams', $componentInfo);
                 }
-
                 break;
 
             case "storages":
-
-                //Fetch the name and component id in the database using eloquent and query builder
-                foreach (Models\Storage::all() as $hold) {
-                    $id = DB::table('components')->find($hold->component_id);
-                    array_push($holder, array('id' => $id->id, 'name' => $id->name));
-                }
                 //checks if session storages is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('storages')) {
-                    session(['storages' => 'pressed storages again', 'storagesPrice' => '10']);
+                if ($request->session()->has('storages.name')) {
+                    session(['storages.name'=>"Pressed storages twice"] );
+                    session(['storages.price'=>0] );
+                    session(['storages.owned'=>'0'] );
                 } else {
-                    session(['storages' => 'pressed storages', 'storagesPrice' => '00', 'storagesCheckBox' => ' ', 'storagesOrder' => ' ']);
+                    session()->put('storages', $componentInfo);
                 }
-
                 break;
 
             case "psus":
-
-                //Fetch the name and component id in the database using eloquent and query builder
-                foreach (Models\PSU::all() as $hold) {
-                    $id = DB::table('components')->find($hold->component_id);
-                    array_push($holder, array('id' => $id->id, 'name' => $id->name));
-                }
                 //checks if session psus is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('psus')) {
-                    session(['psus' => 'pressed psus again', 'psusPrice' => '10']);
+                if ($request->session()->has('psus.name')) {
+                    session(['psus.name'=>"Pressed psus twice"] );
+                    session(['psus.price'=>0] );
+                    session(['psus.owned'=>'0'] );
                 } else {
-                    session(['psus' => 'pressed psus', 'psusPrice' => '00', 'psusCheckBox' => ' ', 'psusOrder' => ' ']);
+                    session()->put('psus', $componentInfo);
                 }
-
                 break;
             case "computer_cases":
-
-                //Fetch the name and component id in the database using eloquent and query builder
-                foreach (Models\ComputerCase::all() as $hold) {
-                    $id = DB::table('components')->find($hold->component_id);
-                    array_push($holder, array('id' => $id->id, 'name' => $id->name));
-                }
                 //checks if session computer_cases is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('computer_cases')) {
-                    session(['computer_cases' => 'pressed computer_cases again', 'computer_casesPrice' => '10']);
+                if ($request->session()->has('computer_cases.name')) {
+                    session(['computer_cases.name'=>"Pressed computer_cases twice"] );
+                    session(['computer_cases.price'=>0] );
+                    session(['computer_cases.owned'=>'0'] );
                 } else {
-                    session(['computer_cases' => 'pressed computer_cases', 'computer_casesPrice' => '00', 'computer_casesCheckBox' => ' ', 'computer_casesOrder' => ' ']);
+                    session()->put('computer_cases', $componentInfo);
                 }
-
                 break;
         }
-
-        return view('components/showComponents', compact('holder'));
+       // return view('components/showComponents', compact('holder'));
+        return view('systemBuilder.builder');
     }
 
     public function checkBoxState(Request $request){
 
         $data= $request->hold;
         $loops = explode("," ,$data);
-
         foreach ($this->components as $key=>$component){
             if($loops[$key]==1){
-                session([$component.'Owned' => 'checked']);
+                session([$component.'.owned' => '1']);
             }else{
-                session([$component.'Owned' => ' ']);
+                session([$component.'.owned' => '0']);
             }
         }
-        // Log::info($data);
-        //return response()->json(['success'=> $data]);
+        Log::info($data);
+        return response()->json(['success'=> $data]);
     }
 
     public function saveBuild(Request $request){
@@ -210,11 +169,10 @@ class SystemBuilderController extends Controller
                 }
 
             }
-
-
         } else {
             session(['alert' => 'is-invalid']);
         }
+
 
     }
 

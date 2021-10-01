@@ -79,6 +79,7 @@ Route::post('/admin/components/storages/edit/{component}', [ComponentsController
 Route::post('/admin/components/psus/edit/{component}', [ComponentsController::class, 'edit_psu'])->name('admin.components.psus.edit');
 Route::post('/admin/components/computer_cases/edit/{component}', [ComponentsController::class, 'edit_computer_case'])->name('admin.components.computer_cases.edit');
 
+
 Route::delete('/admin/components/motherboards/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.motherboards.delete');
 Route::delete('/admin/components/cpus/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.cpus.delete');
 Route::delete('/admin/components/cpu_coolers/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.cpu_coolers.delete');
@@ -103,7 +104,7 @@ Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('c
 
 //System Builder
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
-Route::post('/components', [SystemBuilderController::class, 'print'])->name('components');
+Route::any('/components', [SystemBuilderController::class, 'print'])->name('components');
 Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
 
 //Store
@@ -113,7 +114,6 @@ Route::prefix('store')->group(function () {
     Route::get('/{id}', [StoreController::class, 'index'])->name('viewStore');
     Route::any('/editStore/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
     Route::get('/edit/myStore', [EditStoreController::class, 'index'])->name('editStore');
-
 });
 
 
