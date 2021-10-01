@@ -9,34 +9,6 @@
     @endif
     <div class="container-xl mt-3">
 
-        <div class="container-fluid" {{session('seller','style=display:none;')}}>
-            <div class="d-sm-flex my-2 float-end">
-                <div class="dropdown ">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        Add Products
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                               data-bs-target="#add_motherboard">Motherboard</a></li>
-                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                               data-bs-target="#add_cpu">CPU</a></li>
-                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                               data-bs-target="#add_cpu_cooler">CPU Cooler</a></li>
-                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                               data-bs-target="#add_graphics_card">Graphics Card</a></li>
-                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                               data-bs-target="#add_ram">RAM</a></li>
-                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                               data-bs-target="#add_storage">Storage</a></li>
-                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                               data-bs-target="#add_psu">PSU</a></li>
-                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                               data-bs-target="#add_computer_case">Computer Case</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <br><br>
 
         <!--

@@ -2,98 +2,128 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
-use App\Models\Product;
+use App\Models\Component;
+use App\Models\Store;
 
 class ProductsController extends Controller
 {
     public function index_motherboards()
     {
-        $account = Account::with('store')->find(auth()->user()->id);
-        $motherboard_products = Product::with('component')->where('store_id',$account->store->id)->where('type', 'Motherboard')->paginate(10);
-
-        $motherboard_table = array();
-        foreach ($motherboard_products as $motherboard_product){
-            $index = $motherboard_product->component_id;
-            if (in_array($index,array_keys($motherboard_table))){
-                $motherboard_table[$index]['quantity'] += 1;
-                if($motherboard_product->status === 'Sold Out'){
-                    $motherboard_table[$index]['sold'] += 1;
-                }
-                if ($motherboard_product->created_at > $motherboard_table[$index]['date_added']){
-                    $motherboard_table[$index]['date_added'] = $motherboard_product->created_at;
-                }
-            }
-            else {
-                $motherboard_table[$index] = array(
-                    "name" => $motherboard_product->component->name,
-                    "date_added" => $motherboard_product->created_at,
-                    "quantity" => 1,
-                    "sold" => $motherboard_product->status === 'Sold Out' ? 1 : 0,
-                    "unit_price" => $motherboard_product->price
-                );
-            }
-        }
-
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
+        $motherboard_components = Component::with('products')
+            ->whereRelation('products', 'store_id', $store->id)
+            ->whereRelation('products', 'type', 'Motherboard')
+            ->paginate(10);
+        $motherboards = Component::where('type', 'Motherboard')->get();
         return view('seller.products.index', [
-            'motherboard_table' => $motherboard_table,
-            'motherboard_products' => $motherboard_products
+            'store' => $store,
+            'motherboard_components' => $motherboard_components,
+            'motherboards' => $motherboards
         ]);
     }
 
     public function index_cpus()
     {
-        $cpu_products = Product::where('type', 'CPU')->get();
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
+        $cpu_components = Component::with('products')
+            ->whereRelation('products', 'store_id', $store->id)
+            ->whereRelation('products', 'type', 'CPU')
+            ->paginate(10);
+        $cpus = Component::where('type', 'CPU')->get();
         return view('seller.products.index', [
-            'cpu_products' => $cpu_products
+            'store' => $store,
+            'cpu_components' => $cpu_components,
+            'cpus' => $cpus
         ]);
     }
 
     public function index_cpu_coolers()
     {
-        $cpu_cooler_products = Product::where('type', 'CPU Cooler')->get();
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
+        $cpu_cooler_components = Component::with('products')
+            ->whereRelation('products', 'store_id', $store->id)
+            ->whereRelation('products', 'type', 'CPU Cooler')
+            ->paginate(10);
+        $cpu_coolers = Component::where('type', 'CPU Cooler')->get();
         return view('seller.products.index', [
-            'cpu_cooler_products' => $cpu_cooler_products
+            'store' => $store,
+            'cpu_cooler_components' => $cpu_cooler_components,
+            'cpu_coolers' => $cpu_coolers
         ]);
     }
 
     public function index_graphics_cards()
     {
-        $graphics_card_products = Product::where('type', 'Graphics Card')->get();
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
+        $graphics_card_components = Component::with('products')
+            ->whereRelation('products', 'store_id', $store->id)
+            ->whereRelation('products', 'type', 'Graphics Card')
+            ->paginate(10);
+        $graphics_cards = Component::where('type', 'Graphics Card')->get();
         return view('seller.products.index', [
-            'graphics_card_products' => $graphics_card_products
+            'store' => $store,
+            'graphics_card_components' => $graphics_card_components,
+            'graphics_cards' => $graphics_cards
         ]);
     }
 
     public function index_rams()
     {
-        $ram_products = Product::where('type', 'RAM')->get();
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
+        $ram_components = Component::with('products')
+            ->whereRelation('products', 'store_id', $store->id)
+            ->whereRelation('products', 'type', 'RAM')
+            ->paginate(10);
+        $rams = Component::where('type', 'RAM')->get();
         return view('seller.products.index', [
-            'ram_products' => $ram_products
+            'store' => $store,
+            'ram_components' => $ram_components,
+            'rams' => $rams
         ]);
     }
 
     public function index_storages()
     {
-        $storage_products = Product::where('type', 'Storage')->get();
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
+        $storage_components = Component::with('products')
+            ->whereRelation('products', 'store_id', $store->id)
+            ->whereRelation('products', 'type', 'Storage')
+            ->paginate(10);
+        $storages = Component::where('type', 'Storage')->get();
         return view('seller.products.index', [
-            'storage_products' => $storage_products
+            'store' => $store,
+            'storage_components' => $storage_components,
+            'storages' => $storages
         ]);
     }
 
     public function index_psus()
     {
-        $psu_products = Product::where('type', 'PSU')->get();
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
+        $psu_components = Component::with('products')
+            ->whereRelation('products', 'store_id', $store->id)
+            ->whereRelation('products', 'type', 'PSU')
+            ->paginate(10);
+        $psus = Component::where('type', 'PSU')->get();
         return view('seller.products.index', [
-            'psu_products' => $psu_products
+            'store' => $store,
+            'psu_components' => $psu_components,
+            'psus' => $psus
         ]);
     }
 
     public function index_computer_cases()
     {
-        $computer_case_products = Product::where('type', 'Computer Case')->get();
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
+        $computer_case_components = Component::with('products')
+            ->whereRelation('products', 'store_id', $store->id)
+            ->whereRelation('products', 'type', 'Computer Case')
+            ->paginate(10);
+        $computer_cases = Component::where('type', 'Computer Case')->get();
         return view('seller.products.index', [
-            'computer_case_products' => $computer_case_products
+            'store' => $store,
+            'computer_case_components' => $computer_case_components,
+            'computer_cases' => $computer_cases
         ]);
     }
 }
