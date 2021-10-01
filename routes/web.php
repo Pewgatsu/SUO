@@ -6,6 +6,7 @@ use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditStoreController;
+use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UsersController;
@@ -97,6 +98,16 @@ Route::get('/seller/products/rams', [ProductsController::class, 'index_rams'])->
 Route::get('/seller/products/storages', [ProductsController::class, 'index_storages'])->name('seller.products.storages')->middleware('auth');
 Route::get('/seller/products/psus', [ProductsController::class, 'index_psus'])->name('seller.products.psus')->middleware('auth');
 Route::get('/seller/products/computer_cases', [ProductsController::class, 'index_computer_cases'])->name('seller.products.computer_cases')->middleware('auth');
+
+Route::get('/product/motherboards', [ProductListController::class, 'index_motherboards'])->name('products.motherboards')->middleware('auth');
+Route::get('/product/cpus', [ProductListController::class, 'index_cpus'])->name('products.cpus')->middleware('auth');
+Route::get('/product/cpu_coolers', [ProductListController::class, 'index_cpu_coolers'])->name('products.cpu_coolers')->middleware('auth');
+Route::get('/product/graphics_cards', [ProductListController::class, 'index_graphics_cards'])->name('products.graphics_cards')->middleware('auth');
+Route::get('/product/rams', [ProductListController::class, 'index_rams'])->name('products.rams')->middleware('auth');
+Route::get('/product/storages', [ProductListController::class, 'index_storages'])->name('products.storages')->middleware('auth');
+Route::get('/product/psus', [ProductListController::class, 'index_psus'])->name('products.psus')->middleware('auth');
+Route::get('/product/computer_cases', [ProductListController::class, 'index_computer_cases'])->name('products.computer_cases')->middleware('auth');
+
 
 Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
 

@@ -29,6 +29,7 @@
                     </li>
                 </ul>
             </li>
+
             <li class="nav-item dropdown" role="presentation">
                 <button class="nav-link dropdown-toggle" id="profile-tab" data-bs-toggle="dropdown"
                         data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
@@ -51,6 +52,30 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="nav-item dropdown" role="presentation">
+                <button class="nav-link dropdown-toggle" id="profile-tab" data-bs-toggle="dropdown"
+                        data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                        aria-selected="false">Products
+                </button>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ route('products.motherboards') }}">Motherboard</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('products.cpus') }}">CPU</a></li>
+                    <li><a class="dropdown-item" href="{{ route('products.cpu_coolers') }}">CPU
+                            Cooler</a></li>
+                    <li><a class="dropdown-item" href="{{ route('products.graphics_cards') }}">Graphics Card</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('products.rams') }}">RAM</a></li>
+                    <li><a class="dropdown-item" href="{{ route('products.storages') }}">Storage</a>
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('products.psus') }}">PSU</a></li>
+                    <li><a class="dropdown-item" href="{{ route('products.computer_cases') }}">Computer Case</a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="nav-item" role="presentation">
                 <a class="nav-link" href="{{ route('search') }}">Search</a>
             </li>
