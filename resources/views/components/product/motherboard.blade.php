@@ -5,19 +5,23 @@
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="{{ $setID() }}_label">{{ $setTitle() }} Motherboard Product</h5>
+                    <h5 class="modal-title" id="{{ $setID() }}_label">{{ $setTitle() }} Motherboard Products</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
                     <div class="form-floating mb-3">
-                        <select class="form-select" id="mobo_component" name="mobo_component">
-                            @foreach($motherboards as $motherboard)
-                                <option
-                                    value="{{ $motherboard->id }}">{{ $motherboard->name }}</option>
+                        <select class="form-select @error('mobo_component') is-invalid @enderror" id="mobo_component"
+                                name="mobo_component">
+                            @foreach($motherboardComponents as $motherboard_component)
+                                <option value="{{ $motherboard_component->id }}"
+                                        @if(old('mobo_component') !== null && old('mobo_component') == $motherboard_component->id) selected @endif>{{ $motherboard_component->name }}</option>
                             @endforeach
                         </select>
                         <label for="mobo_component">Motherboard Name</label>
+                        @error('mobo_component')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="form-floating mb-3">
@@ -35,16 +39,21 @@
                                id="mobo_price" name="mobo_price" min="0"
                                max="1000000" step="0.01"
                                placeholder="Price" value="{{ old('mobo_price') }}">
-                        <label for="mobo_m2_slot">Price</label>
+                        <label for="mobo_price">Price</label>
                         @error('mobo_price')
                         <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" placeholder="Product Description" id="mobo_description"
-                                  style="height: 250px"></textarea>
+                        <textarea style="height: 250px"
+                                  class="form-control @error('mobo_description') is-invalid @enderror"
+                                  id="mobo_description" name="mobo_description"
+                                  placeholder="Product Description">{{ old('mobo_price') }}</textarea>
                         <label for="mobo_description">Product Description</label>
+                        @error('mobo_description')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
 
                 </div>
