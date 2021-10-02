@@ -53,9 +53,11 @@
                 </ul>
             </li>
 
+            <!-- FOR SELLER -->
             <li class="nav-item" role="presentation">
                 <a class="nav-link" href="{{ route('myStore') }}">My Store</a>
             </li>
+
 
             <li class="nav-item dropdown" role="presentation">
                 <button class="nav-link dropdown-toggle" id="profile-tab" data-bs-toggle="dropdown"
@@ -79,6 +81,16 @@
                     </li>
                 </ul>
             </li>
+            <!-- END SELLER -->
+
+            <!-- USER -->
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" href="{{ route('builder') }}">Build</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" href="#">My Builds</a>
+            </li>
+            <!-- END USER -->
 
             <li class="nav-item" role="presentation">
                 <a class="nav-link" href="{{ route('search') }}">Search</a>
