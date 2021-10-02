@@ -154,7 +154,7 @@ class DashboardController extends Controller
             }
         }
 
-        return redirect()->route('admin.dashboard');
+        return back();
     }
 
     public function add_cpu(Request $request)
@@ -220,7 +220,7 @@ class DashboardController extends Controller
             'integrated_graphics' => $request->cpu_integrated_graphics
         ]);
 
-        return redirect()->route('admin.dashboard');
+        return back();
     }
 
     public function add_cpu_cooler(Request $request)
@@ -285,7 +285,7 @@ class DashboardController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.dashboard');
+        return back();
     }
 
     public function add_graphics_card(Request $request)
@@ -363,7 +363,7 @@ class DashboardController extends Controller
             'cooling' => $request->graphics_card_cooling
         ]);
 
-        return redirect()->route('admin.dashboard');
+        return back();
     }
 
     public function add_ram(Request $request)
@@ -427,7 +427,7 @@ class DashboardController extends Controller
             'heat_spreader' => $request->ram_heat_spreader
         ]);
 
-        return redirect()->route('admin.dashboard');
+        return back();
     }
 
     public function add_storage(Request $request)
@@ -483,7 +483,7 @@ class DashboardController extends Controller
             'nvme' => $request->storage_nvme
         ]);
 
-        return redirect()->route('admin.dashboard');
+        return back();
     }
 
     public function add_psu(Request $request)
@@ -549,7 +549,7 @@ class DashboardController extends Controller
             'pcie_6pin_connector' => $request->psu_pcie_6pin_connector
         ]);
 
-        return redirect()->route('admin.dashboard');
+        return back();
     }
 
     public function add_computer_case(Request $request)
@@ -636,6 +636,6 @@ class DashboardController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.dashboard');
+        return back();
     }
 }
