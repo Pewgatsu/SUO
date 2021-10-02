@@ -5,7 +5,7 @@
 @section('content')
 
     @if (session('seller'))
-    @include('layouts.storeHeader')
+    @include('layouts.dashboardheader')
     @endif
     <div class="container-xl mt-3">
 
