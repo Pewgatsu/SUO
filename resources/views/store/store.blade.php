@@ -5,11 +5,40 @@
 @section('content')
 
     @if (session('seller'))
-    @include('layouts.dashboardheader')
+    @include('layouts.subheader')
     @endif
     <div class="container-xl mt-3">
 
-        <br><br>
+        <div class="d-sm-flex my-2 justify-content-between align-items-center">
+            <div class="h1">
+                <i class="bi bi-shop"></i>
+                <small> My Store</small>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Add Products
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_motherboard_products">Motherboard</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_cpu_products">CPU</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_cpu_cooler_products">CPU Cooler</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_graphics_card_products">Graphics Card</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_ram_products">RAM</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_storage_products">Storage</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_psu_products">PSU</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_computer_case_products">Computer Case</a></li>
+                </ul>
+            </div>
+        </div>
 
         <!--
         'image display' -> store.blade components
@@ -269,5 +298,54 @@
         <br>
 
     </div>
+
+    <!-- Modals -->
+    @if(count($errors) > 0)
+        <script>
+            $(document).ready(function () {
+                @if($errors->has('mobo_*'))
+                $('#add_motherboard_products').modal('show');
+                @elseif($errors->has('cpu_cooler_*'))
+                $('#add_cpu_cooler_products').modal('show');
+                @elseif($errors->has('cpu_*'))
+                $('#add_cpu_products').modal('show');
+                @elseif($errors->has('graphics_card_*'))
+                $('#add_graphics_card_products').modal('show');
+                @elseif($errors->has('ram_*'))
+                $('#add_ram_products').modal('show');
+                @elseif($errors->has('storage_*'))
+                $('#add_storage_products').modal('show');
+                @elseif($errors->has('psu_*'))
+                $('#add_psu_products').modal('show');
+                @elseif($errors->has('case_*'))
+                $('#add_computer_case_products').modal('show');
+                @endif
+            });
+        </script>
+    @endif
+
+    <!-- Add Motherboard Product -->
+    <x-product.motherboard mode="add" :motherboardComponents="$motherboard_components" />
+
+    <!-- Add CPU Product -->
+    <x-product.cpu mode="add" :cpuComponents="$cpu_components" />
+
+    <!-- Add CPU Cooler Product -->
+    <x-product.cpu-cooler mode="add" :cpuCoolerComponents="$cpu_cooler_components" />
+
+    <!-- Add Graphics Card Product -->
+    <x-product.graphics-card mode="add" :graphicsCardComponents="$graphics_card_components" />
+
+    <!-- Add RAM Product -->
+    <x-product.ram mode="add" :ramComponents="$ram_components" />
+
+    <!-- Add Storage Product -->
+    <x-product.storage mode="add" :storageComponents="$storage_components" />
+
+    <!-- Add PSU Product -->
+    <x-product.psu mode="add" :psuComponents="$psu_components" />
+
+    <!-- Add Computer Case Product -->
+    <x-product.computer-case mode="add" :computerCaseComponents="$computer_case_components" />
 
 @endsection

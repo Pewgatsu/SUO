@@ -4,30 +4,30 @@ namespace App\View\Components\Product;
 
 use Illuminate\View\Component;
 
-class Motherboard extends Component
+class Storage extends Component
 {
     public $mode;
-    public $motherboardComponents;
-    public $motherboardComponentId;
+    public $storageComponents;
+    public $storageComponentId;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($mode, $motherboardComponents = null, $motherboardComponentId = null)
+    public function __construct($mode, $storageComponents = null, $storageComponentId = null)
     {
         $this->mode = $mode;
-        $this->motherboardComponents = $motherboardComponents;
-        $this->motherboardComponentId = $motherboardComponentId;
+        $this->storageComponents = $storageComponents;
+        $this->storageComponentId = $storageComponentId;
     }
 
     public function setID(){
         if (strtolower($this->mode) === 'add'){
-            return 'add_motherboard_products';
+            return 'add_storage_products';
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return 'edit_motherboard_products_' . $this->motherboardComponentId;
+            return 'edit_storage_products_' . $this->storageComponentId;
         }
         else {
             return null;
@@ -36,10 +36,10 @@ class Motherboard extends Component
 
     public function setRoute(){
         if (strtolower($this->mode) === 'add'){
-            return route('seller.store.add_motherboard');
+            return route('seller.store.add_storage');
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return route('seller.products.motherboards.edit', $this->motherboardComponentId);
+            return route('seller.products.storages.edit', $this->storageComponentId);
         }
         else {
             return null;
@@ -65,6 +65,6 @@ class Motherboard extends Component
      */
     public function render()
     {
-        return view('components.product.motherboard');
+        return view('components.product.storage');
     }
 }

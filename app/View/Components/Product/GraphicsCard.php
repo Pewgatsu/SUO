@@ -4,30 +4,30 @@ namespace App\View\Components\Product;
 
 use Illuminate\View\Component;
 
-class Motherboard extends Component
+class GraphicsCard extends Component
 {
     public $mode;
-    public $motherboardComponents;
-    public $motherboardComponentId;
+    public $graphicsCardComponents;
+    public $graphicsCardComponentId;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($mode, $motherboardComponents = null, $motherboardComponentId = null)
+    public function __construct($mode, $graphicsCardComponents = null, $graphicsCardComponentId = null)
     {
         $this->mode = $mode;
-        $this->motherboardComponents = $motherboardComponents;
-        $this->motherboardComponentId = $motherboardComponentId;
+        $this->graphicsCardComponents = $graphicsCardComponents;
+        $this->graphicsCardComponentId = $graphicsCardComponentId;
     }
 
     public function setID(){
         if (strtolower($this->mode) === 'add'){
-            return 'add_motherboard_products';
+            return 'add_graphics_card_products';
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return 'edit_motherboard_products_' . $this->motherboardComponentId;
+            return 'edit_graphics_card_products_' . $this->graphicsCardComponentId;
         }
         else {
             return null;
@@ -36,10 +36,10 @@ class Motherboard extends Component
 
     public function setRoute(){
         if (strtolower($this->mode) === 'add'){
-            return route('seller.store.add_motherboard');
+            return route('seller.store.add_graphics_card');
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return route('seller.products.motherboards.edit', $this->motherboardComponentId);
+            return route('seller.products.graphics_cards.edit', $this->graphicsCardComponentId);
         }
         else {
             return null;
@@ -65,6 +65,6 @@ class Motherboard extends Component
      */
     public function render()
     {
-        return view('components.product.motherboard');
+        return view('components.product.graphics-card');
     }
 }
