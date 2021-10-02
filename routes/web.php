@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutSystemController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\BuildsController;
 use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
@@ -127,6 +128,11 @@ Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('c
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
 Route::any('/components', [SystemBuilderController::class, 'print'])->name('components');
 Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
+
+//builds
+Route::get('/consumer/builds', [BuildsController::class, 'index'])->name('builds')->middleware('auth');;
+Route::delete('/consumer/builds/delete/{build}', [BuildsController::class, 'delete_build'])->name('consumer.builds.delete');
+
 
 //Seller
 Route::get('seller/store', [StoreController::class, 'myStore'])->name('myStore');
