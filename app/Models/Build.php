@@ -12,6 +12,13 @@ class Build extends Model
     protected $table = 'builds';
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'account_id',
+        'build_name',
+        'total_price',
+        'build_description'
+    ];
+
     public function account(){
         return $this->belongsTo(Account::class);
     }

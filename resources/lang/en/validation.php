@@ -344,13 +344,14 @@ return [
 
 
 
-        'storeBanner' => 'Banner must be an Image ',
+        'storeBanner' => 'Banner ',
         'storeName' => 'Store Name ',
         'storeLocation' => 'Store Location ',
         'storeAddress' => 'Store Address',
-        'storeDescription' => 'Store Description '
+        'storeDescription' => 'Store Description ',
 
-
+        'buildName' => ' Build Name',
+        'buildDescription' => 'Build Description',
 
 
     ],
