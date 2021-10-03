@@ -8,18 +8,20 @@ class Storage extends Component
 {
     public $mode;
     public $storageComponents;
-    public $storageComponentId;
+    public $storageComponent;
+    public $store;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($mode, $storageComponents = null, $storageComponentId = null)
+    public function __construct($mode, $storageComponents = null, $storageComponent = null, $store = null)
     {
         $this->mode = $mode;
         $this->storageComponents = $storageComponents;
-        $this->storageComponentId = $storageComponentId;
+        $this->storageComponent = $storageComponent;
+        $this->store = $store;
     }
 
     public function setID(){
@@ -27,7 +29,7 @@ class Storage extends Component
             return 'add_storage_products';
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return 'edit_storage_products_' . $this->storageComponentId;
+            return 'edit_storage_products_' . $this->storageComponent->id;
         }
         else {
             return null;
@@ -39,7 +41,7 @@ class Storage extends Component
             return route('seller.store.add_storage');
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return route('seller.products.storages.edit', $this->storageComponentId);
+            return route('seller.products.storages.edit', $this->storageComponent);
         }
         else {
             return null;
@@ -56,6 +58,24 @@ class Storage extends Component
         else {
             return null;
         }
+    }
+
+    public function oldField($string){
+        if (strtolower($this->mode) === 'edit'){
+            switch ($string){
+                case 'storage_component':
+                    return $this->storageComponent->name;
+                case 'storage_quantity':
+                    return $this->storageComponent->products->where('store_id',$this->store->id)->where('status','Available')->count();
+                case 'storage_price':
+                    return $this->storageComponent->products->where('store_id',$this->store->id)->where('status','Available')->first()->price ?? 0;
+                case 'storage_description':
+                    return $this->storageComponent->products->where('store_id',$this->store->id)->where('status','Available')->first()->description ?? '';
+                default:
+                    return null;
+            }
+        }
+        return null;
     }
 
     /**

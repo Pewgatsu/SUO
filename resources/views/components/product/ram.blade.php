@@ -12,12 +12,17 @@
 
                     <div class="form-floating mb-3">
                         <select class="form-select @error('ram_component') is-invalid @enderror"
+                                @if($mode === 'edit') disabled @endif
                                 id="ram_component"
                                 name="ram_component">
+                            @if($mode !== 'edit')
                             @foreach($ramComponents as $ram_component)
                                 <option value="{{ $ram_component->id }}"
-                                        @if(old('ram_component') !== null && old('ram_component') == $ram_component->id) selected @endif>{{ $ram_component->name }}</option>
+                                        @if(old('ram_component') == $ram_component->id) selected @endif>{{ $ram_component->name }}</option>
                             @endforeach
+                            @else
+                                <option value="{{ $ramComponent->id }}" selected>{{ $oldField('ram_component') }}</option>
+                            @endif
                         </select>
                         <label for="ram_component">RAM Name</label>
                         @error('ram_component')
@@ -27,8 +32,9 @@
 
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control @error('ram_quantity') is-invalid @enderror"
+                               @if($mode === 'edit') disabled @endif
                                id="ram_quantity" name="ram_quantity" min="1"
-                               max="1000" placeholder="Quantity" value="{{ old('ram_quantity') }}">
+                               max="1000" placeholder="Quantity" value="{{ old('ram_quantity') ?? $oldField('ram_quantity') }}">
                         <label for="ram_quantity">Quantity</label>
                         @error('ram_quantity')
                         <p class="text-danger">{{ $message }}</p>
@@ -39,7 +45,7 @@
                         <input type="number" class="form-control @error('ram_price') is-invalid @enderror"
                                id="ram_price" name="ram_price" min="0"
                                max="1000000" step="0.01"
-                               placeholder="Price" value="{{ old('ram_price') }}">
+                               placeholder="Price" value="{{ old('ram_price') ?? $oldField('ram_price') }}">
                         <label for="ram_price">Price</label>
                         @error('ram_price')
                         <p class="text-danger">{{ $message }}</p>
@@ -50,7 +56,7 @@
                         <textarea style="height: 250px"
                                   class="form-control @error('ram_description') is-invalid @enderror"
                                   id="ram_description" name="ram_description"
-                                  placeholder="Product Description">{{ old('ram_description') }}</textarea>
+                                  placeholder="Product Description">{{ old('ram_description') ?? $oldField('ram_description') }}</textarea>
                         <label for="ram_description">Product Description</label>
                         @error('ram_description')
                         <p class="text-danger">{{ $message }}</p>

@@ -47,6 +47,15 @@
         </div>
     </div>
 
+    <!-- Modals -->
+    @if(count($errors) > 0)
+        <script>
+            $(document).ready(function () {
+                $('#{{ session('modal_id') }}').modal('show');
+            });
+        </script>
+    @endif
+
     <div class="mb-3">
         <div class="container">
             <div class="card">
@@ -75,7 +84,9 @@
                                             <td>{{ $motherboard_component->getProductsSold($store) }}</td>
                                             <td>&#8369;{{ number_format($motherboard_component->getProductsPrice($store),2)  }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">
+                                                <button @if($motherboard_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled @endif
+                                                    type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_motherboard_products_{{ $motherboard_component->id }}">
                                                     Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger">
@@ -83,6 +94,10 @@
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Motherboard Products -->
+                                        <x-product.motherboard mode="edit" :motherboardComponent="$motherboard_component" :store="$store" />
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -117,7 +132,9 @@
                                             <td>{{ $cpu_component->getProductsSold($store) }}</td>
                                             <td>&#8369;{{ number_format($cpu_component->getProductsPrice($store),2)  }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">
+                                                <button @if($cpu_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled @endif
+                                                type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_cpu_products_{{ $cpu_component->id }}">
                                                     Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger">
@@ -125,6 +142,10 @@
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit CPU Products -->
+                                        <x-product.cpu mode="edit" :cpuComponent="$cpu_component" :store="$store" />
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -159,7 +180,9 @@
                                             <td>{{ $cpu_cooler_component->getProductsSold($store) }}</td>
                                             <td>&#8369;{{ number_format($cpu_cooler_component->getProductsPrice($store),2)  }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">
+                                                <button @if($cpu_cooler_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled @endif
+                                                type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_cpu_cooler_products_{{ $cpu_cooler_component->id }}">
                                                     Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger">
@@ -167,6 +190,10 @@
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit CPU Cooler Products -->
+                                        <x-product.cpu-cooler mode="edit" :cpuCoolerComponent="$cpu_cooler_component" :store="$store" />
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -201,7 +228,9 @@
                                             <td>{{ $graphics_card_component->getProductsSold($store) }}</td>
                                             <td>&#8369;{{ number_format($graphics_card_component->getProductsPrice($store),2)  }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">
+                                                <button @if($graphics_card_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled @endif
+                                                type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_graphics_card_products_{{ $graphics_card_component->id }}">
                                                     Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger">
@@ -209,6 +238,10 @@
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Graphics Card Products -->
+                                        <x-product.graphics-card mode="edit" :graphicsCardComponent="$graphics_card_component" :store="$store" />
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -243,7 +276,9 @@
                                             <td>{{ $ram_component->getProductsSold($store) }}</td>
                                             <td>&#8369;{{ number_format($ram_component->getProductsPrice($store),2)  }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">
+                                                <button @if($ram_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled @endif
+                                                type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_ram_products_{{ $ram_component->id }}">
                                                     Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger">
@@ -251,6 +286,10 @@
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit RAM Products -->
+                                        <x-product.ram mode="edit" :ramComponent="$ram_component" :store="$store" />
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -285,7 +324,9 @@
                                             <td>{{ $storage_component->getProductsSold($store) }}</td>
                                             <td>&#8369;{{ number_format($storage_component->getProductsPrice($store),2)  }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">
+                                                <button @if($storage_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled @endif
+                                                type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_storage_products_{{ $storage_component->id }}">
                                                     Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger">
@@ -293,6 +334,10 @@
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Storage Products -->
+                                        <x-product.storage mode="edit" :storageComponent="$storage_component" :store="$store" />
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -327,7 +372,9 @@
                                             <td>{{ $psu_component->getProductsSold($store) }}</td>
                                             <td>&#8369;{{ number_format($psu_component->getProductsPrice($store),2)  }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">
+                                                <button @if($psu_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled @endif
+                                                type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_psu_products_{{ $psu_component->id }}">
                                                     Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger">
@@ -335,6 +382,10 @@
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit PSU Products -->
+                                        <x-product.psu mode="edit" :psuComponent="$psu_component" :store="$store" />
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -369,7 +420,9 @@
                                             <td>{{ $computer_case_component->getProductsSold($store) }}</td>
                                             <td>&#8369;{{ number_format($computer_case_component->getProductsPrice($store),2)  }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-info">
+                                                <button @if($computer_case_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled @endif
+                                                type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#edit_computer_case_products_{{ $computer_case_component->id }}">
                                                     Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger">
@@ -377,6 +430,10 @@
                                                 </button>
                                             </td>
                                         </tr>
+
+                                        <!-- Edit Computer Case Products -->
+                                        <x-product.computer-case mode="edit" :computerCaseComponent="$computer_case_component" :store="$store" />
+
                                     @endforeach
                                     </tbody>
                                 </table>
