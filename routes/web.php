@@ -130,14 +130,13 @@ Route::group(['middleware' => 'auth'], function (){
 });
 
 
-
-
 // Consumer
 
 //System Builder
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
 Route::any('/components', [SystemBuilderController::class, 'print'])->name('components');
 Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
+Route::get('/builds', [App\Http\Controllers\BuildsController::class,'index'])->name('builds');
 
 // Products List Page
 Route::get('/product/motherboards', [ProductListController::class, 'index_motherboards'])->name('products.motherboards');
