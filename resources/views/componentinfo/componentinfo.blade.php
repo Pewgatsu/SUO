@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    @include('layouts.dashboardheader')
+    @include('layouts.subheader')
     <div class="container" style="margin-top: 58px; width: 50rem;" xmlns:margin-top="http://www.w3.org/1999/xhtml">
         <div id="card" class="card-header">
             <h3 class="card-title text-center">{{ $generals->name }}</h3>

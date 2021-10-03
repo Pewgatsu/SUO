@@ -6,7 +6,7 @@ use App\Models\Account;
 use App\Models\Component;
 use App\Models\Product;
 use App\Models\Store;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +16,7 @@ class StoreController extends Controller
     public function index($id){
 
         if (Auth::check()) {
+
             //checks if the user is logged in
             $userId = Auth::user()->getAuthIdentifier();
             $type =Account::where('id',$userId)->get('account_type');
@@ -160,6 +161,15 @@ class StoreController extends Controller
     //to view personal store visit this url
     public function myStore(){
 
+        $motherboard_components = Component::where('type','Motherboard')->get();
+        $cpu_components = Component::where('type','CPU')->get();
+        $cpu_cooler_components = Component::where('type','CPU Cooler')->get();
+        $graphics_card_components = Component::where('type','Graphics Card')->get();
+        $ram_components = Component::where('type','RAM')->get();
+        $storage_components = Component::where('type','Storage')->get();
+        $psu_components = Component::where('type','PSU')->get();
+        $computer_case_components = Component::where('type','Computer Case')->get();
+
         if (Auth::check()) {
             //checks if the user is logged in
             $userId = Auth::user()->getAuthIdentifier();
@@ -193,18 +203,237 @@ class StoreController extends Controller
                 $storeId=Store::select('id')->where('account_id',$userId)->get();
                 //dd($storeId[0]->id);
                 $this->index($storeId[0]->id);
-                return view('store.store');
+                return view('store.store', [
+                    'motherboard_components' => $motherboard_components,
+                    'cpu_components' => $cpu_components,
+                    'cpu_cooler_components' => $cpu_cooler_components,
+                    'graphics_card_components' => $graphics_card_components,
+                    'ram_components' => $ram_components,
+                    'storage_components' => $storage_components,
+                    'psu_components' => $psu_components,
+                    'computer_case_components' => $computer_case_components
+                ]);
             }else{
-
                 return view('landing.landingpage');
             }
         }else{
             return view('landing.landingpage');
         }
-
-
-
     }
 
+    public function add_motherboard(Request $request){
+        // Validate
+        $this->validate($request, [
+            'mobo_component' => 'required|numeric',
+            'mobo_quantity' => 'required|numeric|min:1',
+            'mobo_price' => 'required|numeric|min:0',
+            'mobo_description' => 'nullable|string'
+        ]);
 
+        // Store
+        $store = Store::where('account_id',Auth::user()->getAuthIdentifier())->firstOrFail();
+
+        for ($i = 0; $i < intval($request->mobo_quantity); $i++){
+            Product::create([
+                'store_id' => $store->id,
+                'component_id' => $request->mobo_component,
+                'price' => $request->mobo_price,
+                'type' => 'Motherboard',
+                'status' => 'Available',
+                'status_date' => Carbon::now()->toDateTimeString(),
+                'description' => $request->mobo_description
+            ]);
+        }
+
+        return back();
+    }
+
+    public function add_cpu(Request $request){
+        // Validate
+        $this->validate($request, [
+            'cpu_component' => 'required|numeric',
+            'cpu_quantity' => 'required|numeric|min:1',
+            'cpu_price' => 'required|numeric|min:0',
+            'cpu_description' => 'nullable|string'
+        ]);
+
+        // Store
+        $store = Store::where('account_id',Auth::user()->getAuthIdentifier())->firstOrFail();
+
+        for ($i = 0; $i < intval($request->cpu_quantity); $i++){
+            Product::create([
+                'store_id' => $store->id,
+                'component_id' => $request->cpu_component,
+                'price' => $request->cpu_price,
+                'type' => 'CPU',
+                'status' => 'Available',
+                'status_date' => Carbon::now()->toDateTimeString(),
+                'description' => $request->cpu_description
+            ]);
+        }
+
+        return back();
+    }
+
+    public function add_cpu_cooler(Request $request){
+        // Validate
+        $this->validate($request, [
+            'cpu_cooler_component' => 'required|numeric',
+            'cpu_cooler_quantity' => 'required|numeric|min:1',
+            'cpu_cooler_price' => 'required|numeric|min:0',
+            'cpu_cooler_description' => 'nullable|string'
+        ]);
+
+        // Store
+        $store = Store::where('account_id',Auth::user()->getAuthIdentifier())->firstOrFail();
+
+        for ($i = 0; $i < intval($request->cpu_cooler_quantity); $i++){
+            Product::create([
+                'store_id' => $store->id,
+                'component_id' => $request->cpu_cooler_component,
+                'price' => $request->cpu_cooler_price,
+                'type' => 'CPU Cooler',
+                'status' => 'Available',
+                'status_date' => Carbon::now()->toDateTimeString(),
+                'description' => $request->cpu_cooler_description
+            ]);
+        }
+
+        return back();
+    }
+
+    public function add_graphics_card(Request $request){
+        // Validate
+        $this->validate($request, [
+            'graphics_card_component' => 'required|numeric',
+            'graphics_card_quantity' => 'required|numeric|min:1',
+            'graphics_card_price' => 'required|numeric|min:0',
+            'graphics_card_description' => 'nullable|string'
+        ]);
+
+        // Store
+        $store = Store::where('account_id',Auth::user()->getAuthIdentifier())->firstOrFail();
+
+        for ($i = 0; $i < intval($request->graphics_card_quantity); $i++){
+            Product::create([
+                'store_id' => $store->id,
+                'component_id' => $request->graphics_card_component,
+                'price' => $request->graphics_card_price,
+                'type' => 'Graphics Card',
+                'status' => 'Available',
+                'status_date' => Carbon::now()->toDateTimeString(),
+                'description' => $request->graphics_card_description
+            ]);
+        }
+
+        return back();
+    }
+
+    public function add_ram(Request $request){
+        // Validate
+        $this->validate($request, [
+            'ram_component' => 'required|numeric',
+            'ram_quantity' => 'required|numeric|min:1',
+            'ram_price' => 'required|numeric|min:0',
+            'ram_description' => 'nullable|string'
+        ]);
+
+        // Store
+        $store = Store::where('account_id',Auth::user()->getAuthIdentifier())->firstOrFail();
+
+        for ($i = 0; $i < intval($request->ram_quantity); $i++){
+            Product::create([
+                'store_id' => $store->id,
+                'component_id' => $request->ram_component,
+                'price' => $request->ram_price,
+                'type' => 'RAM',
+                'status' => 'Available',
+                'status_date' => Carbon::now()->toDateTimeString(),
+                'description' => $request->ram_description
+            ]);
+        }
+
+        return back();
+    }
+
+    public function add_storage(Request $request){
+        // Validate
+        $this->validate($request, [
+            'storage_component' => 'required|numeric',
+            'storage_quantity' => 'required|numeric|min:1',
+            'storage_price' => 'required|numeric|min:0',
+            'storage_description' => 'nullable|string'
+        ]);
+
+        // Store
+        $store = Store::where('account_id',Auth::user()->getAuthIdentifier())->firstOrFail();
+
+        for ($i = 0; $i < intval($request->storage_quantity); $i++){
+            Product::create([
+                'store_id' => $store->id,
+                'component_id' => $request->storage_component,
+                'price' => $request->storage_price,
+                'type' => 'Storage',
+                'status' => 'Available',
+                'status_date' => Carbon::now()->toDateTimeString(),
+                'description' => $request->storage_description
+            ]);
+        }
+
+        return back();
+    }
+
+    public function add_psu(Request $request){
+        // Validate
+        $this->validate($request, [
+            'psu_component' => 'required|numeric',
+            'psu_quantity' => 'required|numeric|min:1',
+            'psu_price' => 'required|numeric|min:0',
+            'psu_description' => 'nullable|string'
+        ]);
+
+        // Store
+        $store = Store::where('account_id',Auth::user()->getAuthIdentifier())->firstOrFail();
+
+        for ($i = 0; $i < intval($request->psu_quantity); $i++){
+            Product::create([
+                'store_id' => $store->id,
+                'component_id' => $request->psu_component,
+                'price' => $request->psu_price,
+                'type' => 'PSU',
+                'status' => 'Available',
+                'status_date' => Carbon::now()->toDateTimeString(),
+                'description' => $request->psu_description
+            ]);
+        }
+
+        return back();
+    }
+
+    public function add_computer_case(Request $request){
+        // Validate
+        $this->validate($request, [
+            'case_component' => 'required|numeric',
+            'case_quantity' => 'required|numeric|min:1',
+            'case_price' => 'required|numeric|min:0',
+            'case_description' => 'nullable|string'
+        ]);
+
+        // Store
+        $store = Store::where('account_id',Auth::user()->getAuthIdentifier())->firstOrFail();
+
+        for ($i = 0; $i < intval($request->case_quantity); $i++){
+            Product::create([
+                'store_id' => $store->id,
+                'component_id' => $request->case_component,
+                'price' => $request->case_price,
+                'type' => 'Computer Case',
+                'status' => 'Available',
+                'status_date' => Carbon::now()->toDateTimeString(),
+                'description' => $request->case_description
+            ]);
+        }
+
+        return back();
+    }
 }

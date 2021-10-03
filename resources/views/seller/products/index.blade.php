@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    @include('layouts.dashboardheader')
+    @include('layouts.subheader')
     <div class="container">
         <div class="d-sm-flex my-2 justify-content-between align-items-center">
             @if(isset($motherboard_components))
@@ -8,82 +8,50 @@
                     <i class="fas fa-microchip"></i>
                     <small> Motherboard Products</small>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#add_motherboard_product">
-                    Add Motherboard Product
-                </button>
             @elseif(isset($cpu_components))
                 <div class="h1">
                     <i class="bi bi-cpu-fill"></i>
                     <small> CPU Products</small>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#add_cpu_product">
-                    Add CPU Product
-                </button>
             @elseif(isset($cpu_cooler_components))
                 <div class="h1">
                     <i class="far fa-snowflake"></i>
                     <small> CPU Cooler Products</small>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#add_cpu_cooler_product">
-                    Add CPU Cooler Product
-                </button>
             @elseif(isset($graphics_card_components))
                 <div class="h1">
                     <i class="fas fa-tv"></i>
                     <small> Graphics Card Products</small>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#add_graphics_card_product">
-                    Add Graphics Card Product
-                </button>
             @elseif(isset($ram_components))
                 <div class="h1">
                     <i class="fas fa-memory"></i>
                     <small> RAM Products</small>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#add_ram_product">
-                    Add RAM Product
-                </button>
             @elseif(isset($storage_components))
                 <div class="h1">
                     <i class="fas fa-hdd"></i>
                     <small> Storage Products</small>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#add_storage_product">
-                    Add Storage Product
-                </button>
             @elseif(isset($psu_components))
                 <div class="h1">
                     <i class="fas fa-plug"></i>
                     <small> PSU Products</small>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#add_psu_product">
-                    Add PSU Product
-                </button>
             @elseif(isset($computer_case_components))
                 <div class="h1">
                     <i class="fas fa-suitcase"></i>
                     <small> Computer Case Products</small>
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#add_computer_case_product">
-                    Add Computer Case Product
-                </button>
             @endif
         </div>
     </div>
 
-    <!-- Motherboard Table -->
     <div class="mb-3">
         <div class="container">
             <div class="card">
                 <div class="card-body">
+                    <!-- Motherboard Table -->
                     @if(isset($motherboard_components))
                         @if($motherboard_components->count())
                             <div class="table-responsive text-center">
@@ -125,6 +93,7 @@
                         @else
                             <p class="lead text-center">No Motherboard Products</p>
                         @endif
+                    <!-- CPU Table -->
                     @elseif(isset($cpu_components))
                         @if($cpu_components->count())
                             <div class="table-responsive text-center">
@@ -166,6 +135,7 @@
                         @else
                             <p class="lead text-center">No CPU Products</p>
                         @endif
+                    <!-- CPU Cooler Table -->
                     @elseif(isset($cpu_cooler_components))
                         @if($cpu_cooler_components->count())
                             <div class="table-responsive text-center">
@@ -207,6 +177,7 @@
                         @else
                             <p class="lead text-center">No CPU Cooler Products</p>
                         @endif
+                    <!-- Graphics Card Table -->
                     @elseif(isset($graphics_card_components))
                         @if($graphics_card_components->count())
                             <div class="table-responsive text-center">
@@ -248,6 +219,7 @@
                         @else
                             <p class="lead text-center">No Graphics Card Products</p>
                         @endif
+                    <!-- RAM Table -->
                     @elseif(isset($ram_components))
                         @if($ram_components->count())
                             <div class="table-responsive text-center">
@@ -289,6 +261,7 @@
                         @else
                             <p class="lead text-center">No RAM Products</p>
                         @endif
+                    <!-- Storage Table -->
                     @elseif(isset($storage_components))
                         @if($storage_components->count())
                             <div class="table-responsive text-center">
@@ -330,6 +303,7 @@
                         @else
                             <p class="lead text-center">No Storage Products</p>
                         @endif
+                    <!-- PSU Table -->
                     @elseif(isset($psu_components))
                         @if($psu_components->count())
                             <div class="table-responsive text-center">
@@ -371,6 +345,7 @@
                         @else
                             <p class="lead text-center">No PSU Products</p>
                         @endif
+                    <!-- Computer Case Table -->
                     @elseif(isset($computer_case_components))
                         @if($computer_case_components->count())
                             <div class="table-responsive text-center">
@@ -417,29 +392,5 @@
             </div>
         </div>
     </div>
-
-    @if(count($errors) > 0)
-        <script>
-            $(document).ready(function () {
-                @if($errors->has('mobo_*'))
-                $('#add_motherboard_product').modal('show');
-                @elseif($errors->has('cpu_cooler_*'))
-                $('#add_cpu_cooler_product').modal('show');
-                @elseif($errors->has('cpu_*'))
-                $('#add_cpu_product').modal('show');
-                @elseif($errors->has('graphics_card_*'))
-                $('#add_graphics_card_product').modal('show');
-                @elseif($errors->has('ram_*'))
-                $('#add_ram_product').modal('show');
-                @elseif($errors->has('storage_*'))
-                $('#add_storage_product').modal('show');
-                @elseif($errors->has('psu_*'))
-                $('#add_psu_product').modal('show');
-                @elseif($errors->has('case_*'))
-                $('#add_computer_case_product').modal('show');
-                @endif
-            });
-        </script>
-    @endif
 
 @endsection

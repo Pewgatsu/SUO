@@ -14,11 +14,9 @@ class ProductsController extends Controller
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'Motherboard')
             ->paginate(10);
-        $motherboards = Component::where('type', 'Motherboard')->get();
         return view('seller.products.index', [
             'store' => $store,
-            'motherboard_components' => $motherboard_components,
-            'motherboards' => $motherboards
+            'motherboard_components' => $motherboard_components
         ]);
     }
 
@@ -29,11 +27,9 @@ class ProductsController extends Controller
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'CPU')
             ->paginate(10);
-        $cpus = Component::where('type', 'CPU')->get();
         return view('seller.products.index', [
             'store' => $store,
-            'cpu_components' => $cpu_components,
-            'cpus' => $cpus
+            'cpu_components' => $cpu_components
         ]);
     }
 
@@ -44,11 +40,9 @@ class ProductsController extends Controller
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'CPU Cooler')
             ->paginate(10);
-        $cpu_coolers = Component::where('type', 'CPU Cooler')->get();
         return view('seller.products.index', [
             'store' => $store,
-            'cpu_cooler_components' => $cpu_cooler_components,
-            'cpu_coolers' => $cpu_coolers
+            'cpu_cooler_components' => $cpu_cooler_components
         ]);
     }
 
@@ -59,11 +53,9 @@ class ProductsController extends Controller
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'Graphics Card')
             ->paginate(10);
-        $graphics_cards = Component::where('type', 'Graphics Card')->get();
         return view('seller.products.index', [
             'store' => $store,
-            'graphics_card_components' => $graphics_card_components,
-            'graphics_cards' => $graphics_cards
+            'graphics_card_components' => $graphics_card_components
         ]);
     }
 
@@ -74,11 +66,9 @@ class ProductsController extends Controller
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'RAM')
             ->paginate(10);
-        $rams = Component::where('type', 'RAM')->get();
         return view('seller.products.index', [
             'store' => $store,
-            'ram_components' => $ram_components,
-            'rams' => $rams
+            'ram_components' => $ram_components
         ]);
     }
 
@@ -89,11 +79,9 @@ class ProductsController extends Controller
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'Storage')
             ->paginate(10);
-        $storages = Component::where('type', 'Storage')->get();
         return view('seller.products.index', [
             'store' => $store,
-            'storage_components' => $storage_components,
-            'storages' => $storages
+            'storage_components' => $storage_components
         ]);
     }
 
@@ -104,11 +92,9 @@ class ProductsController extends Controller
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'PSU')
             ->paginate(10);
-        $psus = Component::where('type', 'PSU')->get();
         return view('seller.products.index', [
             'store' => $store,
-            'psu_components' => $psu_components,
-            'psus' => $psus
+            'psu_components' => $psu_components
         ]);
     }
 
@@ -119,11 +105,9 @@ class ProductsController extends Controller
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'Computer Case')
             ->paginate(10);
-        $computer_cases = Component::where('type', 'Computer Case')->get();
         return view('seller.products.index', [
             'store' => $store,
-            'computer_case_components' => $computer_case_components,
-            'computer_cases' => $computer_cases
+            'computer_case_components' => $computer_case_components
         ]);
     }
 }
