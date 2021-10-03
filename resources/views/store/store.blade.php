@@ -43,7 +43,6 @@
         <!--
         'image display' -> store.blade components
         'linking of the components'
-        'old value or hint in the editStore.blade'->components
         -->
 
         <!-- Background image or store banner -->
@@ -87,7 +86,9 @@
                             </table>
                              <!-- Map -->
                              <div class="map-responsive">
-                                 <iframe src="{{empty(session('storeInfo.storeLocation')) ? 'LOREM IPSUM DOLOR':session('storeInfo.storeLocation')}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                 <iframe src="{{empty(session('storeInfo.storeLocation')) ?
+                                                'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16011010.91028031!2d113.57599198208291!3d11.556287369860305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x324053215f87de63%3A0x784790ef7a29da57!2sPhilippines!5e0!3m2!1sen!2sph!4v1633231757763!5m2!1sen!2sph'
+                                                :session('storeInfo.storeLocation')}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                              </div>
                              <!-- address -->
                              <table class="table table-hover align-middle">
