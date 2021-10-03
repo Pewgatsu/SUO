@@ -3,6 +3,7 @@
 @endsection
 @extends('layouts.master')
 @section('content')
+    @include('layouts.subheader')
 <style>
     tr {
         width: 100%;
