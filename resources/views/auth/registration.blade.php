@@ -69,8 +69,8 @@
                                         <div class="form-outline flex-fill mb-0">
                                             <select class="form-select @error('accountType') is-invalid @enderror" id="accountType" name="accountType">
                                                 <option value="">Account Type</option>
-                                                <option value="Customer" @if (old('accountType') == "Customer") selected @endif>Customer</option>
-                                                <option value="Seller" @if (old('accountType') == "Seller") selected @endif>PC Seller</option>
+                                                <option value="customer" @if (old('accountType') == "customer") selected @endif>Customer</option>
+                                                <option value="seller" @if (old('accountType') == "seller") selected @endif>PC Seller</option>
                                             </select>
                                             @error('accountType')
                                             <div class="invalid-tooltip position-relative">{{$errors->first('accountType')}}</div>
