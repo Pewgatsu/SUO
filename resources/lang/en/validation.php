@@ -342,6 +342,7 @@ return [
         'case_internal_350_bay' => 'Internal 3.5" Bay',
         'case_internal_250_bay' => 'Internal 2.5" Bay',
 
+        //Seller Store
         'storeBanner' => 'Banner must be an Image ',
         'storeName' => 'Store Name ',
         'storeLocation' => 'Store Location ',
@@ -395,6 +396,10 @@ return [
         'case_quantity' => 'Quantity',
         'case_price' => 'Price',
         'case_description' => 'Product Description',
+
+        //Builds
+        'buildName' => ' Build Name',
+        'buildDescription' => 'Build Description',
     ],
 
 ];

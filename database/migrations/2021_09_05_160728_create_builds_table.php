@@ -18,7 +18,7 @@ class CreateBuildsTable extends Migration
             $table->foreignId('account_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('build_name');
             $table->integer('total_price');
-            $table->string('build_description');
+            $table->string('build_description')->nullable();
             $table->timestamps();
 
         });

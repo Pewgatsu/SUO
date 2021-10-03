@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutSystemController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\BuildsController;
 use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
@@ -149,5 +150,25 @@ Route::get('/search', [SearchController::class, 'index'])->name('search');
 // Detailed Product Page
 Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('componentinfo');
 
-// User Profile Page
+
+
+//System Builder
+Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
+Route::any('/components', [SystemBuilderController::class, 'print'])->name('components');
+Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
+
+//builds
+Route::get('/consumer/builds', [BuildsController::class, 'index'])->name('builds')->middleware('auth');;
+Route::delete('/consumer/builds/delete/{build}', [BuildsController::class, 'delete_build'])->name('consumer.builds.delete');
+
+
+//Seller
+Route::get('seller/store', [StoreController::class, 'myStore'])->name('myStore');
+Route::get('seller/{id}', [StoreController::class, 'index'])->name('viewStore');
+Route::any('seller/edit/store/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
+Route::get('seller/edit/store', [EditStoreController::class, 'index'])->name('editStore');
+
+
+
+
 Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('user.profile');
