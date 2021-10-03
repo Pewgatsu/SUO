@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Account;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+
+
 
 
 class AuthController extends Controller
 {
+
     //
     public function loginPage(){
         return view('auth.login');
@@ -26,9 +29,13 @@ class AuthController extends Controller
         $credentials = $request->only('username','password');
         $account = Account::where('username',$request->username)->first();
 
+        Auth::attempt($credentials);
+
         if(Auth::attempt($credentials)){
             if(auth()->user()->account_type == 'customer'){
                 return redirect()->route('builder');
+            }else if(auth()->user()->account_type == 'seller'){
+                return redirect()->route('myStore');
             }else{
                 return redirect()->route('admin.dashboard');
             }
