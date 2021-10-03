@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    @include('layouts.dashboardheader')
+    @include('layouts.subheader')
     <div class="container">
         <div class="d-sm-flex my-2 justify-content-between align-items-center">
             <div class="h1">
@@ -229,28 +229,28 @@
     @endif
 
 
-    <!-- Add Motherboard -->
+    <!-- Add Motherboard Component -->
     <x-component.motherboard :memorySpeeds="$memory_speeds" mode="add" />
 
-    <!-- Add CPU -->
+    <!-- Add CPU Component -->
     <x-component.cpu mode="add" />
 
-    <!-- Add CPU Cooler -->
+    <!-- Add CPU Cooler Component -->
     <x-component.cpu-cooler :cpuSockets="$cpu_sockets" mode="add" />
 
-    <!-- Add Graphics Card -->
+    <!-- Add Graphics Card Component -->
     <x-component.graphics-card mode="add" />
 
-    <!-- Add RAM -->
+    <!-- Add RAM Component -->
     <x-component.ram mode="add" />
 
-    <!-- Add Storage -->
+    <!-- Add Storage Component -->
     <x-component.storage mode="add" />
 
-    <!-- Add PSU -->
+    <!-- Add PSU Component -->
     <x-component.psu mode="add" />
 
-    <!-- Add Computer Case -->
+    <!-- Add Computer Case Component -->
     <x-component.computer-case :moboFormFactors="$mobo_form_factors" mode="add" />
 
 @endsection

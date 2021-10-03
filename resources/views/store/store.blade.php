@@ -1,232 +1,296 @@
 @section('head')
-
 @endsection
 
 @extends('layouts.master')
 @section('content')
+
+    @if (session('seller'))
+    @include('layouts.subheader')
+    @endif
     <div class="container-xl mt-3">
 
+        <div class="d-sm-flex my-2 justify-content-between align-items-center">
+            <div class="h1">
+                <i class="bi bi-shop"></i>
+                <small> My Store</small>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Add Products
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_motherboard_products">Motherboard</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_cpu_products">CPU</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_cpu_cooler_products">CPU Cooler</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_graphics_card_products">Graphics Card</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_ram_products">RAM</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_storage_products">Storage</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_psu_products">PSU</a></li>
+                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                           data-bs-target="#add_computer_case_products">Computer Case</a></li>
+                </ul>
+            </div>
+        </div>
 
         <!--
         'image display' -> store.blade components
         'linking of the components'
         'old value or hint in the editStore.blade'->components
         -->
+
         <!-- Background image or store banner -->
-        <div class="bg-image" style="background-image: url({{asset( session('banner','/images/placeholder.jpg')) }}) ;
-            height:50vh;" >
+        <div class="card m-2" >
+            <div class="bg-image" style="background-image: url({{asset(empty(session('storeInfo.banner')) ? '/images/placeholder.jpg':session('storeInfo.banner') ) }}) ;
+                height:50vh;" >
 
-            <br><br><br><br><br><br>
-            <span class="align-middle"> <h1 class="p-1 ps-4 align-middle bg-black text-white"> {{session('storeName','LOREM IPSUM DOLOR')}}</h1> </span>
 
-            <br><br>
-            <form class="d-inline" method="get" action="{{route('editStore')}}">
-                @csrf
-                <button type="submit" name="editStore"  {{session('seller','style=display:none;')}} class="btn btn-info btn-block float-end ">Edit Profile</button>
-            </form>
+                <br><br><br><br><br><br>
+                <span class="align-middle"> <h1 class="p-1 ps-4 align-middle bg-black text-white">  {{empty(session('storeInfo.storeName')) ? 'LOREM IPSUM DOLOR':session('storeInfo.storeName')}}</h1> </span>
+
+                <br><br>
+                <form class="d-inline" method="get" action="{{route('editStore')}}">
+                    @csrf
+                    <button type="submit" name="editStore"  {{session('seller','style=display:none;')}} class="btn btn-info  float-end ">Edit Profile</button>
+                </form>
+            </div>
         </div>
-
         <!-- Map and address and Featured components -->
         <div class="container-xl mt-3 mb-3 p3">
             <div class="row">
                 <!-- Left Column-->
-                <div class="col-4 "><h6>STORE INFORMATIONS</h6>
-                    <!-- Map -->
-                    <div class="map-responsive">
-                        <iframe src="{{session('storeLocation','LOREM IPSUM DOLOR')}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <div class="col-4 ">
+                    <div class="card">
+                        <div class="card-body">
+
+                             <h6 class="card-title">STORE INFORMATION</h6>
+                            <!--Store Owner -->
+                            <table class="table table-hover align-middle">
+                                <tr>
+                                    <td class="fw-bold">Store Owner:</td>
+                                    <td class="text-center">{{empty(session('storeInfo.ownerFN')) ? ' ':session('storeInfo.ownerFN')}}
+                                                            {{empty(session('storeInfo.ownerLN')) ? ' ':session('storeInfo.ownerLN')}}
+                                    </td>
+                                </tr>
+                                <!--Store Description-->
+                                <tr>
+                                    <td class="fw-bold">Created at:</td>
+                                    <td  class="text-center" ><p>{{  empty(session('storeInfo.creation')) ? 'LOREM IPSUM DOLOR':session('storeInfo.creation')}}</p></td>
+                                </tr>
+                            </table>
+                             <!-- Map -->
+                             <div class="map-responsive">
+                                 <iframe src="{{empty(session('storeInfo.storeLocation')) ? 'LOREM IPSUM DOLOR':session('storeInfo.storeLocation')}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                             </div>
+                             <!-- address -->
+                             <table class="table table-hover align-middle">
+                                 <tr>
+                                     <td colspan="2" class="text-center"><h5 class="card-title">{{empty(session('storeInfo.storeAddress')) ? 'LOREM IPSUM DOLOR':session('storeInfo.storeAddress')}}</h5></td>
+                                 </tr>
+                                 <!--Store Description-->
+                                 <tr>
+                                     <td colspan="2" class="text-center" ><p>{{empty(session('storeInfo.storeDescription')) ? 'LOREM IPSUM DOLOR':session('storeInfo.storeDescription')}}</p></td>
+                                 </tr>
+                             </table>
+
+                        </div>
                     </div>
-                    <!-- address -->
-                    <table class="table table-hover align-middle">
-                        <tr>
-                            <td colspan="2" class="text-center"><h3>{{session('storeAddress','LOREM IPSUM DOLOR')}}</h3></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="text-center" ><p>{{session('storeDescription','LOREM IPSUM DOLOR')}}</p></td>
-                        </tr>
-                    </table>
+
+
                 </div>
 
                 <!-- Featured components -->
-                <div class="col-8 "><h6>FEATURED PRODUCTS</h6>
+                <div class="col-8 ">
 
-                    <div class="row">   <!--MOTHERBOARD -->
-                        <div class="col mt-2">
-                            <div class="card">
-                                <div class="card-body"> <!-- dd(session('productsArray.motherboards.0.price') ); -->
-                                    <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                                </div>
-                                <div class="card-body bg-light text-center">
-                                    <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.motherboards.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">MOTHERBOARD</a>
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">FEATURED PRODUCTS</h6>
+
+                            <div class="row">   <!--MOTHERBOARD -->
+                                <div class="col mt-2">
+                                    <div class="card">
+                                        <div class="card-body"> <!-- dd(session('productsArray.motherboards.0.price') ); -->
+                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                        </div>
+                                        <div class="card-body bg-light text-center">
+                                            <div class="mb-2">
+                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.motherboards.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">MOTHERBOARD</a>
+                                            </div>
+                                            <h4 class="mb-0 font-weight-semibold">
+                                                @if(session('productsArray.motherboards.0.price')==0)
+                                                    ---
+                                                @else
+                                                    ₱ {{ number_format(session('productsArray.motherboards.0.price'),2) }}
+                                                @endif
+                                            </h4>
+                                        </div>
                                     </div>
-                                    <h4 class="mb-0 font-weight-semibold">
-                                        @if(session('productsArray.motherboards.0.price')==0)
-                                            ---
-                                        @else
-                                            ₱ {{ number_format(session('productsArray.motherboards.0.price'),2) }}
-                                        @endif
-                                    </h4>
+                                </div>
+                                <div class="col mt-2"> <!--CPU -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                        </div>
+                                        <div class="card-body bg-light text-center">
+                                            <div class="mb-2">
+                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.cpus.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU</a>
+                                            </div>
+                                            <h4 class="mb-0 font-weight-semibold">
+                                                @if(session('productsArray.cpus.0.price')==0)
+                                                    ---
+                                                @else
+                                                    ₱ {{ number_format(session('productsArray.cpus.0.price'),2) }}
+                                                @endif
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mt-2"> <!--CPU COOLER -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                        </div>
+                                        <div class="card-body bg-light text-center">
+                                            <div class="mb-2">
+                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.cpu_coolers.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU COOLER</a>
+                                            </div>
+                                            <h4 class="mb-0 font-weight-semibold">
+                                                @if(session('productsArray.cpu_coolers.0.price')==0)
+                                                    ---
+                                                @else
+                                                    ₱ {{ number_format(session('productsArray.cpu_coolers.0.price'),2) }}
+                                                @endif
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mt-2"> <!--GRAPHICS CARD -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                        </div>
+                                        <div class="card-body bg-light text-center">
+                                            <div class="mb-2">
+                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.graphics_cards.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">GRAPHICS CARD</a>
+                                            </div>
+                                            <h4 class="mb-0 font-weight-semibold">
+                                                @if(session('productsArray.graphics_cards.0.price')==0)
+                                                    ---
+                                                @else
+                                                    ₱ {{ number_format(session('productsArray.graphics_cards.0.price'),2) }}
+                                                @endif
+                                            </h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col mt-2"> <!--CPU -->
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                                </div>
-                                <div class="card-body bg-light text-center">
-                                    <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.cpus.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU</a>
+                            <div class="row">
+                                <div class="col mt-2"> <!-- RAM -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                        </div>
+                                        <div class="card-body bg-light text-center">
+                                            <div class="mb-2">
+                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.rams.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">RAM</a>
+                                            </div>
+                                            <h4 class="mb-0 font-weight-semibold">
+                                                @if(session('productsArray.rams.0.price')==0)
+                                                    ---
+                                                @else
+                                                    ₱ {{ number_format(session('productsArray.rams.0.price'),2) }}
+                                                @endif
+                                            </h4>
+                                        </div>
                                     </div>
-                                    <h4 class="mb-0 font-weight-semibold">
-                                        @if(session('productsArray.cpus.0.price')==0)
-                                            ---
-                                        @else
-                                            ₱ {{ number_format(session('productsArray.cpus.0.price'),2) }}
-                                        @endif
-                                    </h4>
+                                </div>
+                                <div class="col mt-2">
+                                    <div class="card"> <!--STORAGES -->
+                                        <div class="card-body">
+                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                        </div>
+                                        <div class="card-body bg-light text-center">
+                                            <div class="mb-2">
+                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.storages.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">STORAGES</a>
+                                            </div>
+                                            <h4 class="mb-0 font-weight-semibold">
+                                                @if(session('productsArray.storages.0.price')==0)
+                                                    ---
+                                                @else
+                                                    ₱ {{ number_format(session('productsArray.storages.0.price'),2) }}
+                                                @endif
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mt-2">
+                                    <div class="card"> <!--PSU -->
+                                        <div class="card-body">
+                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                        </div>
+                                        <div class="card-body bg-light text-center">
+                                            <div class="mb-2">
+                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.psus.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">PSU</a>
+                                            </div>
+                                            <h4 class="mb-0 font-weight-semibold">
+                                                @if(session('productsArray.psus.0.price')==0)
+                                                    ---
+                                                @else
+                                                    ₱ {{ number_format(session('productsArray.psus.0.price'),2) }}
+                                                @endif
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col mt-2">
+                                    <div class="card"> <!-- COMPUTER CASE -->
+                                        <div class="card-body">
+                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                        </div>
+                                        <div class="card-body bg-light text-center">
+                                            <div class="mb-2">
+                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.computer_cases.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">COMPUTER CASE</a>
+                                            </div>
+                                            <h4 class="mb-0 font-weight-semibold">
+                                                @if(session('productsArray.computer_cases.0.price')==0)
+                                                    ---
+                                                @else
+                                                    {{ number_format(session('productsArray.computer_cases.0.price'),2) }} ₱
+                                                @endif
+                                            </h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col mt-2"> <!--CPU COOLER -->
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                                </div>
-                                <div class="card-body bg-light text-center">
-                                    <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.cpu_coolers.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU COOLER</a>
-                                    </div>
-                                    <h4 class="mb-0 font-weight-semibold">
-                                        @if(session('productsArray.cpu_coolers.0.price')==0)
-                                            ---
-                                        @else
-                                            ₱ {{ number_format(session('productsArray.cpu_coolers.0.price'),2) }}
-                                        @endif
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mt-2"> <!--GRAPHICS CARD -->
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                                </div>
-                                <div class="card-body bg-light text-center">
-                                    <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.graphics_cards.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">GRAPHICS CARD</a>
-                                    </div>
-                                    <h4 class="mb-0 font-weight-semibold">
-                                        @if(session('productsArray.graphics_cards.0.price')==0)
-                                            ---
-                                        @else
-                                            ₱ {{ number_format(session('productsArray.graphics_cards.0.price'),2) }}
-                                        @endif
-                                    </h4>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col mt-2"> <!-- RAM -->
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                                </div>
-                                <div class="card-body bg-light text-center">
-                                    <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.rams.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">RAM</a>
-                                    </div>
-                                    <h4 class="mb-0 font-weight-semibold">
-                                        @if(session('productsArray.rams.0.price')==0)
-                                            ---
-                                        @else
-                                            ₱ {{ number_format(session('productsArray.rams.0.price'),2) }}
-                                        @endif
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mt-2">
-                            <div class="card"> <!--STORAGES -->
-                                <div class="card-body">
-                                    <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                                </div>
-                                <div class="card-body bg-light text-center">
-                                    <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.storages.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">STORAGES</a>
-                                    </div>
-                                    <h4 class="mb-0 font-weight-semibold">
-                                        @if(session('productsArray.storages.0.price')==0)
-                                            ---
-                                        @else
-                                            ₱ {{ number_format(session('productsArray.storages.0.price'),2) }}
-                                        @endif
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mt-2">
-                            <div class="card"> <!--PSU -->
-                                <div class="card-body">
-                                    <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                                </div>
-                                <div class="card-body bg-light text-center">
-                                    <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.psus.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">PSU</a>
-                                    </div>
-                                    <h4 class="mb-0 font-weight-semibold">
-                                        @if(session('productsArray.psus.0.price')==0)
-                                            ---
-                                        @else
-                                            ₱ {{ number_format(session('productsArray.psus.0.price'),2) }}
-                                        @endif
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col mt-2">
-                            <div class="card"> <!-- COMPUTER CASE -->
-                                <div class="card-body">
-                                    <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
-                                </div>
-                                <div class="card-body bg-light text-center">
-                                    <div class="mb-2">
-                                        <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.computer_cases.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">COMPUTER CASE</a>
-                                    </div>
-                                    <h4 class="mb-0 font-weight-semibold">
-                                        @if(session('productsArray.computer_cases.0.price')==0)
-                                            ---
-                                        @else
-                                            {{ number_format(session('productsArray.computer_cases.0.price'),2) }} ₱
-                                        @endif
-
-                                    </h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
 
             </div>
 
         </div>
 
+        <!-- contact us -->
         <div class="container-xl mt-3 mb-3 p3 bg-black text-white">
             <div class="row">
                 <div class="col-md-2">
                     <br><br>
                     <h4 class="text-white align-middle">Contact us @:</h4>
                 </div>
-
                 <div class="col-md-8 align-middle">
                     <br><br>
-                    <h3 class="text-white text-center">{{session('contacts.0.contact')}} </h3>
+                    <h3 class="text-white text-center">{{empty(session('storeInfo.contact')) ? 'LOREM IPSUM DOLOR':session('storeInfo.contact')}}</h3>
                                 <h6 class="text-white text-center">or</h6>
-                    <h3 class="text-white text-center"> {{session('contacts.0.email')}}</h3>
+                    <h3 class="text-white text-center"> {{empty(session('storeInfo.email')) ? 'LOREM IPSUM DOLOR':session('storeInfo.email')}}</h3>
+
                 </div>
             </div>
             <br><br>
@@ -234,5 +298,54 @@
         <br>
 
     </div>
+
+    <!-- Modals -->
+    @if(count($errors) > 0)
+        <script>
+            $(document).ready(function () {
+                @if($errors->has('mobo_*'))
+                $('#add_motherboard_products').modal('show');
+                @elseif($errors->has('cpu_cooler_*'))
+                $('#add_cpu_cooler_products').modal('show');
+                @elseif($errors->has('cpu_*'))
+                $('#add_cpu_products').modal('show');
+                @elseif($errors->has('graphics_card_*'))
+                $('#add_graphics_card_products').modal('show');
+                @elseif($errors->has('ram_*'))
+                $('#add_ram_products').modal('show');
+                @elseif($errors->has('storage_*'))
+                $('#add_storage_products').modal('show');
+                @elseif($errors->has('psu_*'))
+                $('#add_psu_products').modal('show');
+                @elseif($errors->has('case_*'))
+                $('#add_computer_case_products').modal('show');
+                @endif
+            });
+        </script>
+    @endif
+
+    <!-- Add Motherboard Product -->
+    <x-product.motherboard mode="add" :motherboardComponents="$motherboard_components" />
+
+    <!-- Add CPU Product -->
+    <x-product.cpu mode="add" :cpuComponents="$cpu_components" />
+
+    <!-- Add CPU Cooler Product -->
+    <x-product.cpu-cooler mode="add" :cpuCoolerComponents="$cpu_cooler_components" />
+
+    <!-- Add Graphics Card Product -->
+    <x-product.graphics-card mode="add" :graphicsCardComponents="$graphics_card_components" />
+
+    <!-- Add RAM Product -->
+    <x-product.ram mode="add" :ramComponents="$ram_components" />
+
+    <!-- Add Storage Product -->
+    <x-product.storage mode="add" :storageComponents="$storage_components" />
+
+    <!-- Add PSU Product -->
+    <x-product.psu mode="add" :psuComponents="$psu_components" />
+
+    <!-- Add Computer Case Product -->
+    <x-product.computer-case mode="add" :computerCaseComponents="$computer_case_components" />
 
 @endsection

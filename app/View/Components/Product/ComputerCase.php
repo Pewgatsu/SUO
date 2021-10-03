@@ -1,0 +1,70 @@
+<?php
+
+namespace App\View\Components\Product;
+
+use Illuminate\View\Component;
+
+class ComputerCase extends Component
+{
+    public $mode;
+    public $computerCaseComponents;
+    public $computerCaseComponentId;
+
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public function __construct($mode, $computerCaseComponents = null, $computerCaseComponentId = null)
+    {
+        $this->mode = $mode;
+        $this->computerCaseComponents = $computerCaseComponents;
+        $this->computerCaseComponentId = $computerCaseComponentId;
+    }
+
+    public function setID(){
+        if (strtolower($this->mode) === 'add'){
+            return 'add_computer_case_products';
+        }
+        elseif (strtolower($this->mode) === 'edit'){
+            return 'edit_computer_case_products_' . $this->computerCaseComponentId;
+        }
+        else {
+            return null;
+        }
+    }
+
+    public function setRoute(){
+        if (strtolower($this->mode) === 'add'){
+            return route('seller.store.add_computer_case');
+        }
+        elseif (strtolower($this->mode) === 'edit'){
+            return route('seller.products.computer_cases.edit', $this->computerCaseComponentId);
+        }
+        else {
+            return null;
+        }
+    }
+
+    public function setTitle(){
+        if (strtolower($this->mode) === 'add'){
+            return 'Add';
+        }
+        elseif (strtolower($this->mode) === 'edit'){
+            return 'Edit';
+        }
+        else {
+            return null;
+        }
+    }
+
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\Contracts\View\View|\Closure|string
+     */
+    public function render()
+    {
+        return view('components.product.computer-case');
+    }
+}

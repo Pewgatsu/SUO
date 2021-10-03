@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         @if($mode === 'edit' && isset($psu) && isset($psu->component->image_path))
                             <img class="img-fluid rounded mx-auto d-block mb-2"
-                                 src="{{ asset('images/psus/' . $psu->component->image_path) }}" alt="">
+                                 src="{{ asset('images/components/psus/' . $psu->component->image_path) }}" alt="">
                         @endif
                         <label for="psu_image" class="form-label">Component Image</label>
                         <input class="form-control @error('psu_image') is-invalid @enderror" type="file"

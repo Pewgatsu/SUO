@@ -27,13 +27,19 @@
             <tr>
                 <td>Motherboard</td>
                 <td>                                                                     <!-- Motherboards Button -->
-                    <form action="/components" method="post">
+                    <form action="{{route('components')}}" method="post">
                         <input type="hidden" name="selectedComponents" value="motherboards">
-                        {{csrf_field()}}
-                        <input type="submit" name="selectedComponent" value="{{session('motherboards','+')}}" class="btn btn-info col-12">
+                        @csrf
+                        <input type="submit" name="selectedComponent" value="{{session('motherboards.name','+')}}" class="btn btn-info col-12">
                     </form>
                 </td>
-                <td class="text-center">{{session('motherboardsPrice','--')}}</td>
+                <td class="text-center">
+                    @if(session()->has('motherboards.price'))
+                        ₱ {{ number_format(session('motherboards.price'),2) }}
+                    @else
+                        ---
+                    @endif
+                   </td>
                 <td class="text-center">
                     <form name="ownedComponent">                                          <!-- Motherboards Checkbox -->
                         <div class="form-check">
@@ -41,9 +47,15 @@
                                 <input type="checkbox"
                                        id="ownedComponent"
                                        value="motherboards"
-                                       {{session('motherboardsOwned',' ')}}
                                        name="ownedComponentMotherboard"
-                                       {{session('motherboardsCheckBox','disabled')}}
+                                       @if(session()->has('motherboards.name'))
+                                            @if(session('motherboards.owned') == "1")
+                                                checked
+                                            @endif
+                                       @else
+                                            disabled
+                                       @endif
+
                                        class="form-check-input"
                                 >
                             </label>
@@ -53,8 +65,12 @@
                 <td>                                                                <!-- Motherboards Order Button -->
                     <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="motherboards">
-                        {{csrf_field()}}
-                        <button type="submit" class="btn btn-info col-12" {{session('motherboardsOrder','disabled')}} name="orderComponent">Order</button>
+                        @csrf
+                        <button type="submit" class="btn btn-info col-12"
+                                @if(session('motherboards.owned') == "1" or !session()->has('motherboards.name'))
+                                    disabled
+                                @endif
+                                name="orderComponent">Order</button>
                     </form>
                 </td>
             </tr>
@@ -62,23 +78,35 @@
             <tr>
                 <td>CPU</td>
                 <td>
-                    <form action="/components" method="post">                                       <!-- CPU Button -->
+                    <form action="{{route('components')}}" method="post">                                       <!-- CPU Button -->
                         <input type="hidden" name="selectedComponents" value="cpus">
-                        {{csrf_field()}}
-                        <input type="submit" name="selectedComponent" value="{{session('cpus','+')}}" class="btn btn-info col-12">
+                        @csrf
+                        <input type="submit" name="selectedComponent" value="{{session('cpus.name','+')}}" class="btn btn-info col-12">
                     </form>
                 </td>
-                <td class="text-center">{{session('cpusPrice','--')}}</td>
+                <td class="text-center">
+                                        @if(session()->has('cpus.price'))
+                                             ₱ {{ number_format(session('cpus.price'),2) }}
+                                        @else
+                                            ---
+                                        @endif
+                </td>
                 <td class="text-center">
                     <form name="ownedComponent">                                                    <!-- CPU Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox"
                                        id="ownedComponent"
-                                       {{session('cpusOwned',' ')}}
                                        value="cpus"
                                        name="ownedComponentCpu"
-                                       {{session('cpusCheckBox','disabled')}}
+                                       @if(session()->has('cpus.name'))
+                                            @if(session('cpus.owned') == "1")
+                                                checked
+                                            @endif
+                                       @else
+                                            disabled
+                                       @endif
+
                                        class="form-check-input"
                                 >
                             </label>
@@ -88,8 +116,12 @@
                 <td>                                                                        <!-- CPU Order Button -->
                     <form method="post"  action="{{route('control')}}" >
                         <input type="hidden" name="orderComponents" value="cpus">
-                        {{csrf_field()}}
-                        <button type="submit" class="btn btn-info col-12" {{session('cpusOrder','disabled')}} name="orderComponent">Order</button>
+                        @csrf
+                        <button type="submit" class="btn btn-info col-12"
+                                @if(session('cpus.owned') == "1" or !session()->has('cpus.name'))
+                                    disabled
+                                @endif
+                                name="orderComponent">Order</button>
                     </form>
                 </td>
             </tr>
@@ -97,13 +129,19 @@
             <tr>
                 <td>CPU Cooler</td>
                 <td>
-                    <form action="/components" method="post">                               <!-- CPU Cooler  Button -->
+                    <form action="{{route('components')}}" method="post">                               <!-- CPU Cooler  Button -->
                         <input type="hidden" name="selectedComponents" value="cpu_coolers">
-                        {{csrf_field()}}
-                        <input type="submit" name="selectedComponent" value="{{session('cpu_coolers','+')}}" class="btn btn-info col-12">
+                        @csrf
+                        <input type="submit" name="selectedComponent" value="{{session('cpu_coolers.name','+')}}" class="btn btn-info col-12">
                     </form>
                 </td>
-                <td class="text-center">{{session('cpu_coolersPrice','--')}}</td>
+                <td class="text-center">
+                                        @if(session()->has('cpu_coolers.price'))
+                                           ₱ {{ number_format(session('cpu_coolers.price'),2) }}
+                                        @else
+                                            ---
+                                        @endif
+                </td>
                 <td class="text-center">
                     <form name="ownedComponent">                                            <!-- CPU Cooler Checkbox -->
                         <div class="form-check">
@@ -111,9 +149,15 @@
                                 <input type="checkbox"
                                        id="ownedComponent"
                                        value="cpu_coolers"
-                                       {{session('cpu_coolersOwned',' ')}}
                                        name="ownedComponentCpuCooler"
-                                       {{session('cpu_coolersCheckBox','disabled')}}
+                                       @if(session()->has('cpu_coolers.name'))
+                                            @if(session('cpu_coolers.owned') == "1")
+                                                checked
+                                            @endif
+                                       @else
+                                            disabled
+                                       @endif
+
                                        class="form-check-input"
                                 >
                             </label>
@@ -123,8 +167,12 @@
                 <td>                                                                    <!-- CPU cooler Order Button -->
                     <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="cpu_coolers">
-                        {{csrf_field()}}
-                        <button type="submit" class="btn btn-info col-12" {{session('cpu_coolersOrder','disabled')}} name="orderComponent">Order</button>
+                        @csrf
+                        <button type="submit" class="btn btn-info col-12"
+                                @if(session('cpu_coolers.owned') == "1" or !session()->has('cpu_coolers.name'))
+                                    disabled
+                                @endif
+                                name="orderComponent">Order</button>
                     </form>
                 </td>
             </tr>
@@ -132,23 +180,35 @@
             <tr>
                 <td>Graphics Card</td>
                 <td>
-                    <form action="/components" method="post">                             <!-- Graphics Card Button -->
+                    <form action="{{route('components')}}" method="post">                             <!-- Graphics Card Button -->
                         <input type="hidden" name="selectedComponents" value="graphics_cards">
-                        {{csrf_field()}}
-                        <input type="submit" name="selectedComponent" value="{{session('graphics_cards','+')}}" class="btn btn-info col-12">
+                        @csrf
+                        <input type="submit" name="selectedComponent" value="{{session('graphics_cards.name','+')}}" class="btn btn-info col-12">
                     </form>
                 </td>
-                <td class="text-center">{{session('graphics_cardsPrice','--')}}</td>
+                <td class="text-center">
+                                        @if(session()->has('graphics_cards.price'))
+                                            ₱ {{ number_format(session('graphics_cards.price'),2) }}
+                                        @else
+                                            ---
+                                        @endif
+                </td>
                 <td class="text-center">
                     <form name="ownedComponent" method="post">                          <!-- Graphics Card Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox"
                                        id="ownedComponent"
-                                       {{session('graphics_cardsOwned',' ')}}
                                        value="graphics_cards"
                                        name="ownedComponentGpu"
-                                       {{session('graphics_cardsCheckBox','disabled')}}
+                                       @if(session()->has('graphics_cards.name'))
+                                            @if(session('graphics_cards.owned') == "1")
+                                                checked
+                                            @endif
+                                       @else
+                                            disabled
+                                       @endif
+
                                        class="form-check-input"
                                 >
                             </label>
@@ -158,8 +218,12 @@
                 <td>                                                                <!-- Graphics card Order Button -->
                     <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="graphics_cards">
-                        {{csrf_field()}}
-                        <button type="submit" class="btn btn-info col-12" {{session('graphics_cardsOrder','disabled')}} name="orderComponent">Order</button>
+                        @csrf
+                        <button type="submit" class="btn btn-info col-12"
+                                @if(session('graphics_cards.owned') == "1" or !session()->has('graphics_cards.name'))
+                                    disabled
+                                @endif
+                                name="orderComponent">Order</button>
                     </form>
                 </td>
             </tr>
@@ -167,23 +231,35 @@
             <tr>
                 <td>RAM</td>
                 <td>
-                    <form action="/components" method="post">                                       <!-- RAMS Button -->
+                    <form action="{{route('components')}}" method="post">                                       <!-- RAMS Button -->
                         <input type="hidden" name="selectedComponents" value="rams">
-                        {{csrf_field()}}
-                        <input type="submit" name="selectedComponent" value="{{session('rams','+')}}" class="btn btn-info col-12">
+                        @csrf
+                        <input type="submit" name="selectedComponent" value="{{session('rams.name','+')}}" class="btn btn-info col-12">
                     </form>
                 </td>
-                <td class="text-center">{{session('ramsPrice','--')}}</td>
+                <td class="text-center">
+                                        @if(session()->has('rams.price'))
+                                            ₱ {{ number_format(session('rams.price'),2) }}
+                                        @else
+                                            ---
+                                        @endif
+                </td>
                 <td class="text-center">
                     <form name="ownedComponent" >                                                   <!-- RAMS Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox"
                                        id="ownedComponent"
-                                       {{session('ramsOwned',' ')}}
                                        value="rams"
                                        name="ownedComponentRam"
-                                       {{session('ramsCheckBox','disabled')}}
+                                       @if(session()->has('rams.name'))
+                                            @if(session('rams.owned') == "1")
+                                                checked
+                                            @endif
+                                       @else
+                                            disabled
+                                       @endif
+
                                        class="form-check-input"
                                 >
                             </label>
@@ -193,8 +269,12 @@
                 <td>                                                                         <!-- RAM Order Button -->
                     <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="rams">
-                        {{csrf_field()}}
-                        <button type="submit" class="btn btn-info col-12" {{session('ramsOrder','disabled')}} name="orderComponent">Order</button>
+                        @csrf
+                        <button type="submit" class="btn btn-info col-12"
+                                @if(session('rams.owned') == "1" or !session()->has('rams.name'))
+                                    disabled
+                                @endif
+                                name="orderComponent">Order</button>
                     </form>
                 </td>
             </tr>
@@ -202,23 +282,35 @@
             <tr>
                 <td>Storage</td>
                 <td>
-                    <form action="/components" method="post">                                   <!-- Storages Button -->
+                    <form action="{{route('components')}}" method="post">                                   <!-- Storages Button -->
                         <input type="hidden" name="selectedComponents" value="storages">
-                        {{csrf_field()}}
-                        <input type="submit" name="selectedComponent" value="{{session('storages','+')}}" class="btn btn-info col-12">
+                        @csrf
+                        <input type="submit" name="selectedComponent" value="{{session('storages.name','+')}}" class="btn btn-info col-12">
                     </form>
                 </td>
-                <td class="text-center">{{session('storagesPrice','--')}}</td>
+                <td class="text-center">
+                                        @if(session()->has('storages.price'))
+                                            ₱ {{ number_format(session('storages.price'),2) }}
+                                         @else
+                                            ---
+                                        @endif
+                </td>
                 <td class="text-center">
                     <form name="ownedComponent">                                             <!-- Storages Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox"
                                        id="ownedComponent"
-                                       {{session('storagesOwned',' ')}}
                                        value="storages"
                                        name="ownedComponentStorage"
-                                       {{session('storagesCheckBox','disabled')}}
+                                       @if(session()->has('storages.name'))
+                                            @if(session('storages.owned') == "1")
+                                                checked
+                                            @endif
+                                       @else
+                                            disabled
+                                       @endif
+
                                        class="form-check-input"
                                 >
                             </label>
@@ -228,8 +320,12 @@
                 <td>                                                                      <!-- Storages Order Button -->
                     <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="storages">
-                        {{csrf_field()}}
-                        <button type="submit" class="btn btn-info col-12" {{session('storagesOrder','disabled')}} name="orderComponent">Order</button>
+                        @csrf
+                        <button type="submit" class="btn btn-info col-12"
+                                @if(session('storages.owned') == "1" or !session()->has('storages.name'))
+                                    disabled
+                                @endif
+                                name="orderComponent">Order</button>
                     </form>
                 </td>
             </tr>
@@ -237,23 +333,35 @@
             <tr>
                 <td>Power Supply</td>
                 <td>
-                    <form action="/components" method="post">                                       <!-- PSUS Button -->
+                    <form action="{{route('components')}}" method="post">                                       <!-- PSUS Button -->
                         <input type="hidden" name="selectedComponents" value="psus">
-                        {{csrf_field()}}
-                        <input type="submit" name="selectedComponent" value="{{session('psus','+')}}" class="btn btn-info col-12">
+                        @csrf
+                        <input type="submit" name="selectedComponent" value="{{session('psus.name','+')}}" class="btn btn-info col-12">
                     </form>
                 </td>
-                <td class="text-center">{{session('psusPrice','--')}}</td>
+                <td class="text-center">
+                                        @if(session()->has('psus.price'))
+                                            ₱ {{ number_format(session('psus.price'),2) }}
+                                        @else
+                                            ---
+
+                                        @endif
+                </td>
                 <td class="text-center">
                     <form name="ownedComponent">                                                <!-- PSUS Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox"
                                        id="ownedComponent"
-                                       {{session('psusOwned',' ')}}
                                        value="psus"
                                        name="ownedComponentPowerSupply"
-                                       {{session('psusCheckBox','disabled')}}
+                                       @if(session()->has('psus.name'))
+                                            @if(session('psus.owned') == "1")
+                                                checked
+                                            @endif
+                                       @else
+                                            disabled
+                                       @endif
                                        class="form-check-input"
                                 >
                             </label>
@@ -263,8 +371,12 @@
                 <td>                                                                        <!-- PSU Order Button -->
                     <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="psus">
-                        {{csrf_field()}}
-                        <button type="submit" class="btn btn-info col-12" {{session('psusOrder','disabled')}} name="orderComponent">Order</button>
+                        @csrf
+                        <button type="submit" class="btn btn-info col-12"
+                                @if(session('psus.owned') == "1" or !session()->has('psus.name'))
+                                    disabled
+                                @endif
+                                name="orderComponent">Order</button>
                     </form>
                 </td>
             </tr>
@@ -272,23 +384,35 @@
             <tr>
                 <td>Computer Case</td>
                 <td>
-                    <form action="/components" method="post">                            <!-- Computer Cases Button -->
+                    <form action="{{route('components')}}" method="post">                            <!-- Computer Cases Button -->
                         <input type="hidden" name="selectedComponents" value="computer_cases">
-                        {{csrf_field()}}
-                        <input type="submit" name="selectedComponent" value="{{session('computer_cases','+')}}" class="btn btn-info col-12">
+                        @csrf
+                        <input type="submit" name="selectedComponent" value="{{session('computer_cases.name','+')}}" class="btn btn-info col-12">
                     </form>
                 </td>
-                <td class="text-center">{{session('computer_casesPrice','--')}}</td>
+                <td class="text-center">
+                                        @if(session()->has('computer_cases.price'))
+                                            ₱ {{ number_format(session('computer_cases.price'),2) }}
+                                        @else
+                                            ---
+                                        @endif
+                </td>
                 <td class="text-center">
                     <form name="ownedComponent" >                                       <!-- Computer Cases Checkbox -->
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input type="checkbox"
                                        id="ownedComponent"
-                                       {{session('computer_casesOwned',' ')}}
                                        value="computer_cases"
                                        name="ownedComponentComputerCase"
-                                       {{session('computer_casesCheckBox','disabled')}}
+                                           @if(session()->has('computer_cases.name'))
+                                            @if(session('computer_cases.owned') == "1")
+                                                checked
+                                            @endif
+                                       @else
+                                            disabled
+                                       @endif
+
                                        class="form-check-input"
                                 >
                             </label>
@@ -298,25 +422,20 @@
                 <td>                                                                 <!-- Computer Case Order Button -->
                     <form method="post" action="{{route('control')}}">
                         <input type="hidden" name="orderComponents" value="computer_cases">
-                        {{csrf_field()}}
-                        <button type="submit" class="btn btn-info col-12" {{session('computer_casesOrder','disabled')}} name="orderComponent">Order</button>
+                        @csrf
+                        <button type="submit" class="btn btn-info col-12"
+                                @if(session('computer_cases.owned') == "1" or !session()->has('computer_cases.name'))
+                                    disabled
+                                @endif
+                                name="orderComponent">Order</button>
                     </form>
                 </td>
             </tr>
-                @if (session('alert'))
-                    <tr>
-                    <td colspan="5">
-                        <div class="alert alert-danger" role="alert">
-                            Please Enter a Build Name
-                        </div>
-                    </td>
-                    </tr>
-                @endif
             <!--Name and Save-->
             <tr {{session('saveForm','style=display:none;')}}>
                 <form class="form-inline" action="{{route('control')}}" method="post" >
                     <td style="text-align:right;">
-                        {{csrf_field()}}
+                        @csrf
                         <label for="form-label"> Build Name: </label></td>
                     <td colspan="2">
 
@@ -332,7 +451,7 @@
     </div>
 
 
-
+<!-- ROUTING NOT WORKING -->
 <script>
     let checkArray = new Array();
     let holder;
@@ -353,10 +472,13 @@
                 _token: _token
             },
             success:function (data){
-                //console.log(data.success);
-            }
+                console.log(holder);
+                console.log(data.success);
+            },
         })
         location.reload();
+
+
     }
     $("input[type=checkbox]").on("click",countCheck);
 </script>

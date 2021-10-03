@@ -54,4 +54,24 @@ class Component extends Model
     public function computer_case(){
         return $this->hasOne(ComputerCase::class);
     }
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+
+    public function getProductsDateAdded(Store $store){
+        return $this->products->where('store_id',$store->id)->sortByDesc('created_at')->first()->created_at;
+    }
+
+    public function getProductsCount(Store $store){
+        return $this->products->where('store_id',$store->id)->count();
+    }
+
+    public function getProductsSold(Store $store){
+        return $this->products->where('store_id',$store->id)->where('status','Sold Out')->count();
+    }
+
+    public function getProductsPrice(Store $store){
+        return $this->products->where('store_id',$store->id)->sortByDesc('price')->first()->price;
+    }
 }

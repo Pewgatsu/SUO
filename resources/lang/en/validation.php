@@ -153,7 +153,7 @@ return [
     */
 
     'attributes' => [
-        // Motherboard
+        // Motherboard Components
         'mobo_image' => 'Component Image',
         'mobo_name' => 'Component Name',
         'mobo_manufacturer' => 'Manufacturer',
@@ -184,7 +184,7 @@ return [
         'mobo_raid_support' => 'RAID Support',
         'mobo_wireless_support' => 'Wireless Support',
 
-        // CPU
+        // CPU Components
         'cpu_image' => 'Component Image',
         'cpu_name' => 'Component Name',
         'cpu_manufacturer' => 'Manufacturer',
@@ -207,7 +207,7 @@ return [
         'cpu_ecc_support' => 'ECC Support',
         'cpu_integrated_graphics' => 'Integrated Graphics',
 
-        // CPU Cooler
+        // CPU Cooler Components
         'cpu_cooler_image' => 'Component Image',
         'cpu_cooler_name' => 'Component Name',
         'cpu_cooler_manufacturer' => 'Manufacturer',
@@ -223,7 +223,7 @@ return [
         'cpu_cooler_noise_level' => 'Noise Level',
         'cpu_cooler_water_cooled' => 'Water Cooled Support',
 
-        // Graphics Card
+        // Graphics Card Components
         'graphics_card_image' => 'Component Image',
         'graphics_card_name' => 'Component Name',
         'graphics_card_manufacturer' => 'Manufacturer',
@@ -252,7 +252,7 @@ return [
         'graphics_card_external_power' => 'External Power',
         'graphics_card_cooling' => 'Cooling',
 
-        // RAM
+        // RAM Components
         'ram_image' => 'Component Image',
         'ram_name' => 'Component Name',
         'ram_manufacturer' => 'Manufacturer',
@@ -274,7 +274,7 @@ return [
         'ram_registered_memory' => 'Registered Memory',
         'ram_heat_spreader' => 'Heat Spreader',
 
-        // Storage
+        // Storage Components
         'storage_image' => 'Component Image',
         'storage_name' => 'Component Name',
         'storage_manufacturer' => 'Manufacturer',
@@ -292,7 +292,7 @@ return [
         'storage_cache' => 'Storage Cache',
         'storage_nvme' => 'NVMe',
 
-        // PSU
+        // PSU Components
         'psu_image' => 'Component Image',
         'psu_name' => 'Component Name',
         'psu_manufacturer' => 'Manufacturer',
@@ -315,7 +315,7 @@ return [
         'psu_pcie_62pin_connector' => 'PCIe 6+2-pin Connector',
         'psu_pcie_6pin_connector' => 'PCIe 6-pin Connector',
 
-        // Computer Case
+        // Computer Case Components
         'case_image' => 'Component Image',
         'case_name' => 'Component Name',
         'case_manufacturer' => 'Manufacturer',
@@ -340,7 +340,61 @@ return [
         'case_external_525_bay' => 'External 5.25" Bay',
         'case_external_350_bay' => 'External 3.5" Bay',
         'case_internal_350_bay' => 'Internal 3.5" Bay',
-        'case_internal_250_bay' => 'Internal 2.5" Bay'
+        'case_internal_250_bay' => 'Internal 2.5" Bay',
+
+        'storeBanner' => 'Banner must be an Image ',
+        'storeName' => 'Store Name ',
+        'storeLocation' => 'Store Location ',
+        'storeAddress' => 'Store Address',
+        'storeDescription' => 'Store Description ',
+
+        // Motherboard Products
+        'mobo_component' => 'Motherboard Name',
+        'mobo_quantity' => 'Quantity',
+        'mobo_price' => 'Price',
+        'mobo_description' => 'Product Description',
+
+        // CPU Products
+        'cpu_component' => 'CPU Name',
+        'cpu_quantity' => 'Quantity',
+        'cpu_price' => 'Price',
+        'cpu_description' => 'Product Description',
+
+        // CPU Cooler Products
+        'cpu_cooler_component' => 'CPU Cooler Name',
+        'cpu_cooler_quantity' => 'Quantity',
+        'cpu_cooler_price' => 'Price',
+        'cpu_cooler_description' => 'Product Description',
+
+        // Graphics Card Products
+        'graphics_card_component' => 'Graphics Card Name',
+        'graphics_card_quantity' => 'Quantity',
+        'graphics_card_price' => 'Price',
+        'graphics_card_description' => 'Product Description',
+
+        // RAM Products
+        'ram_component' => 'RAM Name',
+        'ram_quantity' => 'Quantity',
+        'ram_price' => 'Price',
+        'ram_description' => 'Product Description',
+
+        // Storage Products
+        'storage_component' => 'Storage Name',
+        'storage_quantity' => 'Quantity',
+        'storage_price' => 'Price',
+        'storage_description' => 'Product Description',
+
+        // PSU Products
+        'psu_component' => 'PSU Name',
+        'psu_quantity' => 'Quantity',
+        'psu_price' => 'Price',
+        'psu_description' => 'Product Description',
+
+        // Computer Case Products
+        'case_component' => 'Computer Case Name',
+        'case_quantity' => 'Quantity',
+        'case_price' => 'Price',
+        'case_description' => 'Product Description',
     ],
 
 ];

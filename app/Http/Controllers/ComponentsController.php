@@ -139,13 +139,13 @@ class ComponentsController extends Controller
 
         if (isset($request->mobo_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/motherboards/' . $component->image_path))) {
-                unlink(public_path('images/motherboards/' . $component->image_path));
+            if (isset($component->image_path) && file_exists(public_path('images/components/motherboards/' . $component->image_path))) {
+                unlink(public_path('images/components/motherboards/' . $component->image_path));
             }
 
             // Image Upload
             $mobo_image_filename = time() . '-' . $request->mobo_name . '.' . $request->mobo_image->extension();
-            $request->mobo_image->move(public_path('images/motherboards'), $mobo_image_filename);
+            $request->mobo_image->move(public_path('images/components/motherboards'), $mobo_image_filename);
         }
 
         // Component Attributes
@@ -255,13 +255,13 @@ class ComponentsController extends Controller
 
         if (isset($request->cpu_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/cpus/' . $component->image_path))) {
-                unlink(public_path('images/cpus/' . $component->image_path));
+            if (isset($component->image_path) && file_exists(public_path('images/components/cpus/' . $component->image_path))) {
+                unlink(public_path('images/components/cpus/' . $component->image_path));
             }
 
             // Image Upload
             $cpu_image_filename = time() . '-' . $request->cpu_name . '.' . $request->cpu_image->extension();
-            $request->cpu_image->move(public_path('images/cpus'), $cpu_image_filename);
+            $request->cpu_image->move(public_path('images/components/cpus'), $cpu_image_filename);
         }
 
         // Component Attributes
@@ -329,13 +329,13 @@ class ComponentsController extends Controller
 
         if (isset($request->cpu_cooler_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/cpu_coolers/' . $component->image_path))) {
-                unlink(public_path('images/cpu_coolers/' . $component->image_path));
+            if (isset($component->image_path) && file_exists(public_path('images/components/cpu_coolers/' . $component->image_path))) {
+                unlink(public_path('images/components/cpu_coolers/' . $component->image_path));
             }
 
             // Image Upload
             $cpu_cooler_image_filename = time() . '-' . $request->cpu_cooler_name . '.' . $request->cpu_cooler_image->extension();
-            $request->cpu_cooler_image->move(public_path('images/cpu_coolers'), $cpu_cooler_image_filename);
+            $request->cpu_cooler_image->move(public_path('images/components/cpu_coolers'), $cpu_cooler_image_filename);
         }
 
         // Component Attributes
@@ -431,13 +431,13 @@ class ComponentsController extends Controller
 
         if (isset($request->graphics_card_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/graphics_cards/' . $component->image_path))) {
-                unlink(public_path('images/graphics_cards/' . $component->image_path));
+            if (isset($component->image_path) && file_exists(public_path('images/components/graphics_cards/' . $component->image_path))) {
+                unlink(public_path('images/components/graphics_cards/' . $component->image_path));
             }
 
             // Image Upload
             $graphics_card_image_filename = time() . '-' . $request->graphics_card_name . '.' . $request->graphics_card_image->extension();
-            $request->graphics_card_image->move(public_path('images/graphics_cards'), $graphics_card_image_filename);
+            $request->graphics_card_image->move(public_path('images/components/graphics_cards'), $graphics_card_image_filename);
         }
 
         // Component Attributes
@@ -516,13 +516,13 @@ class ComponentsController extends Controller
 
         if (isset($request->ram_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/rams/' . $component->image_path))) {
-                unlink(public_path('images/rams/' . $component->image_path));
+            if (isset($component->image_path) && file_exists(public_path('images/components/rams/' . $component->image_path))) {
+                unlink(public_path('images/components/rams/' . $component->image_path));
             }
 
             // Image Upload
             $ram_image_filename = time() . '-' . $request->ram_name . '.' . $request->ram_image->extension();
-            $request->ram_image->move(public_path('images/rams'), $ram_image_filename);
+            $request->ram_image->move(public_path('images/components/rams'), $ram_image_filename);
         }
 
         // Component Attributes
@@ -590,13 +590,13 @@ class ComponentsController extends Controller
 
         if (isset($request->storage_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/storages/' . $component->image_path))) {
-                unlink(public_path('images/storages/' . $component->image_path));
+            if (isset($component->image_path) && file_exists(public_path('images/components/storages/' . $component->image_path))) {
+                unlink(public_path('images/components/storages/' . $component->image_path));
             }
 
             // Image Upload
             $storage_image_filename = time() . '-' . $request->storage_name . '.' . $request->storage_image->extension();
-            $request->storage_image->move(public_path('images/storages'), $storage_image_filename);
+            $request->storage_image->move(public_path('images/components/storages'), $storage_image_filename);
         }
 
         // Component Attributes
@@ -665,13 +665,13 @@ class ComponentsController extends Controller
 
         if (isset($request->psu_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/psus/' . $component->image_path))) {
-                unlink(public_path('images/psus/' . $component->image_path));
+            if (isset($component->image_path) && file_exists(public_path('images/components/psus/' . $component->image_path))) {
+                unlink(public_path('images/components/psus/' . $component->image_path));
             }
 
             // Image Upload
             $psu_image_filename = time() . '-' . $request->psu_name . '.' . $request->psu_image->extension();
-            $request->psu_image->move(public_path('images/psus'), $psu_image_filename);
+            $request->psu_image->move(public_path('images/components/psus'), $psu_image_filename);
         }
 
         // Component Attributes
@@ -749,13 +749,13 @@ class ComponentsController extends Controller
 
         if (isset($request->case_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/computer_cases/' . $component->image_path))) {
-                unlink(public_path('images/computer_cases/' . $component->image_path));
+            if (isset($component->image_path) && file_exists(public_path('images/components/computer_cases/' . $component->image_path))) {
+                unlink(public_path('images/components/computer_cases/' . $component->image_path));
             }
 
             // Image Upload
             $case_image_filename = time() . '-' . $request->case_name . '.' . $request->case_image->extension();
-            $request->case_image->move(public_path('images/computer_cases'), $case_image_filename);
+            $request->case_image->move(public_path('images/components/computer_cases'), $case_image_filename);
         }
 
         // Component Attributes
@@ -826,28 +826,28 @@ class ComponentsController extends Controller
         $profile_path = '';
         switch ($component->type) {
             case 'Motherboard':
-                $profile_path = 'images/motherboards/';
+                $profile_path = 'images/components/motherboards/';
                 break;
             case 'CPU':
-                $profile_path = 'images/cpus/';
+                $profile_path = 'images/components/cpus/';
                 break;
             case 'CPU Cooler':
-                $profile_path = 'images/cpu_coolers/';
+                $profile_path = 'images/components/cpu_coolers/';
                 break;
             case 'Graphics Card':
-                $profile_path = 'images/graphics_cards/';
+                $profile_path = 'images/components/graphics_cards/';
                 break;
             case 'RAM':
-                $profile_path = 'images/rams/';
+                $profile_path = 'images/components/rams/';
                 break;
             case 'Storage':
-                $profile_path = 'images/storages/';
+                $profile_path = 'images/components/storages/';
                 break;
             case 'PSU':
-                $profile_path = 'images/psus/';
+                $profile_path = 'images/components/psus/';
                 break;
             case 'Computer Case':
-                $profile_path = 'images/computer_cases/';
+                $profile_path = 'images/components/computer_cases/';
                 break;
             default:
                 $profile_path = null;
