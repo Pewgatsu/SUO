@@ -22,10 +22,10 @@ class CreateAccountsTable extends Migration
             $table->string('profile_path')->nullable();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('birthdate');
-            $table->string('gender');
-            $table->string('contact');
-            $table->string('address');
+            $table->string('birthdate')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('address')->nullable();
             $table->boolean('is_verified')->nullable();
             $table->boolean('is_active')->nullable();
             $table->boolean('is_admin')->nullable();

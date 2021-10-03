@@ -8,13 +8,24 @@
         </a>
         @endguest
 
-        @auth
+        @if(Auth::check())
+            @if(Auth::user()->isAdmin())
                 <a class="navbar-brand" href="{{route('admin.dashboard')}}">
                     <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
                     System Unit Optimizer
                 </a>
-
-            @endauth
+            @elseif(Auth::user()->isSeller())
+                    <a class="navbar-brand" href="{{route('myStore')}}">
+                        <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                        System Unit Optimizer
+                    </a>
+            @elseif(Auth::user()->isCustomer())
+                    <a class="navbar-brand" href="{{route('builder')}}">
+                        <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
+                        System Unit Optimizer
+                    </a>
+                @endif
+        @endif
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
             <span class="navbar-toggler-icon"></span>

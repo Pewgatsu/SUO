@@ -50,9 +50,14 @@
                         </div>
 
                         <div class="text-md-end shadow-sm pe-5 py-3 bg-light"style="border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
-                            {{--                           <button type="button" class="btn btn-dark me-2" style="width: 10%" name="edit" id="editAccountInfo">Edit</button>--}}
-                            <button type="submit" class="btn btn-dark" style="width: 10%" id="save"><small>Save</small></button>
+
+                            <div class="">
+                                <button type="submit" class="btn btn-dark" style="width: 10%" id="save"><small>Save</small></button>
+                            </div>
+
                         </div>
+
+
 
                     </form>
 

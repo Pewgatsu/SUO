@@ -8,18 +8,20 @@ class CPU extends Component
 {
     public $mode;
     public $cpuComponents;
-    public $cpuComponentId;
+    public $cpuComponent;
+    public $store;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($mode, $cpuComponents = null, $cpuComponentId = null)
+    public function __construct($mode, $cpuComponents = null, $cpuComponent = null, $store = null)
     {
         $this->mode = $mode;
         $this->cpuComponents = $cpuComponents;
-        $this->cpuComponentId = $cpuComponentId;
+        $this->cpuComponent = $cpuComponent;
+        $this->store = $store;
     }
 
     public function setID(){
@@ -27,7 +29,7 @@ class CPU extends Component
             return 'add_cpu_products';
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return 'edit_cpu_products_' . $this->cpuComponentId;
+            return 'edit_cpu_products_' . $this->cpuComponent->id;
         }
         else {
             return null;
@@ -39,7 +41,7 @@ class CPU extends Component
             return route('seller.store.add_cpu');
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return route('seller.products.cpus.edit', $this->cpuComponentId);
+            return route('seller.products.cpus.edit', $this->cpuComponent);
         }
         else {
             return null;
@@ -56,6 +58,24 @@ class CPU extends Component
         else {
             return null;
         }
+    }
+
+    public function oldField($string){
+        if (strtolower($this->mode) === 'edit'){
+            switch ($string){
+                case 'cpu_component':
+                    return $this->cpuComponent->name;
+                case 'cpu_quantity':
+                    return $this->cpuComponent->products->where('store_id',$this->store->id)->where('status','Available')->count();
+                case 'cpu_price':
+                    return $this->cpuComponent->products->where('store_id',$this->store->id)->where('status','Available')->first()->price ?? 0;
+                case 'cpu_description':
+                    return $this->cpuComponent->products->where('store_id',$this->store->id)->where('status','Available')->first()->description ?? '';
+                default:
+                    return null;
+            }
+        }
+        return null;
     }
 
     /**

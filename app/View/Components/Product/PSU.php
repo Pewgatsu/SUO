@@ -8,18 +8,20 @@ class PSU extends Component
 {
     public $mode;
     public $psuComponents;
-    public $psuComponentId;
+    public $psuComponent;
+    public $store;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($mode, $psuComponents = null, $psuComponentId = null)
+    public function __construct($mode, $psuComponents = null, $psuComponent = null, $store = null)
     {
         $this->mode = $mode;
         $this->psuComponents = $psuComponents;
-        $this->psuComponentId = $psuComponentId;
+        $this->psuComponent = $psuComponent;
+        $this->store = $store;
     }
 
     public function setID(){
@@ -27,7 +29,7 @@ class PSU extends Component
             return 'add_psu_products';
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return 'edit_psu_products_' . $this->psuComponentId;
+            return 'edit_psu_products_' . $this->psuComponent->id;
         }
         else {
             return null;
@@ -39,7 +41,7 @@ class PSU extends Component
             return route('seller.store.add_psu');
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return route('seller.products.psus.edit', $this->psuComponentId);
+            return route('seller.products.psus.edit', $this->psuComponent);
         }
         else {
             return null;
@@ -56,6 +58,24 @@ class PSU extends Component
         else {
             return null;
         }
+    }
+
+    public function oldField($string){
+        if (strtolower($this->mode) === 'edit'){
+            switch ($string){
+                case 'psu_component':
+                    return $this->psuComponent->name;
+                case 'psu_quantity':
+                    return $this->psuComponent->products->where('store_id',$this->store->id)->where('status','Available')->count();
+                case 'psu_price':
+                    return $this->psuComponent->products->where('store_id',$this->store->id)->where('status','Available')->first()->price ?? 0;
+                case 'psu_description':
+                    return $this->psuComponent->products->where('store_id',$this->store->id)->where('status','Available')->first()->description ?? '';
+                default:
+                    return null;
+            }
+        }
+        return null;
     }
 
     /**

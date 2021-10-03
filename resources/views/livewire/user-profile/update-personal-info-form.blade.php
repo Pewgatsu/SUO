@@ -21,7 +21,6 @@
                                 <label for="firstname" class="fs-6"><small>First Name</small></label>
                                 <input type="text" class="form-control" id="firstname" name="firstname" wire:model.defer="firstname" value="">
                                 @error('firstname') <span class="error" style="color: red"><small>{{ $message }}</small></span> @enderror
-
                             </div>
 
                             <div class="col-md-3 ms-4">
