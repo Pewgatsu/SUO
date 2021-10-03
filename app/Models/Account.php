@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 
 class Account extends Authenticatable
@@ -58,4 +59,22 @@ class Account extends Authenticatable
     public function store(){
         return $this->hasOne(Store::class);
     }
+
+    public function isAdmin(){
+        if (Auth::user()->is_admin){
+            return true;
+        }
+    }
+
+    public function isSeller(){
+        if (Auth::user()->account_type == 'seller'){
+            return true;
+        }
+    }
+    public function isCustomer(){
+        if (Auth::user()->account_type == 'customer'){
+            return true;
+        }
+    }
+
 }
