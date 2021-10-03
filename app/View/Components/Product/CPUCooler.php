@@ -8,18 +8,20 @@ class CPUCooler extends Component
 {
     public $mode;
     public $cpuCoolerComponents;
-    public $cpuCoolerComponentId;
+    public $cpuCoolerComponent;
+    public $store;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($mode, $cpuCoolerComponents = null, $cpuCoolerComponentId = null)
+    public function __construct($mode, $cpuCoolerComponents = null, $cpuCoolerComponent = null, $store = null)
     {
         $this->mode = $mode;
         $this->cpuCoolerComponents = $cpuCoolerComponents;
-        $this->cpuCoolerComponentId = $cpuCoolerComponentId;
+        $this->cpuCoolerComponent = $cpuCoolerComponent;
+        $this->store = $store;
     }
 
     public function setID(){
@@ -27,7 +29,7 @@ class CPUCooler extends Component
             return 'add_cpu_cooler_products';
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return 'edit_cpu_cooler_products_' . $this->cpuCoolerComponentId;
+            return 'edit_cpu_cooler_products_' . $this->cpuCoolerComponent->id;
         }
         else {
             return null;
@@ -39,7 +41,7 @@ class CPUCooler extends Component
             return route('seller.store.add_cpu_cooler');
         }
         elseif (strtolower($this->mode) === 'edit'){
-            return route('seller.products.cpu_coolers.edit', $this->cpuCoolerComponentId);
+            return route('seller.products.cpu_coolers.edit', $this->cpuCoolerComponent);
         }
         else {
             return null;
@@ -56,6 +58,24 @@ class CPUCooler extends Component
         else {
             return null;
         }
+    }
+
+    public function oldField($string){
+        if (strtolower($this->mode) === 'edit'){
+            switch ($string){
+                case 'cpu_cooler_component':
+                    return $this->cpuCoolerComponent->name;
+                case 'cpu_cooler_quantity':
+                    return $this->cpuCoolerComponent->products->where('store_id',$this->store->id)->where('status','Available')->count();
+                case 'cpu_cooler_price':
+                    return $this->cpuCoolerComponent->products->where('store_id',$this->store->id)->where('status','Available')->first()->price ?? 0;
+                case 'cpu_cooler_description':
+                    return $this->cpuCoolerComponent->products->where('store_id',$this->store->id)->where('status','Available')->first()->description ?? '';
+                default:
+                    return null;
+            }
+        }
+        return null;
     }
 
     /**

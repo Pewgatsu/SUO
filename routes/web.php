@@ -120,6 +120,16 @@ Route::get('/seller/products/storages', [ProductsController::class, 'index_stora
 Route::get('/seller/products/psus', [ProductsController::class, 'index_psus'])->name('seller.products.psus')->middleware('auth');
 Route::get('/seller/products/computer_cases', [ProductsController::class, 'index_computer_cases'])->name('seller.products.computer_cases')->middleware('auth');
 
+// Edit Products
+Route::post('/seller/products/motherboards/edit/{component}', [ProductsController::class, 'edit_motherboard'])->name('seller.products.motherboards.edit');
+Route::post('/seller/products/cpus/edit/{component}', [ProductsController::class, 'edit_cpu'])->name('seller.products.cpus.edit');
+Route::post('/seller/products/cpu_coolers/edit/{component}', [ProductsController::class, 'edit_cpu_cooler'])->name('seller.products.cpu_coolers.edit');
+Route::post('/seller/products/graphics_cards/edit/{component}', [ProductsController::class, 'edit_graphics_card'])->name('seller.products.graphics_cards.edit');
+Route::post('/seller/products/rams/edit/{component}', [ProductsController::class, 'edit_ram'])->name('seller.products.rams.edit');
+Route::post('/seller/products/storages/edit/{component}', [ProductsController::class, 'edit_storage'])->name('seller.products.storages.edit');
+Route::post('/seller/products/psus/edit/{component}', [ProductsController::class, 'edit_psu'])->name('seller.products.psus.edit');
+Route::post('/seller/products/computer_cases/edit/{component}', [ProductsController::class, 'edit_computer_case'])->name('seller.products.computer_cases.edit');
+
 // Consumer
 
 //System Builder

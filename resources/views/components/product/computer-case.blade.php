@@ -12,12 +12,16 @@
 
                     <div class="form-floating mb-3">
                         <select class="form-select @error('case_component') is-invalid @enderror"
-                                id="case_component"
-                                name="case_component">
+                                @if($mode === 'edit') disabled @endif
+                                id="case_component" name="case_component">
+                            @if($mode !== 'edit')
                             @foreach($computerCaseComponents as $computer_case_component)
                                 <option value="{{ $computer_case_component->id }}"
-                                        @if(old('case_component') !== null && old('case_component') == $computer_case_component->id) selected @endif>{{ $computer_case_component->name }}</option>
+                                        @if(old('case_component') == $computer_case_component->id) selected @endif>{{ $computer_case_component->name }}</option>
                             @endforeach
+                            @else
+                                <option value="{{ $computerCaseComponent->id }}" selected>{{ $oldField('case_component') }}</option>
+                            @endif
                         </select>
                         <label for="case_component">Computer Case Name</label>
                         @error('case_component')
@@ -27,8 +31,9 @@
 
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control @error('case_quantity') is-invalid @enderror"
+                               @if($mode === 'edit') disabled @endif
                                id="case_quantity" name="case_quantity" min="1"
-                               max="1000" placeholder="Quantity" value="{{ old('case_quantity') }}">
+                               max="1000" placeholder="Quantity" value="{{ old('case_quantity') ?? $oldField('case_quantity') }}">
                         <label for="case_quantity">Quantity</label>
                         @error('case_quantity')
                         <p class="text-danger">{{ $message }}</p>
@@ -39,7 +44,7 @@
                         <input type="number" class="form-control @error('case_price') is-invalid @enderror"
                                id="case_price" name="case_price" min="0"
                                max="1000000" step="0.01"
-                               placeholder="Price" value="{{ old('case_price') }}">
+                               placeholder="Price" value="{{ old('case_price') ?? $oldField('case_price') }}">
                         <label for="case_price">Price</label>
                         @error('case_price')
                         <p class="text-danger">{{ $message }}</p>
@@ -50,7 +55,7 @@
                         <textarea style="height: 250px"
                                   class="form-control @error('case_description') is-invalid @enderror"
                                   id="case_description" name="case_description"
-                                  placeholder="Product Description">{{ old('case_description') }}</textarea>
+                                  placeholder="Product Description">{{ old('case_description') ?? $oldField('case_description') }}</textarea>
                         <label for="case_description">Product Description</label>
                         @error('case_description')
                         <p class="text-danger">{{ $message }}</p>

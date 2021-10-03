@@ -11,12 +11,18 @@
                 <div class="modal-body">
 
                     <div class="form-floating mb-3">
-                        <select class="form-select @error('mobo_component') is-invalid @enderror" id="mobo_component"
+                        <select class="form-select @error('mobo_component') is-invalid @enderror"
+                                @if($mode === 'edit') disabled @endif
+                                id="mobo_component"
                                 name="mobo_component">
+                            @if($mode !== 'edit')
                             @foreach($motherboardComponents as $motherboard_component)
                                 <option value="{{ $motherboard_component->id }}"
-                                        @if(old('mobo_component') !== null && old('mobo_component') == $motherboard_component->id) selected @endif>{{ $motherboard_component->name }}</option>
+                                        @if(old('mobo_component') == $motherboard_component->id) selected @endif>{{ $motherboard_component->name }}</option>
                             @endforeach
+                            @else
+                                <option value="{{ $motherboardComponent->id }}" selected>{{ $oldField('mobo_component') }}</option>
+                            @endif
                         </select>
                         <label for="mobo_component">Motherboard Name</label>
                         @error('mobo_component')
@@ -26,8 +32,9 @@
 
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control @error('mobo_quantity') is-invalid @enderror"
+                               @if($mode === 'edit') disabled @endif
                                id="mobo_quantity" name="mobo_quantity" min="1"
-                               max="1000" placeholder="Quantity" value="{{ old('mobo_quantity') }}">
+                               max="1000" placeholder="Quantity" value="{{ old('mobo_quantity') ?? $oldField('mobo_quantity') }}">
                         <label for="mobo_quantity">Quantity</label>
                         @error('mobo_quantity')
                         <p class="text-danger">{{ $message }}</p>
@@ -38,7 +45,7 @@
                         <input type="number" class="form-control @error('mobo_price') is-invalid @enderror"
                                id="mobo_price" name="mobo_price" min="0"
                                max="1000000" step="0.01"
-                               placeholder="Price" value="{{ old('mobo_price') }}">
+                               placeholder="Price" value="{{ old('mobo_price') ?? $oldField('mobo_price') }}">
                         <label for="mobo_price">Price</label>
                         @error('mobo_price')
                         <p class="text-danger">{{ $message }}</p>
@@ -49,7 +56,7 @@
                         <textarea style="height: 250px"
                                   class="form-control @error('mobo_description') is-invalid @enderror"
                                   id="mobo_description" name="mobo_description"
-                                  placeholder="Product Description">{{ old('mobo_price') }}</textarea>
+                                  placeholder="Product Description">{{ old('mobo_price') ?? $oldField('mobo_description') }}</textarea>
                         <label for="mobo_description">Product Description</label>
                         @error('mobo_description')
                         <p class="text-danger">{{ $message }}</p>
