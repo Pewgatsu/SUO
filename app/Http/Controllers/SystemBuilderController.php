@@ -160,18 +160,11 @@ class SystemBuilderController extends Controller
             'psus' => array(),
             'computer_cases' => array()
         );
-        if ($request->filled('buildName')) {
-            session()->forget(['alert']);
 
-            foreach ($this->components as $component) {
-                if (session()->has($component)) {
-                    //array_push($componentArray[$component], )
-                }
-
-            }
-        } else {
-            session(['alert' => 'is-invalid']);
-        }
+        $this->validate($request, [
+            'buildName' => 'required|string',
+            'buildDescription' => 'nullable|string'
+        ]);
 
 
     }

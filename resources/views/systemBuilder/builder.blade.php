@@ -1,9 +1,10 @@
-@section('head')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-@endsection
 @extends('layouts.master')
 @section('content')
-    @include('layouts.subheader')
+
+    @auth()
+        @include('layouts.subheader')
+    @endauth
+
 <style>
     tr {
         width: 100%;
@@ -432,27 +433,48 @@
                     </form>
                 </td>
             </tr>
-            <!--Name and Save-->
-            <tr {{session('saveForm','style=display:none;')}}>
-                <form class="form-inline" action="{{route('control')}}" method="post" >
-                    <td style="text-align:right;">
-                        @csrf
-                        <label for="form-label"> Build Name: </label></td>
-                    <td colspan="2">
+            <!-- TOTAL PRICE -->
+            <tr>
 
-                        <input type="text" class="form-control {{session('alert', ' ' )}} " {{session('saveForm','disabled')}} name="buildName" required>
-                    </td>
-                    <td><button type="submit" name="saveButton" {{session('saveForm','disabled')}} class="btn btn-info btn-block ">Save Build</button></td>
-                </form>
-                <td></td>
             </tr>
-
             </tbody>
         </table>
+
+
+        @auth
+            <!--Name and Save-->
+            <div class="mb-3">
+                <form class="form-inline" action="{{route('control')}}" method="post" >
+                    @csrf
+                    <div class="mb-3">
+                    <label class="" for="form-label" > Build Name: </label>
+                    <input class="form-control @error('buildName') is-invalid @enderror" style="width: 100%;"  type="text"  name="buildName"
+                           value="{{old('buildName')}}"
+                           required >
+                    @error('buildName')
+                    <p class="text-danger text-center">{{ $message }}</p>
+                    @enderror
+                    </div>
+                    <div class="mb-3">
+                    <label class="" for="form-label"> Description: </label>
+                    <input class="form-control  @error('buildDescription') is-invalid @enderror" style="width: 100%;" type="text"  name="buildDescription"
+                           value="{{old('buildDescription')}}" >
+                    @error('buildDescription')
+                    <p class="text-danger text-center">{{ $message }}</p>
+                    @enderror
+                    </div>
+                    <div class="mb-3">
+                    <button class="d-inline btn btn-info btn-block" type="submit" name="saveButton"  >Save Build</button>
+                    </div>
+                </form>
+
+
+            </div>
+        @endauth
+
     </div>
 
 
-<!-- ROUTING NOT WORKING -->
 <script>
     let checkArray = new Array();
     let holder;
