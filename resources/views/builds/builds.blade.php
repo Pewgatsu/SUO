@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
-    @include('layouts.dashboardheader')
+
+    @include('layouts.subheader')
     <div class="container">
         <div class="d-sm-flex my-2 justify-content-between align-items-center">
             <div class="h1">
