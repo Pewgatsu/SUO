@@ -17,7 +17,6 @@ class CreateBuildProductsTable extends Migration
             $table->id();
             $table->foreignId('build_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->decimal('price');
             $table->string('type');
             $table->timestamp('status_date');
             $table->boolean('owned');
