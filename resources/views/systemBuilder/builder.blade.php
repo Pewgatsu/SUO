@@ -2,7 +2,7 @@
 @section('content')
 
     @auth()
-        @include('layouts.dashboardheader')
+        @include('layouts.subheader')
     @endauth
 
 <style>
