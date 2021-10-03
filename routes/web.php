@@ -151,12 +151,6 @@ Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('componentinfo');
 
 
-
-//System Builder
-Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
-Route::any('/components', [SystemBuilderController::class, 'print'])->name('components');
-Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
-
 //builds
 Route::get('/consumer/builds', [BuildsController::class, 'index'])->name('builds')->middleware('auth');;
 Route::delete('/consumer/builds/delete/{build}', [BuildsController::class, 'delete_build'])->name('consumer.builds.delete');
