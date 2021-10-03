@@ -352,4 +352,50 @@ class ProductsController extends Controller
 
         return back();
     }
+
+    public function delete_component(Component $component, Request $request){
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
+        // Validate
+        $validator = Validator::make($request->all(), [
+            'product_quantity' => 'required|numeric|integer|min:1|max:' . $component->products->where('store_id',$store->id)->where('status','Available')->count()
+        ]);
+
+        $modal_id = '';
+        switch ($component->type){
+            case 'Motherboard':
+                $modal_id = 'delete_motherboard_products_' . $component->id; break;
+            case 'CPU':
+                $modal_id = 'delete_cpu_products_' . $component->id; break;
+            case 'CPU Cooler':
+                $modal_id = 'delete_cpu_cooler_products_' . $component->id; break;
+            case 'Graphics Card':
+                $modal_id = 'delete_graphics_card_products_' . $component->id; break;
+            case 'RAM':
+                $modal_id = 'delete_ram_products_' . $component->id; break;
+            case 'Storage':
+                $modal_id = 'delete_storage_products_' . $component->id; break;
+            case 'PSU':
+                $modal_id = 'delete_psu_products_' . $component->id; break;
+            case 'Computer Case':
+                $modal_id = 'delete_computer_case_products_' . $component->id; break;
+            default:
+                $modal_id = null;
+        }
+
+        if ($validator->fails()){
+            return back()->with('modal_id',$modal_id)->withErrors($validator)->withInput();
+        }
+
+        $validator->validate();
+
+        // Delete
+        $component_products = $component->products->where('store_id',$store->id)->where('status','Available');
+        $counter = $request->product_quantity;
+        foreach ($component_products as $component_product){
+            if ($counter-- <= 0) break;
+            $component_product->delete();
+        }
+
+        return back();
+    }
 }

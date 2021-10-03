@@ -131,6 +131,16 @@ Route::post('/seller/products/storages/edit/{component}', [ProductsController::c
 Route::post('/seller/products/psus/edit/{component}', [ProductsController::class, 'edit_psu'])->name('seller.products.psus.edit');
 Route::post('/seller/products/computer_cases/edit/{component}', [ProductsController::class, 'edit_computer_case'])->name('seller.products.computer_cases.edit');
 
+// Delete Products
+Route::delete('/seller/products/motherboards/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.motherboards.delete');
+Route::delete('/seller/products/cpus/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.cpus.delete');
+Route::delete('/seller/products/cpu_coolers/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.cpu_coolers.delete');
+Route::delete('/seller/products/graphics_cards/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.graphics_cards.delete');
+Route::delete('/seller/products/rams/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.rams.delete');
+Route::delete('/seller/products/storages/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.storages.delete');
+Route::delete('/seller/products/psus/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.psus.delete');
+Route::delete('/seller/products/computer_cases/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.computer_cases.delete');
+
 // Consumer
 
 //System Builder
