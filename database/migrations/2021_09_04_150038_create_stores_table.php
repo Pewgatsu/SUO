@@ -20,7 +20,7 @@ class CreateStoresTable extends Migration
             $table->string('name');
             $table->longText('address');
             $table->longText('location')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->bigInteger('featured_motherboards')->nullable();
             $table->bigInteger('featured_cpus')->nullable();
             $table->bigInteger('featured_cpu_coolers')->nullable();

@@ -4,41 +4,46 @@
 @extends('layouts.master')
 @section('content')
 
-    @if (session('seller'))
-    @include('layouts.subheader')
-    @endif
-    <div class="container-xl mt-3">
+    @auth()
+        @include('layouts.subheader')
+    @endauth
 
-        <div class="d-sm-flex my-2 justify-content-between align-items-center">
-            <div class="h1">
-                <i class="bi bi-shop"></i>
-                <small> My Store</small>
+    <div class="container-xl mt-3">
+    @if (session('seller'))
+
+            <div class="d-sm-flex my-2 justify-content-between align-items-center">
+                <div class="h1">
+                    <i class="bi bi-shop"></i>
+                    <small> My Store</small>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Add Products
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                               data-bs-target="#add_motherboard_products">Motherboard</a></li>
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                               data-bs-target="#add_cpu_products">CPU</a></li>
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                               data-bs-target="#add_cpu_cooler_products">CPU Cooler</a></li>
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                               data-bs-target="#add_graphics_card_products">Graphics Card</a></li>
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                               data-bs-target="#add_ram_products">RAM</a></li>
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                               data-bs-target="#add_storage_products">Storage</a></li>
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                               data-bs-target="#add_psu_products">PSU</a></li>
+                        <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
+                               data-bs-target="#add_computer_case_products">Computer Case</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                    Add Products
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                           data-bs-target="#add_motherboard_products">Motherboard</a></li>
-                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                           data-bs-target="#add_cpu_products">CPU</a></li>
-                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                           data-bs-target="#add_cpu_cooler_products">CPU Cooler</a></li>
-                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                           data-bs-target="#add_graphics_card_products">Graphics Card</a></li>
-                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                           data-bs-target="#add_ram_products">RAM</a></li>
-                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                           data-bs-target="#add_storage_products">Storage</a></li>
-                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                           data-bs-target="#add_psu_products">PSU</a></li>
-                    <li><a class="dropdown-item" type="button" data-bs-toggle="modal"
-                           data-bs-target="#add_computer_case_products">Computer Case</a></li>
-                </ul>
-            </div>
-        </div>
+
+    @endif
+
 
         <!--
         'image display' -> store.blade components
@@ -325,6 +330,8 @@
         </script>
     @endif
 
+
+        @if (session('seller'))
     <!-- Add Motherboard Product -->
     <x-product.motherboard mode="add" :motherboardComponents="$motherboard_components" />
 
@@ -348,5 +355,5 @@
 
     <!-- Add Computer Case Product -->
     <x-product.computer-case mode="add" :computerCaseComponents="$computer_case_components" />
-
+    @endif
 @endsection
