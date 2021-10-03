@@ -143,7 +143,7 @@ class EditStoreController extends Controller
                         );
                     }
 
-                    return redirect()->route('viewStore',$storeId);
+                    return redirect()->route('myStore');
                 }
 
 
@@ -200,7 +200,7 @@ class EditStoreController extends Controller
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-       $this->productsArray['computer_cases'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','computer_case')
+       $this->productsArray['computer_cases'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','case')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();

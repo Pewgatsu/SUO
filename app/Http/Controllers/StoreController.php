@@ -30,34 +30,14 @@ class StoreController extends Controller
                 if(!$storeId->isEmpty()){
 
                     if( $storeId[0]->account_id == $userId ){
-                        $motherboard_components = Component::where('type','Motherboard')->get();
-                        $cpu_components = Component::where('type','CPU')->get();
-                        $cpu_cooler_components = Component::where('type','CPU Cooler')->get();
-                        $graphics_card_components = Component::where('type','Graphics Card')->get();
-                        $ram_components = Component::where('type','RAM')->get();
-                        $storage_components = Component::where('type','Storage')->get();
-                        $psu_components = Component::where('type','PSU')->get();
-                        $computer_case_components = Component::where('type','Computer Case')->get();
-
                         session(['presentStoreId' => $storeId[0]->account_id]);
                         session(['seller' => ' ']);
                         $this->getContent($id);
-
-                        return view('store.store', [
-                            'motherboard_components' => $motherboard_components,
-                            'cpu_components' => $cpu_components,
-                            'cpu_cooler_components' => $cpu_cooler_components,
-                            'graphics_card_components' => $graphics_card_components,
-                            'ram_components' => $ram_components,
-                            'storage_components' => $storage_components,
-                            'psu_components' => $psu_components,
-                            'computer_case_components' => $computer_case_components
-                        ]);
+                        return $this->return_my_store();
                     }else{
                         session()->forget(['seller']);
                         $this->getContent($id);
                         return view('store.store');
-
                     }
                 }else{
                     abort(404, 'Oops...Store Not Found!');
@@ -182,8 +162,6 @@ class StoreController extends Controller
     //to view personal store visit this url
     public function myStore(){
 
-
-
         if (Auth::check()) {
             //checks if the user is logged in
             $userId = Auth::user()->getAuthIdentifier();
@@ -217,13 +195,35 @@ class StoreController extends Controller
                 $storeId=Store::select('id')->where('account_id',$userId)->get();
                 //dd($storeId[0]->id);
                 $this->index($storeId[0]->id);
-
+                return $this->return_my_store();
             }else{
                 return view('landing.landingpage');
             }
         }else{
             return view('landing.landingpage');
         }
+    }
+
+    public function return_my_store(){
+        $motherboard_components = Component::where('type','Motherboard')->get();
+        $cpu_components = Component::where('type','CPU')->get();
+        $cpu_cooler_components = Component::where('type','CPU Cooler')->get();
+        $graphics_card_components = Component::where('type','Graphics Card')->get();
+        $ram_components = Component::where('type','RAM')->get();
+        $storage_components = Component::where('type','Storage')->get();
+        $psu_components = Component::where('type','PSU')->get();
+        $computer_case_components = Component::where('type','Computer Case')->get();
+
+        return view('store.store', [
+            'motherboard_components' => $motherboard_components,
+            'cpu_components' => $cpu_components,
+            'cpu_cooler_components' => $cpu_cooler_components,
+            'graphics_card_components' => $graphics_card_components,
+            'ram_components' => $ram_components,
+            'storage_components' => $storage_components,
+            'psu_components' => $psu_components,
+            'computer_case_components' => $computer_case_components
+        ]);
     }
 
     public function add_motherboard(Request $request){

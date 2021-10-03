@@ -160,6 +160,15 @@ Route::get('/search', [SearchController::class, 'index'])->name('search');
 // Detailed Product Page
 Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('componentinfo');
 
+//builds
+Route::get('/consumer/builds', [BuildsController::class, 'index'])->name('builds')->middleware('auth');;
+Route::delete('/consumer/builds/delete/{build}', [BuildsController::class, 'delete_build'])->name('consumer.builds.delete');
+
+//Seller
+Route::get('seller/store', [StoreController::class, 'myStore'])->name('myStore');
+Route::get('seller/{id}', [StoreController::class, 'index'])->name('viewStore');
+Route::any('seller/edit/store/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
+Route::get('seller/edit/store', [EditStoreController::class, 'index'])->name('editStore');
 
 // User Profile Page
 Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('user.profile');
