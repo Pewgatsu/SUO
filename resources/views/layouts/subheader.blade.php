@@ -63,6 +63,15 @@
                     </ul>
                 </li>
                 @elseif(auth()->user()->account_type === 'Consumer')
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ route('builder') }}">Build</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{ route('builds') }}">My Builds</a>
+                </li>
+
+
                 <li class="nav-item dropdown" role="presentation">
                     <button class="nav-link dropdown-toggle" id="profile-tab" data-bs-toggle="dropdown"
                             data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
