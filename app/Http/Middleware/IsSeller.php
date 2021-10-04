@@ -16,7 +16,7 @@ class IsSeller
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->account_type != 'seller'){
+        if(strtolower(auth()->user()->account_type) != 'Seller'){
             abort(403, 'Unauthorized Access!');
         }
         return $next($request);
