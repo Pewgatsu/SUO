@@ -185,6 +185,8 @@ Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('c
 //builds
 Route::get('/consumer/builds', [BuildsController::class, 'index'])->name('builds')->middleware('auth');
 Route::delete('/consumer/builds/delete/{build}', [BuildsController::class, 'delete_build'])->name('consumer.builds.delete');
+Route::any('/consumer/builds/edit/{build}', [SystemBuilderController::class, 'edit_build'])->name('consumer.builds.edit');
+
 
 
 // User Profile Page

@@ -56,7 +56,7 @@ class EditStoreController extends Controller
                 $this->validate($request, [
                     'storeBanner' => 'nullable|image|max:1000',
                     'storeName' => 'required|string',
-                    'storeLocation' => 'required|string|starts_with:https://www.google.com/maps/embed?pb|ends_with:sph',
+                    'storeLocation' => 'string|starts_with:https://www.google.com/maps/embed?pb|ends_with:sph',
                     'storeAddress' => 'required|string',
                     'storeDescription' => 'nullable|string',
                     'motherboards' => 'nullable|numeric|min:0',
@@ -172,35 +172,35 @@ class EditStoreController extends Controller
         $storeId = $storeId[0]->id;
 
 
-        $this->productsArray['motherboards'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','motherboard')
+        $this->productsArray['motherboards'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','Motherboard')
             ->addSelect(['name' => Component::select('name')
             ->whereColumn('component_id', 'components.id')
             ])->get();
-        $this->productsArray['cpus'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','cpu')
+        $this->productsArray['cpus'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','CPU')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-        $this->productsArray['cpu_coolers'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','cpu_cooler')
+        $this->productsArray['cpu_coolers'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','CPU Cooler')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-        $this->productsArray['graphics_cards'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','graphics_card')
+        $this->productsArray['graphics_cards'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','Graphics Card')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-        $this->productsArray['rams'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','ram')
+        $this->productsArray['rams'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','RAM')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-       $this->productsArray['storages'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','storage')
+       $this->productsArray['storages'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','Storage')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-       $this->productsArray['psus'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','psu')
+       $this->productsArray['psus'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','PSU')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-       $this->productsArray['computer_cases'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','case')
+       $this->productsArray['computer_cases'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','Computer Case')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();

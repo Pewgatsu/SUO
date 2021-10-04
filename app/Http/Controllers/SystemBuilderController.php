@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Build;
 use Illuminate\Http\Request;
 use App\Models;
 use Illuminate\Support\Facades\Auth;
@@ -40,15 +41,21 @@ class SystemBuilderController extends Controller
         }
     }
 
-    public function print(Request $request)
+    public function print(Request $request){
+        $key = $request->input('selectedComponents');
+        $this->component_session($key);
+
+        return view('systemBuilder.builder');
+
+    }
+    public function component_session($key)
     {
 
         $componentInfo = array("name"=>'default value',"price"=>0,'owned'=>'0');
-        $key = $request->input('selectedComponents');;
         switch ($key) {
-            case "motherboards":
+            case "Motherboard":
                 //checks if session motherboards is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('motherboards.name')) {
+                if (session()->has('motherboards.name')) {
                     session(['motherboards.name'=>"Pressed motherboard twice"] );
                     session(['motherboards.price'=>0] );
                     session(['motherboards.owned'=>'0'] );
@@ -56,9 +63,9 @@ class SystemBuilderController extends Controller
                     session()->put('motherboards', $componentInfo);
                 }
                 break;
-            case "cpus":
+            case "CPU":
                 //checks if session cpus is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('cpus.name')) {
+                if (session()->has('cpus.name')) {
                     session(['cpus.name'=>"Pressed cpu twice"] );
                     session(['cpus.price'=>0] );
                     session(['cpus.owned'=>'0'] );
@@ -66,9 +73,9 @@ class SystemBuilderController extends Controller
                     session()->put('cpus', $componentInfo);
                 }
                 break;
-            case "cpu_coolers":
+            case "CPU Cooler":
                 //checks if session cpu_coolers is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('cpu_coolers.name')) {
+                if (session()->has('cpu_coolers.name')) {
                     session(['cpu_coolers.name'=>"Pressed cpu_coolers twice"] );
                     session(['cpu_coolers.price'=>0] );
                     session(['cpu_coolers.owned'=>'0'] );
@@ -76,9 +83,9 @@ class SystemBuilderController extends Controller
                     session()->put('cpu_coolers', $componentInfo);
                 }
                 break;
-            case "graphics_cards":
+            case "Graphics Card":
                 //checks if session graphics_cards is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('graphics_cards.name')) {
+                if (session()->has('graphics_cards.name')) {
                     session(['graphics_cards.name'=>"Pressed graphics_cards twice"] );
                     session(['graphics_cards.price'=>0] );
                     session(['graphics_cards.owned'=>'0'] );
@@ -87,9 +94,9 @@ class SystemBuilderController extends Controller
                 }
                 break;
 
-            case "rams":
+            case "RAM":
                 //checks if session rams is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('rams.name')) {
+                if (session()->has('rams.name')) {
                     session(['rams.name'=>"Pressed rams twice"] );
                     session(['rams.price'=>0] );
                     session(['rams.owned'=>'0'] );
@@ -98,9 +105,9 @@ class SystemBuilderController extends Controller
                 }
                 break;
 
-            case "storages":
+            case "Storage":
                 //checks if session storages is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('storages.name')) {
+                if (session()->has('storages.name')) {
                     session(['storages.name'=>"Pressed storages twice"] );
                     session(['storages.price'=>0] );
                     session(['storages.owned'=>'0'] );
@@ -109,9 +116,9 @@ class SystemBuilderController extends Controller
                 }
                 break;
 
-            case "psus":
+            case "PSU":
                 //checks if session psus is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('psus.name')) {
+                if (session()->has('psus.name')) {
                     session(['psus.name'=>"Pressed psus twice"] );
                     session(['psus.price'=>0] );
                     session(['psus.owned'=>'0'] );
@@ -119,9 +126,9 @@ class SystemBuilderController extends Controller
                     session()->put('psus', $componentInfo);
                 }
                 break;
-            case "computer_cases":
+            case "Computer Case":
                 //checks if session computer_cases is created? TRUE overrides the content : FALSE creates a session
-                if ($request->session()->has('computer_cases.name')) {
+                if (session()->has('computer_cases.name')) {
                     session(['computer_cases.name'=>"Pressed computer_cases twice"] );
                     session(['computer_cases.price'=>0] );
                     session(['computer_cases.owned'=>'0'] );
@@ -130,8 +137,7 @@ class SystemBuilderController extends Controller
                 }
                 break;
         }
-       // return view('components/showComponents', compact('holder'));
-        return view('systemBuilder.builder');
+
     }
 
     public function checkBoxState(Request $request){
@@ -183,6 +189,19 @@ class SystemBuilderController extends Controller
             case "computer_cases":
                 break;
         }
+    }
+
+    public function edit_build(Build $build)
+    {
+        //unset all sessions
+
+       $product =array();
+
+        foreach ($build->products as $p){
+            $product[] = $p->type;
+        }
+
+        //dd($product);
     }
 
 }
