@@ -98,9 +98,6 @@ class StoreController extends Controller
 
         session()->put('storeInfo',$storeInfo);
 
-
-        //dd(session('storeInfo.banner'));
-
         $productsArray = array('motherboards' => array(),
             'cpus' => array(),
             'cpu_coolers' => array(),
@@ -115,7 +112,6 @@ class StoreController extends Controller
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
-
             ])->get();
         $productsArray['cpus'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_cpus') )
             ->addSelect(['price' => Product::select('price')
