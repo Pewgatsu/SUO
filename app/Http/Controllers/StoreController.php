@@ -23,7 +23,7 @@ class StoreController extends Controller
             $type =$type[0]->account_type;
             session(['htmlId' => $id]);
 
-            if($type == "seller"){
+            if($type == "Seller"){
                 session(['userId' => $userId]);
                 //Determine if the seller owns the store
                 $storeId=Store::select('account_id')->where('id',$id)->get();
