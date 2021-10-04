@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('type');
             $table->string('status');
             $table->timestamp('status_date');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps('');
         });
     }
