@@ -62,7 +62,7 @@
                             </li>
                         </ul>
                     </li>
-                @elseif(Auth::user()->isCustomer())
+                @elseif(auth()->user()->account_type === 'Customer')
 
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="{{ route('builder') }}">Build</a>

@@ -17,7 +17,7 @@ class IsCustomer
     public function handle(Request $request, Closure $next)
     {
         if(strtolower(auth()->user()->account_type) != 'customer'){
-            abort(403);
+            abort(403, 'Unauthorized Access!');
         }
         return $next($request);
     }
