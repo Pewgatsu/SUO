@@ -30,7 +30,7 @@
                 <td>Motherboard</td>
                 <td>                                                                     <!-- Motherboards Button -->
                     <form action="{{route('components')}}" method="post">
-                        <input type="hidden" name="selectedComponents" value="motherboards">
+                        <input type="hidden" name="selectedComponents" value="Motherboard">
                         @csrf
                         <input type="submit" name="selectedComponent" value="{{session('motherboards.name','+')}}" class="btn btn-info col-12">
                     </form>
@@ -81,7 +81,7 @@
                 <td>CPU</td>
                 <td>
                     <form action="{{route('components')}}" method="post">                                       <!-- CPU Button -->
-                        <input type="hidden" name="selectedComponents" value="cpus">
+                        <input type="hidden" name="selectedComponents" value="CPU">
                         @csrf
                         <input type="submit" name="selectedComponent" value="{{session('cpus.name','+')}}" class="btn btn-info col-12">
                     </form>
@@ -132,7 +132,7 @@
                 <td>CPU Cooler</td>
                 <td>
                     <form action="{{route('components')}}" method="post">                               <!-- CPU Cooler  Button -->
-                        <input type="hidden" name="selectedComponents" value="cpu_coolers">
+                        <input type="hidden" name="selectedComponents" value="CPU Cooler">
                         @csrf
                         <input type="submit" name="selectedComponent" value="{{session('cpu_coolers.name','+')}}" class="btn btn-info col-12">
                     </form>
@@ -183,7 +183,7 @@
                 <td>Graphics Card</td>
                 <td>
                     <form action="{{route('components')}}" method="post">                             <!-- Graphics Card Button -->
-                        <input type="hidden" name="selectedComponents" value="graphics_cards">
+                        <input type="hidden" name="selectedComponents" value="Graphics Card">
                         @csrf
                         <input type="submit" name="selectedComponent" value="{{session('graphics_cards.name','+')}}" class="btn btn-info col-12">
                     </form>
@@ -234,7 +234,7 @@
                 <td>RAM</td>
                 <td>
                     <form action="{{route('components')}}" method="post">                                       <!-- RAMS Button -->
-                        <input type="hidden" name="selectedComponents" value="rams">
+                        <input type="hidden" name="selectedComponents" value="RAM">
                         @csrf
                         <input type="submit" name="selectedComponent" value="{{session('rams.name','+')}}" class="btn btn-info col-12">
                     </form>
@@ -285,7 +285,7 @@
                 <td>Storage</td>
                 <td>
                     <form action="{{route('components')}}" method="post">                                   <!-- Storages Button -->
-                        <input type="hidden" name="selectedComponents" value="storages">
+                        <input type="hidden" name="selectedComponents" value="Storage">
                         @csrf
                         <input type="submit" name="selectedComponent" value="{{session('storages.name','+')}}" class="btn btn-info col-12">
                     </form>
@@ -336,7 +336,7 @@
                 <td>Power Supply</td>
                 <td>
                     <form action="{{route('components')}}" method="post">                                       <!-- PSUS Button -->
-                        <input type="hidden" name="selectedComponents" value="psus">
+                        <input type="hidden" name="selectedComponents" value="PSU">
                         @csrf
                         <input type="submit" name="selectedComponent" value="{{session('psus.name','+')}}" class="btn btn-info col-12">
                     </form>
@@ -387,7 +387,7 @@
                 <td>Computer Case</td>
                 <td>
                     <form action="{{route('components')}}" method="post">                            <!-- Computer Cases Button -->
-                        <input type="hidden" name="selectedComponents" value="computer_cases">
+                        <input type="hidden" name="selectedComponents" value="Computer Case">
                         @csrf
                         <input type="submit" name="selectedComponent" value="{{session('computer_cases.name','+')}}" class="btn btn-info col-12">
                     </form>
