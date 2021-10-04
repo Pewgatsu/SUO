@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutSystemController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\BuildsController;
 use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
@@ -127,6 +128,25 @@ Route::group(['middleware' => 'auth'], function (){
         Route::get('products/psus', [ProductsController::class, 'index_psus'])->name('seller.products.psus');
         Route::get('products/computer_cases', [ProductsController::class, 'index_computer_cases'])->name('seller.products.computer_cases');
 
+        // Edit Products
+        Route::post('products/motherboards/edit/{component}', [ProductsController::class, 'edit_motherboard'])->name('seller.products.motherboards.edit');
+        Route::post('products/cpus/edit/{component}', [ProductsController::class, 'edit_cpu'])->name('seller.products.cpus.edit');
+        Route::post('products/cpu_coolers/edit/{component}', [ProductsController::class, 'edit_cpu_cooler'])->name('seller.products.cpu_coolers.edit');
+        Route::post('products/graphics_cards/edit/{component}', [ProductsController::class, 'edit_graphics_card'])->name('seller.products.graphics_cards.edit');
+        Route::post('products/rams/edit/{component}', [ProductsController::class, 'edit_ram'])->name('seller.products.rams.edit');
+        Route::post('products/storages/edit/{component}', [ProductsController::class, 'edit_storage'])->name('seller.products.storages.edit');
+        Route::post('products/psus/edit/{component}', [ProductsController::class, 'edit_psu'])->name('seller.products.psus.edit');
+        Route::post('products/computer_cases/edit/{component}', [ProductsController::class, 'edit_computer_case'])->name('seller.products.computer_cases.edit');
+
+        // Delete Products
+        Route::delete('products/motherboards/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.motherboards.delete');
+        Route::delete('products/cpus/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.cpus.delete');
+        Route::delete('products/cpu_coolers/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.cpu_coolers.delete');
+        Route::delete('products/graphics_cards/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.graphics_cards.delete');
+        Route::delete('products/rams/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.rams.delete');
+        Route::delete('products/storages/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.storages.delete');
+        Route::delete('products/psus/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.psus.delete');
+        Route::delete('products/computer_cases/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.computer_cases.delete');
     });
 
 });
