@@ -32,9 +32,9 @@ class AuthController extends Controller
         Auth::attempt($credentials);
 
         if(Auth::attempt($credentials)){
-            if(auth()->user()->account_type == 'customer'){
+            if(auth()->user()->account_type == 'Customer'){
                 return redirect()->route('builder');
-            }else if(auth()->user()->account_type == 'seller'){
+            }else if(auth()->user()->account_type == 'Seller'){
                 return redirect()->route('myStore');
             }else{
                 return redirect()->route('admin.dashboard');
