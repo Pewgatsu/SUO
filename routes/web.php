@@ -46,6 +46,7 @@ Route::post('/login',[App\Http\Controllers\AuthController::class,'login']);
 
 Route::group(['middleware' => 'auth'], function (){
 
+    //ROUTE GROUP FOR ADMIN
     Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
         // Admin Dashboard Page
         Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -98,6 +99,7 @@ Route::group(['middleware' => 'auth'], function (){
         Route::delete('components/computer_cases/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.computer_cases.delete');
     });
 
+    //ROUTE GROUP FOR SELLER
     Route::group(['prefix' => 'seller','middleware' => 'is_seller'], function (){
         //Seller
         Route::get('store', [StoreController::class, 'myStore'])->name('myStore');
@@ -164,11 +166,6 @@ Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('c
 Route::get('/consumer/builds', [BuildsController::class, 'index'])->name('builds')->middleware('auth');;
 Route::delete('/consumer/builds/delete/{build}', [BuildsController::class, 'delete_build'])->name('consumer.builds.delete');
 
-//Seller
-Route::get('seller/store', [StoreController::class, 'myStore'])->name('myStore');
-Route::get('seller/{id}', [StoreController::class, 'index'])->name('viewStore');
-Route::any('seller/edit/store/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
-Route::get('seller/edit/store', [EditStoreController::class, 'index'])->name('editStore');
 
 // User Profile Page
 Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('user.profile');
