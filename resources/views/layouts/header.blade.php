@@ -9,22 +9,22 @@
         @endguest
 
         @if(Auth::check())
-            @if(Auth::user()->isAdmin())
+            @if(auth()->user()->account_type == 'Admin')
                 <a class="navbar-brand" href="{{route('admin.dashboard')}}">
                     <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
                     System Unit Optimizer
                 </a>
-            @elseif(Auth::user()->isSeller())
+            @elseif(auth()->user()->account_type == 'Seller')
                     <a class="navbar-brand" href="{{route('myStore')}}">
                         <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
                         System Unit Optimizer
                     </a>
-            @elseif(Auth::user()->isCustomer())
+            @elseif(auth()->user()->account_type == 'Customer')
                     <a class="navbar-brand" href="{{route('builder')}}">
                         <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
                         System Unit Optimizer
                     </a>
-                @endif
+            @endif
         @endif
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
