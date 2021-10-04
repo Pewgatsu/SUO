@@ -14,23 +14,27 @@
 
             <div class="col">
 
+
+
                 <div class="card mb-5 mt-3"  style="border-radius: 15px;">
                     {{--                   form for photo--}}
-                    <form action="#">
+                    <form wire:submit.prevent="saveProfile">
+                        @csrf
                         <div class="col-md-6 mx-5">
-
-                            <img src="{{asset('assets/img/01.jpg')}}" class="rounded-circle mt-5" alt="img" style="width: 30%; height: 30%; border-radius: 40%;">
+                            @if($photo)
+                                <img src="{{$photo->temporaryUrl()}}" class="rounded-circle mt-5" alt="img" style="width: 20%; height: 20%; border-radius: 40%;">
+                            @else
+                                <img src="{{asset('assets/img/01.jpg')}}" class="rounded-circle mt-5" alt="img" style="width: 20%; height: 20%; border-radius: 40%;">
+                                @endif
                         </div>
 
                         <div class="col-md-6 mx-5 mt-3">
-                            <button class="btn btn-dark btn-sm">upload photo</button>
+{{--                            <button type="submit" class="btn btn-dark btn-sm>upload photo</button>--}}
+                            <input type="file" id="upload" class="form-control form-control-sm w-50" style="display:none" wire:model="photo">
+                            <label for="upload" class="btn btn-dark btn-sm">upload photo</label>
                         </div>
 
-                    </form>
 
-
-                    <form wire:submit.prevent="saveProfile">
-                        @csrf
 
                         <div id="account_information_section">
 

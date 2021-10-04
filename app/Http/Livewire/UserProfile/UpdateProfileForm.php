@@ -6,11 +6,14 @@ namespace App\Http\Livewire\UserProfile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class UpdateProfileForm extends Component
 {
+    use WithFileUploads;
     public $username;
     public $email;
+    public $photo;
 
 
     public function getUser(){
@@ -28,6 +31,7 @@ class UpdateProfileForm extends Component
             //
             'username' => ['required','string', Rule::unique('accounts','username')->ignore(Auth::id())],
             'email' => ['required','email', Rule::unique('accounts','email')->ignore(Auth::id())],
+            'photo' => ['image', 'max:1024']
         ];
     }
 
@@ -41,14 +45,20 @@ class UpdateProfileForm extends Component
 
 
     public function saveProfile(){
+
         $this->validate($this->getRules(),$this->getMessages());
 
         $account = $this->getUser();
 
+        $photo = $this->photo->store('files','public');
+
         $account->update([
             'username' => $this->username,
-            'email' => $this->email
+            'email' => $this->email,
+            'profile_path' => $this->photo,
         ]);
+
+
 
 
 //        Account::find(Auth::id())->forceFill([
