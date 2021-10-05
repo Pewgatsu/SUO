@@ -2,7 +2,9 @@
 @endsection
 @extends('layouts.master')
 @section('content')
-
+    @auth()
+        @include('layouts.subheader')
+    @endauth
 <div class="container-sm mt-4 " style="width: 70%;" >
 
 
