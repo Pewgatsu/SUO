@@ -173,11 +173,11 @@ class StoreController extends Controller
                     //checks if the store record already exist else creates a new record
                     $storeInfo = Store::firstOrCreate(
                         ['account_id' => $userId],
-                            ['banner' => ' ',
-                            'name' => "LOREM IPSUM DOLOR",
-                            'address' => " ",
-                                'location' => " ",
-                            'description' => "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
+                            ['banner' => '',
+                            'name' => "STORE NAME",
+                            'address' => "STORE ADDRESS",
+                                'location' => "",
+                            'description' => "",
                             'featured_motherboards' => 0,
                             'featured_cpus' => 0,
                             'featured_cpu_coolers' => 0,
