@@ -6,42 +6,42 @@
             @if(isset($motherboard_components))
                 <div class="h1">
                     <i class="fas fa-microchip"></i>
-                    <small> Motherboard Products</small>
+                    <small> Motherboard</small>
                 </div>
             @elseif(isset($cpu_components))
                 <div class="h1">
                     <i class="bi bi-cpu-fill"></i>
-                    <small> CPU Products</small>
+                    <small> CPU</small>
                 </div>
             @elseif(isset($cpu_cooler_components))
                 <div class="h1">
                     <i class="far fa-snowflake"></i>
-                    <small> CPU Cooler Products</small>
+                    <small> CPU Cooler</small>
                 </div>
             @elseif(isset($graphics_card_components))
                 <div class="h1">
                     <i class="fas fa-tv"></i>
-                    <small> Graphics Card Products</small>
+                    <small> Graphics Card</small>
                 </div>
             @elseif(isset($ram_components))
                 <div class="h1">
                     <i class="fas fa-memory"></i>
-                    <small> RAM Products</small>
+                    <small> RAM</small>
                 </div>
             @elseif(isset($storage_components))
                 <div class="h1">
                     <i class="fas fa-hdd"></i>
-                    <small> Storage Products</small>
+                    <small> Storage</small>
                 </div>
             @elseif(isset($psu_components))
                 <div class="h1">
                     <i class="fas fa-plug"></i>
-                    <small> PSU Products</small>
+                    <small> PSU</small>
                 </div>
             @elseif(isset($computer_case_components))
                 <div class="h1">
                     <i class="fas fa-suitcase"></i>
-                    <small> Computer Case Products</small>
+                    <small> Computer Case</small>
                 </div>
             @endif
         </div>

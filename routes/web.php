@@ -7,12 +7,22 @@ use App\Http\Controllers\ComponentInfoController;
 use App\Http\Controllers\ComponentsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditStoreController;
-use App\Http\Controllers\ProductListController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
 use App\Http\Controllers\StoreController;
+use App\Http\Livewire\ProductsList\MotheboardProducts;
+use App\Http\Livewire\ProductsList\CPUProducts;
+use App\Http\Livewire\ProductsList\CPUCoolerProducts;
+use App\Http\Livewire\ProductsList\GraphicsCardProducts;
+use App\Http\Livewire\ProductsList\RAMProducts;
+use App\Http\Livewire\ProductsList\StorageProducts;
+use App\Http\Livewire\ProductsList\PSUProducts;
+use App\Http\Livewire\ProductsList\ComputerCaseProducts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,12 +44,12 @@ Route::get('/', function () {
 Auth::routes();
 
 // Home
-Route::get('/home',[\App\Http\Controllers\HomeController::class,'index'])->name('home');
+Route::get('/home',[HomeController::class,'index'])->name('home');
 
 // Login & Register
 Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
 Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
-Route::get('/logout',[\App\Http\Controllers\LogoutController::class,'logout'])->name('user.logout');
+Route::get('/logout',[LogoutController::class,'logout'])->name('user.logout');
 
 Route::post('/register',[App\Http\Controllers\AuthController::class, 'registerUser']);
 Route::post('/login',[App\Http\Controllers\AuthController::class,'login']);
@@ -161,14 +171,14 @@ Route::post('/builder', [SystemBuilderController::class, 'control'])->name('cont
 Route::get('/builds', [App\Http\Controllers\BuildsController::class,'index'])->name('builds');
 
 // Products List Page
-Route::any('/product/motherboards', [ProductListController::class, 'index_motherboards'])->name('products.motherboards');
-Route::any('/product/cpus', [ProductListController::class, 'index_cpus'])->name('products.cpus');
-Route::any('/product/cpu_coolers', [ProductListController::class, 'index_cpu_coolers'])->name('products.cpu_coolers');
-Route::any('/product/graphics_cards', [ProductListController::class, 'index_graphics_cards'])->name('products.graphics_cards');
-Route::any('/product/rams', [ProductListController::class, 'index_rams'])->name('products.rams');
-Route::any('/product/storages', [ProductListController::class, 'index_storages'])->name('products.storages');
-Route::any('/product/psus', [ProductListController::class, 'index_psus'])->name('products.psus');
-Route::any('/product/computer_cases', [ProductListController::class, 'index_computer_cases'])->name('products.computer_cases');
+Route::any('/products/motherboards', [MotheboardProducts::class, 'render'])->name('products.motherboards');
+Route::any('/products/cpus', [CPUProducts::class, 'render'])->name('products.cpus');
+Route::any('/products/cpu_coolers', [CPUCoolerProducts::class, 'render'])->name('products.cpu_coolers');
+Route::any('/products/graphics_cards', [GraphicsCardProducts::class, 'render'])->name('products.graphics_cards');
+Route::any('/products/rams', [RAMProducts::class, 'render'])->name('products.rams');
+Route::any('/products/storages', [StorageProducts::class, 'render'])->name('products.storages');
+Route::any('/products/psus', [PSUProducts::class, 'render'])->name('products.psus');
+Route::any('/products/computer_cases', [ComputerCaseProducts::class, 'render'])->name('products.computer_cases');
 
 // About Us Page
 Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
@@ -190,4 +200,4 @@ Route::any('/consumer/builds/edit/{build}', [SystemBuilderController::class, 'ed
 
 
 // User Profile Page
-Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('user.profile');
+Route::get('/profile',[UserProfileController::class,'index'])->name('user.profile');
