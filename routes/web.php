@@ -39,7 +39,7 @@ Route::get('/home',[\App\Http\Controllers\HomeController::class,'index'])->name(
 // Login & Register
 Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
 Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
-Route::get('/logout',[\App\Http\Controllers\LogoutController::class,'logout'])->name('logout');
+Route::get('/logout',[\App\Http\Controllers\LogoutController::class,'logout'])->name('user.logout');
 
 Route::post('/register',[App\Http\Controllers\AuthController::class, 'registerUser']);
 Route::post('/login',[App\Http\Controllers\AuthController::class,'login']);
