@@ -6,28 +6,28 @@
             <div class="h1">
                 @if(isset($motherboard_products))
                     <i class="fas fa-microchip"></i>
-                    <small> Motherboard</small>
+                    <small> Motherboard Products</small>
                 @elseif(isset($cpu_products))
                     <i class="bi bi-cpu-fill"></i>
-                    <small> CPU</small>
+                    <small> CPU Products</small>
                 @elseif(isset($cpu_cooler_products))
                     <i class="far fa-snowflake"></i>
-                    <small> CPU Cooler</small>
+                    <small> CPU Cooler Products</small>
                 @elseif(isset($graphics_card_products))
                     <i class="fas fa-tv"></i>
-                    <small> Graphics Card</small>
+                    <small> Graphics Card Products</small>
                 @elseif(isset($ram_products))
                     <i class="fas fa-memory"></i>
-                    <small> RAM</small>
+                    <small> RAM Products</small>
                 @elseif(isset($storage_products))
                     <i class="fas fa-hdd"></i>
-                    <small> Storage</small>
+                    <small> Storage Products</small>
                 @elseif(isset($psu_products))
                     <i class="fas fa-plug"></i>
-                    <small> PSU</small>
+                    <small> PSU Products</small>
                 @elseif(isset($cases_products))
                     <i class="fas fa-suitcase"></i>
-                    <small> Computer Case</small>
+                    <small> Computer Case Products</small>
                 @endif
             </div>
         </div>
