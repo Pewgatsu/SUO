@@ -100,15 +100,17 @@
 
                                     <td class="text-center"><h5 class="card-title">{{empty(session('storeInfo.storeAddress')) ? ' ':session('storeInfo.storeAddress')}}</h5></td>
                                 </tr>
-                                <!--Store Description-->
-                                <tr>
-                                    <td class="fw-bold">Store Description:</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center" ><p>{{empty(session('storeInfo.storeDescription')) ? ' ':session('storeInfo.storeDescription')}}</p></td>
-                                </tr>
                             </table>
 
+                            <!--Store Description-->
+                            <h6 class="fw-bold">Store Description:</h6>
+                            <div class="card border-0">
+                                <hr>
+                                <div class="card-body">
+                                    <p>{{empty(session('storeInfo.storeDescription')) ? ' ':session('storeInfo.storeDescription')}}</p>
+                                </div>
+                                <hr>
+                            </div>
                              <!-- Map -->
                                 <h6 class="fw-bold">Store Location:</h6>
 
