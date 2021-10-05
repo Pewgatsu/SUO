@@ -125,10 +125,7 @@
                             @endif
                         </div>
                     </div>
-
-
                 </div>
-
                 <!-- Featured components -->
                 <div class="col-8 ">
 
