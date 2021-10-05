@@ -140,7 +140,12 @@
                                 <div class="col mt-2">
                                     <div class="card">
                                         <div class="card-body"> <!-- dd(session('productsArray.motherboards.0.price') ); -->
-                                            <div class="card-img-actions"> <img src="{{empty(session('productsArray.motherboards.0.image_path')) ? asset('/images/Store_Placeholder/motherboard_placeholder.png'):session('productsArray.motherboards.0.image_path')}}" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.motherboards.0.image_path')) ?
+                                                            asset('/images/Store_Placeholder/motherboard_placeholder.png'):
+                                                            asset('images/components/motherboards/'.session('productsArray.motherboards.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -159,7 +164,12 @@
                                 <div class="col mt-2"> <!--CPU -->
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="{{empty(session('productsArray.cpus.0.image_path')) ? asset('/images/Store_Placeholder/cpu_placeholder.png'):session('productsArray.cpus.0.image_path')}}" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.cpus.0.image_path')) ?
+                                                            asset('/images/Store_Placeholder/cpu_placeholder.png'):
+                                                            asset('images/components/cpus/'.session('productsArray.cpus.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -178,7 +188,12 @@
                                 <div class="col mt-2"> <!--CPU COOLER -->
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="{{empty(session('productsArray.cpu_coolers.0.image_path')) ? asset('/images/Store_Placeholder/cpu_cooler_placeholder.png'):session('productsArray.cpu_coolers.0.image_path')}}" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.cpu_coolers.0.image_path')) ?
+                                                        asset('/images/Store_Placeholder/cpu_cooler_placeholder.png'):
+                                                        asset('images/components/cpu_coolers/'.session('productsArray.cpu_coolers.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -197,7 +212,12 @@
                                 <div class="col mt-2"> <!--GRAPHICS CARD -->
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="{{empty(session('productsArray.graphics_cards.0.image_path')) ? asset('/images/Store_Placeholder/graphics_card_placeholder.png'):session('productsArray.graphics_cards.0.image_path')}}" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.graphics_cards.0.image_path')) ?
+                                                    asset('/images/Store_Placeholder/graphics_card_placeholder.png'):
+                                                    asset('images/components/graphics_cards/'.session('productsArray.graphics_cards.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                                </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -218,7 +238,12 @@
                                 <div class="col mt-2"> <!-- RAM -->
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="{{empty(session('productsArray.rams.0.image_path')) ? asset('/images/Store_Placeholder/ram_placeholder.png'):session('productsArray.rams.0.image_path')}}" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.rams.0.image_path')) ?
+                                                        asset('/images/Store_Placeholder/ram_placeholder.png'):
+                                                        asset('images/components/rams/'.session('productsArray.rams.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -237,7 +262,12 @@
                                 <div class="col mt-2">
                                     <div class="card"> <!--STORAGES -->
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="{{empty(session('productsArray.storages.0.image_path')) ? asset('/images/Store_Placeholder/storage_placeholder.png'):session('productsArray.storages.0.image_path')}}" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.storages.0.image_path')) ?
+                                                           asset('/images/Store_Placeholder/storage_placeholder.png'):
+                                                           asset('images/components/storages/'.session('productsArray.storages.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -256,7 +286,12 @@
                                 <div class="col mt-2">
                                     <div class="card"> <!--PSU -->
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="{{empty(session('productsArray.psus.0.image_path')) ? asset('/images/Store_Placeholder/psu_placeholder.png'):session('productsArray.psus.0.image_path')}}" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.psus.0.image_path')) ?
+                                                        asset('/images/Store_Placeholder/psu_placeholder.png'):
+                                                        asset('images/components/psus/'.session('productsArray.psus.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -275,7 +310,12 @@
                                 <div class="col mt-2">
                                     <div class="card"> <!-- COMPUTER CASE -->
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="{{empty(session('productsArray.computer_cases.0.image_path')) ? asset('/images/Store_Placeholder/computer_case_placeholder.png'):session('productsArray.computer_cases.0.image_path')}}" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.computer_cases.0.image_path')) ?
+                                                            asset('/images/Store_Placeholder/computer_case_placeholder.png'):
+                                                            asset('images/components/computer_cases/'.session('productsArray.computer_cases.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
