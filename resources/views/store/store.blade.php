@@ -135,11 +135,11 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">FEATURED PRODUCTS</h6>
-
-                            <div class="row">   <!--MOTHERBOARD -->
+                            <!--MOTHERBOARD -->
+                            <div class="row">
                                 <div class="col mt-2">
                                     <div class="card">
-                                        <div class="card-body"> <!-- dd(session('productsArray.motherboards.0.price') ); -->
+                                        <div class="card-body">
                                             <div class="card-img-actions">
                                                 <img src="{{empty(session('productsArray.motherboards.0.image_path')) ?
                                                             asset('/images/Store_Placeholder/motherboard_placeholder.png'):
@@ -161,7 +161,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col mt-2"> <!--CPU -->
+                                <!--CPU -->
+                                <div class="col mt-2">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="card-img-actions">
