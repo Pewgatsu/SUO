@@ -161,14 +161,14 @@ Route::post('/builder', [SystemBuilderController::class, 'control'])->name('cont
 Route::get('/builds', [App\Http\Controllers\BuildsController::class,'index'])->name('builds');
 
 // Products List Page
-Route::get('/product/motherboards', [ProductListController::class, 'index_motherboards'])->name('products.motherboards');
-Route::get('/product/cpus', [ProductListController::class, 'index_cpus'])->name('products.cpus');
-Route::get('/product/cpu_coolers', [ProductListController::class, 'index_cpu_coolers'])->name('products.cpu_coolers');
-Route::get('/product/graphics_cards', [ProductListController::class, 'index_graphics_cards'])->name('products.graphics_cards');
-Route::get('/product/rams', [ProductListController::class, 'index_rams'])->name('products.rams');
-Route::get('/product/storages', [ProductListController::class, 'index_storages'])->name('products.storages');
-Route::get('/product/psus', [ProductListController::class, 'index_psus'])->name('products.psus');
-Route::get('/product/computer_cases', [ProductListController::class, 'index_computer_cases'])->name('products.computer_cases');
+Route::any('/product/motherboards', [ProductListController::class, 'index_motherboards'])->name('products.motherboards');
+Route::any('/product/cpus', [ProductListController::class, 'index_cpus'])->name('products.cpus');
+Route::any('/product/cpu_coolers', [ProductListController::class, 'index_cpu_coolers'])->name('products.cpu_coolers');
+Route::any('/product/graphics_cards', [ProductListController::class, 'index_graphics_cards'])->name('products.graphics_cards');
+Route::any('/product/rams', [ProductListController::class, 'index_rams'])->name('products.rams');
+Route::any('/product/storages', [ProductListController::class, 'index_storages'])->name('products.storages');
+Route::any('/product/psus', [ProductListController::class, 'index_psus'])->name('products.psus');
+Route::any('/product/computer_cases', [ProductListController::class, 'index_computer_cases'])->name('products.computer_cases');
 
 // About Us Page
 Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
