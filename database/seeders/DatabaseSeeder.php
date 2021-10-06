@@ -54,5 +54,18 @@ class DatabaseSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+        $this->call([
+            ComponentsSeeder::class,
+            CPUsSeeder::class,
+            CPUCoolersSeeder::class,
+            ComputerCasesSeeder::class,
+            GraphicsCardsSeeder::class,
+            MotherboardsSeeder::class,
+            PSUsSeeder::class,
+            RAMsSeeder::class,
+            StoragesSeeder::class
+        ]);
+
+
     }
 }
