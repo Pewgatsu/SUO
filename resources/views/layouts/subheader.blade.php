@@ -94,10 +94,6 @@
                 </li>
                 @endif
             @endauth
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" href="{{ route('search') }}">Search</a>
-            </li>
-
         </ul>
     </div>
 </header>
