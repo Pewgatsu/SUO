@@ -98,9 +98,6 @@ class StoreController extends Controller
 
         session()->put('storeInfo',$storeInfo);
 
-
-        //dd(session('storeInfo.banner'));
-
         $productsArray = array('motherboards' => array(),
             'cpus' => array(),
             'cpu_coolers' => array(),
@@ -115,7 +112,6 @@ class StoreController extends Controller
             ->addSelect(['price' => Product::select('price')
                 ->whereColumn('component_id', 'components.id')
                 ->where('store_id', $id)->limit(1)
-
             ])->get();
         $productsArray['cpus'] = Component::select('image_path','name')->where('id',session('storeInfo.featured_cpus') )
             ->addSelect(['price' => Product::select('price')
@@ -177,11 +173,11 @@ class StoreController extends Controller
                     //checks if the store record already exist else creates a new record
                     $storeInfo = Store::firstOrCreate(
                         ['account_id' => $userId],
-                            ['banner' => ' ',
-                            'name' => "LOREM IPSUM DOLOR",
-                            'address' => " ",
-                                'location' => " ",
-                            'description' => "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..",
+                            ['banner' => '',
+                            'name' => "STORE NAME",
+                            'address' => "STORE ADDRESS",
+                                'location' => "",
+                            'description' => "",
                             'featured_motherboards' => 0,
                             'featured_cpus' => 0,
                             'featured_cpu_coolers' => 0,

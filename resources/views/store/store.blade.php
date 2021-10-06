@@ -57,7 +57,7 @@
 
 
                 <br><br><br><br><br><br>
-                <span class="align-middle"> <h1 class="p-1 ps-4 align-middle bg-black text-white">  {{empty(session('storeInfo.storeName')) ? 'LOREM IPSUM DOLOR':session('storeInfo.storeName')}}</h1> </span>
+                <span class="align-middle"> <h1 class="p-1 ps-4 align-middle bg-black text-white">  {{empty(session('storeInfo.storeName')) ? ' ':session('storeInfo.storeName')}}</h1> </span>
 
                 <br><br>
                 <form class="d-inline" method="get" action="{{route('editStore')}}">
@@ -79,51 +79,70 @@
                             <table class="table table-hover align-middle">
                                 <tr>
                                     <td class="fw-bold">Store Owner:</td>
+                                </tr>
+                                <tr>
                                     <td class="text-center">{{empty(session('storeInfo.ownerFN')) ? ' ':session('storeInfo.ownerFN')}}
                                                             {{empty(session('storeInfo.ownerLN')) ? ' ':session('storeInfo.ownerLN')}}
                                     </td>
                                 </tr>
                                 <!--Store Description-->
                                 <tr>
-                                    <td class="fw-bold">Created at:</td>
-                                    <td  class="text-center" ><p>{{  empty(session('storeInfo.creation')) ? 'LOREM IPSUM DOLOR':session('storeInfo.creation')}}</p></td>
+                                    <td class="fw-bold">Joined at:</td>
+                                </tr>
+                                <tr>
+                                    <td  class="text-center" ><p>{{  empty(session('storeInfo.creation')) ? ' ':date('M d Y', strtotime(session('storeInfo.creation')))}}</p></td>
+                                </tr>
+                                <!-- address -->
+                                <tr>
+                                    <td class="fw-bold">Store Address:</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="text-center"><h5 class="card-title">{{empty(session('storeInfo.storeAddress')) ? ' ':session('storeInfo.storeAddress')}}</h5></td>
                                 </tr>
                             </table>
-                             <!-- Map -->
-                             <div class="map-responsive">
-                                 <iframe src="{{empty(session('storeInfo.storeLocation')) ?
-                                                'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16011010.91028031!2d113.57599198208291!3d11.556287369860305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x324053215f87de63%3A0x784790ef7a29da57!2sPhilippines!5e0!3m2!1sen!2sph!4v1633231757763!5m2!1sen!2sph'
-                                                :session('storeInfo.storeLocation')}}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                             </div>
-                             <!-- address -->
-                             <table class="table table-hover align-middle">
-                                 <tr>
-                                     <td colspan="2" class="text-center"><h5 class="card-title">{{empty(session('storeInfo.storeAddress')) ? 'LOREM IPSUM DOLOR':session('storeInfo.storeAddress')}}</h5></td>
-                                 </tr>
-                                 <!--Store Description-->
-                                 <tr>
-                                     <td colspan="2" class="text-center" ><p>{{empty(session('storeInfo.storeDescription')) ? 'LOREM IPSUM DOLOR':session('storeInfo.storeDescription')}}</p></td>
-                                 </tr>
-                             </table>
 
+                            <!--Store Description-->
+                            <h6 class="fw-bold">Store Description:</h6>
+                            <div class="card border-0">
+                                <hr>
+                                <div class="card-body">
+                                    <p>{{empty(session('storeInfo.storeDescription')) ? ' ':session('storeInfo.storeDescription')}}</p>
+                                </div>
+                                <hr>
+                            </div>
+                             <!-- Map -->
+                                <h6 class="fw-bold">Store Location:</h6>
+
+                            @if(!Session::has('storeInfo.storeLocation') || empty(session('storeInfo.storeLocation')) )
+                                <div class="d-flex justify-content-center">
+                                    <img class="img-fluid" src="{{asset('/images/Store_Placeholder/no_location.png')}}" >
+                                </div>
+                            @else
+                                <div class="map-responsive">
+                                    <iframe src="{{ session('storeInfo.storeLocation') }}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                </div>
+                            @endif
                         </div>
                     </div>
-
-
                 </div>
-
                 <!-- Featured components -->
                 <div class="col-8 ">
 
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">FEATURED PRODUCTS</h6>
-
-                            <div class="row">   <!--MOTHERBOARD -->
+                            <!--MOTHERBOARD -->
+                            <div class="row">
                                 <div class="col mt-2">
                                     <div class="card">
-                                        <div class="card-body"> <!-- dd(session('productsArray.motherboards.0.price') ); -->
-                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                        <div class="card-body">
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.motherboards.0.image_path')) ?
+                                                            asset('/images/Store_Placeholder/motherboard_placeholder.png'):
+                                                            asset('images/components/motherboards/'.session('productsArray.motherboards.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -139,10 +158,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col mt-2"> <!--CPU -->
+                                <!--CPU -->
+                                <div class="col mt-2">
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.cpus.0.image_path')) ?
+                                                            asset('/images/Store_Placeholder/cpu_placeholder.png'):
+                                                            asset('images/components/cpus/'.session('productsArray.cpus.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -161,7 +186,12 @@
                                 <div class="col mt-2"> <!--CPU COOLER -->
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.cpu_coolers.0.image_path')) ?
+                                                        asset('/images/Store_Placeholder/cpu_cooler_placeholder.png'):
+                                                        asset('images/components/cpu_coolers/'.session('productsArray.cpu_coolers.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -180,7 +210,12 @@
                                 <div class="col mt-2"> <!--GRAPHICS CARD -->
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.graphics_cards.0.image_path')) ?
+                                                    asset('/images/Store_Placeholder/graphics_card_placeholder.png'):
+                                                    asset('images/components/graphics_cards/'.session('productsArray.graphics_cards.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                                </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -201,7 +236,12 @@
                                 <div class="col mt-2"> <!-- RAM -->
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.rams.0.image_path')) ?
+                                                        asset('/images/Store_Placeholder/ram_placeholder.png'):
+                                                        asset('images/components/rams/'.session('productsArray.rams.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -220,7 +260,12 @@
                                 <div class="col mt-2">
                                     <div class="card"> <!--STORAGES -->
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.storages.0.image_path')) ?
+                                                           asset('/images/Store_Placeholder/storage_placeholder.png'):
+                                                           asset('images/components/storages/'.session('productsArray.storages.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -239,7 +284,12 @@
                                 <div class="col mt-2">
                                     <div class="card"> <!--PSU -->
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.psus.0.image_path')) ?
+                                                        asset('/images/Store_Placeholder/psu_placeholder.png'):
+                                                        asset('images/components/psus/'.session('productsArray.psus.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
@@ -258,7 +308,12 @@
                                 <div class="col mt-2">
                                     <div class="card"> <!-- COMPUTER CASE -->
                                         <div class="card-body">
-                                            <div class="card-img-actions"> <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1562074043/234.png" class="card-img img-fluid" width="96" height="350" alt=""> </div>
+                                            <div class="card-img-actions">
+                                                <img src="{{empty(session('productsArray.computer_cases.0.image_path')) ?
+                                                            asset('/images/Store_Placeholder/computer_case_placeholder.png'):
+                                                            asset('images/components/computer_cases/'.session('productsArray.computer_cases.0.image_path'))}}"
+                                                     class="card-img img-fluid" width="96" height="350" alt="">
+                                            </div>
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
