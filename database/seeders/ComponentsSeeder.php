@@ -14,11 +14,11 @@ class ComponentsSeeder extends Seeder
      */
     public function run()
     {
-        $old_components = DB::connection('mysql2')->table('component')->get();
+        $old_components = DB::connection('mysql2')->table('components')->get();
 
         foreach ($old_components as $component) {
             DB::connection('mysql')->table('components')->insert([
-                'id'     => $component->component_id,
+                'id'     => $component->id,
                 'image_path'    => $component->image_path,
                 'name' => $component->name,
                 'type'   => $component->type,

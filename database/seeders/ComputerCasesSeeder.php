@@ -14,13 +14,12 @@ class ComputerCasesSeeder extends Seeder
      */
     public function run()
     {
-        $old_cases = DB::connection('mysql2')->table('computer_case')->get();
+        $old_cases = DB::connection('mysql2')->table('computer_cases')->get();
 
         foreach ($old_cases as $case) {
             DB::connection('mysql')->table('computer_cases')->insert([
                 'component_id' => $case->component_id,
                 'case_type' => $case->case_type,
-                'mobo_form_factor' => $case->mobo_form_factor,
                 'power_supply' => $case->power_supply,
                 'power_supply_shroud' => $case->power_supply_shroud,
                 'side_panel_window' => $case->side_panel_window,

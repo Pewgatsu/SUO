@@ -14,7 +14,7 @@ class CPUCoolersSeeder extends Seeder
      */
     public function run()
     {
-        $old_coolers = DB::connection('mysql2')->table('cpu_cooler')->get();
+        $old_coolers = DB::connection('mysql2')->table('cpu_coolers')->get();
 
         foreach ($old_coolers as $cooler) {
             DB::connection('mysql')->table('cpu_coolers')->insert([
@@ -22,7 +22,6 @@ class CPUCoolersSeeder extends Seeder
                 'fan_speed' => $cooler->fan_speed,
                 'noise_level' => $cooler->noise_level,
                 'water_cooled_support' => $cooler->water_cooled_support,
-                'radiator_size' => $cooler->radiator_size,
                 'created_at' => $cooler->created_at,
                 'updated_at' => $cooler->updated_at
             ]);
