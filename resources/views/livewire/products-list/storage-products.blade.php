@@ -14,7 +14,45 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-
+                    <div class="table-responsive text-center">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Type</th>
+                                <th>Capacity</th>
+                                <th>Store</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($product_storages as $product_storage)
+                                <tr>
+                                    <td>
+                                        @if(isset($product_storage->component->image_path))
+                                            <img
+                                                src="{{ asset('images/components/storages/' . $product_storage->component->image_path) }}"
+                                                class="img-thumbnail img-fluid" style="height: 50px; width: 50px" alt="">
+                                        @endif
+                                    </td>
+                                    <td>{{ $product_storage->component->name }}</td>
+                                    <td>{{ $product_storage->component->storage->storage_type ?? null }}</td>
+                                    <td>{{ $product_storage->component->storage->storage_capacity ?? null }}</td>
+                                    <td>{{ $product_storage->store->name }}</td>
+                                    <td>{{ $product_storage->price }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-center">
+                            {{ $product_storages->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

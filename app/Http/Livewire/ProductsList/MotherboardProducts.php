@@ -5,11 +5,11 @@ namespace App\Http\Livewire\ProductsList;
 use App\Models\Product;
 use Livewire\Component;
 
-class StorageProducts extends Component
+class MotherboardProducts extends Component
 {
     public function render()
     {
-        $store_products = Product::where('type', 'Storage')
+        $store_products = Product::where('type', 'Motherboard')
             ->where('status', 'Available')
             ->groupBy(['store_id','component_id'])->get();
 
@@ -18,12 +18,11 @@ class StorageProducts extends Component
             $product_ids[] = $store_product->id;
         }
 
-        $product_storages = Product::with('store','component')
+        $product_motherboards = Product::with('store','component')
             ->whereIn('id',$product_ids)->paginate(10);
 
-
-        return view('livewire.products-list.storage-products', [
-            'product_storages' => $product_storages
+        return view('livewire.products-list.motheboard-products', [
+            'product_motherboards' => $product_motherboards
         ]);
     }
 }

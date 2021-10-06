@@ -15,7 +15,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
 use App\Http\Controllers\StoreController;
-use App\Http\Livewire\ProductsList\MotheboardProducts;
+use App\Http\Livewire\ProductsList\MotherboardProducts;
 use App\Http\Livewire\ProductsList\CPUProducts;
 use App\Http\Livewire\ProductsList\CPUCoolerProducts;
 use App\Http\Livewire\ProductsList\GraphicsCardProducts;
@@ -172,7 +172,7 @@ Route::post('/builder', [SystemBuilderController::class, 'control'])->name('cont
 Route::get('/builds', [App\Http\Controllers\BuildsController::class,'index'])->name('builds');
 
 // Products List Page
-Route::any('/products/motherboards', [MotheboardProducts::class, 'render'])->name('products.motherboards');
+Route::any('/products/motherboards', [MotherboardProducts::class, 'render'])->name('products.motherboards');
 Route::any('/products/cpus', [CPUProducts::class, 'render'])->name('products.cpus');
 Route::any('/products/cpu_coolers', [CPUCoolerProducts::class, 'render'])->name('products.cpu_coolers');
 Route::any('/products/graphics_cards', [GraphicsCardProducts::class, 'render'])->name('products.graphics_cards');
@@ -186,9 +186,6 @@ Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
 
 // About System Page
 Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('aboutsystem');
-
-// Search Page
-Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 // Detailed Product Page
 Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('componentinfo');
