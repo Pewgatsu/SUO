@@ -14,7 +14,7 @@ class StoragesSeeder extends Seeder
      */
     public function run()
     {
-        $old_storages = DB::connection('mysql2')->table('storage')->get();
+        $old_storages = DB::connection('mysql2')->table('storages')->get();
 
         foreach ($old_storages as $storage) {
             DB::connection('mysql')->table('storages')->insert([

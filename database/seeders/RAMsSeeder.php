@@ -14,7 +14,7 @@ class RAMsSeeder extends Seeder
      */
     public function run()
     {
-        $old_rams = DB::connection('mysql2')->table('ram')->get();
+        $old_rams = DB::connection('mysql2')->table('rams')->get();
 
         foreach ($old_rams as $ram) {
             DB::connection('mysql')->table('rams')->insert([
@@ -25,7 +25,7 @@ class RAMsSeeder extends Seeder
                 'memory_form_factor' => $ram->memory_form_factor,
                 'modules' => $ram->modules,
                 'memory_voltage' => $ram->memory_voltage,
-                'memory_timing' => $ram->memory_timing,
+                'memory_timings' => $ram->memory_timings,
                 'ecc' => $ram->ecc,
                 'registered' => $ram->registered,
                 'heat_spreader' => $ram->heat_spreader,

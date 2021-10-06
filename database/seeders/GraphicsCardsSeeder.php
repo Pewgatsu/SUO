@@ -14,10 +14,10 @@ class GraphicsCardsSeeder extends Seeder
      */
     public function run()
     {
-        $old_graphics = DB::connection('mysql2')->table('graphic_card')->get();
+        $old_graphics = DB::connection('mysql2')->table('graphics_cards')->get();
 
         foreach ($old_graphics as $graphic) {
-            DB::connection('mysql')->table('graphic_cards')->insert([
+            DB::connection('mysql')->table('graphics_cards')->insert([
                 'component_id' => $graphic->component_id,
                 'gpu_chipset' => $graphic->gpu_chipset,
                 'gpu_memory' => $graphic->gpu_memory,

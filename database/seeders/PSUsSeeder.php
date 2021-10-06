@@ -14,7 +14,7 @@ class PSUsSeeder extends Seeder
      */
     public function run()
     {
-        $old_psus = DB::connection('mysql2')->table('psu')->get();
+        $old_psus = DB::connection('mysql2')->table('psus')->get();
 
         foreach ($old_psus as $psu) {
             DB::connection('mysql')->table('psus')->insert([
@@ -27,7 +27,7 @@ class PSUsSeeder extends Seeder
                 'eps_connector' => $psu->eps_connector,
                 'sata_connector' => $psu->sata_connector,
                 'pcie_8pin_connector' => $psu->pcie_8pin_connector,
-                'pcie_62pin_connector' => $psu->pcie_6_plus_2pin_connector,
+                'pcie_6+2pin_connector' => $psu->{'pcie_6+2pin_connector'},
                 'pcie_6pin_connector' => $psu->pcie_6pin_connector,
                 'created_at' => $psu->created_at,
                 'updated_at' => $psu->updated_at

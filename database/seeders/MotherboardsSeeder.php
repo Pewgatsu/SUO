@@ -14,7 +14,7 @@ class MotherboardsSeeder extends Seeder
      */
     public function run()
     {
-        $old_motherboards = DB::connection('mysql2')->table('motherboard')->get();
+        $old_motherboards = DB::connection('mysql2')->table('motherboards')->get();
 
         foreach ($old_motherboards as $motherboard) {
             DB::connection('mysql')->table('motherboards')->insert([
@@ -25,7 +25,6 @@ class MotherboardsSeeder extends Seeder
                 'memory_slot' => $motherboard->memory_slot,
                 'memory_type' => $motherboard->memory_type,
                 'max_mem_support' => $motherboard->max_mem_support,
-                'max_speed_support' => $motherboard->max_speed_support,
                 'pcie_x16_slot' => $motherboard->pcie_x16_slot,
                 'pcie_x8_slot' => $motherboard->pcie_x8_slot,
                 'pcie_x4_slot' => $motherboard->pcie_x4_slot,

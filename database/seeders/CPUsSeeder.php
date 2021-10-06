@@ -14,7 +14,7 @@ class CPUsSeeder extends Seeder
      */
     public function run()
     {
-        $old_cpus = DB::connection('mysql2')->table('cpu')->get();
+        $old_cpus = DB::connection('mysql2')->table('cpus')->get();
 
         foreach ($old_cpus as $cpu) {
             DB::connection('mysql')->table('cpus')->insert([
