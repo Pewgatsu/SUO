@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Auth;
 
 use App\Models\Account;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Registration extends Component
@@ -64,7 +65,7 @@ class Registration extends Component
 
         $account = Account::create([
             'username' => $this->username,
-            'password' => $this->password,
+            'password' => Hash::make($this->password),
             'email' => $this->email,
             'account_type' => $this->accountType,
             'firstname' => $this->firstname,
