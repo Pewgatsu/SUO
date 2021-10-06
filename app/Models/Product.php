@@ -29,7 +29,13 @@ class Product extends Model
         return $this->belongsTo(Store::class);
     }
 
+    public function build_product(){
+        return $this->hasMany(BuildProduct::class);
+    }
+
     public function builds(){
         return $this->belongsToMany(Build::class, 'build_products', 'product_id', 'build_id');
     }
+
+
 }

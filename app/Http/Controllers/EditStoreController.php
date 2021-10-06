@@ -23,6 +23,7 @@ class EditStoreController extends Controller
 
 
     public function index(){
+
         if (Auth::check()) {
             //checks if the user is logged in
             $userId = Auth::user()->getAuthIdentifier();
@@ -45,44 +46,63 @@ class EditStoreController extends Controller
     //just create a function for validation then re direct if it is true or it fails
     public function saveInfo(Request  $request)
     {
+        $userId = Auth::user()->getAuthIdentifier();
+        //dd($store->account->id);
+        $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
 
         //validate the input fields
+        if(!Auth::check() || $userId != $store->account_id ){
+            return view('landing.landingpage');
+        }else{
+            $this->validate($request, [
+                'storeBanner' => 'nullable|image|max:1000',
+                'storeName' => 'required|string',
+                'storeLocation' => 'nullable|string|starts_with:https://www.google.com/maps/embed?pb|ends_with:sph',
+                'storeAddress' => 'required|string',
+                'storeDescription' => 'nullable|string',
+                'motherboards' => 'nullable|numeric|min:0',
+                'cpus' => 'nullable|numeric|min:0',
+                'cpu_coolers' => 'nullable|numeric|min:0',
+                'graphics_cards' => 'nullable|numeric|min:0',
+                'rams' => 'nullable|numeric|min:0',
+                'storages' => 'nullable|numeric|min:0',
+                'psus' => 'nullable|numeric|min:0',
+                'computer_cases' => 'nullable|numeric|min:0'
+            ]);
+            if($request->hasFile('storeBanner')){
+                $store_banner = time().'-'.$request->storeBanner.'.'.$request->storeBanner->extension();
+                $request->storeBanner->move(public_path('images/Store_Banner'), $store_banner);
+            }
 
-        if (Auth::check()) {
-            //checks if the user is logged in
-            $userId = Auth::user()->getAuthIdentifier();
-            if($userId == session('presentStoreId') ){
-
-                $this->validate($request, [
-                    'storeBanner' => 'nullable|image|max:1000',
-                    'storeName' => 'required|string',
-                    'storeLocation' => 'required|string|starts_with:https://www.google.com/maps/embed?pb|ends_with:sph',
-                    'storeAddress' => 'required|string',
-                    'storeDescription' => 'nullable|string',
-                    'motherboards' => 'nullable|numeric|min:0',
-                    'cpus' => 'nullable|numeric|min:0',
-                    'cpu_coolers' => 'nullable|numeric|min:0',
-                    'graphics_cards' => 'nullable|numeric|min:0',
-                    'rams' => 'nullable|numeric|min:0',
-                    'storages' => 'nullable|numeric|min:0',
-                    'psus' => 'nullable|numeric|min:0',
-                    'computer_cases' => 'nullable|numeric|min:0'
-                ]);
-
+            if(!$request->hasFile('storeBanner') || !$request->has('storeLocation')){
                 if($request->hasFile('storeBanner')){
-                    $store_banner = time().'-'.$request->storeBanner.'.'.$request->storeBanner->extension();
-                    $request->storeBanner->move(public_path('images/Store_Banner'), $store_banner);
-                }else{
-                    $store_banner=" ";
+                    $store->update(['banner'=> $store_banner]);
+                }
+                if($request->has('storeLocation')) {
+                    $store->update(['location'=> $request->storeLocation]);
                 }
 
-
-                //Checks whether record already exists , if not creates a new instance
-                $storeInfo = Store::firstOrCreate(
-                    ['account_id' => session('userId')],
-                    ['banner' => $store_banner,
+                Store::where('account_id', session('userId'))->update(
+                    ['account_id' => session('userId'),
                         'name' => $request->storeName,
-                        'address' => $request->storeAddres,
+                        'address' => $request->storeAddress,
+                        'description' => $request->storeDescription,
+                        'featured_motherboards' => $request->motherboards,
+                        'featured_cpus' => $request->cpus,
+                        'featured_cpu_coolers' => $request->cpu_coolers,
+                        'featured_graphics_cards' => $request->graphics_cards,
+                        'featured_rams' => $request->rams,
+                        'featured_storages' => $request->storages,
+                        'featured_psus' => $request->psus,
+                        'featured_computer_cases' => $request->computer_cases]
+                );
+            }else{
+                $input = $request->all();
+                $store->update(
+                    ['account_id' => session('userId'),
+                        'banner' => $store_banner,
+                        'name' => $request->storeName,
+                        'address' => $request->storeAddress,
                         'location' =>$request->storeLocation,
                         'description' => $request->storeDescription,
                         'featured_motherboards' => $request->motherboards,
@@ -94,75 +114,11 @@ class EditStoreController extends Controller
                         'featured_psus' => $request->psus,
                         'featured_computer_cases' => $request->computer_cases]
                 );
-
-
-                if ($storeInfo->wasRecentlyCreated) {
-
-                    // Store Information just created in the database; it didn't exist before.
-                    $storeId=Store::select('id')->where('account_id',$userId)->get();
-                    //dd($storeId[0]->id);
-                    $storeId = $storeId[0]->id;
-                    return redirect()->route('viewStore',$storeId);
-                } else {
-                    // Store Information already existed and was pulled from database.
-                    $storeId=Store::select('id')->where('account_id',$userId)->get();
-                    $storeId = $storeId[0]->id;
-
-                    if($store_banner != " "){
-                        Store::where('account_id', session('userId'))->update(
-                            ['account_id' => session('userId'),
-                                'banner' => $store_banner,
-                                'name' => $request->storeName,
-                                'address' => $request->storeAddress,
-                                'location' =>$request->storeLocation,
-                                'description' => $request->storeDescription,
-                                'featured_motherboards' => $request->motherboards,
-                                'featured_cpus' => $request->cpus,
-                                'featured_cpu_coolers' => $request->cpu_coolers,
-                                'featured_graphics_cards' => $request->graphics_cards,
-                                'featured_rams' => $request->rams,
-                                'featured_storages' => $request->storages,
-                                'featured_psus' => $request->psus,
-                                'featured_computer_cases' => $request->computer_cases]
-                        );
-                    }else{
-                        Store::where('account_id', session('userId'))->update(
-                            ['account_id' => session('userId'),
-                                'name' => $request->storeName,
-                                'address' => $request->storeAddress,
-                                'location' =>$request->storeLocation,
-                                'description' => $request->storeDescription,
-                                'featured_motherboards' => $request->motherboards,
-                                'featured_cpus' => $request->cpus,
-                                'featured_cpu_coolers' => $request->cpu_coolers,
-                                'featured_graphics_cards' => $request->graphics_cards,
-                                'featured_rams' => $request->rams,
-                                'featured_storages' => $request->storages,
-                                'featured_psus' => $request->psus,
-                                'featured_computer_cases' => $request->computer_cases]
-                        );
-                    }
-
-                    return redirect()->route('myStore');
-                }
-
-
-
-
-            }else{
-                return view('landing.landingpage');
             }
 
-        }else {
-            return view('landing.landingpage');
+            return redirect()->route('myStore');
         }
-
-
-
-
-
         //Inserting in in the database
-
     }
 
 
@@ -172,35 +128,35 @@ class EditStoreController extends Controller
         $storeId = $storeId[0]->id;
 
 
-        $this->productsArray['motherboards'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','motherboard')
+        $this->productsArray['motherboards'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','Motherboard')
             ->addSelect(['name' => Component::select('name')
             ->whereColumn('component_id', 'components.id')
             ])->get();
-        $this->productsArray['cpus'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','cpu')
+        $this->productsArray['cpus'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','CPU')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-        $this->productsArray['cpu_coolers'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','cpu_cooler')
+        $this->productsArray['cpu_coolers'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','CPU Cooler')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-        $this->productsArray['graphics_cards'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','graphics_card')
+        $this->productsArray['graphics_cards'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','Graphics Card')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-        $this->productsArray['rams'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','ram')
+        $this->productsArray['rams'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','RAM')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-       $this->productsArray['storages'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','storage')
+       $this->productsArray['storages'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','Storage')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-       $this->productsArray['psus'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','psu')
+       $this->productsArray['psus'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','PSU')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
-       $this->productsArray['computer_cases'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','case')
+       $this->productsArray['computer_cases'] = Product::select('id','component_id')->where('store_id',$storeId)->where('type','Computer Case')
             ->addSelect(['name' => Component::select('name')
                 ->whereColumn('component_id', 'components.id')
             ])->get();
