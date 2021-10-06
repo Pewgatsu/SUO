@@ -47,12 +47,13 @@ Auth::routes();
 Route::get('/home',[HomeController::class,'index'])->name('home');
 
 // Login & Register
-Route::get('/login',[App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
-Route::get('/register',[App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
-Route::get('/logout',[LogoutController::class,'logout'])->name('user.logout');
 
-Route::post('/register',[App\Http\Controllers\AuthController::class, 'registerUser']);
-Route::post('/login',[App\Http\Controllers\AuthController::class,'login']);
+Route::get('/login',[\App\Http\Controllers\AuthController::class,'loginPage'])->name('login');
+Route::get('/register',[\App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
+Route::get('/logout',[\App\Http\Controllers\LogoutController::class,'logout'])->name('user.logout');
+
+
+
 
 
 Route::group(['middleware' => 'auth'], function (){
@@ -200,4 +201,7 @@ Route::any('/consumer/builds/edit/{build}', [SystemBuilderController::class, 'ed
 
 
 // User Profile Page
-Route::get('/profile',[UserProfileController::class,'index'])->name('user.profile');
+Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('user.profile');
+
+
+
