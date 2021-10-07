@@ -39,10 +39,10 @@ class UpdatePersonalInfoForm extends Component
         return[
             'firstname' => ['required', 'alpha'],
             'lastname' => ['required', 'alpha'],
-            'birthdate' => ['required', 'date_format:m/d/Y','before_or_equal:'.$date_now],
-            'gender' => ['required'],
-            'address' => ['required'],
-            'contact' => ['required', 'min:11', 'regex:/^[0-9]+$/']
+            'birthdate' => ['nullable', 'date_format:m/d/Y','before_or_equal:'.$date_now],
+            'gender' => ['nullable'],
+            'address' => ['nullable'],
+            'contact' => ['nullable', 'min:11', 'regex:/^[0-9]+$/']
         ];
     }
 
