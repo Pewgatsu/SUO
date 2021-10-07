@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '1',
-            'price' => '37,000 Php',
+            'price' => '37000',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '2',
-            'price' => '24,000 Php',
+            'price' => '24000',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -116,7 +116,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '3',
-            'price' => '23,000 Php',
+            'price' => '23000',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -126,7 +126,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '4',
-            'price' => '11,000 Php',
+            'price' => '11000',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '5',
-            'price' => '12,000 Php',
+            'price' => '12000',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -146,7 +146,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '6',
-            'price' => '11,500 Php',
+            'price' => '11500',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -156,7 +156,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '7',
-            'price' => '9,000 Php',
+            'price' => '9000',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -166,7 +166,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '8',
-            'price' => '5,600 Php',
+            'price' => '5600',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -176,7 +176,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '9',
-            'price' => '5,500 Php',
+            'price' => '5500',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -186,7 +186,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '10',
-            'price' => '5,300 Php',
+            'price' => '5300',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -196,7 +196,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '11',
-            'price' => '2,600 Php',
+            'price' => '2600',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -206,7 +206,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '12',
-            'price' => '5,300 Php',
+            'price' => '5300',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -216,7 +216,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
         'store_id' => '1',
         'component_id' => '13',
-        'price' => '4,500 Php',
+        'price' => '4500',
         'type' => 'PSU',
         'status' => 'Available',
         'status_date' => $date,
@@ -226,7 +226,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '14',
-            'price' => '4,000 Php',
+            'price' => '4000',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -236,7 +236,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '15',
-            'price' => '1,600 Php',
+            'price' => '1600',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -246,7 +246,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '16',
-            'price' => '2,300 Php',
+            'price' => '2300',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -256,7 +256,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '17',
-            'price' => '2,000 Php',
+            'price' => '2000',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -266,7 +266,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '18',
-            'price' => '3,100 Php',
+            'price' => '3100',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -276,7 +276,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '19',
-            'price' => '1,800 Php',
+            'price' => '1800',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -286,7 +286,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '20',
-            'price' => '4,300 Php',
+            'price' => '4300',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -296,7 +296,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '21',
-            'price' => '1,050 Php',
+            'price' => '1050',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -306,7 +306,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '1',
             'component_id' => '22',
-            'price' => '1,000 Php',
+            'price' => '1000',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -339,7 +339,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '23',
-            'price' => '14,574.897 Php',
+            'price' => '14574.897',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -349,7 +349,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '24',
-            'price' => '16,585.297 Php',
+            'price' => '16585.297',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -359,7 +359,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '25',
-            'price' => '19,801.937 Php',
+            'price' => '19801.937',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -369,7 +369,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '26',
-            'price' => '28,145.097 Php',
+            'price' => '28145.097',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -379,7 +379,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '38',
-            'price' => '2,512.497 Php',
+            'price' => '2512.497',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -389,7 +389,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '39',
-            'price' => '7,244.979 Php',
+            'price' => '7244.979',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -399,7 +399,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '40',
-            'price' => '4,724.44 Php',
+            'price' => '4724.44',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -409,7 +409,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '41',
-            'price' => '2,763.797 Php',
+            'price' => '2763.797',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -419,7 +419,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '42',
-            'price' => '9,046.297 Php',
+            'price' => '9046.297',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -429,7 +429,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '58',
-            'price' => '2,261.187 Php',
+            'price' => '2261.187',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -439,7 +439,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '59',
-            'price' => '2,060.157 Php',
+            'price' => '2060.157',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -449,7 +449,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '60',
-            'price' => '3,266.397 Php',
+            'price' => '3266.397',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -459,7 +459,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '61',
-            'price' => '6030.697 Php',
+            'price' => '6030.697',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -469,7 +469,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '74',
-            'price' => '3,969.534 Php',
+            'price' => '3969.534',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -479,7 +479,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '75',
-            'price' => '4,020.297 Php',
+            'price' => '4020.297',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -489,7 +489,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '76',
-            'price' => '4,221.337 Php',
+            'price' => '4221.337',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -499,7 +499,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '77',
-            'price' => '6,281.997 Php',
+            'price' => '6281.997',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -509,7 +509,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '90',
-            'price' => '37,688.466 Php',
+            'price' => '37688.466',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -519,7 +519,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '91',
-            'price' => '5,528.097 Php',
+            'price' => '5528.097',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -529,7 +529,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '92',
-            'price' => '2,009.897 Php',
+            'price' => '2009.897',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -539,7 +539,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '93',
-            'price' => '10,302.797 Php',
+            'price' => '10302.797',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -549,7 +549,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '104',
-            'price' => '3,768.49 Php',
+            'price' => '3768.49',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -559,7 +559,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '105',
-            'price' => '4,774.197 Php',
+            'price' => '4774.197',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -569,7 +569,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '106',
-            'price' => '3,768.49 Php',
+            'price' => '3768.49',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -579,7 +579,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '107',
-            'price' => '3,517.194 Php',
+            'price' => '3517.194',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -589,7 +589,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '119',
-            'price' => '9,901.22 Php',
+            'price' => '9901.22',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -599,7 +599,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '120',
-            'price' => '9,800.197 Php',
+            'price' => '9800.197',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -609,7 +609,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '121',
-            'price' => '5,196.884 Php',
+            'price' => '5196.884',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -619,7 +619,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '122',
-            'price' => '3,870.02 Php',
+            'price' => '3870.02',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -629,7 +629,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '135',
-            'price' => '38,847.964 Php',
+            'price' => '38847.964',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -639,7 +639,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '136',
-            'price' => '14,574.394 Php',
+            'price' => '14574.394',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -649,7 +649,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '137',
-            'price' => '41,464.5 Php',
+            'price' => '41464.5',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -659,7 +659,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '2',
             'component_id' => '138',
-            'price' => '20,103.497 Php',
+            'price' => '20103.497',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -692,7 +692,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '27',
-            'price' => '16,585.297 Php',
+            'price' => '16585.297',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -702,7 +702,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '28',
-            'price' => '8,895.517 Php',
+            'price' => '8895.517',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -712,7 +712,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '29',
-            'price' => '37,191.897 Php',
+            'price' => '37191.897',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -722,7 +722,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '30',
-            'price' => '13,014.827 Php',
+            'price' => '13014.827',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -732,7 +732,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '43',
-            'price' => '9,046.297 Php',
+            'price' => '9046.297',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -742,7 +742,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '44',
-            'price' => '12,411.204 Php',
+            'price' => '12411.204',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -752,7 +752,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '45',
-            'price' => '1,984.767 Php',
+            'price' => '1984.767',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -762,7 +762,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '46',
-            'price' => '17,680.965 Php',
+            'price' => '17680.965',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -772,7 +772,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '47',
-            'price' => '4,271.597 Php',
+            'price' => '4271.597',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -782,7 +782,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '62',
-            'price' => '8,162.726 Php',
+            'price' => '8162.726',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -792,7 +792,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '63',
-            'price' => '1,557.557 Php',
+            'price' => '1557.557',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -802,7 +802,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '64',
-            'price' => '13,602.266 Php',
+            'price' => '13602.266',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -812,7 +812,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '65',
-            'price' => '6,642.361 Php',
+            'price' => '6642.361',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -822,7 +822,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '78',
-            'price' => '4,573.157 Php',
+            'price' => '4573.157',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -832,7 +832,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '79',
-            'price' => '4,522.897 Php',
+            'price' => '4522.897',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -842,7 +842,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '80',
-            'price' => '8,744.7374 Php',
+            'price' => '8744.7374',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -852,7 +852,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '81',
-            'price' => '9,800.197 Php',
+            'price' => '9800.197',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -862,7 +862,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '94',
-            'price' => '6,782.084 Php',
+            'price' => '6782.084',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -872,7 +872,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '95',
-            'price' => '3,768.498 Php',
+            'price' => '3768.498',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -882,7 +882,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '96',
-            'price' => '4,774.197 Php',
+            'price' => '4774.197',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -892,7 +892,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '97',
-            'price' => '2,512.497 Php',
+            'price' => '2512.497',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -902,7 +902,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '108',
-            'price' => '7,538.497 Php',
+            'price' => '7538.497',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -912,7 +912,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '109',
-            'price' => '4,774.197 Php',
+            'price' => '4774.197',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -922,7 +922,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '110',
-            'price' => '4,522.897 Php',
+            'price' => '4522.897',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -932,7 +932,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '111',
-            'price' => '6,030.697 Php',
+            'price' => '6030.697',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -942,7 +942,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '123',
-            'price' => '16,535.54 Php',
+            'price' => '16535.54',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -952,7 +952,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '124',
-            'price' => '9,046.297 Php',
+            'price' => '9046.297',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -962,7 +962,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '125',
-            'price' => '5,528.097 Php',
+            'price' => '5528.097',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -972,7 +972,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '126',
-            'price' => '4,522.897 Php',
+            'price' => '4522.897',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -982,7 +982,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '139',
-            'price' => '35,181.497 Php',
+            'price' => '35181.497',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -992,7 +992,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '140',
-            'price' => '25,079.74 Php',
+            'price' => '25079.74',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1002,7 +1002,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '141',
-            'price' => '35,131.74 Php',
+            'price' => '35131.74',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1012,7 +1012,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '3',
             'component_id' => '142',
-            'price' => '65,337.497 Php',
+            'price' => '65337.497',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1044,7 +1044,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '31',
-            'price' => '11,708.067 Php',
+            'price' => '11708.067',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1054,7 +1054,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '32',
-            'price' => '11,559.297 Php',
+            'price' => '11559.297',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1064,7 +1064,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '33',
-            'price' => '19,098.297 Php',
+            'price' => '19098.297',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1074,7 +1074,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '34',
-            'price' => '13,318.397 Php',
+            'price' => '13318.397',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1084,7 +1084,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '48',
-            'price' => '7,936.054 Php',
+            'price' => '7936.054',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -1094,7 +1094,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '49',
-            'price' => '321,658.974 Php',
+            'price' => '321658.974',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -1104,7 +1104,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '50',
-            'price' => '2,336.587 Php',
+            'price' => '2336.587',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -1114,7 +1114,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '51',
-            'price' => '1,618.372 Php',
+            'price' => '1618.372',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -1124,7 +1124,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '52',
-            'price' => '6,533.297 Php',
+            'price' => '6533.297',
             'type' => 'Storage',
             'status' => 'Available',
             'status_date' => $date,
@@ -1134,7 +1134,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '66',
-            'price' => '5,526.087 Php',
+            'price' => '5526.087',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -1144,7 +1144,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '67',
-            'price' => '4,518.374 Php',
+            'price' => '4518.374',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -1154,7 +1154,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '68',
-            'price' => '7,035.897 Php',
+            'price' => '7035.897',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -1164,7 +1164,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '69',
-            'price' => '10,051.497 Php',
+            'price' => '10051.497',
             'type' => 'CPU Cooler',
             'status' => 'Available',
             'status_date' => $date,
@@ -1174,7 +1174,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '82',
-            'price' => '3,517.697 Php',
+            'price' => '3517.697',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -1184,7 +1184,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '83',
-            'price' => '7,035.897 Php',
+            'price' => '7035.897',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -1194,7 +1194,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '84',
-            'price' => '3,165.877 Php',
+            'price' => '3165.877',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -1204,7 +1204,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '85',
-            'price' => '4,171.077 Php',
+            'price' => '4171.077',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -1214,7 +1214,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '98',
-            'price' => '6,784.597 Php',
+            'price' => '6784.597',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1224,7 +1224,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '99',
-            'price' => '6,784.597 Php',
+            'price' => '6784.597',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1234,7 +1234,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '100',
-            'price' => '5,649.726 Php',
+            'price' => '5649.726',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1244,7 +1244,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '112',
-            'price' => '7,538.497 Php',
+            'price' => '7538.497',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -1254,7 +1254,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '113',
-            'price' => '6,784.597 Php',
+            'price' => '6784.597',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -1264,7 +1264,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '114',
-            'price' => '5,024 Php',
+            'price' => '5024',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -1274,7 +1274,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '115',
-            'price' => '6,784.597 Php',
+            'price' => '6784.597',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -1284,7 +1284,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '127',
-            'price' => '22,616.497 Php',
+            'price' => '22616.497',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -1294,7 +1294,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '128',
-            'price' => '3,517.697 Php',
+            'price' => '3517.697',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -1304,7 +1304,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '129',
-            'price' => '9,292.068 Php',
+            'price' => '9292.068',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -1314,7 +1314,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '130',
-            'price' => '10,049.487 Php',
+            'price' => '10049.487',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -1324,7 +1324,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '143',
-            'price' => '153,040.192 Php',
+            'price' => '153040.192',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -1334,7 +1334,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '144',
-            'price' => '35,584.08 Php',
+            'price' => '35584.08',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -1344,7 +1344,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '145',
-            'price' => '29,607.1608',
+            'price' => '29,607.16',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -1354,7 +1354,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '4',
             'component_id' => '146',
-            'price' => '183,449 Php',
+            'price' => '183449',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -1387,7 +1387,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '35',
-            'price' => '24,375.597 Php',
+            'price' => '24375.597',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1397,7 +1397,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '36',
-            'price' => '27,386.171 Php',
+            'price' => '27386.171',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1407,7 +1407,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '37',
-            'price' => '4975.74 Php',
+            'price' => '4975.74',
             'type' => 'CPU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1417,7 +1417,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '53',
-            'price' => '2,311.457 Php',
+            'price' => '2311.457',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1427,7 +1427,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '54',
-            'price' => '3,266.397 Php',
+            'price' => '3266.397',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1437,7 +1437,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '55',
-            'price' => '4,723.937 Php',
+            'price' => '4723.937',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1447,7 +1447,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '56',
-            'price' => '2,512.497 Php',
+            'price' => '2512.497',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1457,7 +1457,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '57',
-            'price' => '4171.077 Php',
+            'price' => '4171.077',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1467,7 +1467,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '70',
-            'price' => '12,313.197 Php',
+            'price' => '12313.197 ',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1477,7 +1477,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '71',
-            'price' => '3,515.184 Php',
+            'price' => '3515.184 ',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1487,7 +1487,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '72',
-            'price' => '5,023.487 Php',
+            'price' => '5023.487',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1497,7 +1497,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '73',
-            'price' => '5,528.097 Php',
+            'price' => '5528.097',
             'type' => 'Seller',
             'status' => 'Available',
             'status_date' => $date,
@@ -1507,7 +1507,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '86',
-            'price' => '4,271.597 Php',
+            'price' => '4271.597 ',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -1517,7 +1517,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '87',
-            'price' => '200,030.48 Php',
+            'price' => '200030.48 ',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -1527,7 +1527,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '88',
-            'price' => '4,020.297 Php',
+            'price' => '4020.297',
             'type' => 'RAM',
             'status' => 'Available',
             'status_date' => $date,
@@ -1537,7 +1537,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '101',
-            'price' => '8,292.397 Php',
+            'price' => '8292.397',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1547,7 +1547,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '102',
-            'price' => '7,387.717 Php',
+            'price' => '7387.717',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1557,7 +1557,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '103',
-            'price' => '6,231.737 Php',
+            'price' => '6231.737',
             'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
@@ -1567,7 +1567,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '116',
-            'price' => '7,538.497 Php',
+            'price' => '7538.497',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -1577,7 +1577,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '117',
-            'price' => '4,019.794 Php',
+            'price' => '4019.794',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -1587,7 +1587,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '118',
-            'price' => '8,292.397 Php',
+            'price' => '8292.397',
             'type' => 'Computer Case',
             'status' => 'Available',
             'status_date' => $date,
@@ -1597,7 +1597,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '131',
-            'price' => '6,030.697 Php',
+            'price' => '6030.697',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -1607,7 +1607,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '132',
-            'price' => '7,287.197 Php',
+            'price' => '7287.197',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -1617,7 +1617,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '133',
-            'price' => '9,046.297 Php',
+            'price' => '9046.297',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -1627,7 +1627,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '134',
-            'price' => '11,213.508 Php',
+            'price' => '11213.508',
             'type' => 'Motherboard',
             'status' => 'Available',
             'status_date' => $date,
@@ -1637,7 +1637,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '147',
-            'price' => '26,351.318 Php',
+            'price' => '26351.318',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -1647,7 +1647,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '148',
-            'price' => '35,181.497 Php',
+            'price' => '35181.497',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -1657,7 +1657,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '149',
-            'price' => '30,500 Php',
+            'price' => '30500',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
@@ -1667,7 +1667,7 @@ class DatabaseSeeder extends Seeder
         Product::insert([
             'store_id' => '5',
             'component_id' => '150',
-            'price' => '33,673.697 Php',
+            'price' => '33673.697',
             'type' => 'Graphics Card',
             'status' => 'Available',
             'status_date' => $date,
