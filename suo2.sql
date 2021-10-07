@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 06, 2021 at 08:42 PM
+-- Generation Time: Oct 06, 2021 at 10:04 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -110,7 +110,7 @@ INSERT INTO `components` (`id`, `image_path`, `name`, `type`, `manufacturer`, `s
 (1, '1.jpg', 'Asus RTX 3060 KO OC V2 LHR', 'Graphics Card', 'ASUS', NULL, NULL, 'Black/Silver', '27.50', '13.50', '5.40', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (2, '2.jpg', 'Asus GeForce GTX 1660 SUPER 6 GB TUF GAMING OC Video Card', 'Graphics Card', 'ASUS', NULL, NULL, 'Black', '20.60', '12.40', '4.60', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (3, '3.jpg', 'Asus GTX 1660 Super Phoenix OC', 'Graphics Card', 'ASUS', NULL, NULL, 'Black/White', '17.40', '12.10', '3.90', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(4, '4.jpg', 'AMD Ryzen 5 3600 3.6 GHz 6-Core Processor', 'Processor', 'AMD', 'AMD Ryzen 5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(4, '4.jpg', 'AMD Ryzen 5 3600 3.6 GHz 6-Core CPU', 'CPU', 'AMD', 'AMD Ryzen 5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (5, '5.jpg', 'MSI MPG X570 Gaming Pro Carbon Wifi', 'Motherboard', 'MSI', NULL, NULL, 'Black/Silver', '12.00', '9.60', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (6, '6.jpg', 'MSI MAG X570 Tomahawk Wifi', 'Motherboard', 'MSI', NULL, NULL, 'Black', '12.00', '9.00', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (7, '7.jpg', 'Gigabyte X570 Gaming X', 'Motherboard', 'Gigabyte', NULL, NULL, 'Black / Silver', '12.00', '9.00', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
@@ -118,32 +118,32 @@ INSERT INTO `components` (`id`, `image_path`, `name`, `type`, `manufacturer`, `s
 (9, '9.jpg', 'Gigabyte B550M DS3H AC Micro ATX AM4 Motherboard', 'Motherboard', 'Gigabyte', NULL, NULL, 'Black', '9.61', '9.61', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (10, '10.jpg', 'Asus TUF B450M-PRO GAMING Micro ATX AM4 Motherboard', 'Motherboard', 'Asus', NULL, NULL, 'Black', '9.61', '9.61', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (11, '11.jpg', 'Asus PRIME A320M-K Micro ATX AM4 Motherboard', 'Motherboard', 'Asus', NULL, NULL, NULL, '8.90', '8.70', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(12, '12.jpg', 'G.Skill Ripjaws V Series 16 GB (2 x 8 GB) DDR4-3200 CL16 Memory', 'Memory', 'G.Skill', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(13, '13.jpg', 'Asus TUF Gaming 650 W 80+ Bronze Certified ATX Power Supply', 'Power Supply Unit', 'ASUS', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(14, '14.jpg', 'Asus TUF Gaming 550w Bronze', 'Power Supply Unit', 'ASUS', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(15, '15.jpg', 'Intelligent Awake AK600W Bronze', 'Power Supply Unit', 'Intelligent Awake', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(12, '12.jpg', 'G.Skill Ripjaws V Series 16 GB (2 x 8 GB) DDR4-3200 CL16 RAM', 'RAM', 'G.Skill', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(13, '13.jpg', 'Asus TUF Gaming 650 W 80+ Bronze Certified ATX Power Supply', 'PSU', 'ASUS', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(14, '14.jpg', 'Asus TUF Gaming 550w Bronze', 'PSU', 'ASUS', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(15, '15.jpg', 'Intelligent Awake AK600W Bronze', 'PSU', 'Intelligent Awake', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (16, '16.jpg', 'Seagate BarraCuda 1 TB 3.5\" 7200RPM Internal Hard Drive', 'Storage', 'Seagate', NULL, NULL, NULL, NULL, '3.50', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (17, '17.jpg', 'Kingston A400 240GB M.2', 'Storage', 'Kingston', NULL, NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (18, '18.jpg', 'Team GX1 480 GB 2.5\" Solid State Drive', 'Storage', 'Team GX1', NULL, NULL, NULL, NULL, '2.50', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (19, '19.jpg', 'Team GX1 240 GB 2.5\" Solid State Drive', 'Storage', 'Team GX1', NULL, NULL, NULL, NULL, '2.50', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(20, '20.jpg', 'Asus TUF Gaming GT301 ATX Mid Tower Case', 'Case', 'ASUS', NULL, NULL, 'Black', '16.77', '8.43', '18.98', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(21, '21.jpg', 'Rakk Kisig', 'Case', 'Rakk', NULL, NULL, 'Black', '14.57', '7.28', '14.96', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(22, '22.jpg', 'Rakk Marug', 'Case', 'Rakk', NULL, NULL, 'Black', '14.56', '7.28', '14.96', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(23, '23.jpg', 'AMD Ryzen 5 5600X 3.7 GHz 6-Core Processor', 'Processor', 'AMD', 'AMD Ryzen 5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(24, '24.jpg', 'AMD Ryzen 7 3700X 3.6 GHz 8-Core Processor', 'Processor', 'AMD', 'AMD Ryzen 7', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(25, '25.jpg', 'AMD Ryzen 7 5800X 3.8 GHz 8-Core Processor', 'Processor', 'AMD', 'AMD Ryzen 7', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(26, '26.jpg', 'AMD Ryzen 9 5900X 3.7 GHz 12-Core Processor', 'Processor', 'AMD', 'AMD Ryzen 9', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(27, '27.jpg', 'Intel Core i7-10700K 3.8 GHz 8-Core Processor', 'Processor', 'Intel', 'Intel Core i7', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(28, '28.jpg', 'Intel Core i5-10400F 2.9 GHz 6-Core Processor', 'Processor', 'Intel', 'Intel Core i5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(29, '29.jpg', 'AMD Ryzen 9 5950X 3.4 GHz 16-Core Processor', 'Processor', 'AMD', 'AMD Ryzen 9', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(30, '30.jpg', 'AMD Ryzen 5 5600G 3.9 GHz 6-Core Processor', 'Processor', 'AMD', 'AMD Ryzen 5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(31, '31.jpg', 'AMD Ryzen 5 2600 3.4 GHz 6-Core Processor\r\n', 'Processor', 'AMD', 'AMD Ryzen 5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(32, '32.jpg', 'Intel Core i5-10600K 4.1 GHz 6-Core Processor', 'Processor', 'Intel', 'Intel Core i5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(33, '33.jpg', 'Intel Core i7-11700K 3.6 GHz 8-Core Processor', 'Processor', 'Intel', 'Intel Core i7', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(34, '34.jpg', 'AMD Ryzen 3 3300X 3.8 GHz Quad-Core Processor', 'Processor', 'AMD', 'AMD Ryzen 3', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(35, '35.jpg', 'Intel Core i9-10900K 3.7 GHz 10-Core Processor', 'Processor', 'Intel', 'Intel Core i9', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(36, '36.jpg', 'Intel Core i9-11900K 3.5 GHz 8-Core Processor', 'Processor', 'Intel', 'Intel Core i9', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(37, '37.jpg', 'Intel Core i3-10100F 3.6 GHz Quad-Core Processor', 'Processor', 'Intel', 'Intel Core i3', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(20, '20.jpg', 'Asus TUF Gaming GT301 ATX Mid Tower Computer Case', 'Computer Case', 'ASUS', NULL, NULL, 'Black', '16.77', '8.43', '18.98', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(21, '21.jpg', 'Rakk Kisig', 'Computer Case', 'Rakk', NULL, NULL, 'Black', '14.57', '7.28', '14.96', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(22, '22.jpg', 'Rakk Marug', 'Computer Case', 'Rakk', NULL, NULL, 'Black', '14.56', '7.28', '14.96', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(23, '23.jpg', 'AMD Ryzen 5 5600X 3.7 GHz 6-Core CPU', 'CPU', 'AMD', 'AMD Ryzen 5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(24, '24.jpg', 'AMD Ryzen 7 3700X 3.6 GHz 8-Core CPU', 'CPU', 'AMD', 'AMD Ryzen 7', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(25, '25.jpg', 'AMD Ryzen 7 5800X 3.8 GHz 8-Core CPU', 'CPU', 'AMD', 'AMD Ryzen 7', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(26, '26.jpg', 'AMD Ryzen 9 5900X 3.7 GHz 12-Core CPU', 'CPU', 'AMD', 'AMD Ryzen 9', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(27, '27.jpg', 'Intel Core i7-10700K 3.8 GHz 8-Core CPU', 'CPU', 'Intel', 'Intel Core i7', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(28, '28.jpg', 'Intel Core i5-10400F 2.9 GHz 6-Core CPU', 'CPU', 'Intel', 'Intel Core i5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(29, '29.jpg', 'AMD Ryzen 9 5950X 3.4 GHz 16-Core CPU', 'CPU', 'AMD', 'AMD Ryzen 9', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(30, '30.jpg', 'AMD Ryzen 5 5600G 3.9 GHz 6-Core CPU', 'CPU', 'AMD', 'AMD Ryzen 5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(31, '31.jpg', 'AMD Ryzen 5 2600 3.4 GHz 6-Core CPU\r\n', 'CPU', 'AMD', 'AMD Ryzen 5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(32, '32.jpg', 'Intel Core i5-10600K 4.1 GHz 6-Core CPU', 'CPU', 'Intel', 'Intel Core i5', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(33, '33.jpg', 'Intel Core i7-11700K 3.6 GHz 8-Core CPU', 'CPU', 'Intel', 'Intel Core i7', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(34, '34.jpg', 'AMD Ryzen 3 3300X 3.8 GHz Quad-Core CPU', 'CPU', 'AMD', 'AMD Ryzen 3', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(35, '35.jpg', 'Intel Core i9-10900K 3.7 GHz 10-Core CPU', 'CPU', 'Intel', 'Intel Core i9', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(36, '36.jpg', 'Intel Core i9-11900K 3.5 GHz 8-Core CPU', 'CPU', 'Intel', 'Intel Core i9', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(37, '37.jpg', 'Intel Core i3-10100F 3.6 GHz Quad-Core CPU', 'CPU', 'Intel', 'Intel Core i3', NULL, NULL, NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (38, '38.jpg', 'Seagate Barracuda Compute 2 TB 3.5\" 7200RPM Internal Hard Drive', 'Storage', 'Seagate', NULL, NULL, NULL, NULL, '3.50', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (39, '39.jpg', 'Samsung 970 Evo Plus 1 TB M.2-2280 NVME Solid State Drive\r\n', 'Storage', 'Samsung', NULL, NULL, NULL, '3.16', '0.09', '0.87', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (40, '40.jpg', 'Western Digital Blue SN550 1 TB M.2-2280 NVME Solid State Drive', 'Storage', 'Western Digital', NULL, NULL, NULL, '3.15', '0.87', '0.09', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
@@ -180,51 +180,51 @@ INSERT INTO `components` (`id`, `image_path`, `name`, `type`, `manufacturer`, `s
 (71, '71.jpg', 'Noctua NH-U12S chromax.black 55 CFM CPU Cooler', 'CPU Cooler', 'Noctua', NULL, NULL, 'Mixed', '2.80', '4.92', '6.22', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (72, '72.jpg', 'Noctua NH-D15 82.5 CFM CPU Cooler', 'CPU Cooler', 'Noctua', NULL, NULL, 'Mixed', '6.34', '5.91', '6.50', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (73, '73.jpg', 'Corsair iCUE H100i RGB PRO XT 75 CFM Liquid CPU Cooler', 'CPU Cooler', 'Corsair', NULL, NULL, 'Black', '10.91', '4.72', '1.06', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(74, '74.jpg', 'Corsair Vengeance LPX 16 GB (2 x 8 GB) DDR4-3200 CL16 Memory\r\n', 'Memory', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(75, '75.jpg', 'Corsair Vengeance RGB Pro 16 GB (2 x 8 GB) DDR4-3200 CL16 Memory', 'Memory', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(76, '76.jpg', 'Crucial Ballistix 16 GB (2 x 8 GB) DDR4-3600 CL16 Memory\r\n', 'Memory', 'Crucial', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(77, '77.jpg', 'G.Skill Ripjaws V Series 32 GB (2 x 16 GB) DDR4-3200 CL16 Memory', 'Memory', 'G.Skill', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(78, '78.jpg', 'G.Skill Trident Z RGB 16 GB (2 x 8 GB) DDR4-3600 CL18 Memory\r\n', 'Memory', 'G.Skill', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(79, '79.jpg', 'Corsair Vengeance RGB Pro 16 GB (2 x 8 GB) DDR4-3200 CL16 Memory', 'Memory', 'Corsair', NULL, NULL, 'White', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(80, '80.jpg', 'Corsair Vengeance RGB Pro 32 GB (2 x 16 GB) DDR4-3600 CL18 Memor', 'Memory', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(81, '81.jpg', 'G.Skill Trident Z Neo 32 GB (2 x 16 GB) DDR4-3600 CL16 Memory', 'Memory', 'G.Skill', NULL, NULL, 'Silver', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(82, '82.jpg', 'Corsair Vengeance LPX 16 GB (2 x 8 GB) DDR4-3600 CL18 Memory\r\n', 'Memory', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(83, '83.jpg', 'Corsair Vengeance LPX 32 GB (2 x 16 GB) DDR4-3600 CL18 Memory', 'Memory', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(84, '84.jpg', 'Team T-FORCE VULCAN Z 16 GB (2 x 8 GB) DDR4-3200 CL16 Memory', 'Memory', 'Team T-Force', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(85, '85.jpg', 'Crucial Ballistix 16 GB (2 x 8 GB) DDR4-3200 CL16 Memory\r\n', 'Memory', 'Crucial', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(86, '86.jpg', 'G.Skill Ripjaws V 16 GB (2 x 8 GB) DDR4-3600 CL16 Memory', 'Memory', 'G.Skill', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(87, '87.jpg', 'Corsair Dominator Platinum 128 GB (8 x 16 GB) DDR4-3200 CL16 Mem', 'Memory', 'Corsair', NULL, NULL, 'Black/Sivler', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(88, '88.jpg', 'Corsair Vengeance RGB Pro 32 GB (2 x 16 GB) DDR4-3200 CL16 Memor', 'Memory', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(89, '89.jpg', 'EVGA BR 500 W 80+ Bronze Certified ATX Power Supply\r\n', 'Power Supply Unit', 'EVGA', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(90, '90.jpg', 'Corsair AXi 1600 W 80+ Titanium Certified Fully Modular ATX Powe', 'Power Supply Unit', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(91, '91.jpg', 'Gigabyte P GM 750 W 80+ Gold Certified Fully Modular ATX Power S', 'Power Supply Unit', 'Gigabyte', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(92, '92.jpg', 'EVGA BQ 500 W 80+ Bronze Certified Semi-modular ATX Power Supply', 'Power Supply Unit', '\r\nEVGA\r\n', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(93, '93.jpg', 'Corsair HX Platinum 1000 W 80+ Platinum Certified Fully Modular ', 'Power Supply Unit', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(94, '94.jpg', 'EVGA SuperNOVA GA 850 W 80+ Gold Certified Fully Modular ATX Pow', 'Power Supply Unit', 'EVGA', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(95, '95.jpg', 'Corsair CXM 650 W 80+ Bronze Certified Semi-modular ATX Power Su', 'Power Supply Unit', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(96, '96.jpg', 'Corsair RM (2019) 750 W 80+ Gold Certified Fully Modular ATX Pow', 'Power Supply Unit', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(97, '97.jpg', 'EVGA BQ 600 W 80+ Bronze Certified Semi-modular ATX Power Supply', 'Power Supply Unit', 'EVGA\r\n', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(98, '98.jpg', 'Corsair RM (2019) 850 W 80+ Gold Certified Fully Modular ATX Pow', 'Power Supply Unit', '\r\nCorsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(99, '99.jpg', 'EVGA SuperNOVA GA 650 W 80+ Gold Certified Fully Modular ATX Pow', 'Power Supply Unit', 'EVGA', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(100, '100.jpg', 'Corsair RM (2019) 650 W 80+ Gold Certified Fully Modular ATX Pow', 'Power Supply Unit', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(101, '101.jpg', 'Corsair SF 750 W 80+ Platinum Certified Fully Modular SFX Power ', 'Power Supply Unit', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(102, '102.jpg', 'Corsair RMx (2021) 850 W 80+ Gold Certified Fully Modular ATX Po', 'Power Supply Unit', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(103, '103.jpg', 'EVGA SuperNOVA GA 750 W 80+ Gold Certified Fully Modular ATX Pow', 'Power Supply Unit', 'EVGA', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(104, '104.jpg', 'NZXT H510 ATX Mid Tower Case', 'Case', 'NZXT', NULL, NULL, 'Black', '16.85', '8.27', '18.11', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(105, '105.jpg', 'Corsair 4000D Airflow ATX Mid Tower Case', 'Case', 'Corsair', NULL, NULL, 'White', '17.84', '9.06', '18.35', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(106, '106.jpg', 'NZXT H510 ATX Mid Tower Case', 'Case', 'NZXT', NULL, NULL, 'White', '16.85', '8.27', '18.11', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(107, '107.jpg', 'Phanteks Eclipse P300A Mesh ATX Mid Tower Case', 'Case', 'Phanteks', NULL, NULL, 'Black', '15.75', '7.87', '17.91', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(108, '108.jpg', 'Lian Li PC-O11 Dynamic ATX Full Tower Case', 'Case', 'Lian Li', NULL, NULL, 'Black', '17.52', '10.71', '17.56', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(109, '109.jpg', 'Corsair 4000D Airflow ATX Mid Tower Case', 'Case', 'Corsair', NULL, NULL, 'Black', '17.84', '9.06', '18.35', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(110, '110.jpg', 'Phanteks Eclipse P400A Digital ATX Mid Tower Case', 'Case', 'Phanteks', NULL, NULL, 'Black', '18.50', '8.27', '18.31', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(111, '111.jpg', 'Lian Li Lancool II Mesh ATX Mid Tower Case', 'Case', 'Lian Li', NULL, NULL, 'Black', '18.82', '9.02', '19.45', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(112, '112.jpg', 'Lian Li PC-O11 Dynamic ATX Full Tower Case', 'Case', 'Lian Li', NULL, NULL, 'White', '17.52', '10.71', '17.56', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(113, '113.jpg', 'Corsair iCUE 4000X RGB ATX Mid Tower Case', 'Case', 'Corsair', NULL, NULL, 'Black', '17.84', '9.06', '18.35', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(114, '114.jpg', 'Fractal Design Meshify C ATX Mid Tower Case', 'Case', 'Fractal Design', NULL, NULL, 'Black', '16.26', '8.54', '17.84', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(115, '115.jpg', 'Corsair iCUE 4000X RGB ATX Mid Tower Case', 'Case', 'Corsair', NULL, NULL, 'White', '17.84', '9.06', '18.35', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(116, '116.jpg', 'NZXT H510 Elite ATX Mid Tower Case', 'Case', 'NZXT', NULL, NULL, 'White/Black', '16.85', '8.27', '18.11', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(117, '117.jpg', 'Phanteks Eclipse P360A ATX Mid Tower Case', 'Case', 'Phanteks', NULL, NULL, 'White', '17.91', '7.87', '18.31', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
-(118, '118.jpg', 'Corsair 5000D AIRFLOW ATX Mid Tower Case', 'Case', 'Corsair', NULL, NULL, 'Black', '20.47', '9.65', '20.47', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(74, '74.jpg', 'Corsair Vengeance LPX 16 GB (2 x 8 GB) DDR4-3200 CL16 RAM\r\n', 'RAM', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(75, '75.jpg', 'Corsair Vengeance RGB Pro 16 GB (2 x 8 GB) DDR4-3200 CL16 RAM', 'RAM', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(76, '76.jpg', 'Crucial Ballistix 16 GB (2 x 8 GB) DDR4-3600 CL16 RAM\r\n', 'RAM', 'Crucial', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(77, '77.jpg', 'G.Skill Ripjaws V Series 32 GB (2 x 16 GB) DDR4-3200 CL16 RAM', 'RAM', 'G.Skill', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(78, '78.jpg', 'G.Skill Trident Z RGB 16 GB (2 x 8 GB) DDR4-3600 CL18 RAM\r\n', 'RAM', 'G.Skill', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(79, '79.jpg', 'Corsair Vengeance RGB Pro 16 GB (2 x 8 GB) DDR4-3200 CL16 RAM', 'RAM', 'Corsair', NULL, NULL, 'White', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(80, '80.jpg', 'Corsair Vengeance RGB Pro 32 GB (2 x 16 GB) DDR4-3600 CL18 Memor', 'RAM', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(81, '81.jpg', 'G.Skill Trident Z Neo 32 GB (2 x 16 GB) DDR4-3600 CL16 RAM', 'RAM', 'G.Skill', NULL, NULL, 'Silver', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(82, '82.jpg', 'Corsair Vengeance LPX 16 GB (2 x 8 GB) DDR4-3600 CL18 RAM\r\n', 'RAM', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(83, '83.jpg', 'Corsair Vengeance LPX 32 GB (2 x 16 GB) DDR4-3600 CL18 RAM', 'RAM', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(84, '84.jpg', 'Team T-FORCE VULCAN Z 16 GB (2 x 8 GB) DDR4-3200 CL16 RAM', 'RAM', 'Team T-Force', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(85, '85.jpg', 'Crucial Ballistix 16 GB (2 x 8 GB) DDR4-3200 CL16 RAM\r\n', 'RAM', 'Crucial', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(86, '86.jpg', 'G.Skill Ripjaws V 16 GB (2 x 8 GB) DDR4-3600 CL16 RAM', 'RAM', 'G.Skill', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(87, '87.jpg', 'Corsair Dominator Platinum 128 GB (8 x 16 GB) DDR4-3200 CL16 Mem', 'RAM', 'Corsair', NULL, NULL, 'Black/Sivler', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(88, '88.jpg', 'Corsair Vengeance RGB Pro 32 GB (2 x 16 GB) DDR4-3200 CL16 Memor', 'RAM', 'Corsair', NULL, NULL, 'Black', NULL, NULL, NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(89, '89.jpg', 'EVGA BR 500 W 80+ Bronze Certified ATX Power Supply\r\n', 'PSU', 'EVGA', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(90, '90.jpg', 'Corsair AXi 1600 W 80+ Titanium Certified Fully Modular ATX Powe', 'PSU', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(91, '91.jpg', 'Gigabyte P GM 750 W 80+ Gold Certified Fully Modular ATX Power S', 'PSU', 'Gigabyte', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(92, '92.jpg', 'EVGA BQ 500 W 80+ Bronze Certified Semi-modular ATX Power Supply', 'PSU', '\r\nEVGA\r\n', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(93, '93.jpg', 'Corsair HX Platinum 1000 W 80+ Platinum Certified Fully Modular ', 'PSU', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(94, '94.jpg', 'EVGA SuperNOVA GA 850 W 80+ Gold Certified Fully Modular ATX Pow', 'PSU', 'EVGA', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(95, '95.jpg', 'Corsair CXM 650 W 80+ Bronze Certified Semi-modular ATX Power Su', 'PSU', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(96, '96.jpg', 'Corsair RM (2019) 750 W 80+ Gold Certified Fully Modular ATX Pow', 'PSU', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(97, '97.jpg', 'EVGA BQ 600 W 80+ Bronze Certified Semi-modular ATX Power Supply', 'PSU', 'EVGA\r\n', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(98, '98.jpg', 'Corsair RM (2019) 850 W 80+ Gold Certified Fully Modular ATX Pow', 'PSU', '\r\nCorsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(99, '99.jpg', 'EVGA SuperNOVA GA 650 W 80+ Gold Certified Fully Modular ATX Pow', 'PSU', 'EVGA', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(100, '100.jpg', 'Corsair RM (2019) 650 W 80+ Gold Certified Fully Modular ATX Pow', 'PSU', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(101, '101.jpg', 'Corsair SF 750 W 80+ Platinum Certified Fully Modular SFX Power ', 'PSU', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(102, '102.jpg', 'Corsair RMx (2021) 850 W 80+ Gold Certified Fully Modular ATX Po', 'PSU', 'Corsair', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(103, '103.jpg', 'EVGA SuperNOVA GA 750 W 80+ Gold Certified Fully Modular ATX Pow', 'PSU', 'EVGA', NULL, NULL, 'Black', '5.91', '5.91', '3.39', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(104, '104.jpg', 'NZXT H510 ATX Mid Tower Computer Case', 'Computer Case', 'NZXT', NULL, NULL, 'Black', '16.85', '8.27', '18.11', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(105, '105.jpg', 'Corsair 4000D Airflow ATX Mid Tower Computer Case', 'Computer Case', 'Corsair', NULL, NULL, 'White', '17.84', '9.06', '18.35', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(106, '106.jpg', 'NZXT H510 ATX Mid Tower Computer Case', 'Computer Case', 'NZXT', NULL, NULL, 'White', '16.85', '8.27', '18.11', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(107, '107.jpg', 'Phanteks Eclipse P300A Mesh ATX Mid Tower Computer Case', 'Computer Case', 'Phanteks', NULL, NULL, 'Black', '15.75', '7.87', '17.91', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(108, '108.jpg', 'Lian Li PC-O11 Dynamic ATX Full Tower Computer Case', 'Computer Case', 'Lian Li', NULL, NULL, 'Black', '17.52', '10.71', '17.56', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(109, '109.jpg', 'Corsair 4000D Airflow ATX Mid Tower Computer Case', 'Computer Case', 'Corsair', NULL, NULL, 'Black', '17.84', '9.06', '18.35', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(110, '110.jpg', 'Phanteks Eclipse P400A Digital ATX Mid Tower Computer Case', 'Computer Case', 'Phanteks', NULL, NULL, 'Black', '18.50', '8.27', '18.31', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(111, '111.jpg', 'Lian Li Lancool II Mesh ATX Mid Tower Computer Case', 'Computer Case', 'Lian Li', NULL, NULL, 'Black', '18.82', '9.02', '19.45', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(112, '112.jpg', 'Lian Li PC-O11 Dynamic ATX Full Tower Computer Case', 'Computer Case', 'Lian Li', NULL, NULL, 'White', '17.52', '10.71', '17.56', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(113, '113.jpg', 'Corsair iCUE 4000X RGB ATX Mid Tower Computer Case', 'Computer Case', 'Corsair', NULL, NULL, 'Black', '17.84', '9.06', '18.35', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(114, '114.jpg', 'Fractal Design Meshify C ATX Mid Tower Computer Case', 'Computer Case', 'Fractal Design', NULL, NULL, 'Black', '16.26', '8.54', '17.84', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(115, '115.jpg', 'Corsair iCUE 4000X RGB ATX Mid Tower Computer Case', 'Computer Case', 'Corsair', NULL, NULL, 'White', '17.84', '9.06', '18.35', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(116, '116.jpg', 'NZXT H510 Elite ATX Mid Tower Computer Case', 'Computer Case', 'NZXT', NULL, NULL, 'White/Black', '16.85', '8.27', '18.11', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(117, '117.jpg', 'Phanteks Eclipse P360A ATX Mid Tower Computer Case', 'Computer Case', 'Phanteks', NULL, NULL, 'White', '17.91', '7.87', '18.31', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
+(118, '118.jpg', 'Corsair 5000D AIRFLOW ATX Mid Tower Computer Case', 'Computer Case', 'Corsair', NULL, NULL, 'Black', '20.47', '9.65', '20.47', '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (119, '119.jpg', 'Asus TUF GAMING X570-PLUS (WI-FI) ATX AM4 Motherboard', 'Motherboard', 'Asus', NULL, NULL, 'Black', '12.00', '9.60', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (120, '120.jpg', 'Asus ROG STRIX B550-F GAMING (WI-FI) ATX AM4 Motherboard', 'Motherboard', 'Asus', NULL, NULL, 'Black', '12.00', '9.60', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
 (121, '121.jpg', 'MSI B450 TOMAHAWK MAX ATX AM4 Motherboard', 'Motherboard', 'MSI\r\n', NULL, NULL, 'Black', '12.00', '9.60', NULL, '2021-09-16 16:00:00', '2021-09-16 16:00:00'),
@@ -261,7 +261,7 @@ INSERT INTO `components` (`id`, `image_path`, `name`, `type`, `manufacturer`, `s
 -- --------------------------------------------------------
 
 --
--- Table structure for table `computer_cases`
+-- Table structure for table `computer_Computer Cases`
 --
 
 CREATE TABLE `computer_cases` (
@@ -285,7 +285,7 @@ CREATE TABLE `computer_cases` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `computer_cases`
+-- Dumping data for table `computer_Computer Cases`
 --
 
 INSERT INTO `computer_cases` (`component_id`, `case_type`, `power_supply`, `power_supply_shroud`, `side_panel_window`, `water_cooled_support`, `cooler_clearance`, `graphics_clearance`, `psu_clearance`, `full_height_e_slot`, `half_height_e_slot`, `external_525_bay`, `external_350_bay`, `internal_350_bay`, `internal_250_bay`, `created_at`, `updated_at`) VALUES
@@ -460,7 +460,7 @@ INSERT INTO `graphics_cards` (`component_id`, `gpu_chipset`, `gpu_memory`, `gpu_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `memory_speeds`
+-- Table structure for table `RAM_speeds`
 --
 
 CREATE TABLE `memory_speeds` (
@@ -497,23 +497,23 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2021_08_24_192526_create_rams_table', 1),
 (9, '2021_08_24_192535_create_storages_table', 1),
 (10, '2021_08_24_192549_create_psus_table', 1),
-(11, '2021_08_24_192601_create_computer_cases_table', 1),
+(11, '2021_08_24_192601_create_computer_Computer Cases_table', 1),
 (12, '2021_08_26_054535_create_accounts_table', 1),
 (13, '2021_09_04_150038_create_stores_table', 1),
 (14, '2021_09_05_160728_create_builds_table', 1),
 (15, '2021_09_19_110500_create_cpu_sockets_table', 1),
 (16, '2021_09_19_111502_create_socket_coolers_table', 1),
 (17, '2021_09_22_121841_create_mobo_form_factors_table', 1),
-(18, '2021_09_22_122619_create_mobo_cases_table', 1),
-(19, '2021_09_22_134737_create_memory_speeds_table', 1),
-(20, '2021_09_22_135436_create_mobo_memory_speeds_table', 1),
+(18, '2021_09_22_122619_create_mobo_Computer Cases_table', 1),
+(19, '2021_09_22_134737_create_RAM_speeds_table', 1),
+(20, '2021_09_22_135436_create_mobo_RAM_speeds_table', 1),
 (21, '2021_09_26_090657_create_products_table', 1),
 (22, '2021_09_26_091908_create_build_products_table', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mobo_cases`
+-- Table structure for table `mobo_Computer Cases`
 --
 
 CREATE TABLE `mobo_cases` (
@@ -539,7 +539,7 @@ CREATE TABLE `mobo_form_factors` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mobo_memory_speeds`
+-- Table structure for table `mobo_RAM_speeds`
 --
 
 CREATE TABLE `mobo_memory_speeds` (
@@ -843,20 +843,20 @@ CREATE TABLE `stores` (
 -- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `builds`
 --
 ALTER TABLE `builds`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `builds_account_id_foreign` (`account_id`);
 
 --
 -- Indexes for table `build_products`
 --
 ALTER TABLE `build_products`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `build_products_build_id_foreign` (`build_id`),
   ADD KEY `build_products_product_id_foreign` (`product_id`);
 
@@ -864,87 +864,71 @@ ALTER TABLE `build_products`
 -- Indexes for table `components`
 --
 ALTER TABLE `components`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `computer_cases`
 --
 ALTER TABLE `computer_cases`
-  ADD PRIMARY KEY (`component_id`);
+    ADD PRIMARY KEY (`component_id`);
 
 --
 -- Indexes for table `cpus`
 --
 ALTER TABLE `cpus`
-  ADD PRIMARY KEY (`component_id`);
+    ADD PRIMARY KEY (`component_id`);
 
 --
 -- Indexes for table `cpu_coolers`
 --
 ALTER TABLE `cpu_coolers`
-  ADD PRIMARY KEY (`component_id`);
+    ADD PRIMARY KEY (`component_id`);
 
 --
 -- Indexes for table `cpu_sockets`
 --
 ALTER TABLE `cpu_sockets`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `graphics_cards`
 --
 ALTER TABLE `graphics_cards`
-  ADD PRIMARY KEY (`component_id`);
+    ADD PRIMARY KEY (`component_id`);
 
---
--- Indexes for table `memory_speeds`
---
-ALTER TABLE `memory_speeds`
-  ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `migrations`
---
 ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `mobo_cases`
 --
 ALTER TABLE `mobo_cases`
-  ADD PRIMARY KEY (`component_id`,`mobo_form_factor_id`),
+    ADD PRIMARY KEY (`component_id`,`mobo_form_factor_id`),
   ADD KEY `mobo_cases_mobo_form_factor_id_foreign` (`mobo_form_factor_id`);
 
 --
 -- Indexes for table `mobo_form_factors`
 --
 ALTER TABLE `mobo_form_factors`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `mobo_memory_speeds`
---
-ALTER TABLE `mobo_memory_speeds`
-  ADD PRIMARY KEY (`component_id`,`memory_speed_id`),
-  ADD KEY `mobo_memory_speeds_memory_speed_id_foreign` (`memory_speed_id`);
-
---
 -- Indexes for table `motherboards`
 --
 ALTER TABLE `motherboards`
-  ADD PRIMARY KEY (`component_id`);
+    ADD PRIMARY KEY (`component_id`);
 
 --
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
+    ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
@@ -952,7 +936,7 @@ ALTER TABLE `personal_access_tokens`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `products_store_id_foreign` (`store_id`),
   ADD KEY `products_component_id_foreign` (`component_id`);
 
@@ -960,32 +944,23 @@ ALTER TABLE `products`
 -- Indexes for table `psus`
 --
 ALTER TABLE `psus`
-  ADD PRIMARY KEY (`component_id`);
+    ADD PRIMARY KEY (`component_id`);
 
 --
 -- Indexes for table `rams`
 --
 ALTER TABLE `rams`
-  ADD PRIMARY KEY (`component_id`);
+    ADD PRIMARY KEY (`component_id`);
 
---
--- Indexes for table `socket_coolers`
---
-ALTER TABLE `socket_coolers`
-  ADD PRIMARY KEY (`component_id`,`cpu_socket_id`),
-  ADD KEY `socket_coolers_cpu_socket_id_foreign` (`cpu_socket_id`);
 
---
--- Indexes for table `storages`
---
 ALTER TABLE `storages`
-  ADD PRIMARY KEY (`component_id`);
+    ADD PRIMARY KEY (`component_id`);
 
 --
 -- Indexes for table `stores`
 --
 ALTER TABLE `stores`
-  ADD PRIMARY KEY (`id`),
+    ADD PRIMARY KEY (`id`),
   ADD KEY `stores_account_id_foreign` (`account_id`);
 
 --
@@ -996,67 +971,50 @@ ALTER TABLE `stores`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `builds`
 --
 ALTER TABLE `builds`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `build_products`
 --
 ALTER TABLE `build_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `components`
 --
 ALTER TABLE `components`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cpu_sockets`
 --
 ALTER TABLE `cpu_sockets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `memory_speeds`
---
-ALTER TABLE `memory_speeds`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `migrations`
---
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+    MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
---
--- AUTO_INCREMENT for table `mobo_form_factors`
---
-ALTER TABLE `mobo_form_factors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `personal_access_tokens`
---
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `stores`
 --
 ALTER TABLE `stores`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+    MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -1066,96 +1024,71 @@ ALTER TABLE `stores`
 -- Constraints for table `builds`
 --
 ALTER TABLE `builds`
-  ADD CONSTRAINT `builds_account_id_foreign` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `builds_account_id_foreign` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `build_products`
 --
 ALTER TABLE `build_products`
-  ADD CONSTRAINT `build_products_build_id_foreign` FOREIGN KEY (`build_id`) REFERENCES `builds` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `build_products_build_id_foreign` FOREIGN KEY (`build_id`) REFERENCES `builds` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `build_products_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `computer_cases`
 --
 ALTER TABLE `computer_cases`
-  ADD CONSTRAINT `computer_cases_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `computer_cases_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cpus`
 --
 ALTER TABLE `cpus`
-  ADD CONSTRAINT `cpus_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `cpus_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cpu_coolers`
 --
 ALTER TABLE `cpu_coolers`
-  ADD CONSTRAINT `cpu_coolers_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `cpu_coolers_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `graphics_cards`
 --
 ALTER TABLE `graphics_cards`
-  ADD CONSTRAINT `graphics_cards_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `graphics_cards_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Constraints for table `mobo_cases`
---
-ALTER TABLE `mobo_cases`
-  ADD CONSTRAINT `mobo_cases_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `mobo_cases_mobo_form_factor_id_foreign` FOREIGN KEY (`mobo_form_factor_id`) REFERENCES `mobo_form_factors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Constraints for table `mobo_memory_speeds`
---
-ALTER TABLE `mobo_memory_speeds`
-  ADD CONSTRAINT `mobo_memory_speeds_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `mobo_memory_speeds_memory_speed_id_foreign` FOREIGN KEY (`memory_speed_id`) REFERENCES `memory_speeds` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `motherboards`
---
 ALTER TABLE `motherboards`
-  ADD CONSTRAINT `motherboards_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `motherboards_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `products_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `products_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `psus`
 --
 ALTER TABLE `psus`
-  ADD CONSTRAINT `psus_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `psus_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rams`
 --
 ALTER TABLE `rams`
-  ADD CONSTRAINT `rams_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `rams_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Constraints for table `socket_coolers`
---
-ALTER TABLE `socket_coolers`
-  ADD CONSTRAINT `socket_coolers_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `socket_coolers_cpu_socket_id_foreign` FOREIGN KEY (`cpu_socket_id`) REFERENCES `cpu_sockets` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
--- Constraints for table `storages`
---
 ALTER TABLE `storages`
-  ADD CONSTRAINT `storages_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `storages_component_id_foreign` FOREIGN KEY (`component_id`) REFERENCES `components` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `stores`
 --
 ALTER TABLE `stores`
-  ADD CONSTRAINT `stores_account_id_foreign` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `stores_account_id_foreign` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
