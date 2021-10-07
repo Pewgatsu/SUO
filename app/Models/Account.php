@@ -26,6 +26,7 @@ class Account extends Authenticatable
         'password',
         'email',
         'account_type',
+        'profile_path',
         'firstname',
         'lastname',
         'gender',
