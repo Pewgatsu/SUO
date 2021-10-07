@@ -93,7 +93,13 @@ class DatabaseSeeder extends Seeder
             MotherboardsSeeder::class,
             PSUsSeeder::class,
             RAMsSeeder::class,
-            StoragesSeeder::class
+            StoragesSeeder::class,
+            CPUSocketSeeder::class,
+            MemorySpeedSeeder::class,
+            MoboFormFactorSeeder::class,
+            MoboCasesSeeder::class,
+            MoboMemorySpeedSeeder::class,
+            SocketCoolersSeeder::class
         ]);
 
         //LemTech Products
