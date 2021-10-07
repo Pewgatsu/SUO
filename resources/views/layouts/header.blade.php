@@ -37,7 +37,7 @@
                     <a href="{{route('user.profile')}}" class="nav-link">User Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('logout')}}" class="nav-link">Logout</a>
+                    <a href="{{route('user.logout')}}" class="nav-link">Logout</a>
                 </li>
             </ul>
         </div>
