@@ -2,7 +2,7 @@
     <div class="container my-1">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             @auth
-                @if(auth()->user()->account_type === 'Admin')
+                @if(auth()->user()->is_admin)
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                 </li>
@@ -33,7 +33,9 @@
                         </li>
                     </ul>
                 </li>
-                @elseif(auth()->user()->account_type === 'Seller')
+                @endif
+
+                @if(auth()->user()->account_type === 'Seller')
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="{{ route('myStore') }}">My Store</a>
                 </li>
