@@ -208,7 +208,7 @@ class SystemBuilderController extends Controller
         }
     }
 
-    public function edit_build(Build $build, Request $request)
+    public function edit_build(Build $build)
     {
         //unset all sessions
         session()->forget(['motherboards', 'cpus','cpu_coolers','graphics_cards','rams','storages','psus','computer_cases','buildInfo']);
