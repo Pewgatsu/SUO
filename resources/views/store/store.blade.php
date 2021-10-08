@@ -348,9 +348,9 @@
                 </div>
                 <div class="col-md-8 align-middle">
                     <br><br>
-                    <h3 class="text-white text-center">{{empty(session('storeInfo.contact')) ? 'LOREM IPSUM DOLOR':session('storeInfo.contact')}}</h3>
+                    <h3 class="text-white text-center">{{empty(session('storeInfo.contact')) ? '----':session('storeInfo.contact')}}</h3>
                                 <h6 class="text-white text-center">or</h6>
-                    <h3 class="text-white text-center"> {{empty(session('storeInfo.email')) ? 'LOREM IPSUM DOLOR':session('storeInfo.email')}}</h3>
+                    <h3 class="text-white text-center"> {{empty(session('storeInfo.email')) ? '------':session('storeInfo.email')}}</h3>
 
                 </div>
             </div>
