@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
             'firstname' => 'Test',
             'lastname' => 'Admin',
+            'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => false,
             'firstname' => 'Test',
             'lastname' => 'Seller',
+            'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -53,6 +55,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => false,
             'firstname' => 'Test',
             'lastname' => 'Customer',
+            'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -64,6 +67,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => false,
             'firstname' => 'Lemuel',
             'lastname' => 'Antonio',
+            'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -89,7 +93,13 @@ class DatabaseSeeder extends Seeder
             MotherboardsSeeder::class,
             PSUsSeeder::class,
             RAMsSeeder::class,
-            StoragesSeeder::class
+            StoragesSeeder::class,
+            CPUSocketSeeder::class,
+            MemorySpeedSeeder::class,
+            MoboFormFactorSeeder::class,
+            MoboCasesSeeder::class,
+            MoboMemorySpeedSeeder::class,
+            SocketCoolersSeeder::class
         ]);
 
         //LemTech Products
@@ -324,6 +334,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => false,
             'firstname' => 'Test',
             'lastname' => 'Seller',
+            'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -677,6 +688,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => false,
             'firstname' => 'Test',
             'lastname' => 'Seller',
+            'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -1029,6 +1041,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => false,
             'firstname' => 'Test',
             'lastname' => 'Seller',
+            'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
@@ -1372,6 +1385,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => false,
             'firstname' => 'Test',
             'lastname' => 'Seller',
+            'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
         ]);
