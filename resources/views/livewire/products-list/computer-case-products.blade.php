@@ -43,7 +43,10 @@
                                     <td>{{ $product_computer_case->store->name }}</td>
                                     <td>{{ $product_computer_case->price }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <form action="{{ route('add_product', $product_computer_case) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

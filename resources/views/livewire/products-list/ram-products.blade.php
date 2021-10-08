@@ -43,7 +43,10 @@
                                     <td>{{ $product_ram->store->name }}</td>
                                     <td>{{ $product_ram->price }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <form action="{{ route('add_product', $product_ram) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

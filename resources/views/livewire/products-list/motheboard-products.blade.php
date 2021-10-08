@@ -34,16 +34,20 @@
                                         @if(isset($product_motherboard->component->image_path))
                                             <img
                                                 src="{{ asset('images/components/motherboards/' . $product_motherboard->component->image_path) }}"
-                                                class="img-thumbnail img-fluid" style="height: 50px; width: 50px" alt="">
+                                                class="img-thumbnail img-fluid" style="height: 50px; width: 50px"
+                                                alt="">
                                         @endif
                                     </td>
                                     <td>{{ $product_motherboard->component->name }}</td>
                                     <td>{{ $product_motherboard->component->motherboard->cpu_socket ?? null }}</td>
-                                    <td>{{ $product_motherboard->component->motherboard->base_clock ?? null }}</td>
+                                    <td>{{ $product_motherboard->component->motherboard->mobo_form_factor ?? null }}</td>
                                     <td>{{ $product_motherboard->store->name }}</td>
                                     <td>{{ $product_motherboard->price }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <form action="{{ route('add_product', $product_motherboard) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
