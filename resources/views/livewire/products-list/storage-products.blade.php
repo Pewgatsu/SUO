@@ -39,9 +39,9 @@
                                     </td>
                                     <td>{{ $product_storage->component->name }}</td>
                                     <td>{{ $product_storage->component->storage->storage_type ?? null }}</td>
-                                    <td>{{ $product_storage->component->storage->storage_capacity ?? null }}</td>
+                                    <td>{{ $product_storage->component->storage->storage_capacity ?? null }} GB</td>
                                     <td>{{ $product_storage->store->name }}</td>
-                                    <td>{{ $product_storage->price }}</td>
+                                    <td>&#8369; {{ number_format($product_storage->price,2) }}</td>
                                     <td>
                                         <form action="{{ route('add_product', $product_storage) }}" method="post">
                                             @csrf

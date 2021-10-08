@@ -42,7 +42,7 @@
                                     <td>{{ $product_motherboard->component->motherboard->cpu_socket ?? null }}</td>
                                     <td>{{ $product_motherboard->component->motherboard->mobo_form_factor ?? null }}</td>
                                     <td>{{ $product_motherboard->store->name }}</td>
-                                    <td>{{ $product_motherboard->price }}</td>
+                                    <td>&#8369; {{ number_format($product_motherboard->price,2) }}</td>
                                     <td>
                                         <form action="{{ route('add_product', $product_motherboard) }}" method="post">
                                             @csrf

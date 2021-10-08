@@ -41,7 +41,7 @@
                                     <td>{{ $product_computer_case->component->computer_case->case_type ?? null }}</td>
                                     <td>{{ $product_computer_case->component->computer_case->power_supply ?? null }}</td>
                                     <td>{{ $product_computer_case->store->name }}</td>
-                                    <td>{{ $product_computer_case->price }}</td>
+                                    <td>&#8369; {{ number_format($product_computer_case->price,2) }}</td>
                                     <td>
                                         <form action="{{ route('add_product', $product_computer_case) }}" method="post">
                                             @csrf

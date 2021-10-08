@@ -39,9 +39,9 @@
                                     </td>
                                     <td>{{ $product_graphics_card->component->name }}</td>
                                     <td>{{ $product_graphics_card->component->graphics_card->gpu_chipset ?? null }}</td>
-                                    <td>{{ $product_graphics_card->component->graphics_card->base_clock ?? null }}</td>
+                                    <td>{{ $product_graphics_card->component->graphics_card->base_clock ?? null }} MHz</td>
                                     <td>{{ $product_graphics_card->store->name }}</td>
-                                    <td>{{ $product_graphics_card->price }}</td>
+                                    <td>&#8369; {{ number_format($product_graphics_card->price,2) }}</td>
                                     <td>
                                         <form action="{{ route('add_product', $product_graphics_card) }}" method="post">
                                             @csrf
