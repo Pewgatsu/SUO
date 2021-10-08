@@ -30,9 +30,21 @@
                 <tr>
                     <td>{{$title[$key]}}</td>                                                <!--Name -->
                     <td>
-                        <form action="{{route('products.'.$component)}}" method="post">             <!--Button -->
+                        <form action="{{route('products.'.$component)}}" method="post" class="d-inline">             <!--Button -->
                             @csrf
-                            <input type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class="btn btn-info col-12">
+                            <input type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class=" btn btn-info col-10">
+                        </form>
+
+                        <form method="post" action="{{route('control')}}"
+                              @if(!session()->has($component.'.name'))
+                              class="d-none"
+                              @else
+                              class="d-inline"
+                            @endif
+                        >
+                            <input type="hidden" name="unsetSelected" value="{{$component}}">
+                            @csrf
+                            <button type="submit" class="btn btn-info bg-danger">x</button>
                         </form>
                     </td>
                     <td class="text-center">
@@ -62,16 +74,18 @@
                             </div>
                         </form>
                     </td>
-                    <td>                                                                <!--Order Button -->
-                        <form method="post" action="{{route('control')}}">
-                            <input type="hidden" name="orderComponents" value="motherboards">
-                            @csrf
-                            <button type="submit" class="btn btn-info col-12"
-                                    @if(session($component.'.owned') == "1" or !session()->has($component.'.name'))
-                                    disabled
-                                    @endif
-                                    name="orderComponent">Order</button>
-                        </form>
+                    <td>
+                        @if( session()->has('buildInfo'))
+                            <form method="post" action="{{route('control')}}">
+                                <input type="hidden" name="orderComponents" value="{{$component}}">
+                                @csrf
+                                <button type="submit" class="btn btn-info col-10"
+                                        @if(session($component.'.owned') == "1" or !session()->has($component.'.name'))
+                                        disabled
+                                        @endif
+                                        name="orderComponent">Order</button>
+                            </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -89,7 +103,8 @@
                     <div class="mb-3">
                     <label class="" for="form-label" > Build Name: </label>
                     <input class="form-control @error('buildName') is-invalid @enderror" style="width: 100%;"  type="text"  name="buildName"
-                           value="{{old('buildName')}}"
+{{--                           value="{{old('buildName')}}"--}}
+                           value="{{old('buildName') ?? session('buildInfo.build_name','')}}"
                            required >
                     @error('buildName')
                     <p class="text-danger text-center">{{ $message }}</p>
@@ -98,7 +113,9 @@
                     <div class="mb-3">
                     <label class="" for="form-label"> Description: </label>
                     <input class="form-control  @error('buildDescription') is-invalid @enderror" style="width: 100%;" type="text"  name="buildDescription"
-                           value="{{old('buildDescription')}}" >
+{{--                           value="{{old('buildDescription')}}" --}}
+                            value="{{old('buildDescription') ?? session('buildInfo.build_description','')}}"
+                    >
                     @error('buildDescription')
                     <p class="text-danger text-center">{{ $message }}</p>
                     @enderror
