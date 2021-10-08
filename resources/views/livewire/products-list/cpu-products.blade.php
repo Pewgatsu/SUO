@@ -39,9 +39,9 @@
                                     </td>
                                     <td>{{ $product_cpu->component->name }}</td>
                                     <td>{{ $product_cpu->component->cpu->cpu_socket ?? null }}</td>
-                                    <td>{{ $product_cpu->component->cpu->base_clock ?? null }}</td>
+                                    <td>{{ $product_cpu->component->cpu->base_clock ?? null }} GHz</td>
                                     <td>{{ $product_cpu->store->name }}</td>
-                                    <td>{{ $product_cpu->price }}</td>
+                                    <td>&#8369; {{ number_format($product_cpu->price,2) }}</td>
                                     <td>
                                         <form action="{{ route('add_product', $product_cpu) }}" method="post">
                                             @csrf

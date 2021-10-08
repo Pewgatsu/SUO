@@ -39,9 +39,9 @@
                                     </td>
                                     <td>{{ $product_psu->component->name }}</td>
                                     <td>{{ $product_psu->component->psu->psu_form_factor ?? null }}</td>
-                                    <td>{{ $product_psu->component->psu->wattage ?? null }}</td>
+                                    <td>{{ $product_psu->component->psu->wattage ?? null }} W</td>
                                     <td>{{ $product_psu->store->name }}</td>
-                                    <td>{{ $product_psu->price }}</td>
+                                    <td>&#8369; {{ number_format($product_psu->price,2) }}</td>
                                     <td>
                                         <form action="{{ route('add_product', $product_psu) }}" method="post">
                                             @csrf

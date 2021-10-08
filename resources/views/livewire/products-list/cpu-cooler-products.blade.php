@@ -38,10 +38,10 @@
                                         @endif
                                     </td>
                                     <td>{{ $product_cpu_cooler->component->name }}</td>
-                                    <td>{{ $product_cpu_cooler->component->cpu_cooler->fan_speed ?? null }}</td>
-                                    <td>{{ $product_cpu_cooler->component->cpu_cooler->noise_level ?? null }}</td>
+                                    <td>{{ $product_cpu_cooler->component->cpu_cooler->fan_speed ?? null }} rpm</td>
+                                    <td>{{ $product_cpu_cooler->component->cpu_cooler->noise_level ?? null }} dB</td>
                                     <td>{{ $product_cpu_cooler->store->name }}</td>
-                                    <td>{{ $product_cpu_cooler->price }}</td>
+                                    <td>&#8369; {{ number_format($product_cpu_cooler->price,2) }}</td>
                                     <td>
                                         <form action="{{ route('add_product', $product_cpu_cooler) }}" method="post">
                                             @csrf

@@ -147,7 +147,7 @@
                                             <td>{{ $cpu->component->name }}</td>
                                             <td>{{ $cpu->cpu_socket }}</td>
                                             <td>{{ $cpu->microarchitecture }}</td>
-                                            <td>{{ $cpu->base_clock }}</td>
+                                            <td>{{ $cpu->base_clock }} GHz</td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_cpu_{{ $cpu->component->id }}">Edit
@@ -222,8 +222,8 @@
                                         <tr>
                                             <td>{{ $cpu_cooler->component->id }}</td>
                                             <td>{{ $cpu_cooler->component->name }}</td>
-                                            <td>{{ $cpu_cooler->fan_speed }}</td>
-                                            <td>{{ $cpu_cooler->noise_level }}</td>
+                                            <td>{{ $cpu_cooler->fan_speed }} rpm</td>
+                                            <td>{{ $cpu_cooler->noise_level }} dB</td>
                                             <td>{{ $cpu_cooler->water_cooled_support }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -302,7 +302,7 @@
                                             <td>{{ $graphics_card->component->id }}</td>
                                             <td>{{ $graphics_card->component->name }}</td>
                                             <td>{{ $graphics_card->gpu_chipset }}</td>
-                                            <td>{{ $graphics_card->base_clock }}</td>
+                                            <td>{{ $graphics_card->base_clock }} MHz</td>
                                             <td>{{ $graphics_card->interface }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -381,7 +381,7 @@
                                             <td>{{ $ram->component->id }}</td>
                                             <td>{{ $ram->component->name }}</td>
                                             <td>{{ $ram->memory_type }}</td>
-                                            <td>{{ $ram->memory_speed }}</td>
+                                            <td>{{ $ram->memory_speed }} MHz</td>
                                             <td>{{ $ram->memory_form_factor }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -538,7 +538,7 @@
                                             <td>{{ $psu->component->id }}</td>
                                             <td>{{ $psu->component->name }}</td>
                                             <td>{{ $psu->psu_form_factor }}</td>
-                                            <td>{{ $psu->wattage }}</td>
+                                            <td>{{ $psu->wattage }} W</td>
                                             <td>{{ $psu->efficiency_rating }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"

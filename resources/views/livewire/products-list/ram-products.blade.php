@@ -39,9 +39,9 @@
                                     </td>
                                     <td>{{ $product_ram->component->name }}</td>
                                     <td>{{ $product_ram->component->ram->memory_type ?? null }}</td>
-                                    <td>{{ $product_ram->component->ram->memory_speed ?? null }}</td>
+                                    <td>{{ $product_ram->component->ram->memory_speed ?? null }} MHz</td>
                                     <td>{{ $product_ram->store->name }}</td>
-                                    <td>{{ $product_ram->price }}</td>
+                                    <td>&#8369; {{ number_format($product_ram->price,2) }}</td>
                                     <td>
                                         <form action="{{ route('add_product', $product_ram) }}" method="post">
                                             @csrf
