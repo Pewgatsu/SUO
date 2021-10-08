@@ -234,7 +234,12 @@ class SystemBuilderController extends Controller
     }
 
     public function add_product(Product $product, Request $request){
-        dd($product);
+
+
+       // dd($product->component->name);
+        $this->product_session($product->type,$product->id,$product->component->name,$product->price);
+        return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
+
     }
 
 }
