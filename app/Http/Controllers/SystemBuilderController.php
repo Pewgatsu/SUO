@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Build;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models;
 use Illuminate\Support\Facades\Auth;
@@ -230,6 +231,10 @@ class SystemBuilderController extends Controller
 
         return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
 
+    }
+
+    public function add_product(Product $product, Request $request){
+        dd($product);
     }
 
 }

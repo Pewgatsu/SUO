@@ -43,7 +43,10 @@
                                     <td>{{ $product_psu->store->name }}</td>
                                     <td>{{ $product_psu->price }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <form action="{{ route('add_product', $product_psu) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
