@@ -167,9 +167,9 @@ Route::group(['middleware' => 'auth'], function (){
 
 //System Builder
 Route::get('/builder', [SystemBuilderController::class, 'index'])->name('builder');
-Route::any('/components', [SystemBuilderController::class, 'print'])->name('components');
 Route::post('/builder', [SystemBuilderController::class, 'control'])->name('control');
 Route::get('/builds', [App\Http\Controllers\BuildsController::class,'index'])->name('builds');
+
 
 // Products List Page
 Route::any('/products/motherboards', [MotherboardProducts::class, 'render'])->name('products.motherboards');
