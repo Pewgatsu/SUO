@@ -201,13 +201,31 @@ class SystemBuilderController extends Controller
             return view('systemBuilder.builder',['validateComponents'=>$this->validate ,'components' => $this->components,'title'=>$this->title]);
         }else{
             if(session()->has('buildInfo')){
-                dd('may na set na build id');
+
+
+                Build::where('id',session('buildInfo.buildId'))->update([
+                    'build_name' => $request->buildName,
+                    'total_price' => $total_price,
+                    'build_description' => $request->buildDescription
+                ]);
+
+                foreach($this->components as $key=>$component) {
+                    $product = Product::select('id','type','description','status_date')->where('id',session($component.'.id'))->get();
+                    BuildProduct::where(['build_id' => session('buildInfo.buildId'),
+                                        'type' => $this->title[$key]] )->update([
+                        'product_id' => $product[0]->id,
+                        'type' => $product[0]->type,
+                        'description' => $product[0]->description,
+                        'status_date' => $product[0]->status_date,
+                        'owned' => session($component.'.owned' )
+                    ]);
+                    unset($product);
+                }
             }else{
                 $build = new Build;
                 $build->account_id = auth()->user()->getAuthIdentifier();
                 $build->build_name = $request->buildName;
                 $build->total_price = $total_price;
-                $build->build_name = $request->buildName;
                 if(isset($request->buildDescription)){
                     $build->build_description = $request->buildDescription;
                 }

@@ -12,7 +12,7 @@
     }
 
 </style>
-    
+
     <div class="container-xl">
 
         <table class="table table-hover align-middle">
