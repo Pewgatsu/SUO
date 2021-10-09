@@ -59,6 +59,14 @@ class Component extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function component_1_distances(){
+        return $this->hasMany(ComponentDistance::class, 'component_id_1');
+    }
+
+    public function component_2_distances(){
+        return $this->hasMany(ComponentDistance::class, 'component_id_2');
+    }
+
     public function getProductsDateAdded(Store $store){
         return $this->products->where('store_id',$store->id)->sortByDesc('created_at')->first()->created_at;
     }
