@@ -2,7 +2,7 @@
     <form wire:submit.prevent="register">
         @csrf
 
-        <div class="container vh-250 ">
+        <div class="container vh-250  ">
             <div class="container h-250">
                 <div class="row d-flex justify-content-center align-items-center h-250">
                     <div class="col-lg-8 col-xl-10 py-5">
@@ -184,14 +184,10 @@
 
                     </div>
 
-
                 </div>
-
             </div>
         </div>
-
     </form>
-
 
 </div>
 

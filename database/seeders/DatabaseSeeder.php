@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
+            'is_active' => true
         ]);
 
         Account::insert([
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
             'is_active' =>1,
             'created_at' => $date,
             'updated_at' => $date,
+            'is_active' => true,
         ]);
 
         Account::insert([
@@ -1687,6 +1689,7 @@ class DatabaseSeeder extends Seeder
             'status_date' => $date,
             'created_at' => $date,
             'updated_at' => $date,
+            'is_active' => true
         ]);
     }
 }

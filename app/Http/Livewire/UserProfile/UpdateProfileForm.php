@@ -36,7 +36,7 @@ class UpdateProfileForm extends Component
             //
             'username' => ['required','string', Rule::unique('accounts','username')->ignore(Auth::id())],
             'email' => ['required','email', Rule::unique('accounts','email')->ignore(Auth::id())],
-            'photo' => ['image','max:1024']
+            'photo' => ['nullable','image','max:1024']
 
         ];
     }
@@ -62,18 +62,11 @@ class UpdateProfileForm extends Component
 
 
 
-
         $account->update([
             'username' => $this->username,
             'email' => $this->email,
             'profile_path' => $file_name
         ]);
-
-
-
-
-
-
 
     }
 
