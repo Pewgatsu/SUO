@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Admin',
             'created_at' => $date,
             'updated_at' => $date,
+            'is_active' => true
         ]);
 
         Account::insert([
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Seller',
             'created_at' => $date,
             'updated_at' => $date,
+            'is_active' => true,
         ]);
 
         Account::insert([
@@ -53,6 +55,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Customer',
             'created_at' => $date,
             'updated_at' => $date,
+            'is_active' => true
         ]);
     }
 }

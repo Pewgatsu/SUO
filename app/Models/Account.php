@@ -32,7 +32,8 @@ class Account extends Authenticatable
         'gender',
         'birthdate',
         'contact',
-        'address'];
+        'address',
+        'is_active'];
 
     /**
      * The attributes that should be hidden for arrays.
