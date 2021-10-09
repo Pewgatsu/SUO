@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\ProductsList;
 
+use App\Models\ComponentDistance;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -11,13 +12,15 @@ class MotherboardProducts extends Component
 
     public function render()
     {
+        // Retrieve Current Selected Products
         $current_build = array();
         foreach ($this->other_components as $other_component){
             if (session()->has($other_component)){
-                $current_build["$other_component"] = Product::with('component')->find(session("$other_component.id"));
+                $current_build["$other_component"] = Product::find(session("$other_component.id"));
             }
         }
 
+        // Retrieve All Unique Available Products from different Stores
         $store_products = Product::where('type', 'Motherboard')
             ->where('status', 'Available')
             ->groupBy(['store_id','component_id'])->get();
@@ -38,8 +41,19 @@ class MotherboardProducts extends Component
         }
 
         // Filtering Component
-
-        $motherboards = Product::with('component')->whereIn('id',$product_ids)->get();
+        $motherboards = Product::whereIn('id',$product_ids)->get();
+        $motherboard_distances = array();
+        foreach ($motherboards as $motherboard) {
+            $motherboard_distances["$motherboard->id"] = array();
+            foreach ($current_build as $product){
+                if (ComponentDistance::isDistanceExist($product,$motherboard)){
+                    $motherboard_distances["$motherboard->id"]["$product->type"] = ComponentDistance::getDistance($product,$motherboard);
+                }
+                else {
+                    $motherboard_distances["$motherboard->id"]["$product->type"] = ComponentDistance::ComputeDistance($product,$motherboard);
+                }
+            }
+        }
 
         $product_order = implode(',',$product_ids);
 
