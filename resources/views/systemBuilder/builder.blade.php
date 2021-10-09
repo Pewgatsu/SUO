@@ -12,8 +12,9 @@
     }
 
 </style>
+    
+    <div class="container-xl">
 
-    <div class="container-xl  ">
         <table class="table table-hover align-middle">
             <thead>
             <tr>
@@ -21,7 +22,10 @@
                 <th class="text-center" width="40%">Selection</th>
                 <th class="text-center" width="10%">Price</th>
                 <th class="text-center" width="10%">Owned</th>
-                <th class="text-center" width="15%"></th>
+                @if( session()->has('buildInfo'))
+                    <th class="text-center" width="15%"></th>
+                @endif
+
             </tr>
             </thead>
             <tbody>
@@ -34,7 +38,6 @@
                             @csrf
                             <input type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class=" btn btn-info col-10">
                         </form>
-
                         <form method="post" action="{{route('control')}}"
                               @if(!session()->has($component.'.name'))
                               class="d-none"
@@ -46,6 +49,15 @@
                             @csrf
                             <button type="submit" class="btn btn-info bg-danger">x</button>
                         </form>
+
+
+                        @if( isset($validateComponents) && $validateComponents[$key] ==1  )
+                        <div>
+                            <p class="text-danger text-center fw-bold col-10">Please Choose a {{$title[$key]}}</p>
+                        </div>
+                        @endif
+
+
                     </td>
                     <td class="text-center">
                         @if(session()->has($component.'.price'))
@@ -74,8 +86,9 @@
                             </div>
                         </form>
                     </td>
-                    <td>
-                        @if( session()->has('buildInfo'))
+
+                    @if( session()->has('buildInfo'))
+                        <td>
                             <form method="post" action="{{route('control')}}">
                                 <input type="hidden" name="orderComponents" value="{{$component}}">
                                 @csrf
@@ -85,8 +98,8 @@
                                         @endif
                                         name="orderComponent">Order</button>
                             </form>
-                        @endif
-                    </td>
+                        </td>
+                     @endif
                 </tr>
             @endforeach
 
@@ -97,13 +110,12 @@
 
         @auth
             <!--Name and Save-->
-            <div class="mb-3">
+            <div class="mb-3 form-inline">
                 <form class="form-inline" action="{{route('control')}}" method="post" >
                     @csrf
                     <div class="mb-3">
                     <label class="" for="form-label" > Build Name: </label>
                     <input class="form-control @error('buildName') is-invalid @enderror" style="width: 100%;"  type="text"  name="buildName"
-{{--                           value="{{old('buildName')}}"--}}
                            value="{{old('buildName') ?? session('buildInfo.build_name','')}}"
                            required >
                     @error('buildName')
@@ -111,20 +123,29 @@
                     @enderror
                     </div>
                     <div class="mb-3">
-                    <label class="" for="form-label"> Description: </label>
-                    <input class="form-control  @error('buildDescription') is-invalid @enderror" style="width: 100%;" type="text"  name="buildDescription"
-{{--                           value="{{old('buildDescription')}}" --}}
-                            value="{{old('buildDescription') ?? session('buildInfo.build_description','')}}"
-                    >
-                    @error('buildDescription')
-                    <p class="text-danger text-center">{{ $message }}</p>
-                    @enderror
+                        <label class="" for="form-label"> Description: </label>
+                        <div>
+                            <textarea class="form-control  @error('buildDescription') is-invalid @enderror"  rows="5" name="buildDescription">
+                                {{old('buildDescription') ?? session('buildInfo.build_description','')}}
+                            </textarea>
+                        </div>
+                        @error('buildDescription')
+                        <p class="text-danger text-center">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
-                    <button class="d-inline btn btn-info btn-block" type="submit" name="saveButton"  >Save Build</button>
+                    <button class="d-inline btn btn-info btn-block" type="submit" name="saveButton"  >
+                        {{ session()->has('buildInfo') ? 'Update Build' : 'Save Build'}}
+                        </button>
                     </div>
                 </form>
+            </div>
 
+{{--            fix the placing of this--}}
+            <div class="float-end">
+                <form  action="#" method="post">
+                    <button class="d-inline btn btn-info btn-block bg-danger " type="submit" name="saveButton"  >Clear Selection</button>
+                </form>
 
             </div>
         @endauth
