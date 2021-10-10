@@ -45,6 +45,8 @@ class SystemBuilderController extends Controller
             if(session()->has($request->input('unsetSelected'))){
                 session()->forget([$request->input('unsetSelected')]);
             }
+        }elseif($request->exists('clearSelection')) {
+            $this->unset($request);
         }
         return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
     }
@@ -172,8 +174,6 @@ class SystemBuilderController extends Controller
 
     public function unset(Request $request){
         session()->forget(['motherboards', 'cpus','cpu_coolers','graphics_cards','rams','storages','psus','computer_cases']);
-        return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
-
     }
 
 

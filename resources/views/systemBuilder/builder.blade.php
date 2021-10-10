@@ -122,12 +122,12 @@
                     <p class="text-danger text-center">{{ $message }}</p>
                     @enderror
                     </div>
+
                     <div class="mb-3">
                         <label class="" for="form-label"> Description: </label>
                         <div>
-                            <textarea class="form-control  @error('buildDescription') is-invalid @enderror"  rows="5" name="buildDescription">
-                                {{old('buildDescription') ?? session('buildInfo.build_description','')}}
-                            </textarea>
+                            <textarea class="form-control  @error('buildDescription') is-invalid @enderror"  rows="5" name="buildDescription"
+                            >{{old('buildDescription') ?? session('buildInfo.build_description','')}}</textarea>
                         </div>
                         @error('buildDescription')
                         <p class="text-danger text-center">{{ $message }}</p>
@@ -140,15 +140,15 @@
                     </div>
                 </form>
             </div>
-
-{{--            fix the placing of this--}}
-            <div class="float-end">
-                <form  action="#" method="post">
-                    <button class="d-inline btn btn-info btn-block bg-danger " type="submit" name="saveButton"  >Clear Selection</button>
-                </form>
-
-            </div>
         @endauth
+        {{--            fix the placing of this--}}
+        <div class="">
+            <form  action="{{route('control')}}" method="post">
+                @csrf
+                <input type="hidden" name="clearSelection" value="clearSelection">
+                <button class="d-inline btn btn-info btn-block bg-danger" name="clearSelection" type="submit"   >Clear Selection</button>
+            </form>
+        </div>
 
     </div>
 

@@ -25,8 +25,8 @@
                                 <thead>
                                 <tr>
                                     <th>Build Name</th>
-                                    <th>Description</th>
                                     <th>Date Created</th>
+                                    <th>Date Updated</th>
                                     <th>Total Price</th>
                                     <th>Action</th>
                                 </tr>
@@ -35,8 +35,8 @@
                                 @foreach($builds as $build)
                                     <tr>
                                         <td>{{ $build->build_name }}</td>
-                                        <td>{{ $build->build_description }}</td>
                                         <td>{{ $build->created_at }}</td>
+                                        <td>{{ $build->updated_at }}</td>
                                         <td>&#8369;{{ number_format($build->total_price,2)  }}</td>
                                         <td>
                                             <button type="button" class="btn btn-info" value="{{ $build->id }}"
