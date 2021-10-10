@@ -32,9 +32,9 @@ class ComponentDistance extends Model
     public static function getDistanceIfExist(Product $product_1, Product $product_2)
     {
         $distance = ComponentDistance::where('component_id_1', $product_1->component_id)->where('component_id_2', $product_2->component_id)->get();
-        if ($distance->isNotEmpty()) return $distance;
+        if ($distance->isNotEmpty()) return $distance->first()->distance;
         $distance = ComponentDistance::where('component_id_1', $product_2->component_id)->where('component_id_2', $product_1->component_id)->get();
-        if ($distance->isNotEmpty()) return $distance;
+        if ($distance->isNotEmpty()) return $distance->first()->distance;
         return false;
     }
 
@@ -177,13 +177,13 @@ class ComponentDistance extends Model
             'image_path' => 0,
             'name' => 0.5,
             'type' => 0,
-            'manufacturer' => 0.2,
-            'series' => 0.2,
-            'model' => 0.2,
-            'color' => 0.1,
-            'length' => 0.1,
-            'width' => 0.1,
-            'height' => 0.1,
+            'manufacturer' => 1,
+            'series' => 1,
+            'model' => 1,
+            'color' => 1,
+            'length' => 0.01,
+            'width' => 0.01,
+            'height' => 0.01,
             'created_at' => 0.1,
             'updated_at' => 0.1
         ];
