@@ -46,8 +46,8 @@ class MotherboardProducts extends Component
         foreach ($motherboards as $motherboard) {
             $motherboard_distances["$motherboard->id"] = array();
             foreach ($current_build as $product){
-                if (ComponentDistance::isDistanceExist($product,$motherboard)){
-                    $motherboard_distances["$motherboard->id"]["$product->type"] = ComponentDistance::getDistance($product,$motherboard);
+                if ($distance = ComponentDistance::getDistanceIfExist($product,$motherboard)){
+                    $motherboard_distances["$motherboard->id"]["$product->type"] = $distance;
                 }
                 else {
                     $motherboard_distances["$motherboard->id"]["$product->type"] = ComponentDistance::ComputeDistance($product,$motherboard);

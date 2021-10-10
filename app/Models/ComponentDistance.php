@@ -29,22 +29,13 @@ class ComponentDistance extends Model
         $this->belongsTo(Component::class, 'id', 'component_id_2');
     }
 
-    public static function isDistanceExist(Product $product_1, Product $product_2)
-    {
-        if (ComponentDistance::where('component_id_1', $product_1->component_id)->where('component_id_2', $product_2->component_id)->get()->isEmpty() &&
-            ComponentDistance::where('component_id_1', $product_2->component_id)->where('component_id_2', $product_1->component_id)->get()->isEmpty()) {
-            return false;
-        }
-        return true;
-    }
-
-    public static function getDistance(Product $product_1, Product $product_2)
+    public static function getDistanceIfExist(Product $product_1, Product $product_2)
     {
         $distance = ComponentDistance::where('component_id_1', $product_1->component_id)->where('component_id_2', $product_2->component_id)->get();
         if ($distance->isNotEmpty()) return $distance;
         $distance = ComponentDistance::where('component_id_1', $product_2->component_id)->where('component_id_2', $product_1->component_id)->get();
         if ($distance->isNotEmpty()) return $distance;
-        return null;
+        return false;
     }
 
     public static function ComputeDistance(Product $product_1, Product $product_2)
