@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Build;
+use App\Models\BuildProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -15,6 +17,7 @@ class SystemBuilderController extends Controller
 {
     private array $components=array('motherboards' ,'cpus', 'cpu_coolers', 'graphics_cards', 'rams', 'storages', 'psus' , 'computer_cases');
     private array $title=array('Motherboard' ,'CPU', 'CPU Cooler', 'Graphics Card', 'RAM', 'Storage', 'PSU' , 'Computer Case');
+    private array $validate=array(0,0,0,0,0,0,0,0);
 
     public function index(){
         //checks if user is logged in and creates a session to enable saving and naming builds
@@ -35,7 +38,7 @@ class SystemBuilderController extends Controller
         if($request->exists('orderComponents')){
             $this->orderComponent($request);
         }elseif($request->exists('buildName')){
-            $this->saveBuild($request);
+            return $this->saveBuild($request);
         }elseif($request->exists('hold')){
             $this->checkBoxState($request);
         }elseif($request->exists('unsetSelected')){
@@ -168,27 +171,88 @@ class SystemBuilderController extends Controller
     }
 
     public function unset(Request $request){
+        session()->forget(['motherboards', 'cpus','cpu_coolers','graphics_cards','rams','storages','psus','computer_cases']);
+        return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
 
     }
 
 
     public function saveBuild(Request $request){
-        $componentArray = array(
-            'motherboards' => array(),
-            'cpus' => array(),
-            'cpu_coolers' => array(),
-            'graphics_cards' => array(),
-            'rams' => array(),
-            'storages' => array(),
-            'psus' => array(),
-            'computer_cases' => array()
-        );
+
 
         $this->validate($request, [
             'buildName' => 'required|string',
             'buildDescription' => 'nullable|string'
         ]);
 
+        $total_price = 0;
+        foreach($this->components as $key=>$component)
+        {
+            if(!session()->has($component)){
+                $this->validate[$key] =1;
+            }else{
+                $this->validate[$key] =0;
+                $total_price += session($component.'.price');
+            }
+        }
+
+        if (in_array(1, $this->validate)) {
+            //dd($this->validate);
+            return view('systemBuilder.builder',['validateComponents'=>$this->validate ,'components' => $this->components,'title'=>$this->title]);
+        }else{
+            if(session()->has('buildInfo')){
+
+
+                Build::where('id',session('buildInfo.buildId'))->update([
+                    'build_name' => $request->buildName,
+                    'total_price' => $total_price,
+                    'build_description' => $request->buildDescription
+                ]);
+
+                foreach($this->components as $key=>$component) {
+                    $product = Product::select('id','type','description','status_date')->where('id',session($component.'.id'))->get();
+                    BuildProduct::where(['build_id' => session('buildInfo.buildId'),
+                                        'type' => $this->title[$key]] )->update([
+                        'product_id' => $product[0]->id,
+                        'type' => $product[0]->type,
+                        'description' => $product[0]->description,
+                        'status_date' => $product[0]->status_date,
+                        'owned' => session($component.'.owned' )
+                    ]);
+                    unset($product);
+                }
+            }else{
+                $build = new Build;
+                $build->account_id = auth()->user()->getAuthIdentifier();
+                $build->build_name = $request->buildName;
+                $build->total_price = $total_price;
+                if(isset($request->buildDescription)){
+                    $build->build_description = $request->buildDescription;
+                }
+                $build->save();
+               //dd($build->id);
+               // $product = Product::select('id','type','description','status_date')->where('id',session($component.'.id'))->get();
+                //dd($product->id);
+
+                foreach($this->components as $component){
+                    $build_product= new BuildProduct;
+                    $product = Product::select('id','type','description','status_date')->where('id',session($component.'.id'))->get();
+                    $build_product->build_id = $build->id;
+                    $build_product->product_id = $product[0]->id;
+                    $build_product->type = $product[0]->type;
+                    $build_product->description = $product[0]->description;
+                    $build_product->status_date = $product[0]->status_date;
+                    $build_product->owned = session($component.'.owned' );
+
+                    $build_product->save();
+                    unset($build_product);
+                    unset($product);
+                }
+
+            }
+            session()->forget(['motherboards', 'cpus','cpu_coolers','graphics_cards','rams','storages','psus','computer_cases','buildInfo']);
+            return redirect()->route('builds');
+        }
 
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\IsActive;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsCustomer;
 use App\Http\Middleware\IsSeller;
@@ -69,5 +70,6 @@ class Kernel extends HttpKernel
         'is_admin' => IsAdmin::class,
         'is_seller' => IsSeller::class,
         'is_customer' => IsCustomer::class,
+        'is_active' => IsActive::class,
     ];
 }
