@@ -248,7 +248,7 @@ class ComponentDistance extends Model
                 }
 
                 if (empty($cpu_sockets)) {
-                    $distances["$specific_column"] = 1;
+                    $distances["$specific_column"] = $specific_weight * 10;
                 } elseif (in_array($motherboard->cpu_socket, $cpu_sockets)) {
                     $distances["$specific_column"] = 0;
                 } else {
@@ -291,7 +291,7 @@ class ComponentDistance extends Model
                 $slot_quantity = $motherboard->{$graphics_card_interface} ?? null;
 
                 if ($slot_quantity != 0) $distances["$specific_column"] = 0;
-                else $distances["$specific_column"] = 1;
+                else $distances["$specific_column"] = $specific_weight * 10;
 
             } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($graphics_card->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $graphics_card->{$specific_column}) ** 2);
@@ -329,7 +329,7 @@ class ComponentDistance extends Model
                 }
 
                 if (empty($memory_speeds)) {
-                    $distances["$specific_column"] = 1;
+                    $distances["$specific_column"] = $specific_weight * 10;
                 } elseif (in_array($ram->memory_speed, $memory_speeds)) {
                     $distances["$specific_column"] = 0;
                 } else {
@@ -390,7 +390,7 @@ class ComponentDistance extends Model
                 $slot_quantity = $motherboard->{$storage_interface} ?? null;
 
                 if ($slot_quantity != 0) $distances["$specific_column"] = 0;
-                else $distances["$specific_column"] = 1;
+                else $distances["$specific_column"] = $specific_weight * 10;
 
             } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $storage->{$specific_column}) ** 2);
@@ -436,7 +436,7 @@ class ComponentDistance extends Model
         $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
 
         $specific_weights = [
-            'mobo_form_factor' => 0
+            'mobo_form_factor' => 10
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -448,7 +448,7 @@ class ComponentDistance extends Model
                 }
 
                 if (empty($form_factors)) {
-                    $distances["$specific_column"] = 1;
+                    $distances["$specific_column"] = $specific_weight * 10;
                 } elseif (in_array($motherboard->mobo_form_factor, $form_factors)) {
                     $distances["$specific_column"] = 0;
                 } else {
@@ -492,7 +492,7 @@ class ComponentDistance extends Model
                 }
 
                 if (empty($cpu_sockets)) {
-                    $distances["$specific_column"] = 1;
+                    $distances["$specific_column"] = $specific_weight * 10;
                 } elseif (in_array($cpu->cpu_socket, $cpu_sockets)) {
                     $distances["$specific_column"] = 0;
                 } else {
@@ -642,10 +642,22 @@ class ComponentDistance extends Model
 
     private static function CPUCooler_GraphicsCard(Component $component_1, Component $component_2)
     {
-        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
-        $graphics_card = $component_1->type == 'Graphics Card' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($cpu_cooler, $graphics_card);
+        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1->cpu_cooler : $component_2->cpu_cooler;
+        $graphics_card = $component_1->type == 'Graphics Card' ? $component_1->graphics_card : $component_2->graphics_card;
+
+        $specific_weights = [
+
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($graphics_card->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $graphics_card->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $graphics_card->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
@@ -654,10 +666,22 @@ class ComponentDistance extends Model
 
     private static function CPUCooler_RAM(Component $component_1, Component $component_2)
     {
-        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
-        $ram = $component_1->type == 'RAM' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($cpu_cooler, $ram);
+        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1->cpu_cooler : $component_2->cpu_cooler;
+        $ram = $component_1->type == 'RAM' ? $component_1->ram : $component_2->ram;
+
+        $specific_weights = [
+
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($ram->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $ram->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $ram->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
@@ -666,10 +690,22 @@ class ComponentDistance extends Model
 
     private static function CPUCooler_Storage(Component $component_1, Component $component_2)
     {
-        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
-        $storage = $component_1->type == 'Storage' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($cpu_cooler, $storage);
+        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1->cpu_cooler : $component_2->cpu_cooler;
+        $storage = $component_1->type == 'Storage' ? $component_1->ram : $component_2->ram;
+
+        $specific_weights = [
+
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($storage->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $storage->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $storage->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
@@ -683,6 +719,18 @@ class ComponentDistance extends Model
 
         $distances = self::ComponentSimilarity($cpu_cooler, $psu);
 
+        $specific_weights = [
+
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($psu->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $psu->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $psu->{$specific_column}) ** 2);
+            }
+        }
+
         $result = sqrt(array_sum($distances));
 
         return $result;
@@ -690,10 +738,28 @@ class ComponentDistance extends Model
 
     private static function CPUCooler_ComputerCase(Component $component_1, Component $component_2)
     {
-        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
-        $computer_case = $component_1->type == 'Computer Case' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($cpu_cooler, $computer_case);
+        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1->cpu_cooler : $component_2->cpu_cooler;
+        $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
+
+        $specific_weights = [
+            'water_cooled_support' => 5
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if ($specific_column == 'water_cooled_support') {
+                if ($computer_case->water_cooled_support && strpos($cpu_cooler->water_cooled_support,'Yes'))
+                    $distances["$specific_column"] = 0;
+                else
+                    $distances["$specific_column"] = $specific_weight * 10;
+
+            } elseif (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($computer_case->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $computer_case->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $computer_case->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
