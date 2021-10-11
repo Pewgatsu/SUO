@@ -175,17 +175,17 @@ class ComponentDistance extends Model
         $component_weights = [
             'id' => 0,
             'image_path' => 0,
-            'name' => 0.5,
+            'name' => 1,
             'type' => 0,
             'manufacturer' => 1,
             'series' => 1,
             'model' => 1,
             'color' => 1,
-            'length' => 0.01,
-            'width' => 0.01,
-            'height' => 0.01,
-            'created_at' => 0.1,
-            'updated_at' => 0.1
+            'length' => 0,
+            'width' => 0,
+            'height' => 0,
+            'created_at' => 0,
+            'updated_at' => 0
         ];
 
         $component_distances = array();
@@ -205,10 +205,23 @@ class ComponentDistance extends Model
 
     private static function Motherboard_CPU(Component $component_1, Component $component_2)
     {
-        $motherboard = $component_1->type == 'Motherboard' ? $component_1 : $component_2;
-        $cpu = $component_1->type == 'CPU' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($motherboard,$cpu);
+        $motherboard = $component_1->type == 'Motherboard' ? $component_1->motherboard : $component_2->motherboard;
+        $cpu = $component_1->type == 'CPU' ? $component_1->cpu : $component_2->cpu;
+
+        $specific_weights = [
+            'cpu_socket' => 10,
+            'max_mem_support' => 0.1,
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if (is_numeric($motherboard->{$specific_column}) || is_numeric($cpu->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $cpu->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $cpu->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
@@ -217,10 +230,42 @@ class ComponentDistance extends Model
 
     private static function Motherboard_CPUCooler(Component $component_1, Component $component_2)
     {
-        $motherboard = $component_1->type == 'Motherboard' ? $component_1 : $component_2;
-        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($motherboard,$cpu_cooler);
+        $motherboard = $component_1->type == 'Motherboard' ? $component_1->motherboard : $component_2->motherboard;
+        $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1->cpu_cooler : $component_2->cpu_cooler;
+
+        $specific_weights = [
+            'cpu_socket' => 10
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if ($specific_column == 'cpu_socket') {
+
+                $cpu_sockets = array();
+                foreach ($cpu_cooler->cpu_sockets as $cpu_socket) {
+                    $cpu_sockets[] = $cpu_socket->name;
+                }
+
+                if (empty($cpu_sockets)) {
+                    $distances["$specific_column"] = 1;
+                } elseif (in_array($motherboard->cpu_socket, $cpu_sockets)) {
+                    $distances["$specific_column"] = 0;
+                } else {
+                    $cpu_socket_distances = array();
+                    foreach ($cpu_sockets as $cpu_socket) {
+                        $cpu_socket_distances[] = levenshtein($motherboard->cpu_socket, $cpu_socket);
+                    }
+                    $cpu_socket_distance = min($cpu_socket_distances);
+                    $distances["$specific_column"] = $specific_weight * ($cpu_socket_distance ** 2);
+                }
+
+            } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($cpu_cooler->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $cpu_cooler->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $cpu_cooler->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
@@ -229,10 +274,31 @@ class ComponentDistance extends Model
 
     private static function Motherboard_GraphicsCard(Component $component_1, Component $component_2)
     {
-        $motherboard = $component_1->type == 'Motherboard' ? $component_1 : $component_2;
-        $graphics_card = $component_1->type == 'Graphics Card' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($motherboard,$graphics_card);
+        $motherboard = $component_1->type == 'Motherboard' ? $component_1->motherboard : $component_2->motherboard;
+        $graphics_card = $component_1->type == 'Graphics Card' ? $component_1->graphics_card : $component_2->graphics_card;
+
+        $specific_weights = [
+            'interface' => 10
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if ($specific_column == 'interface') {
+
+                $graphics_card_interface = str_replace(' ', '_', strtolower($graphics_card->interface)) . '_slot';
+
+                $slot_quantity = $motherboard->{$graphics_card_interface} ?? null;
+
+                if ($slot_quantity != 0) $distances["$specific_column"] = 0;
+                else $distances["$specific_column"] = 1;
+
+            } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($graphics_card->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $graphics_card->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $graphics_card->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
@@ -241,10 +307,56 @@ class ComponentDistance extends Model
 
     private static function Motherboard_RAM(Component $component_1, Component $component_2)
     {
-        $motherboard = $component_1->type == 'Motherboard' ? $component_1 : $component_2;
-        $ram = $component_1->type == 'RAM' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($motherboard,$ram);
+        $motherboard = $component_1->type == 'Motherboard' ? $component_1->motherboard : $component_2->motherboard;
+        $ram = $component_1->type == 'RAM' ? $component_1->ram : $component_2->ram;
+
+        $specific_weights = [
+            'memory_slot' => 10,
+            'memory_type' => 10,
+            'memory_speed' => 10,
+            'max_memory_support' => 10,
+            'ecc_support' => 10
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if ($specific_column == 'memory_speed') {
+
+                $memory_speeds = array();
+                foreach ($motherboard->memory_speeds as $memory_speed) {
+                    $memory_speeds[] = substr($memory_speed->name, -4);
+                }
+
+                if (empty($memory_speeds)) {
+                    $distances["$specific_column"] = 1;
+                } elseif (in_array($ram->memory_speed, $memory_speeds)) {
+                    $distances["$specific_column"] = 0;
+                } else {
+                    $memory_speed_distances = array();
+                    foreach ($memory_speeds as $memory_speed) {
+                        $memory_speed_distances[] = levenshtein($ram->memory_speed, $memory_speed);
+                    }
+                    $memory_speed_distance = min($memory_speed_distances);
+                    $distances["$specific_column"] = $specific_weight * ($memory_speed_distance ** 2);
+                }
+
+            } elseif ($specific_column == 'memory_slot') {
+                $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $ram->modules) ** 2);
+
+            } elseif ($specific_column == 'max_memory_support') {
+                $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $ram->memory_capacity) ** 2);
+
+            } elseif ($specific_column == 'ecc_support') {
+                $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $ram->ecc) ** 2);
+
+            } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($ram->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $ram->{$specific_column}) ** 2);
+
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $ram->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
@@ -253,10 +365,39 @@ class ComponentDistance extends Model
 
     private static function Motherboard_Storage(Component $component_1, Component $component_2)
     {
-        $motherboard = $component_1->type == 'Motherboard' ? $component_1 : $component_2;
-        $storage = $component_1->type == 'Storage' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($motherboard,$storage);
+        $motherboard = $component_1->type == 'Motherboard' ? $component_1->motherboard : $component_2->motherboard;
+        $storage = $component_1->type == 'Storage' ? $component_1->storage : $component_2->storage;
+
+        $specific_weights = [
+            'interface' => 10
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if ($specific_column == 'interface') {
+
+                $interface = strtolower($storage->interface);
+
+                if (strpos($interface, ' gb/s')) {
+                    $storage_interface = str_replace(' ', '_', str_replace(' gb/s', 'gb', $interface)) . '_slot';
+                } elseif ($interface == 'm.2') {
+                    $storage_interface = 'm2_slot';
+                } else {
+                    $storage_interface = str_replace(' ', '_', $interface) . '_slot';
+                }
+
+                $slot_quantity = $motherboard->{$storage_interface} ?? null;
+
+                if ($slot_quantity != 0) $distances["$specific_column"] = 0;
+                else $distances["$specific_column"] = 1;
+
+            } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($storage->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $storage->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $storage->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
@@ -265,10 +406,10 @@ class ComponentDistance extends Model
 
     private static function Motherboard_PSU(Component $component_1, Component $component_2)
     {
-        $motherboard = $component_1->type == 'Motherboard' ? $component_1 : $component_2;
-        $psu = $component_1->type == 'PSU' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($motherboard,$psu);
+        $motherboard = $component_1->type == 'Motherboard' ? $component_1->motherboard : $component_2->motherboard;
+        $psu = $component_1->type == 'PSU' ? $component_1->psu : $component_2->psu;
 
         $result = sqrt(array_sum($distances));
 
@@ -277,10 +418,42 @@ class ComponentDistance extends Model
 
     private static function Motherboard_ComputerCase(Component $component_1, Component $component_2)
     {
-        $motherboard = $component_1->type == 'Motherboard' ? $component_1 : $component_2;
-        $computer_case = $component_1->type == 'Computer Case' ? $component_1 : $component_2;
+        $distances = self::ComponentSimilarity($component_1, $component_2);
 
-        $distances = self::ComponentSimilarity($motherboard,$computer_case);
+        $motherboard = $component_1->type == 'Motherboard' ? $component_1->motherboard : $component_2->motherboard;
+        $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
+
+        $specific_weights = [
+            'mobo_form_factor' => 0
+        ];
+
+        foreach ($specific_weights as $specific_column => $specific_weight) {
+            if ($specific_column == 'mobo_form_factor') {
+
+                $form_factors = array();
+                foreach ($computer_case->mobo_form_factors as $form_factor) {
+                    $form_factors[] = $form_factor->name;
+                }
+
+                if (empty($form_factors)) {
+                    $distances["$specific_column"] = 1;
+                } elseif (in_array($motherboard->mobo_form_factor, $form_factors)) {
+                    $distances["$specific_column"] = 0;
+                } else {
+                    $form_factor_distances = array();
+                    foreach ($form_factors as $form_factor) {
+                        $form_factor_distances[] = levenshtein($motherboard->cpu_socket, $form_factor);
+                    }
+                    $form_factor_distance = min($form_factor_distances);
+                    $distances["$specific_column"] = $specific_weight * ($form_factor_distance ** 2);
+                }
+
+            } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($computer_case->{$specific_column})) {
+                $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $computer_case->{$specific_column}) ** 2);
+            } else {
+                $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $computer_case->{$specific_column}) ** 2);
+            }
+        }
 
         $result = sqrt(array_sum($distances));
 
@@ -292,7 +465,7 @@ class ComponentDistance extends Model
         $cpu = $component_1->type == 'CPU' ? $component_1 : $component_2;
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu,$cpu_cooler);
+        $distances = self::ComponentSimilarity($cpu, $cpu_cooler);
 
         $result = sqrt(array_sum($distances));
 
@@ -304,7 +477,7 @@ class ComponentDistance extends Model
         $cpu = $component_1->type == 'CPU' ? $component_1 : $component_2;
         $graphics_card = $component_1->type == 'Graphics Card' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu,$graphics_card);
+        $distances = self::ComponentSimilarity($cpu, $graphics_card);
 
         $result = sqrt(array_sum($distances));
 
@@ -316,7 +489,7 @@ class ComponentDistance extends Model
         $cpu = $component_1->type == 'CPU' ? $component_1 : $component_2;
         $ram = $component_1->type == 'RAM' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu,$ram);
+        $distances = self::ComponentSimilarity($cpu, $ram);
 
         $result = sqrt(array_sum($distances));
 
@@ -328,7 +501,7 @@ class ComponentDistance extends Model
         $cpu = $component_1->type == 'CPU' ? $component_1 : $component_2;
         $storage = $component_1->type == 'Storage' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu,$storage);
+        $distances = self::ComponentSimilarity($cpu, $storage);
 
         $result = sqrt(array_sum($distances));
 
@@ -340,7 +513,7 @@ class ComponentDistance extends Model
         $cpu = $component_1->type == 'CPU' ? $component_1 : $component_2;
         $psu = $component_1->type == 'PSU' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu,$psu);
+        $distances = self::ComponentSimilarity($cpu, $psu);
 
         $result = sqrt(array_sum($distances));
 
@@ -352,7 +525,7 @@ class ComponentDistance extends Model
         $cpu = $component_1->type == 'CPU' ? $component_1 : $component_2;
         $computer_case = $component_1->type == 'Computer Case' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu,$computer_case);
+        $distances = self::ComponentSimilarity($cpu, $computer_case);
 
         $result = sqrt(array_sum($distances));
 
@@ -364,7 +537,7 @@ class ComponentDistance extends Model
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
         $graphics_card = $component_1->type == 'Graphics Card' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu_cooler,$graphics_card);
+        $distances = self::ComponentSimilarity($cpu_cooler, $graphics_card);
 
         $result = sqrt(array_sum($distances));
 
@@ -376,7 +549,7 @@ class ComponentDistance extends Model
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
         $ram = $component_1->type == 'RAM' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu_cooler,$ram);
+        $distances = self::ComponentSimilarity($cpu_cooler, $ram);
 
         $result = sqrt(array_sum($distances));
 
@@ -388,7 +561,7 @@ class ComponentDistance extends Model
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
         $storage = $component_1->type == 'Storage' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu_cooler,$storage);
+        $distances = self::ComponentSimilarity($cpu_cooler, $storage);
 
         $result = sqrt(array_sum($distances));
 
@@ -400,7 +573,7 @@ class ComponentDistance extends Model
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
         $psu = $component_1->type == 'PSU' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu_cooler,$psu);
+        $distances = self::ComponentSimilarity($cpu_cooler, $psu);
 
         $result = sqrt(array_sum($distances));
 
@@ -412,7 +585,7 @@ class ComponentDistance extends Model
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1 : $component_2;
         $computer_case = $component_1->type == 'Computer Case' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($cpu_cooler,$computer_case);
+        $distances = self::ComponentSimilarity($cpu_cooler, $computer_case);
 
         $result = sqrt(array_sum($distances));
 
@@ -424,7 +597,7 @@ class ComponentDistance extends Model
         $graphics_card = $component_1->type == 'Graphics Card' ? $component_1 : $component_2;
         $ram = $component_1->type == 'RAM' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($graphics_card,$ram);
+        $distances = self::ComponentSimilarity($graphics_card, $ram);
 
         $result = sqrt(array_sum($distances));
 
@@ -436,7 +609,7 @@ class ComponentDistance extends Model
         $graphics_card = $component_1->type == 'Graphics Card' ? $component_1 : $component_2;
         $storage = $component_1->type == 'Storage' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($graphics_card,$storage);
+        $distances = self::ComponentSimilarity($graphics_card, $storage);
 
         $result = sqrt(array_sum($distances));
 
@@ -448,7 +621,7 @@ class ComponentDistance extends Model
         $graphics_card = $component_1->type == 'Graphics Card' ? $component_1 : $component_2;
         $psu = $component_1->type == 'PSU' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($graphics_card,$psu);
+        $distances = self::ComponentSimilarity($graphics_card, $psu);
 
         $result = sqrt(array_sum($distances));
 
@@ -460,7 +633,7 @@ class ComponentDistance extends Model
         $graphics_card = $component_1->type == 'Graphics Card' ? $component_1 : $component_2;
         $computer_case = $component_1->type == 'Computer Case' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($graphics_card,$computer_case);
+        $distances = self::ComponentSimilarity($graphics_card, $computer_case);
 
         $result = sqrt(array_sum($distances));
 
@@ -472,7 +645,7 @@ class ComponentDistance extends Model
         $ram = $component_1->type == 'RAM' ? $component_1 : $component_2;
         $storage = $component_1->type == 'Storage' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($ram,$storage);
+        $distances = self::ComponentSimilarity($ram, $storage);
 
         $result = sqrt(array_sum($distances));
 
@@ -484,7 +657,7 @@ class ComponentDistance extends Model
         $ram = $component_1->type == 'RAM' ? $component_1 : $component_2;
         $psu = $component_1->type == 'PSU' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($ram,$psu);
+        $distances = self::ComponentSimilarity($ram, $psu);
 
         $result = sqrt(array_sum($distances));
 
@@ -496,7 +669,7 @@ class ComponentDistance extends Model
         $ram = $component_1->type == 'RAM' ? $component_1 : $component_2;
         $computer_case = $component_1->type == 'Computer Case' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($ram,$computer_case);
+        $distances = self::ComponentSimilarity($ram, $computer_case);
 
         $result = sqrt(array_sum($distances));
 
@@ -508,7 +681,7 @@ class ComponentDistance extends Model
         $storage = $component_1->type == 'Storage' ? $component_1 : $component_2;
         $psu = $component_1->type == 'PSU' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($storage,$psu);
+        $distances = self::ComponentSimilarity($storage, $psu);
 
         $result = sqrt(array_sum($distances));
 
@@ -520,7 +693,7 @@ class ComponentDistance extends Model
         $storage = $component_1->type == 'Storage' ? $component_1 : $component_2;
         $computer_case = $component_1->type == 'Computer Case' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($storage,$computer_case);
+        $distances = self::ComponentSimilarity($storage, $computer_case);
 
         $result = sqrt(array_sum($distances));
 
@@ -532,7 +705,7 @@ class ComponentDistance extends Model
         $psu = $component_1->type == 'PSU' ? $component_1 : $component_2;
         $computer_case = $component_1->type == 'Computer Case' ? $component_1 : $component_2;
 
-        $distances = self::ComponentSimilarity($psu,$computer_case);
+        $distances = self::ComponentSimilarity($psu, $computer_case);
 
         $result = sqrt(array_sum($distances));
 
