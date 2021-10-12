@@ -22,10 +22,10 @@ class BuildProduct extends Model
         'owned'
     ];
 
-    public function builds(){
+    public function build(){
         return $this->belongsTo(Build::class);
     }
-    public function products(){
+    public function product(){
         return $this->belongsTo(Product::class);
     }
 }

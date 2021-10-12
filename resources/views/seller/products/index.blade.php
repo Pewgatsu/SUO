@@ -78,7 +78,11 @@
                                     <tbody>
                                     @foreach($motherboard_components as $motherboard_component)
                                         <tr>
-                                            <td>{{ $motherboard_component->name }}</td>
+                                            <td>
+                                                <a href="{{ route('seller.products.motherboards.order', $motherboard_component) }}">
+                                                    {{ $motherboard_component->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $motherboard_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $motherboard_component->getProductsCount($store) }}</td>
                                             <td>{{ $motherboard_component->getProductsSold($store) }}</td>
@@ -138,7 +142,11 @@
                                     <tbody>
                                     @foreach($cpu_components as $cpu_component)
                                         <tr>
-                                            <td>{{ $cpu_component->name }}</td>
+                                            <td>
+                                                <a href="{{ route('seller.products.cpus.order', $cpu_component) }}">
+                                                    {{ $cpu_component->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $cpu_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $cpu_component->getProductsCount($store) }}</td>
                                             <td>{{ $cpu_component->getProductsSold($store) }}</td>
@@ -196,7 +204,11 @@
                                     <tbody>
                                     @foreach($cpu_cooler_components as $cpu_cooler_component)
                                         <tr>
-                                            <td>{{ $cpu_cooler_component->name }}</td>
+                                            <td>
+                                                <a href="{{ route('seller.products.cpu_coolers.order', $cpu_cooler_component) }}">
+                                                    {{ $cpu_cooler_component->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $cpu_cooler_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $cpu_cooler_component->getProductsCount($store) }}</td>
                                             <td>{{ $cpu_cooler_component->getProductsSold($store) }}</td>
@@ -255,7 +267,11 @@
                                     <tbody>
                                     @foreach($graphics_card_components as $graphics_card_component)
                                         <tr>
-                                            <td>{{ $graphics_card_component->name }}</td>
+                                            <td>
+                                                <a href="{{ route('seller.products.graphics_cards.order', $graphics_card_component) }}">
+                                                    {{ $graphics_card_component->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $graphics_card_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $graphics_card_component->getProductsCount($store) }}</td>
                                             <td>{{ $graphics_card_component->getProductsSold($store) }}</td>
@@ -316,7 +332,11 @@
                                     <tbody>
                                     @foreach($ram_components as $ram_component)
                                         <tr>
-                                            <td>{{ $ram_component->name }}</td>
+                                            <td>
+                                                <a href="{{ route('seller.products.rams.order', $ram_component) }}">
+                                                    {{ $ram_component->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $ram_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $ram_component->getProductsCount($store) }}</td>
                                             <td>{{ $ram_component->getProductsSold($store) }}</td>
@@ -374,7 +394,11 @@
                                     <tbody>
                                     @foreach($storage_components as $storage_component)
                                         <tr>
-                                            <td>{{ $storage_component->name }}</td>
+                                            <td>
+                                                <a href="{{ route('seller.products.storages.order', $storage_component) }}">
+                                                    {{ $storage_component->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $storage_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $storage_component->getProductsCount($store) }}</td>
                                             <td>{{ $storage_component->getProductsSold($store) }}</td>
@@ -433,7 +457,11 @@
                                     <tbody>
                                     @foreach($psu_components as $psu_component)
                                         <tr>
-                                            <td>{{ $psu_component->name }}</td>
+                                            <td>
+                                                <a href="{{ route('seller.products.psus.order', $psu_component) }}">
+                                                    {{ $psu_component->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $psu_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $psu_component->getProductsCount($store) }}</td>
                                             <td>{{ $psu_component->getProductsSold($store) }}</td>
@@ -491,7 +519,11 @@
                                     <tbody>
                                     @foreach($computer_case_components as $computer_case_component)
                                         <tr>
-                                            <td>{{ $computer_case_component->name }}</td>
+                                            <td>
+                                                <a href="{{ route('seller.products.computer_cases.order', $computer_case_component) }}">
+                                                    {{ $computer_case_component->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $computer_case_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $computer_case_component->getProductsCount($store) }}</td>
                                             <td>{{ $computer_case_component->getProductsSold($store) }}</td>
