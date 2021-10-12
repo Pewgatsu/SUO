@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'banner' => 'lemtech_banner.jpg',
             'name' => 'LemTech',
             'address' => 'Makati City, Philippines',
-            'location' => '14.556586, 121.023415',
+            'location' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30894.236870647394!2d121.01568022268934!3d14.554592049223142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90264a0ed01%3A0x2b066ed57830cace!2sMakati%2C%20Kalakhang%20Maynila!5e0!3m2!1sfil!2sph!4v1634046800436!5m2!1sfil!2sph',
             'description' => 'Your PC Components Shopping Cart',
             'created_at' => $date,
             'updated_at' => $date,
