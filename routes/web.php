@@ -198,10 +198,19 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::post('products/graphics_cards/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.graphics_cards.orders.accept');
             Route::post('products/rams/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.rams.orders.accept');
             Route::post('products/storages/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.storages.orders.accept');
-            Route::post('products/psus/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.psus.orders.edit');
+            Route::post('products/psus/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.psus.orders.accept');
             Route::post('products/computer_cases/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.computer_cases.orders.accept');
-        });
 
+            // Cancel Order
+            Route::post('products/motherboards/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.motherboards.orders.cancel');
+            Route::post('products/cpus/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.cpus.orders.cancel');
+            Route::post('products/cpu_coolers/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.cpu_coolers.orders.cancel');
+            Route::post('products/graphics_cards/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.graphics_cards.orders.cancel');
+            Route::post('products/rams/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.rams.orders.cancel');
+            Route::post('products/storages/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.storages.orders.cancel');
+            Route::post('products/psus/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.psus.orders.cancel');
+            Route::post('products/computer_cases/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.computer_cases.orders.cancel');
+        });
     });
 });
 
