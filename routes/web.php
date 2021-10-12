@@ -120,7 +120,6 @@ Route::group(['middleware' => 'is_active'], function(){
         Route::group(['prefix' => 'seller','middleware' => 'is_seller'], function (){
             //Seller
             Route::get('store', [StoreController::class, 'myStore'])->name('myStore');
-            Route::get('{id}', [StoreController::class, 'index'])->name('viewStore');
             Route::any('edit/store/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
             Route::get('edit/store', [EditStoreController::class, 'index'])->name('editStore');
 
@@ -257,6 +256,9 @@ Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('about
 
 // Detailed Product Page
 Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('componentinfo');
+
+// Store Page
+Route::get('/seller/{id}', [StoreController::class, 'index'])->name('viewStore');
 
 Route::get('/products/motherboards/info/{id}', [ProductsInfoController::class, 'index'])->name('product.motherboards.info');
 Route::get('/products/cpus/info/{id}', [ProductsInfoController::class, 'index'])->name('product.cpus.info');
