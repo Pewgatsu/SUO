@@ -266,11 +266,11 @@ class SystemBuilderController extends Controller
 
         $time =Carbon::now()->toDateTimeString();
 
-        $product->build_products[0]->status= "ordered";
-        $product->status="ordered";
+        $product->build_products[0]->status= "Ordered";
+        $product->status="Ordered";
         $product->status_date = $time;
         $product->build_products[0]->status_date = $time;
-        
+
         $product->build_products[0]->save();
         $product->save();
 
