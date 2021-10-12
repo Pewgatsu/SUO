@@ -173,7 +173,7 @@ class SystemBuilderController extends Controller
     }
 
     public function unset(Request $request){
-        session()->forget(['motherboards', 'cpus','cpu_coolers','graphics_cards','rams','storages','psus','computer_cases']);
+        session()->forget(['motherboards', 'cpus','cpu_coolers','graphics_cards','rams','storages','psus','computer_cases','buildInfo']);
     }
 
 
@@ -284,13 +284,13 @@ class SystemBuilderController extends Controller
         //dd($request);
         //dd($build->products[0]->component->name);
         //dd($build->products[0]);
-        //dd($build->build_product[0]->owned);
+        //dd($build->build_products);
         foreach ($build->products as $key=>$p){
             $this->product_session($p->type,
                                     $build->products[$key]->id,
                                     $build->products[$key]->component->name ,
                                     $build->products[$key]->price,
-                                    (int)$build->build_product[$key]->owned);
+                                    (int)$build->build_products[$key]->owned);
         }
 
         return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
