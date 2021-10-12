@@ -213,6 +213,16 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::post('products/storages/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.storages.orders.cancel');
             Route::post('products/psus/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.psus.orders.cancel');
             Route::post('products/computer_cases/orders/{component}/cancel/{product}', [OrdersController::class, 'cancel_order'])->name('seller.products.computer_cases.orders.cancel');
+
+            // Done Order
+            Route::post('products/motherboards/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.motherboards.orders.done');
+            Route::post('products/cpus/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.cpus.orders.done');
+            Route::post('products/cpu_coolers/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.cpu_coolers.orders.done');
+            Route::post('products/graphics_cards/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.graphics_cards.orders.done');
+            Route::post('products/rams/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.rams.orders.done');
+            Route::post('products/storages/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.storages.orders.done');
+            Route::post('products/psus/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.psus.orders.done');
+            Route::post('products/computer_cases/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.computer_cases.orders.done');
         });
     });
 });
