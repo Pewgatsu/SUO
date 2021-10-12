@@ -6,6 +6,7 @@ use App\Models\Component;
 use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class OrdersController extends Controller
 {
@@ -97,7 +98,32 @@ class OrdersController extends Controller
         ]);
     }
 
-    public function delete_product(Component $component, Product $product){
+    public function edit_product(Component $component, Product $product, Request $request){
+        // Validate
+        $validator = Validator::make($request->all(), [
+            'product_price' => 'required|numeric|min:0',
+            'product_description' => 'nullable|string'
+        ]);
+
+        $type = str_replace(' ','_',strtolower($product->type));
+
+        if ($validator->fails()){
+            return back()->with('modal_id', 'edit_'.$type.'_product_'.$product->id)->withErrors($validator)->withInput();
+        }
+
+        $validator->validate();
+
+        $product->price = $request->product_price;
+        $product->description = $request->product_description;
+
+        if ($product->isDirty()){
+            $product->save();
+        }
+
+        return back();
+    }
+
+    public function delete_product(Component $component, Product $product, Request $request){
         $product->delete();
         return back();
     }

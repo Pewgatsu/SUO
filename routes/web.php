@@ -171,6 +171,16 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::get('products/psus/orders/{component}', [OrdersController::class, 'index_psus'])->name('seller.products.psus.order');
             Route::get('products/computer_cases/orders/{component}', [OrdersController::class, 'index_computer_cases'])->name('seller.products.computer_cases.order');
 
+            // Edit Product
+            Route::post('products/motherboards/orders/{component}/edit/{product}', [OrdersController::class, 'edit_product'])->name('seller.products.motherboards.orders.edit');
+            Route::post('products/cpus/orders/{component}/edit/{product}', [OrdersController::class, 'edit_product'])->name('seller.products.cpus.orders.edit');
+            Route::post('products/cpu_coolers/orders/{component}/edit/{product}', [OrdersController::class, 'edit_product'])->name('seller.products.cpu_coolers.orders.edit');
+            Route::post('products/graphics_cards/orders/{component}/edit/{product}', [OrdersController::class, 'edit_product'])->name('seller.products.graphics_cards.orders.edit');
+            Route::post('products/rams/orders/{component}/edit/{product}', [OrdersController::class, 'edit_product'])->name('seller.products.rams.orders.edit');
+            Route::post('products/storages/orders/{component}/edit/{product}', [OrdersController::class, 'edit_product'])->name('seller.products.storages.orders.edit');
+            Route::post('products/psus/orders/{component}/edit/{product}', [OrdersController::class, 'edit_product'])->name('seller.products.psus.orders.edit');
+            Route::post('products/computer_cases/orders/{component}/edit/{product}', [OrdersController::class, 'edit_product'])->name('seller.products.computer_cases.orders.edit');
+
             // Delete Product
             Route::delete('products/motherboards/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.motherboards.orders.delete');
             Route::delete('products/cpus/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.cpus.orders.delete');

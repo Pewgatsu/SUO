@@ -26,6 +26,15 @@
         </div>
     </div>
 
+    <!-- Modals -->
+    @if(count($errors) > 0)
+        <script>
+            $(document).ready(function () {
+                $('#{{ session('modal_id') }}').modal('show');
+            });
+        </script>
+    @endif
+
     <div class="mb-3">
         <div class="container">
             <div class="card">
@@ -40,6 +49,7 @@
                                         <th>Customer Name</th>
                                         <th>Product Status</th>
                                         <th>Status Date</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -53,9 +63,13 @@
                                             </td>
                                             <td>{{ $motherboard_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($motherboard_product->status_date)->diffForHumans() }}</td>
+                                            <td>&#8369;{{ number_format($motherboard_product->price,2)  }}</td>
                                             <td>
                                                 @if($motherboard_product->status == 'Available')
-                                                    <button type="button" class="btn btn-info">Edit</button>
+                                                    <!-- Edit Motherboard Product -->
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                            data-bs-target="#edit_motherboard_product_{{ $motherboard_product->id }}">Edit</button>
+                                                    <!-- Delete Motherboard Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_motherboard_product_{{ $motherboard_product->id }}">
                                                         Delete
@@ -74,11 +88,17 @@
 
                                         @if($motherboard_product->status == 'Available')
 
+                                            <!-- Edit Motherboard Product -->
+                                            <x-order.edit-product type="Motherboard" :component="$component"
+                                                                    :product="$motherboard_product" />
+
                                             <!-- Delete Motherboard Product -->
                                             <x-order.delete-product type="Motherboard" :component="$component"
                                                                     :product="$motherboard_product"/>
 
                                         @elseif($motherboard_product->status == 'Ordered')
+
+
 
                                         @elseif($motherboard_product->status == 'Confirmed')
 
@@ -102,6 +122,7 @@
                                         <th>Customer Name</th>
                                         <th>Product Status</th>
                                         <th>Status Date</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -115,9 +136,12 @@
                                             </td>
                                             <td>{{ $cpu_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($cpu_product->status_date)->diffForHumans() }}</td>
+                                            <td>&#8369;{{ number_format($cpu_product->price,2)  }}</td>
                                             <td>
                                                 @if($cpu_product->status == 'Available')
-                                                    <button type="button" class="btn btn-info">Edit</button>
+                                                    <!-- Edit CPU Product -->
+                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_cpu_product_{{ $cpu_product->id }}">Edit</button>
                                                     <!-- Delete CPU Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_cpu_product_{{ $cpu_product->id }}">
@@ -136,6 +160,10 @@
                                         </tr>
 
                                         @if($cpu_product->status == 'Available')
+
+                                            <!-- Edit CPU Product -->
+                                            <x-order.edit-product type="CPU" :component="$component"
+                                                                  :product="$cpu_product" />
 
                                             <!-- Delete CPU Product -->
                                             <x-order.delete-product type="CPU" :component="$component"
@@ -165,6 +193,7 @@
                                         <th>Customer Name</th>
                                         <th>Product Status</th>
                                         <th>Status Date</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -178,9 +207,12 @@
                                             </td>
                                             <td>{{ $cpu_cooler_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($cpu_cooler_product->status_date)->diffForHumans() }}</td>
+                                            <td>&#8369;{{ number_format($cpu_cooler_product->price,2)  }}</td>
                                             <td>
                                                 @if($cpu_cooler_product->status == 'Available')
-                                                    <button type="button" class="btn btn-info">Edit</button>
+                                                    <!-- Edit CPU Cooler Product -->
+                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Edit</button>
                                                     <!-- Delete CPU Cooler Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_cpu_cooler_product_{{ $cpu_cooler_product->id }}">
@@ -199,6 +231,10 @@
                                         </tr>
 
                                         @if($cpu_cooler_product->status == 'Available')
+
+                                            <!-- Edit CPU Cooler Product -->
+                                            <x-order.edit-product type="CPU Cooler" :component="$component"
+                                                                  :product="$cpu_cooler_product" />
 
                                             <!-- Delete CPU Cooler Product -->
                                             <x-order.delete-product type="CPU Cooler" :component="$component"
@@ -228,6 +264,7 @@
                                         <th>Customer Name</th>
                                         <th>Product Status</th>
                                         <th>Status Date</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -241,9 +278,12 @@
                                             </td>
                                             <td>{{ $graphics_card_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($graphics_card_product->status_date)->diffForHumans() }}</td>
+                                            <td>&#8369;{{ number_format($graphics_card_product->price,2)  }}</td>
                                             <td>
                                                 @if($graphics_card_product->status == 'Available')
-                                                    <button type="button" class="btn btn-info">Edit</button>
+                                                    <!-- Edit Graphics Card Product -->
+                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_graphics_card_product_{{ $graphics_card_product->id }}">Edit</button>
                                                     <!-- Delete Graphics Card Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_graphics_card_product_{{ $graphics_card_product->id }}">
@@ -262,6 +302,10 @@
                                         </tr>
 
                                         @if($graphics_card_product->status == 'Available')
+
+                                            <!-- Edit Graphics Card Product -->
+                                            <x-order.edit-product type="Graphics Card" :component="$component"
+                                                                  :product="$graphics_card_product" />
 
                                             <!-- Delete Graphics Card Product -->
                                             <x-order.delete-product type="Graphics Card" :component="$component"
@@ -291,6 +335,7 @@
                                         <th>Customer Name</th>
                                         <th>Product Status</th>
                                         <th>Status Date</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -304,9 +349,12 @@
                                             </td>
                                             <td>{{ $ram_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($ram_product->status_date)->diffForHumans() }}</td>
+                                            <td>&#8369;{{ number_format($ram_product->price,2)  }}</td>
                                             <td>
                                                 @if($ram_product->status == 'Available')
-                                                    <button type="button" class="btn btn-info">Edit</button>
+                                                    <!-- Edit RAM Product -->
+                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_ram_product_{{ $ram_product->id }}">Edit</button>
                                                     <!-- Delete RAM Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_ram_product_{{ $ram_product->id }}">
@@ -325,6 +373,10 @@
                                         </tr>
 
                                         @if($ram_product->status == 'Available')
+
+                                            <!-- Edit RAM Product -->
+                                            <x-order.edit-product type="RAM" :component="$component"
+                                                                  :product="$ram_product" />
 
                                             <!-- Delete RAM Product -->
                                             <x-order.delete-product type="RAM" :component="$component"
@@ -354,6 +406,7 @@
                                         <th>Customer Name</th>
                                         <th>Product Status</th>
                                         <th>Status Date</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -367,9 +420,12 @@
                                             </td>
                                             <td>{{ $storage_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($storage_product->status_date)->diffForHumans() }}</td>
+                                            <td>&#8369;{{ number_format($storage_product->price,2)  }}</td>
                                             <td>
                                                 @if($storage_product->status == 'Available')
-                                                    <button type="button" class="btn btn-info">Edit</button>
+                                                    <!-- Edit Storage Product -->
+                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_storage_product_{{ $storage_product->id }}">Edit</button>
                                                     <!-- Delete Storage Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_storage_product_{{ $storage_product->id }}">
@@ -388,6 +444,10 @@
                                         </tr>
 
                                         @if($storage_product->status == 'Available')
+
+                                            <!-- Edit Storage Product -->
+                                            <x-order.edit-product type="Storage" :component="$component"
+                                                                  :product="$storage_product" />
 
                                             <!-- Delete Storage Product -->
                                             <x-order.delete-product type="Storage" :component="$component"
@@ -417,6 +477,7 @@
                                         <th>Customer Name</th>
                                         <th>Product Status</th>
                                         <th>Status Date</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -430,9 +491,12 @@
                                             </td>
                                             <td>{{ $psu_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($psu_product->status_date)->diffForHumans() }}</td>
+                                            <td>&#8369;{{ number_format($psu_product->price,2)  }}</td>
                                             <td>
                                                 @if($psu_product->status == 'Available')
-                                                    <button type="button" class="btn btn-info">Edit</button>
+                                                    <!-- Edit PSU Product -->
+                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_psu_product_{{ $psu_product->id }}">Edit</button>
                                                     <!-- Delete PSU Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_psu_product_{{ $psu_product->id }}">
@@ -451,6 +515,10 @@
                                         </tr>
 
                                         @if($psu_product->status == 'Available')
+
+                                            <!-- Edit PSU Product -->
+                                            <x-order.edit-product type="PSU" :component="$component"
+                                                                  :product="$psu_product" />
 
                                             <!-- Delete PSU Product -->
                                             <x-order.delete-product type="PSU" :component="$component"
@@ -480,6 +548,7 @@
                                         <th>Customer Name</th>
                                         <th>Product Status</th>
                                         <th>Status Date</th>
+                                        <th>Price</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -493,9 +562,12 @@
                                             </td>
                                             <td>{{ $computer_case_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($computer_case_product->status_date)->diffForHumans() }}</td>
+                                            <td>&#8369;{{ number_format($computer_case_product->price,2)  }}</td>
                                             <td>
                                                 @if($computer_case_product->status == 'Available')
-                                                    <button type="button" class="btn btn-info">Edit</button>
+                                                    <!-- Edit Computer Case Product -->
+                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_computer_case_product_{{ $computer_case_product->id }}">Edit</button>
                                                     <!-- Delete Computer Case Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_computer_case_product_{{ $computer_case_product->id }}">
@@ -514,6 +586,10 @@
                                         </tr>
 
                                         @if($computer_case_product->status == 'Available')
+
+                                            <!-- Edit Computer Case Product -->
+                                            <x-order.edit-product type="Computer Case" :component="$component"
+                                                                  :product="$computer_case_product" />
 
                                             <!-- Delete Computer Case Product -->
                                             <x-order.delete-product type="Computer Case" :component="$component"
