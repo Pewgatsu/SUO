@@ -158,4 +158,19 @@ class OrdersController extends Controller
 
         return back();
     }
+
+    public function done_order(Component $component, Product $product, Request $request){
+        $build_product = $product->build_products->where('status','Confirmed')->first();
+
+        $product->status = 'Sold Out';
+        $product->status_date = Carbon::now()->toDateTimeString();
+
+        $build_product->status = $product->status;
+        $build_product->status_date = $product->status_date;
+
+        $product->save();
+        $build_product->save();
+
+        return back();
+    }
 }
