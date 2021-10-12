@@ -29,7 +29,7 @@ class Product extends Model
         return $this->belongsTo(Store::class);
     }
 
-    public function build_product(){
+    public function build_products(){
         return $this->hasMany(BuildProduct::class);
     }
 
@@ -37,5 +37,7 @@ class Product extends Model
         return $this->belongsToMany(Build::class, 'build_products', 'product_id', 'build_id');
     }
 
-
+    public function getCustomer(){
+        return $this->build_products->where('status','Ordered')->first()->build->account->username;
+    }
 }

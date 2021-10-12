@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditStoreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserProfileController;
@@ -159,6 +160,26 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::delete('products/storages/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.storages.delete');
             Route::delete('products/psus/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.psus.delete');
             Route::delete('products/computer_cases/delete/{component}', [ProductsController::class, 'delete_component'])->name('seller.products.computer_cases.delete');
+
+            // Order Products
+            Route::get('products/motherboards/orders/{component}', [OrdersController::class, 'index_motherboards'])->name('seller.products.motherboards.order');
+            Route::get('products/cpus/orders/{component}', [OrdersController::class, 'index_cpus'])->name('seller.products.cpus.order');
+            Route::get('products/cpu_coolers/orders/{component}', [OrdersController::class, 'index_cpu_coolers'])->name('seller.products.cpu_coolers.order');
+            Route::get('products/graphics_cards/orders/{component}', [OrdersController::class, 'index_graphics_cards'])->name('seller.products.graphics_cards.order');
+            Route::get('products/rams/orders/{component}', [OrdersController::class, 'index_rams'])->name('seller.products.rams.order');
+            Route::get('products/storages/orders/{component}', [OrdersController::class, 'index_storages'])->name('seller.products.storages.order');
+            Route::get('products/psus/orders/{component}', [OrdersController::class, 'index_psus'])->name('seller.products.psus.order');
+            Route::get('products/computer_cases/orders/{component}', [OrdersController::class, 'index_computer_cases'])->name('seller.products.computer_cases.order');
+
+            // Delete Product
+            Route::delete('products/motherboards/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.motherboards.orders.delete');
+            Route::delete('products/cpus/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.cpus.orders.delete');
+            Route::delete('products/cpu_coolers/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.cpu_coolers.orders.delete');
+            Route::delete('products/graphics_cards/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.graphics_cards.orders.delete');
+            Route::delete('products/rams/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.rams.orders.delete');
+            Route::delete('products/storages/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.storages.orders.delete');
+            Route::delete('products/psus/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.psus.orders.delete');
+            Route::delete('products/computer_cases/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.computer_cases.orders.delete');
         });
 
     });
