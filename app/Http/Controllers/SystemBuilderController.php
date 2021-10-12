@@ -7,7 +7,7 @@ use App\Models\BuildProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -36,7 +36,12 @@ class SystemBuilderController extends Controller
 
     public function control(Request $request){
         if($request->exists('orderComponents')){
-            $this->orderComponent($request);
+            $component = $request->input('orderComponents');
+
+            $product_id = session($component.'.id');
+            $details = Product::with('build_products')->findOrFail($product_id);
+
+            $this->orderComponent($details);
         }elseif($request->exists('buildName')){
             return $this->saveBuild($request);
         }elseif($request->exists('hold')){
@@ -256,20 +261,19 @@ class SystemBuilderController extends Controller
 
     }
 
-    public function orderComponent(Request $request){
-        $component = $request->input('orderComponents');
 
-        switch ($component){
-            case "cpus":
-            case "motherboards":
-            case "cpu_coolers":
-            case "graphics_cards":
-            case "rams":
-            case "storages":
-            case "psus":
-            case "computer_cases":
-                break;
-        }
+    public function orderComponent(Product $product){
+
+        $time =Carbon::now()->toDateTimeString();
+
+        $product->build_products[0]->status= "ordered";
+        $product->status="ordered";
+        $product->status_date = $time;
+        $product->build_products[0]->status_date = $time;
+        
+        $product->build_products[0]->save();
+        $product->save();
+
     }
 
     public function edit_build(Build $build)
