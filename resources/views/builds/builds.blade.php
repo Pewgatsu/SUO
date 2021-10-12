@@ -35,12 +35,12 @@
                                 @foreach($builds as $build)
                                     <tr>
                                         <td>{{ $build->build_name }}</td>
-                                        <td>{{ $build->created_at }}</td>
-                                        <td>{{ $build->updated_at }}</td>
+                                        <td>{{date('M d Y', strtotime($build->created_at))}}</td>
+                                        <td>{{date('M d Y', strtotime($build->updated_at))}}</td>
                                         <td>&#8369;{{ number_format($build->total_price,2)  }}</td>
                                         <td>
                                             <button type="button" class="btn btn-info" value="{{ $build->id }}"
-                                                onclick="window.location='{{ route('consumer.builds.edit',$build->id) }}'">
+                                                    onclick="window.location='{{ route('consumer.builds.edit',$build->id) }}'">
                                                 Edit
                                             </button>
                                             <button type="button" class="btn btn-danger"  data-bs-toggle="modal"
