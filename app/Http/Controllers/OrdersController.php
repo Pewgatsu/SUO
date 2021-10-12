@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Component;
 use App\Models\Product;
 use App\Models\Store;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -125,6 +126,20 @@ class OrdersController extends Controller
 
     public function delete_product(Component $component, Product $product, Request $request){
         $product->delete();
+        return back();
+    }
+
+    public function accept_order(Component $component, Product $product, Request $request){
+        $build_product = $product->build_products->where('status','Ordered')->first();
+
+        $product->status = 'Confirmed';
+        $product->status_date = Carbon::now()->toDateTimeString();
+
+        $build_product->status = 'Confirmed';
+        $build_product->status = $product->status_date;
+
+        $product->save();
+
         return back();
     }
 }

@@ -37,7 +37,8 @@ class Product extends Model
         return $this->belongsToMany(Build::class, 'build_products', 'product_id', 'build_id');
     }
 
-    public function getCustomer(){
-        return $this->build_products->where('status','Ordered')->first()->build->account->username;
+    public function getCustomerFullName(){
+        $account =  $this->build_products->where('status','!=','Available')->first()->build->account;
+        return $account->firstname . ' ' . $account->lastname;
     }
 }
