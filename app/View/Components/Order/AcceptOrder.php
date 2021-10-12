@@ -37,7 +37,7 @@ class AcceptOrder extends Component
             case 'Storage':
                 return 'accept_storage_product_' . $this->product->id;
             case 'PSU':
-                return 'delete_psu_product_' . $this->product->id;
+                return 'accept_psu_product_' . $this->product->id;
             case 'Computer Case':
                 return 'accept_computer_case_product_' . $this->product->id;
             default:

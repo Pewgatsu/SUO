@@ -78,10 +78,14 @@
                                                     <!-- Accept Order -->
                                                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                             data-bs-target="#accept_motherboard_product_{{ $motherboard_product->id }}">Accept</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_motherboard_product_{{ $motherboard_product->id }}">Cancel</button>
                                                 @elseif($motherboard_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_motherboard_product_{{ $motherboard_product->id }}">Cancel</button>
                                                 @elseif($motherboard_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -104,7 +108,15 @@
                                             <x-order.accept-order type="Motherboard" :component="$component"
                                                                     :product="$motherboard_product" />
 
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="Motherboard" :component="$component"
+                                                                  :product="$motherboard_product" />
+
                                         @elseif($motherboard_product->status == 'Confirmed')
+
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="Motherboard" :component="$component"
+                                                                  :product="$motherboard_product" />
 
                                         @elseif($motherboard_product->status == 'Sold Out')
 
@@ -155,10 +167,14 @@
                                                     <!-- Accept Order -->
                                                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                             data-bs-target="#accept_cpu_product_{{ $cpu_product->id }}">Accept</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_cpu_product_{{ $cpu_product->id }}">Cancel</button>
                                                 @elseif($cpu_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_cpu_product_{{ $cpu_product->id }}">Cancel</button>
                                                 @elseif($cpu_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -181,7 +197,15 @@
                                             <x-order.accept-order type="CPU" :component="$component"
                                                                   :product="$cpu_product" />
 
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="CPU" :component="$component"
+                                                                  :product="$cpu_product" />
+
                                         @elseif($cpu_product->status == 'Confirmed')
+
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="CPU" :component="$component"
+                                                                  :product="$cpu_product" />
 
                                         @elseif($cpu_product->status == 'Sold Out')
 
@@ -232,10 +256,14 @@
                                                     <!-- Accept Order -->
                                                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                             data-bs-target="#accept_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Accept</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Cancel</button>
                                                 @elseif($cpu_cooler_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Cancel</button>
                                                 @elseif($cpu_cooler_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -258,7 +286,15 @@
                                             <x-order.accept-order type="CPU Cooler" :component="$component"
                                                                   :product="$cpu_cooler_product" />
 
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="CPU Cooler" :component="$component"
+                                                                  :product="$cpu_cooler_product" />
+
                                         @elseif($cpu_cooler_product->status == 'Confirmed')
+
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="CPU Cooler" :component="$component"
+                                                                  :product="$cpu_cooler_product" />
 
                                         @elseif($cpu_cooler_product->status == 'Sold Out')
 
@@ -309,10 +345,14 @@
                                                     <!-- Accept Order -->
                                                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                             data-bs-target="#accept_graphics_card_product_{{ $graphics_card_product->id }}">Accept</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_graphics_card_product_{{ $graphics_card_product->id }}">Cancel</button>
                                                 @elseif($graphics_card_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_graphics_card_product_{{ $graphics_card_product->id }}">Cancel</button>
                                                 @elseif($graphics_card_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -335,7 +375,15 @@
                                             <x-order.accept-order type="Graphics Card" :component="$component"
                                                                   :product="$graphics_card_product" />
 
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="Graphics Card" :component="$component"
+                                                                  :product="$graphics_card_product" />
+
                                         @elseif($graphics_card_product->status == 'Confirmed')
+
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="Graphics Card" :component="$component"
+                                                                  :product="$graphics_card_product" />
 
                                         @elseif($graphics_card_product->status == 'Sold Out')
 
@@ -386,10 +434,14 @@
                                                     <!-- Accept Order -->
                                                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                             data-bs-target="#accept_ram_product_{{ $ram_product->id }}">Accept</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_ram_product_{{ $ram_product->id }}">Cancel</button>
                                                 @elseif($ram_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_ram_product_{{ $ram_product->id }}">Cancel</button>
                                                 @elseif($ram_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -412,7 +464,15 @@
                                             <x-order.accept-order type="RAM" :component="$component"
                                                                   :product="$ram_product" />
 
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="RAM" :component="$component"
+                                                                  :product="$ram_product" />
+
                                         @elseif($ram_product->status == 'Confirmed')
+
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="RAM" :component="$component"
+                                                                  :product="$ram_product" />
 
                                         @elseif($ram_product->status == 'Sold Out')
 
@@ -463,10 +523,14 @@
                                                     <!-- Accept Order -->
                                                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                             data-bs-target="#accept_storage_product_{{ $storage_product->id }}">Accept</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_storage_product_{{ $storage_product->id }}">Cancel</button>
                                                 @elseif($storage_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_storage_product_{{ $storage_product->id }}">Cancel</button>
                                                 @elseif($storage_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -489,7 +553,15 @@
                                             <x-order.accept-order type="Storage" :component="$component"
                                                                   :product="$storage_product" />
 
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="Storage" :component="$component"
+                                                                  :product="$storage_product" />
+
                                         @elseif($storage_product->status == 'Confirmed')
+
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="Storage" :component="$component"
+                                                                  :product="$storage_product" />
 
                                         @elseif($storage_product->status == 'Sold Out')
 
@@ -540,10 +612,14 @@
                                                     <!-- Accept Order -->
                                                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                             data-bs-target="#accept_psu_product_{{ $psu_product->id }}">Accept</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_psu_product_{{ $psu_product->id }}">Cancel</button>
                                                 @elseif($psu_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_psu_product_{{ $psu_product->id }}">Cancel</button>
                                                 @elseif($psu_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -566,7 +642,15 @@
                                             <x-order.accept-order type="PSU" :component="$component"
                                                                   :product="$psu_product" />
 
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="PSU" :component="$component"
+                                                                  :product="$psu_product" />
+
                                         @elseif($psu_product->status == 'Confirmed')
+
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="PSU" :component="$component"
+                                                                  :product="$psu_product" />
 
                                         @elseif($psu_product->status == 'Sold Out')
 
@@ -617,10 +701,14 @@
                                                     <!-- Accept Order -->
                                                     <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
                                                             data-bs-target="#accept_computer_case_product_{{ $computer_case_product->id }}">Accept</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_computer_case_product_{{ $computer_case_product->id }}">Cancel</button>
                                                 @elseif($computer_case_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
-                                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                                    <!-- Cancel Order -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#cancel_computer_case_product_{{ $computer_case_product->id }}">Cancel</button>
                                                 @elseif($computer_case_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -643,7 +731,15 @@
                                             <x-order.accept-order type="Computer Case" :component="$component"
                                                                   :product="$computer_case_product" />
 
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="Computer Case" :component="$component"
+                                                                  :product="$computer_case_product" />
+
                                         @elseif($computer_case_product->status == 'Confirmed')
+
+                                            <!-- Cancel Order -->
+                                            <x-order.cancel-order type="Computer Case" :component="$component"
+                                                                  :product="$computer_case_product" />
 
                                         @elseif($computer_case_product->status == 'Sold Out')
 

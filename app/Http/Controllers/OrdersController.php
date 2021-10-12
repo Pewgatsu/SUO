@@ -135,10 +135,26 @@ class OrdersController extends Controller
         $product->status = 'Confirmed';
         $product->status_date = Carbon::now()->toDateTimeString();
 
-        $build_product->status = 'Confirmed';
-        $build_product->status = $product->status_date;
+        $build_product->status = $product->status;
+        $build_product->status_date = $product->status_date;
 
         $product->save();
+        $build_product->save();
+
+        return back();
+    }
+
+    public function cancel_order(Component $component, Product $product, Request $request){
+        $build_product = $product->build_products->where('status','!=','Available')->first();
+
+        $product->status = 'Available';
+        $product->status_date = Carbon::now()->toDateTimeString();
+
+        $build_product->status = $product->status;
+        $build_product->status_date = $product->status_date;
+
+        $product->save();
+        $build_product->save();
 
         return back();
     }
