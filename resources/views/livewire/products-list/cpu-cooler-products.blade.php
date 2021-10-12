@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                             @foreach($product_cpu_coolers as $product_cpu_cooler)
-                                <tr>
+                                <tr onclick="window.location='{{ route('product.cpu_coolers.info',$product_cpu_cooler->id) }}'">
                                     <td>
                                         @if(isset($product_cpu_cooler->component->image_path))
                                             <img

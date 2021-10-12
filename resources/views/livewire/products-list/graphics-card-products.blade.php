@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                             @foreach($product_graphics_cards as $product_graphics_card)
-                                <tr>
+                                <tr onclick="window.location='{{ route('product.graphics_cards.info',$product_graphics_card->id) }}'">
                                     <td>
                                         @if(isset($product_graphics_card->component->image_path))
                                             <img

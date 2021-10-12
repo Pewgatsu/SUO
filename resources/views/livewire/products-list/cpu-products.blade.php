@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                             @foreach($product_cpus as $product_cpu)
-                                <tr>
+                                <tr onclick="window.location='{{ route('product.cpus.info',$product_cpu->id) }}'">
                                     <td>
                                         @if(isset($product_cpu->component->image_path))
                                             <img

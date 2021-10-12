@@ -10,6 +10,7 @@ use App\Http\Controllers\EditStoreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductsInfoController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UsersController;
@@ -112,11 +113,13 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::delete('components/computer_cases/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.computer_cases.delete');
         });
 
+        Route::get('seller/{id}', [StoreController::class, 'index'])->name('viewStore');
+
         //ROUTE GROUP FOR SELLER
         Route::group(['prefix' => 'seller','middleware' => 'is_seller'], function (){
             //Seller
             Route::get('store', [StoreController::class, 'myStore'])->name('myStore');
-            Route::get('{id}', [StoreController::class, 'index'])->name('viewStore');
+            //Route::get('{id}', [StoreController::class, 'index'])->name('viewStore');
             Route::any('edit/store/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
             Route::get('edit/store', [EditStoreController::class, 'index'])->name('editStore');
 
@@ -194,6 +197,17 @@ Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('about
 
 // Detailed Product Page
 Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('componentinfo');
+
+Route::get('/products/motherboards/info/{id}', [ProductsInfoController::class, 'index'])->name('product.motherboards.info');
+Route::get('/products/cpus/info/{id}', [ProductsInfoController::class, 'index'])->name('product.cpus.info');
+Route::get('/products/cpu_coolers/info/{id}', [ProductsInfoController::class, 'index'])->name('product.cpu_coolers.info');
+Route::get('/products/graphics_cards/info/{id}', [ProductsInfoController::class, 'index'])->name('product.graphics_cards.info');
+Route::get('/products/rams/info/{id}', [ProductsInfoController::class, 'index'])->name('product.rams.info');
+Route::get('/products/storages/info/{id}', [ProductsInfoController::class, 'index'])->name('product.storages.info');
+Route::get('/products/psus/info/{id}', [ProductsInfoController::class, 'index'])->name('product.psus.info');
+Route::get('/products/computer_cases/info/{id}', [ProductsInfoController::class, 'index'])->name('product.computer_cases.info');
+
+Route::get('/products/info/{id}', [ProductsInfoController::class, 'index'])->name('product.info');
 
 //builds
 Route::get('/consumer/builds', [BuildsController::class, 'index'])->name('builds')->middleware('auth');

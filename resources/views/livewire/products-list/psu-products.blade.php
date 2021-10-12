@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                             @foreach($product_psus as $product_psu)
-                                <tr>
+                                <tr onclick="window.location='{{ route('product.psus.info',$product_psu->id) }}'">
                                     <td>
                                         @if(isset($product_psu->component->image_path))
                                             <img
