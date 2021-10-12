@@ -58,7 +58,7 @@
                                         <tr>
                                             <td>
                                                 @if($motherboard_product->status != 'Available')
-                                                    {{$motherboard_product->getCustomer()}}
+                                                    {{$motherboard_product->getCustomerFullName()}}
                                                 @endif
                                             </td>
                                             <td>{{ $motherboard_product->status }}</td>
@@ -75,7 +75,9 @@
                                                         Delete
                                                     </button>
                                                 @elseif($motherboard_product->status == 'Ordered')
-                                                    <button type="button" class="btn btn-secondary">Accept</button>
+                                                    <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                            data-bs-target="#accept_motherboard_product_{{ $motherboard_product->id }}">Accept</button>
                                                     <button type="button" class="btn btn-danger">Cancel</button>
                                                 @elseif($motherboard_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
@@ -98,7 +100,9 @@
 
                                         @elseif($motherboard_product->status == 'Ordered')
 
-
+                                            <!-- Accept Order -->
+                                            <x-order.accept-order type="Motherboard" :component="$component"
+                                                                    :product="$motherboard_product" />
 
                                         @elseif($motherboard_product->status == 'Confirmed')
 
@@ -131,7 +135,7 @@
                                         <tr>
                                             <td>
                                                 @if($cpu_product->status != 'Available')
-                                                    {{$cpu_product->getCustomer()}}
+                                                    {{$cpu_product->getCustomerFullName()}}
                                                 @endif
                                             </td>
                                             <td>{{ $cpu_product->status }}</td>
@@ -148,7 +152,9 @@
                                                         Delete
                                                     </button>
                                                 @elseif($cpu_product->status == 'Ordered')
-                                                    <button type="button" class="btn btn-secondary">Accept</button>
+                                                    <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                            data-bs-target="#accept_cpu_product_{{ $cpu_product->id }}">Accept</button>
                                                     <button type="button" class="btn btn-danger">Cancel</button>
                                                 @elseif($cpu_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
@@ -170,6 +176,10 @@
                                                                     :product="$cpu_product"/>
 
                                         @elseif($cpu_product->status == 'Ordered')
+
+                                            <!-- Accept Order -->
+                                            <x-order.accept-order type="CPU" :component="$component"
+                                                                  :product="$cpu_product" />
 
                                         @elseif($cpu_product->status == 'Confirmed')
 
@@ -202,7 +212,7 @@
                                         <tr>
                                             <td>
                                                 @if($cpu_cooler_product->status != 'Available')
-                                                    {{$cpu_cooler_product->getCustomer()}}
+                                                    {{$cpu_cooler_product->getCustomerFullName()}}
                                                 @endif
                                             </td>
                                             <td>{{ $cpu_cooler_product->status }}</td>
@@ -219,7 +229,9 @@
                                                         Delete
                                                     </button>
                                                 @elseif($cpu_cooler_product->status == 'Ordered')
-                                                    <button type="button" class="btn btn-secondary">Accept</button>
+                                                    <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                            data-bs-target="#accept_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Accept</button>
                                                     <button type="button" class="btn btn-danger">Cancel</button>
                                                 @elseif($cpu_cooler_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
@@ -241,6 +253,10 @@
                                                                     :product="$cpu_cooler_product"/>
 
                                         @elseif($cpu_cooler_product->status == 'Ordered')
+
+                                            <!-- Accept Order -->
+                                            <x-order.accept-order type="CPU Cooler" :component="$component"
+                                                                  :product="$cpu_cooler_product" />
 
                                         @elseif($cpu_cooler_product->status == 'Confirmed')
 
@@ -273,7 +289,7 @@
                                         <tr>
                                             <td>
                                                 @if($graphics_card_product->status != 'Available')
-                                                    {{$graphics_card_product->getCustomer()}}
+                                                    {{$graphics_card_product->getCustomerFullName()}}
                                                 @endif
                                             </td>
                                             <td>{{ $graphics_card_product->status }}</td>
@@ -290,7 +306,9 @@
                                                         Delete
                                                     </button>
                                                 @elseif($graphics_card_product->status == 'Ordered')
-                                                    <button type="button" class="btn btn-secondary">Accept</button>
+                                                    <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                            data-bs-target="#accept_graphics_card_product_{{ $graphics_card_product->id }}">Accept</button>
                                                     <button type="button" class="btn btn-danger">Cancel</button>
                                                 @elseif($graphics_card_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
@@ -312,6 +330,10 @@
                                                                     :product="$graphics_card_product"/>
 
                                         @elseif($graphics_card_product->status == 'Ordered')
+
+                                            <!-- Accept Order -->
+                                            <x-order.accept-order type="Graphics Card" :component="$component"
+                                                                  :product="$graphics_card_product" />
 
                                         @elseif($graphics_card_product->status == 'Confirmed')
 
@@ -344,7 +366,7 @@
                                         <tr>
                                             <td>
                                                 @if($ram_product->status != 'Available')
-                                                    {{$ram_product->getCustomer()}}
+                                                    {{$ram_product->getCustomerFullName()}}
                                                 @endif
                                             </td>
                                             <td>{{ $ram_product->status }}</td>
@@ -361,7 +383,9 @@
                                                         Delete
                                                     </button>
                                                 @elseif($ram_product->status == 'Ordered')
-                                                    <button type="button" class="btn btn-secondary">Accept</button>
+                                                    <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                            data-bs-target="#accept_ram_product_{{ $ram_product->id }}">Accept</button>
                                                     <button type="button" class="btn btn-danger">Cancel</button>
                                                 @elseif($ram_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
@@ -383,6 +407,10 @@
                                                                     :product="$ram_product"/>
 
                                         @elseif($ram_product->status == 'Ordered')
+
+                                            <!-- Accept Order -->
+                                            <x-order.accept-order type="RAM" :component="$component"
+                                                                  :product="$ram_product" />
 
                                         @elseif($ram_product->status == 'Confirmed')
 
@@ -415,7 +443,7 @@
                                         <tr>
                                             <td>
                                                 @if($storage_product->status != 'Available')
-                                                    {{$storage_product->getCustomer()}}
+                                                    {{$storage_product->getCustomerFullName()}}
                                                 @endif
                                             </td>
                                             <td>{{ $storage_product->status }}</td>
@@ -432,7 +460,9 @@
                                                         Delete
                                                     </button>
                                                 @elseif($storage_product->status == 'Ordered')
-                                                    <button type="button" class="btn btn-secondary">Accept</button>
+                                                    <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                            data-bs-target="#accept_storage_product_{{ $storage_product->id }}">Accept</button>
                                                     <button type="button" class="btn btn-danger">Cancel</button>
                                                 @elseif($storage_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
@@ -454,6 +484,10 @@
                                                                     :product="$storage_product"/>
 
                                         @elseif($storage_product->status == 'Ordered')
+
+                                            <!-- Accept Order -->
+                                            <x-order.accept-order type="Storage" :component="$component"
+                                                                  :product="$storage_product" />
 
                                         @elseif($storage_product->status == 'Confirmed')
 
@@ -486,7 +520,7 @@
                                         <tr>
                                             <td>
                                                 @if($psu_product->status != 'Available')
-                                                    {{$psu_product->getCustomer()}}
+                                                    {{$psu_product->getCustomerFullName()}}
                                                 @endif
                                             </td>
                                             <td>{{ $psu_product->status }}</td>
@@ -503,7 +537,9 @@
                                                         Delete
                                                     </button>
                                                 @elseif($psu_product->status == 'Ordered')
-                                                    <button type="button" class="btn btn-secondary">Accept</button>
+                                                    <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                            data-bs-target="#accept_psu_product_{{ $psu_product->id }}">Accept</button>
                                                     <button type="button" class="btn btn-danger">Cancel</button>
                                                 @elseif($psu_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
@@ -525,6 +561,10 @@
                                                                     :product="$psu_product"/>
 
                                         @elseif($psu_product->status == 'Ordered')
+
+                                            <!-- Accept Order -->
+                                            <x-order.accept-order type="PSU" :component="$component"
+                                                                  :product="$psu_product" />
 
                                         @elseif($psu_product->status == 'Confirmed')
 
@@ -557,7 +597,7 @@
                                         <tr>
                                             <td>
                                                 @if($computer_case_product->status != 'Available')
-                                                    {{$computer_case_product->getCustomer()}}
+                                                    {{$computer_case_product->getCustomerFullName()}}
                                                 @endif
                                             </td>
                                             <td>{{ $computer_case_product->status }}</td>
@@ -574,7 +614,9 @@
                                                         Delete
                                                     </button>
                                                 @elseif($computer_case_product->status == 'Ordered')
-                                                    <button type="button" class="btn btn-secondary">Accept</button>
+                                                    <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                            data-bs-target="#accept_computer_case_product_{{ $computer_case_product->id }}">Accept</button>
                                                     <button type="button" class="btn btn-danger">Cancel</button>
                                                 @elseif($computer_case_product->status == 'Confirmed')
                                                     <button type="button" class="btn btn-success">Done</button>
@@ -596,6 +638,10 @@
                                                                     :product="$computer_case_product"/>
 
                                         @elseif($computer_case_product->status == 'Ordered')
+
+                                            <!-- Accept Order -->
+                                            <x-order.accept-order type="Computer Case" :component="$component"
+                                                                  :product="$computer_case_product" />
 
                                         @elseif($computer_case_product->status == 'Confirmed')
 

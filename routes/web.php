@@ -190,6 +190,16 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::delete('products/storages/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.storages.orders.delete');
             Route::delete('products/psus/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.psus.orders.delete');
             Route::delete('products/computer_cases/orders/{component}/delete/{product}', [OrdersController::class, 'delete_product'])->name('seller.products.computer_cases.orders.delete');
+
+            // Accept Order
+            Route::post('products/motherboards/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.motherboards.orders.accept');
+            Route::post('products/cpus/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.cpus.orders.accept');
+            Route::post('products/cpu_coolers/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.cpu_coolers.orders.accept');
+            Route::post('products/graphics_cards/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.graphics_cards.orders.accept');
+            Route::post('products/rams/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.rams.orders.accept');
+            Route::post('products/storages/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.storages.orders.accept');
+            Route::post('products/psus/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.psus.orders.edit');
+            Route::post('products/computer_cases/orders/{component}/accept/{product}', [OrdersController::class, 'accept_order'])->name('seller.products.computer_cases.orders.accept');
         });
 
     });
