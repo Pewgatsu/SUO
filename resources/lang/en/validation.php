@@ -400,6 +400,10 @@ return [
         //Builds
         'buildName' => ' Build Name',
         'buildDescription' => 'Build Description',
+
+        // Product
+        'product_price' => 'Product Price',
+        'product_description' => 'Product Description'
     ],
 
 ];

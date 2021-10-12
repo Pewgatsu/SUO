@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price',17,2);
             $table->string('type');
             $table->string('status');
-            $table->timestamp('status_date');
+            $table->timestamp('status_date')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps('');
         });
