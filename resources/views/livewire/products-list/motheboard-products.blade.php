@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                             @foreach($product_motherboards as $product_motherboard)
-                                <tr>
+                                <tr onclick="window.location='{{ route('product.motherboards.info',$product_motherboard->id) }}'">
                                     <td>
                                         @if(isset($product_motherboard->component->image_path))
                                             <img

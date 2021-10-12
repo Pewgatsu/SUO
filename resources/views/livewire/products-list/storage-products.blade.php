@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                             @foreach($product_storages as $product_storage)
-                                <tr>
+                                <tr onclick="window.location='{{ route('product.storages.info',$product_storage->id) }}'">
                                     <td>
                                         @if(isset($product_storage->component->image_path))
                                             <img

@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                             @foreach($product_computer_cases as $product_computer_case)
-                                <tr>
+                                <tr onclick="window.location='{{ route('product.computer_cases.info',$product_computer_case->id) }}'">
                                     <td>
                                         @if(isset($product_computer_case->component->image_path))
                                             <img
@@ -60,5 +60,4 @@
             </div>
         </div>
     </section>
-
 @endsection

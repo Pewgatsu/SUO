@@ -120,7 +120,7 @@
                                 </div>
                             @else
                                 <div class="map-responsive">
-                                    <iframe src="{{ session('storeInfo.storeLocation') }}" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    <iframe src="{{ session('storeInfo.storeLocation') }}" width="370" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                                 </div>
                             @endif
                         </div>
@@ -144,9 +144,12 @@
                                                      class="card-img img-fluid" width="96" height="350" alt="">
                                             </div>
                                         </div>
-                                        <div class="card-body bg-light text-center">
+                                        <div class="card-body bg-light text-center" >
                                             <div class="mb-2">
-                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.motherboards.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">MOTHERBOARD</a>
+                                                <h6 class="font-weight-semibold mb-2 ">
+                                                    <a href="{{ empty(session('storeInfo.featured_motherboards')) ? '#' :route('product.motherboards.info', ['id' =>session('storeInfo.featured_motherboards') ])}}" class="text-default mb-2" data-abc="true">{{session('productsArray.motherboards.0.name')}}</a> </h6>
+                                                    <a href="{{route('products.motherboards')}}" class="text-muted" data-abc="true">MOTHERBOARD</a>
+
                                             </div>
                                             <h4 class="mb-0 font-weight-semibold">
                                                 @if(session('productsArray.motherboards.0.price')==0)
@@ -171,7 +174,9 @@
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
-                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.cpus.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU</a>
+                                                <h6 class="font-weight-semibold mb-2">
+                                                    <a href="{{ empty(session('storeInfo.featured_cpus')) ? '#' :route('product.cpus.info', ['id' =>session('storeInfo.featured_cpus') ])}}" class="text-default mb-2" data-abc="true">{{session('productsArray.cpus.0.name')}}</a> </h6>
+                                                    <a href="{{route('products.cpus')}}" class="text-muted" data-abc="true">CPU</a>
                                             </div>
                                             <h4 class="mb-0 font-weight-semibold">
                                                 @if(session('productsArray.cpus.0.price')==0)
@@ -195,7 +200,9 @@
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
-                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.cpu_coolers.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">CPU COOLER</a>
+                                                <h6 class="font-weight-semibold mb-2">
+                                                    <a href="{{ empty(session('storeInfo.featured_cpu_coolers')) ? '#' :route('product.cpu_coolers.info', ['id' =>session('storeInfo.featured_cpu_coolers') ])}}" class="text-default mb-2" data-abc="true">{{session('productsArray.cpu_coolers.0.name')}}</a> </h6>
+                                                    <a href="{{route('products.cpu_coolers')}}" class="text-muted" data-abc="true">CPU COOLER</a>
                                             </div>
                                             <h4 class="mb-0 font-weight-semibold">
                                                 @if(session('productsArray.cpu_coolers.0.price')==0)
@@ -219,7 +226,9 @@
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
-                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.graphics_cards.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">GRAPHICS CARD</a>
+                                                <h6 class="font-weight-semibold mb-2">
+                                                    <a href="{{ empty(session('storeInfo.featured_graphics_cards')) ? '#' :route('product.graphics_cards.info', ['id' =>session('storeInfo.featured_graphics_cards') ])}}" class="text-default mb-2" data-abc="true">{{session('productsArray.graphics_cards.0.name')}}</a> </h6>
+                                                    <a href="{{route('products.graphics_cards')}}" class="text-muted" data-abc="true">GRAPHICS CARD</a>
                                             </div>
                                             <h4 class="mb-0 font-weight-semibold">
                                                 @if(session('productsArray.graphics_cards.0.price')==0)
@@ -245,7 +254,9 @@
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
-                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.rams.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">RAM</a>
+                                                <h6 class="font-weight-semibold mb-2">
+                                                    <a href="{{ empty(session('storeInfo.featured_rams')) ? '#' :route('product.rams.info', ['id' =>session('storeInfo.featured_rams') ])}}" class="text-default mb-2" data-abc="true">{{session('productsArray.rams.0.name')}}</a> </h6>
+                                                    <a href="{{route('products.rams')}}" class="text-muted" data-abc="true">RAM</a>
                                             </div>
                                             <h4 class="mb-0 font-weight-semibold">
                                                 @if(session('productsArray.rams.0.price')==0)
@@ -269,7 +280,9 @@
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
-                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.storages.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">STORAGES</a>
+                                                <h6 class="font-weight-semibold mb-2">
+                                                    <a href="{{ empty(session('storeInfo.featured_storages')) ? '#' :route('product.storages.info', ['id' =>session('storeInfo.featured_storages') ])}}" class="text-default mb-2" data-abc="true">{{session('productsArray.storages.0.name')}}</a> </h6>
+                                                    <a href="{{route('products.storages')}}" class="text-muted" data-abc="true">STORAGES</a>
                                             </div>
                                             <h4 class="mb-0 font-weight-semibold">
                                                 @if(session('productsArray.storages.0.price')==0)
@@ -293,7 +306,9 @@
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
-                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.psus.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">PSU</a>
+                                                <h6 class="font-weight-semibold mb-2">
+                                                    <a href="{{ empty(session('storeInfo.featured_psus')) ? '#' :route('product.psus.info', ['id' =>session('storeInfo.featured_psus') ])}}" class="text-default mb-2" data-abc="true">{{session('productsArray.psus.0.name')}}</a> </h6>
+                                                    <a href="{{route('products.psus')}}" class="text-muted" data-abc="true">PSU</a>
                                             </div>
                                             <h4 class="mb-0 font-weight-semibold">
                                                 @if(session('productsArray.psus.0.price')==0)
@@ -317,7 +332,9 @@
                                         </div>
                                         <div class="card-body bg-light text-center">
                                             <div class="mb-2">
-                                                <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{session('productsArray.computer_cases.0.name')}}</a> </h6> <a href="#" class="text-muted" data-abc="true">COMPUTER CASE</a>
+                                                <h6 class="font-weight-semibold mb-2">
+                                                    <a href="{{ empty(session('storeInfo.featured_computer_cases')) ? '#' :route('product.computer_cases.info', ['id' =>session('storeInfo.featured_computer_cases') ])}}" class="text-default mb-2" data-abc="true">{{session('productsArray.computer_cases.0.name')}}</a> </h6>
+                                                    <a href="{{route('products.computer_cases')}}" class="text-muted" data-abc="true">COMPUTER CASE</a>
                                             </div>
                                             <h4 class="mb-0 font-weight-semibold">
                                                 @if(session('productsArray.computer_cases.0.price')==0)

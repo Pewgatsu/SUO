@@ -38,7 +38,7 @@
         <div class="p-5 col-lg-auto container-fluid">
             <div class="card" style="margin-top: 1px; width: 70rem;height: 21rem;">
                 <div class= "card-body">
-                    @for(array(sizeof($holder))){
+{{--                    @for(array(sizeof($holder))){--}}
                     <h6 class="card-text"> Gen Info 1: </h6>
                     }
                     <h6 class="card-text"> Gen Info 1: </h6>
