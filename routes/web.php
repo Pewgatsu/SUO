@@ -114,13 +114,13 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::delete('components/computer_cases/delete/{component}', [ComponentsController::class, 'delete_component'])->name('admin.components.computer_cases.delete');
         });
 
-        Route::get('seller/{id}', [StoreController::class, 'index'])->name('viewStore');
+        //Route::get('seller/{id}', [StoreController::class, 'index'])->name('viewStore');
 
         //ROUTE GROUP FOR SELLER
         Route::group(['prefix' => 'seller','middleware' => 'is_seller'], function (){
             //Seller
             Route::get('store', [StoreController::class, 'myStore'])->name('myStore');
-            //Route::get('{id}', [StoreController::class, 'index'])->name('viewStore');
+            Route::get('{id}', [StoreController::class, 'index'])->name('viewStore');
             Route::any('edit/store/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
             Route::get('edit/store', [EditStoreController::class, 'index'])->name('editStore');
 
