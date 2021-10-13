@@ -77,20 +77,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($motherboard_components as $motherboard_component)
-                                        <tr>
-                                            <td>
-                                                <div class="text-start mx-3">
-                                                    <a href="{{ route('seller.products.motherboards.order', $motherboard_component) }}">
-                                                        {{ $motherboard_component->name }}
-                                                    </a>
-                                                </div>
-                                            </td>
+                                        <tr onclick="window.location='{{ route('seller.products.motherboards.order', $motherboard_component) }}'">
+                                            <td>{{ $motherboard_component->name }}</td>
                                             <td>{{ $motherboard_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $motherboard_component->getProductsCount($store) }}</td>
                                             <td>{{ $motherboard_component->getProductsSold($store) }}</td>
                                             <td>
                                                 &#8369;{{ number_format($motherboard_component->getProductsPrice($store),2)  }}</td>
-                                            <td>
+                                            <td onclick="event.stopPropagation();">
                                                 <button
                                                     @if($motherboard_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled
                                                     @endif
@@ -144,20 +138,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($cpu_components as $cpu_component)
-                                        <tr>
-                                            <td>
-                                                <div class="text-start mx-3">
-                                                    <a href="{{ route('seller.products.cpus.order', $cpu_component) }}">
-                                                        {{ $cpu_component->name }}
-                                                    </a>
-                                                </div>
-                                            </td>
+                                        <tr onclick="window.location='{{ route('seller.products.cpus.order', $cpu_component) }}'">
+                                            <td>{{ $cpu_component->name }}</td>
                                             <td>{{ $cpu_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $cpu_component->getProductsCount($store) }}</td>
                                             <td>{{ $cpu_component->getProductsSold($store) }}</td>
                                             <td>
                                                 &#8369;{{ number_format($cpu_component->getProductsPrice($store),2)  }}</td>
-                                            <td>
+                                            <td onclick="event.stopPropagation();">
                                                 <button
                                                     @if($cpu_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled
                                                     @endif
@@ -209,20 +197,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($cpu_cooler_components as $cpu_cooler_component)
-                                        <tr>
-                                            <td>
-                                                <div class="text-start mx-3">
-                                                    <a href="{{ route('seller.products.cpu_coolers.order', $cpu_cooler_component) }}">
-                                                        {{ $cpu_cooler_component->name }}
-                                                    </a>
-                                                </div>
-                                            </td>
+                                        <tr onclick="window.location='{{ route('seller.products.cpu_coolers.order', $cpu_cooler_component) }}'">
+                                            <td>{{ $cpu_cooler_component->name }}</td>
                                             <td>{{ $cpu_cooler_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $cpu_cooler_component->getProductsCount($store) }}</td>
                                             <td>{{ $cpu_cooler_component->getProductsSold($store) }}</td>
                                             <td>
                                                 &#8369;{{ number_format($cpu_cooler_component->getProductsPrice($store),2)  }}</td>
-                                            <td>
+                                            <td onclick="event.stopPropagation();">
                                                 <button
                                                     @if($cpu_cooler_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled
                                                     @endif
@@ -275,20 +257,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($graphics_card_components as $graphics_card_component)
-                                        <tr>
-                                            <td>
-                                                <div class="text-start mx-3">
-                                                    <a href="{{ route('seller.products.graphics_cards.order', $graphics_card_component) }}">
-                                                        {{ $graphics_card_component->name }}
-                                                    </a>
-                                                </div>
-                                            </td>
+                                        <tr onclick="window.location='{{ route('seller.products.graphics_cards.order', $graphics_card_component) }}'">
+                                            <td>{{ $graphics_card_component->name }}</td>
                                             <td>{{ $graphics_card_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $graphics_card_component->getProductsCount($store) }}</td>
                                             <td>{{ $graphics_card_component->getProductsSold($store) }}</td>
                                             <td>
                                                 &#8369;{{ number_format($graphics_card_component->getProductsPrice($store),2)  }}</td>
-                                            <td>
+                                            <td onclick="event.stopPropagation();">
                                                 <button
                                                     @if($graphics_card_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled
                                                     @endif
@@ -343,20 +319,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($ram_components as $ram_component)
-                                        <tr>
-                                            <td>
-                                                <div class="text-start mx-3">
-                                                    <a href="{{ route('seller.products.rams.order', $ram_component) }}">
-                                                        {{ $ram_component->name }}
-                                                    </a>
-                                                </div>
-                                            </td>
+                                        <tr onclick="window.location='{{ route('seller.products.rams.order', $ram_component) }}'">
+                                            <td>{{ $ram_component->name }}</td>
                                             <td>{{ $ram_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $ram_component->getProductsCount($store) }}</td>
                                             <td>{{ $ram_component->getProductsSold($store) }}</td>
                                             <td>
                                                 &#8369;{{ number_format($ram_component->getProductsPrice($store),2)  }}</td>
-                                            <td>
+                                            <td onclick="event.stopPropagation();">
                                                 <button
                                                     @if($ram_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled
                                                     @endif
@@ -408,20 +378,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($storage_components as $storage_component)
-                                        <tr>
-                                            <td>
-                                                <div class="text-start mx-3">
-                                                    <a href="{{ route('seller.products.storages.order', $storage_component) }}">
-                                                        {{ $storage_component->name }}
-                                                    </a>
-                                                </div>
-                                            </td>
+                                        <tr onclick="window.location='{{ route('seller.products.storages.order', $storage_component) }}'">
+                                            <td>{{ $storage_component->name }}</td>
                                             <td>{{ $storage_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $storage_component->getProductsCount($store) }}</td>
                                             <td>{{ $storage_component->getProductsSold($store) }}</td>
                                             <td>
                                                 &#8369;{{ number_format($storage_component->getProductsPrice($store),2)  }}</td>
-                                            <td>
+                                            <td onclick="event.stopPropagation();">
                                                 <button
                                                     @if($storage_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled
                                                     @endif
@@ -474,20 +438,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($psu_components as $psu_component)
-                                        <tr>
-                                            <td>
-                                                <div class="text-start mx-3">
-                                                    <a href="{{ route('seller.products.psus.order', $psu_component) }}">
-                                                        {{ $psu_component->name }}
-                                                    </a>
-                                                </div>
-                                            </td>
+                                        <tr onclick="window.location='{{ route('seller.products.psus.order', $psu_component) }}'">
+                                            <td>{{ $psu_component->name }}</td>
                                             <td>{{ $psu_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $psu_component->getProductsCount($store) }}</td>
                                             <td>{{ $psu_component->getProductsSold($store) }}</td>
                                             <td>
                                                 &#8369;{{ number_format($psu_component->getProductsPrice($store),2)  }}</td>
-                                            <td>
+                                            <td onclick="event.stopPropagation();">
                                                 <button
                                                     @if($psu_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled
                                                     @endif
@@ -539,20 +497,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($computer_case_components as $computer_case_component)
-                                        <tr>
-                                            <td>
-                                                <div class="text-start mx-3">
-                                                    <a href="{{ route('seller.products.computer_cases.order', $computer_case_component) }}">
-                                                        {{ $computer_case_component->name }}
-                                                    </a>
-                                                </div>
-                                            </td>
+                                        <tr onclick="window.location='{{ route('seller.products.computer_cases.order', $computer_case_component) }}'">
+                                            <td>{{ $computer_case_component->name }}</td>
                                             <td>{{ $computer_case_component->getProductsDateAdded($store)->diffForHumans() }}</td>
                                             <td>{{ $computer_case_component->getProductsCount($store) }}</td>
                                             <td>{{ $computer_case_component->getProductsSold($store) }}</td>
                                             <td>
                                                 &#8369;{{ number_format($computer_case_component->getProductsPrice($store),2)  }}</td>
-                                            <td>
+                                            <td onclick="event.stopPropagation();">
                                                 <button
                                                     @if($computer_case_component->products->where('store_id',$store->id)->where('status','Available')->count() == 0) disabled
                                                     @endif

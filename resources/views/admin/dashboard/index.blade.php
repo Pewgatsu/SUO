@@ -39,8 +39,117 @@
         <div class="container">
             <div class="row">
 
+                <!-- Product Breakdown -->
+                <div class="col-md-3">
+                    <ul class="list-group">
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center disabled">
+                            Products
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Motherboard
+                            <span class="badge bg-primary rounded-pill">{{ $motherboard_products_count }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            CPU
+                            <span class="badge bg-primary rounded-pill">{{ $cpu_products_count }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            CPU Cooler
+                            <span class="badge bg-primary rounded-pill">{{ $cpu_cooler_products_count }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Graphics Card
+                            <span class="badge bg-primary rounded-pill">{{ $graphics_card_products_count }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            RAM
+                            <span class="badge bg-primary rounded-pill">{{ $ram_products_count }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Storage
+                            <span class="badge bg-primary rounded-pill">{{ $storage_products_count }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            PSU
+                            <span class="badge bg-primary rounded-pill">{{ $psu_products_count }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Computer Case
+                            <span class="badge bg-primary rounded-pill">{{ $computer_case_products_count }}</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Website Overview -->
+                <div class="col-md-6 my-3 my-md-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title p-2 text-center">Website Overview</h4>
+                            <div class="row text-center g-2 mb-2">
+                                <div class="col-md">
+                                    <div class="card card-body bg-light">
+                                        <div class="h3">
+                                            <i class="bi bi-shop"></i>
+                                            <small>{{ $sellers_count }}</small>
+                                        </div>
+                                        Sellers
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="card card-body bg-light">
+                                        <div class="h3">
+                                            <i class="bi bi-people"></i>
+                                            <small>{{ $accounts_count }}</small>
+                                        </div>
+                                        Users
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="card card-body bg-light">
+                                        <div class="h3">
+                                            <i class="bi bi-person"></i>
+                                            <small>{{ $customers_count }}</small>
+                                        </div>
+                                        Customers
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center g-2">
+                                <div class="col-md">
+                                    <div class="card card-body bg-light">
+                                        <div class="h3">
+                                            <i class="bi bi-box-seam"></i>
+                                            <small>{{ $products_count }}</small>
+                                        </div>
+                                        Products
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="card card-body bg-light">
+                                        <div class="h3">
+                                            <i class="bi bi-gear"></i>
+                                            <small>{{ $builds_count }}</small>
+                                        </div>
+                                        Builds
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="card card-body bg-light">
+                                        <div class="h3">
+                                            <i class="bi bi-cpu"></i>
+                                            <small>{{ $components_count }}</small>
+                                        </div>
+                                        Components
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Component Breakdown -->
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <ul class="list-group">
                         <li
                             class="list-group-item d-flex justify-content-between align-items-center disabled">
@@ -79,44 +188,6 @@
                             <span class="badge bg-primary rounded-pill">{{ $computer_cases_count }}</span>
                         </li>
                     </ul>
-                </div>
-
-                <!-- Website Overview -->
-                <div class="col-md-8 my-3 my-md-0">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title p-2 text-center">Website Overview</h4>
-                            <div class="row text-center g-2">
-                                <div class="col-md">
-                                    <div class="card card-body bg-light">
-                                        <div class="h3">
-                                            <i class="bi bi-person"></i>
-                                            <small>{{ $accounts_count }}</small>
-                                        </div>
-                                        Users
-                                    </div>
-                                </div>
-                                <div class="col-md">
-                                    <div class="card card-body bg-light">
-                                        <div class="h3">
-                                            <i class="bi bi-cpu"></i>
-                                            <small>{{ $components_count }}</small>
-                                        </div>
-                                        Components
-                                    </div>
-                                </div>
-                                <div class="col-md">
-                                    <div class="card card-body bg-light">
-                                        <div class="h3">
-                                            <i class="bi bi-bar-chart"></i>
-                                            <small>0</small>
-                                        </div>
-                                        Visitors
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Latest Users -->
