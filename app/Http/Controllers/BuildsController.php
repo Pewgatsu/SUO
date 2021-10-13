@@ -9,7 +9,8 @@ class BuildsController extends Controller
 {
     public function index()
     {
-        $builds = Build::where('account_id', auth()->user()->getAuthIdentifier())->paginate(10);
+        $builds = Build::with('build_products')->where('account_id', auth()->user()->getAuthIdentifier())->paginate(10);
+        //dd($builds[0]->build_products[0]->status);
         return view('builds.builds', [
             'builds' => $builds,
         ]);
@@ -17,7 +18,13 @@ class BuildsController extends Controller
 
     public function delete_build(Build $build)
     {
-        $build->delete();
+        if(!in_array('Ordered',array_column($build->build_products->toArray(),'status')) and
+             !in_array('Confirmed',array_column($build->build_products->toArray(),'status')) and
+             !in_array('Sold Out',array_column($build->build_products->toArray(),'status'))
+        ){
+            $build->delete();
+        }
+
         return back();
     }
 }
