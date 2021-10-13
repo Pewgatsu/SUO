@@ -43,8 +43,19 @@
                                                     onclick="window.location='{{ route('consumer.builds.edit',$build->id) }}'">
                                                 Edit
                                             </button>
-                                            <button type="button" class="btn btn-danger"  data-bs-toggle="modal"
-                                                    data-bs-target="#delete_build_{{ $build->id }}">
+                                            <button type="button"   data-bs-toggle="modal"
+                                                    data-bs-target="#delete_build_{{ $build->id }}"
+                                                @if(in_array('Ordered',array_column($build->build_products->toArray(),'status')) ||
+                                                    in_array('Confirmed',array_column($build->build_products->toArray(),'status')) ||
+                                                    in_array('Sold Out',array_column($build->build_products->toArray(),'status'))
+                                                    )
+                                                    class="d-none"
+                                                    @else
+                                                    class="btn btn-danger"
+                                                @endif
+
+
+                                            >
                                                 Delete
                                             </button>
                                         </td>
