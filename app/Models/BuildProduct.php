@@ -14,7 +14,6 @@ class BuildProduct extends Model
     protected $fillable = [
         'build_id',
         'product_id',
-        'description',
         'price',
         'type',
         'status',
