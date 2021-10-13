@@ -54,7 +54,17 @@ class SystemBuilderController extends Controller
             $this->checkBoxState($request);
         }elseif($request->exists('unsetSelected')){
             if(session()->has($request->input('unsetSelected'))){
-                session()->forget([$request->input('unsetSelected')]);
+                if(!session()->has('buildInfo')) {
+                    session()->forget([$request->input('unsetSelected')]);
+                }else{
+                    $this->productStatusChecker(session('buildInfo.buildId'));
+                    foreach ($this->components as $key => $component) {
+                        if ($component == $request->input('unsetSelected') and $this->componentStatus[$key] == 'Available') {
+                            session()->forget([$request->input('unsetSelected')]);
+                        }
+                    }
+                    return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title,'componentStatus'=>$this->componentStatus]);
+                }
             }
         }elseif($request->exists('clearSelection')) {
             $this->unset($request);
@@ -193,6 +203,7 @@ class SystemBuilderController extends Controller
     }
 
     public function unset(Request $request){
+
         session()->forget(['motherboards', 'cpus','cpu_coolers','graphics_cards','rams','storages','psus','computer_cases','buildInfo']);
     }
 
@@ -230,15 +241,17 @@ class SystemBuilderController extends Controller
                 ]);
 
                 foreach($this->components as $key=>$component) {
-                    $product = Product::select('id','type','description','status_date')->where('id',session($component.'.id'))->get();
-                    BuildProduct::where(['build_id' => session('buildInfo.buildId'),
-                                        'type' => $this->title[$key]] )->update([
-                        'product_id' => $product[0]->id,
-                        'type' => $product[0]->type,
-                        'status'=>$product[0]->status,
-                        'status_date' => $product[0]->status_date,
-                        'owned' => session($component.'.owned' )
-                    ]);
+                    $product = Product::select('id','type','description','status','status_date')->where('id',session($component.'.id'))->get();
+                    if($product[0]->status=='Available'){
+                        BuildProduct::where(['build_id' => session('buildInfo.buildId'),
+                            'type' => $this->title[$key]] )->update([
+                            'product_id' => $product[0]->id,
+                            'type' => $product[0]->type,
+                            'status'=>$product[0]->status,
+                            'status_date' => $product[0]->status_date,
+                            'owned' => session($component.'.owned' )
+                        ]);
+                    }
                     unset($product);
                 }
             }else{
@@ -338,11 +351,22 @@ class SystemBuilderController extends Controller
 
 
        // dd($product->component->name);
-        $this->product_session($product->type,$product->id,$product->component->name,$product->price);
+
         if(session()->has('buildInfo')){
             $this->productStatusChecker(session('buildInfo.buildId'));
+           // dd($this->componentStatus);
+            //dd($product->type);
+            foreach ($this->title as $key=>$component){
+                if ($component == $product->type AND $this->componentStatus[$key]=='Available'){
+                    //dd($this->componentStatus[$key]);
+                    //dd($component == $product->type AND $this->componentStatus[$key]=='Available');
+                    $this->product_session($product->type,$product->id,$product->component->name,$product->price);
+                }
+            }
+
             return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title,'componentStatus'=>$this->componentStatus]);
         }else{
+            $this->product_session($product->type,$product->id,$product->component->name,$product->price);
             return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
         }
     }
