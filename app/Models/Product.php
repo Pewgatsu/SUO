@@ -42,4 +42,8 @@ class Product extends Model
         $account =  $this->build_products->where('status','!=','Available')->first()->build->account;
         return $account->firstname . ' ' . $account->lastname;
     }
+
+    public function getCustomer(){
+        return $this->build_products->where('status','!=','Available')->first()->build->account;
+    }
 }

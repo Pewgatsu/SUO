@@ -55,7 +55,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach($motherboard_products as $motherboard_product)
-                                        <tr>
+                                        <tr @if($motherboard_product->status != 'Available')
+                                            onclick="window.location='{{ route('user.profile.search', $motherboard_product->getCustomer()) }}'"
+                                            @endif>
                                             <td>
                                                 @if($motherboard_product->status != 'Available')
                                                     {{$motherboard_product->getCustomerFullName()}}
@@ -64,30 +66,41 @@
                                             <td>{{ $motherboard_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($motherboard_product->status_date)->diffForHumans() }}</td>
                                             <td>&#8369;{{ number_format($motherboard_product->price,2)  }}</td>
-                                            <td>
-                                                @if($motherboard_product->status == 'Available')
-                                                    <!-- Edit Motherboard Product -->
+                                            <td onclick="event.stopPropagation();">
+                                            @if($motherboard_product->status == 'Available')
+                                                <!-- Edit Motherboard Product -->
                                                     <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                            data-bs-target="#edit_motherboard_product_{{ $motherboard_product->id }}">Edit</button>
+                                                            data-bs-target="#edit_motherboard_product_{{ $motherboard_product->id }}">
+                                                        Edit
+                                                    </button>
                                                     <!-- Delete Motherboard Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_motherboard_product_{{ $motherboard_product->id }}">
                                                         Delete
                                                     </button>
-                                                @elseif($motherboard_product->status == 'Ordered')
-                                                    <!-- Accept Order -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                            data-bs-target="#accept_motherboard_product_{{ $motherboard_product->id }}">Accept</button>
+                                            @elseif($motherboard_product->status == 'Ordered')
+                                                <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#accept_motherboard_product_{{ $motherboard_product->id }}">
+                                                        Accept
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_motherboard_product_{{ $motherboard_product->id }}">Cancel</button>
-                                                @elseif($motherboard_product->status == 'Confirmed')
-                                                    <!-- Done Order -->
+                                                            data-bs-target="#cancel_motherboard_product_{{ $motherboard_product->id }}">
+                                                        Cancel
+                                                    </button>
+                                            @elseif($motherboard_product->status == 'Confirmed')
+                                                <!-- Done Order -->
                                                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                            data-bs-target="#done_motherboard_product_{{ $motherboard_product->id }}">Done</button>
+                                                            data-bs-target="#done_motherboard_product_{{ $motherboard_product->id }}">
+                                                        Done
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_motherboard_product_{{ $motherboard_product->id }}">Cancel</button>
+                                                            data-bs-target="#cancel_motherboard_product_{{ $motherboard_product->id }}">
+                                                        Cancel
+                                                    </button>
                                                 @elseif($motherboard_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -98,7 +111,7 @@
 
                                             <!-- Edit Motherboard Product -->
                                             <x-order.edit-product type="Motherboard" :component="$component"
-                                                                    :product="$motherboard_product" />
+                                                                  :product="$motherboard_product"/>
 
                                             <!-- Delete Motherboard Product -->
                                             <x-order.delete-product type="Motherboard" :component="$component"
@@ -108,21 +121,21 @@
 
                                             <!-- Accept Order -->
                                             <x-order.accept-order type="Motherboard" :component="$component"
-                                                                    :product="$motherboard_product" />
+                                                                  :product="$motherboard_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="Motherboard" :component="$component"
-                                                                  :product="$motherboard_product" />
+                                                                  :product="$motherboard_product"/>
 
                                         @elseif($motherboard_product->status == 'Confirmed')
 
                                             <!-- Done Order -->
                                             <x-order.done-order type="Motherboard" :component="$component"
-                                                                  :product="$motherboard_product" />
+                                                                :product="$motherboard_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="Motherboard" :component="$component"
-                                                                  :product="$motherboard_product" />
+                                                                  :product="$motherboard_product"/>
 
                                         @endif
 
@@ -148,7 +161,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach($cpu_products as $cpu_product)
-                                        <tr>
+                                        <tr @if($cpu_product->status != 'Available')
+                                            onclick="window.location='{{ route('user.profile.search', $cpu_product->getCustomer()) }}'"
+                                            @endif>
                                             <td>
                                                 @if($cpu_product->status != 'Available')
                                                     {{$cpu_product->getCustomerFullName()}}
@@ -157,30 +172,41 @@
                                             <td>{{ $cpu_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($cpu_product->status_date)->diffForHumans() }}</td>
                                             <td>&#8369;{{ number_format($cpu_product->price,2)  }}</td>
-                                            <td>
-                                                @if($cpu_product->status == 'Available')
-                                                    <!-- Edit CPU Product -->
-                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                                data-bs-target="#edit_cpu_product_{{ $cpu_product->id }}">Edit</button>
+                                            <td onclick="event.stopPropagation();">
+                                            @if($cpu_product->status == 'Available')
+                                                <!-- Edit CPU Product -->
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                            data-bs-target="#edit_cpu_product_{{ $cpu_product->id }}">
+                                                        Edit
+                                                    </button>
                                                     <!-- Delete CPU Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_cpu_product_{{ $cpu_product->id }}">
                                                         Delete
                                                     </button>
-                                                @elseif($cpu_product->status == 'Ordered')
-                                                    <!-- Accept Order -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                            data-bs-target="#accept_cpu_product_{{ $cpu_product->id }}">Accept</button>
+                                            @elseif($cpu_product->status == 'Ordered')
+                                                <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#accept_cpu_product_{{ $cpu_product->id }}">
+                                                        Accept
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_cpu_product_{{ $cpu_product->id }}">Cancel</button>
-                                                @elseif($cpu_product->status == 'Confirmed')
-                                                    <!-- Done Order -->
+                                                            data-bs-target="#cancel_cpu_product_{{ $cpu_product->id }}">
+                                                        Cancel
+                                                    </button>
+                                            @elseif($cpu_product->status == 'Confirmed')
+                                                <!-- Done Order -->
                                                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                            data-bs-target="#done_cpu_product_{{ $cpu_product->id }}">Done</button>
+                                                            data-bs-target="#done_cpu_product_{{ $cpu_product->id }}">
+                                                        Done
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_cpu_product_{{ $cpu_product->id }}">Cancel</button>
+                                                            data-bs-target="#cancel_cpu_product_{{ $cpu_product->id }}">
+                                                        Cancel
+                                                    </button>
                                                 @elseif($cpu_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -191,7 +217,7 @@
 
                                             <!-- Edit CPU Product -->
                                             <x-order.edit-product type="CPU" :component="$component"
-                                                                  :product="$cpu_product" />
+                                                                  :product="$cpu_product"/>
 
                                             <!-- Delete CPU Product -->
                                             <x-order.delete-product type="CPU" :component="$component"
@@ -201,21 +227,21 @@
 
                                             <!-- Accept Order -->
                                             <x-order.accept-order type="CPU" :component="$component"
-                                                                  :product="$cpu_product" />
+                                                                  :product="$cpu_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="CPU" :component="$component"
-                                                                  :product="$cpu_product" />
+                                                                  :product="$cpu_product"/>
 
                                         @elseif($cpu_product->status == 'Confirmed')
 
                                             <!-- Done Order -->
                                             <x-order.done-order type="CPU" :component="$component"
-                                                                  :product="$cpu_product" />
+                                                                :product="$cpu_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="CPU" :component="$component"
-                                                                  :product="$cpu_product" />
+                                                                  :product="$cpu_product"/>
 
                                         @elseif($cpu_product->status == 'Sold Out')
 
@@ -243,7 +269,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach($cpu_cooler_products as $cpu_cooler_product)
-                                        <tr>
+                                        <tr @if($cpu_cooler_product->status != 'Available')
+                                            onclick="window.location='{{ route('user.profile.search', $cpu_cooler_product->getCustomer()) }}'"
+                                            @endif>
                                             <td>
                                                 @if($cpu_cooler_product->status != 'Available')
                                                     {{$cpu_cooler_product->getCustomerFullName()}}
@@ -252,30 +280,41 @@
                                             <td>{{ $cpu_cooler_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($cpu_cooler_product->status_date)->diffForHumans() }}</td>
                                             <td>&#8369;{{ number_format($cpu_cooler_product->price,2)  }}</td>
-                                            <td>
-                                                @if($cpu_cooler_product->status == 'Available')
-                                                    <!-- Edit CPU Cooler Product -->
-                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                                data-bs-target="#edit_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Edit</button>
+                                            <td onclick="event.stopPropagation();">
+                                            @if($cpu_cooler_product->status == 'Available')
+                                                <!-- Edit CPU Cooler Product -->
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                            data-bs-target="#edit_cpu_cooler_product_{{ $cpu_cooler_product->id }}">
+                                                        Edit
+                                                    </button>
                                                     <!-- Delete CPU Cooler Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_cpu_cooler_product_{{ $cpu_cooler_product->id }}">
                                                         Delete
                                                     </button>
-                                                @elseif($cpu_cooler_product->status == 'Ordered')
-                                                    <!-- Accept Order -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                            data-bs-target="#accept_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Accept</button>
+                                            @elseif($cpu_cooler_product->status == 'Ordered')
+                                                <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#accept_cpu_cooler_product_{{ $cpu_cooler_product->id }}">
+                                                        Accept
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Cancel</button>
-                                                @elseif($cpu_cooler_product->status == 'Confirmed')
-                                                    <!-- Done Order -->
+                                                            data-bs-target="#cancel_cpu_cooler_product_{{ $cpu_cooler_product->id }}">
+                                                        Cancel
+                                                    </button>
+                                            @elseif($cpu_cooler_product->status == 'Confirmed')
+                                                <!-- Done Order -->
                                                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                            data-bs-target="#done_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Done</button>
+                                                            data-bs-target="#done_cpu_cooler_product_{{ $cpu_cooler_product->id }}">
+                                                        Done
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_cpu_cooler_product_{{ $cpu_cooler_product->id }}">Cancel</button>
+                                                            data-bs-target="#cancel_cpu_cooler_product_{{ $cpu_cooler_product->id }}">
+                                                        Cancel
+                                                    </button>
                                                 @elseif($cpu_cooler_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -286,7 +325,7 @@
 
                                             <!-- Edit CPU Cooler Product -->
                                             <x-order.edit-product type="CPU Cooler" :component="$component"
-                                                                  :product="$cpu_cooler_product" />
+                                                                  :product="$cpu_cooler_product"/>
 
                                             <!-- Delete CPU Cooler Product -->
                                             <x-order.delete-product type="CPU Cooler" :component="$component"
@@ -296,21 +335,21 @@
 
                                             <!-- Accept Order -->
                                             <x-order.accept-order type="CPU Cooler" :component="$component"
-                                                                  :product="$cpu_cooler_product" />
+                                                                  :product="$cpu_cooler_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="CPU Cooler" :component="$component"
-                                                                  :product="$cpu_cooler_product" />
+                                                                  :product="$cpu_cooler_product"/>
 
                                         @elseif($cpu_cooler_product->status == 'Confirmed')
 
                                             <!-- Done Order -->
                                             <x-order.done-order type="CPU Cooler" :component="$component"
-                                                                  :product="$cpu_cooler_product" />
+                                                                :product="$cpu_cooler_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="CPU Cooler" :component="$component"
-                                                                  :product="$cpu_cooler_product" />
+                                                                  :product="$cpu_cooler_product"/>
 
                                         @elseif($cpu_cooler_product->status == 'Sold Out')
 
@@ -338,7 +377,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach($graphics_card_products as $graphics_card_product)
-                                        <tr>
+                                        <tr @if($graphics_card_product->status != 'Available')
+                                            onclick="window.location='{{ route('user.profile.search', $graphics_card_product->getCustomer()) }}'"
+                                            @endif>
                                             <td>
                                                 @if($graphics_card_product->status != 'Available')
                                                     {{$graphics_card_product->getCustomerFullName()}}
@@ -347,30 +388,41 @@
                                             <td>{{ $graphics_card_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($graphics_card_product->status_date)->diffForHumans() }}</td>
                                             <td>&#8369;{{ number_format($graphics_card_product->price,2)  }}</td>
-                                            <td>
-                                                @if($graphics_card_product->status == 'Available')
-                                                    <!-- Edit Graphics Card Product -->
-                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                                data-bs-target="#edit_graphics_card_product_{{ $graphics_card_product->id }}">Edit</button>
+                                            <td onclick="event.stopPropagation();">
+                                            @if($graphics_card_product->status == 'Available')
+                                                <!-- Edit Graphics Card Product -->
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                            data-bs-target="#edit_graphics_card_product_{{ $graphics_card_product->id }}">
+                                                        Edit
+                                                    </button>
                                                     <!-- Delete Graphics Card Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_graphics_card_product_{{ $graphics_card_product->id }}">
                                                         Delete
                                                     </button>
-                                                @elseif($graphics_card_product->status == 'Ordered')
-                                                    <!-- Accept Order -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                            data-bs-target="#accept_graphics_card_product_{{ $graphics_card_product->id }}">Accept</button>
+                                            @elseif($graphics_card_product->status == 'Ordered')
+                                                <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#accept_graphics_card_product_{{ $graphics_card_product->id }}">
+                                                        Accept
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_graphics_card_product_{{ $graphics_card_product->id }}">Cancel</button>
-                                                @elseif($graphics_card_product->status == 'Confirmed')
-                                                    <!-- Done Order -->
+                                                            data-bs-target="#cancel_graphics_card_product_{{ $graphics_card_product->id }}">
+                                                        Cancel
+                                                    </button>
+                                            @elseif($graphics_card_product->status == 'Confirmed')
+                                                <!-- Done Order -->
                                                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                            data-bs-target="#done_graphics_card_product_{{ $graphics_card_product->id }}">Done</button>
+                                                            data-bs-target="#done_graphics_card_product_{{ $graphics_card_product->id }}">
+                                                        Done
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_graphics_card_product_{{ $graphics_card_product->id }}">Cancel</button>
+                                                            data-bs-target="#cancel_graphics_card_product_{{ $graphics_card_product->id }}">
+                                                        Cancel
+                                                    </button>
                                                 @elseif($graphics_card_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -381,7 +433,7 @@
 
                                             <!-- Edit Graphics Card Product -->
                                             <x-order.edit-product type="Graphics Card" :component="$component"
-                                                                  :product="$graphics_card_product" />
+                                                                  :product="$graphics_card_product"/>
 
                                             <!-- Delete Graphics Card Product -->
                                             <x-order.delete-product type="Graphics Card" :component="$component"
@@ -391,21 +443,21 @@
 
                                             <!-- Accept Order -->
                                             <x-order.accept-order type="Graphics Card" :component="$component"
-                                                                  :product="$graphics_card_product" />
+                                                                  :product="$graphics_card_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="Graphics Card" :component="$component"
-                                                                  :product="$graphics_card_product" />
+                                                                  :product="$graphics_card_product"/>
 
                                         @elseif($graphics_card_product->status == 'Confirmed')
 
                                             <!-- Done Order -->
                                             <x-order.done-order type="Graphics Card" :component="$component"
-                                                                  :product="$graphics_card_product" />
+                                                                :product="$graphics_card_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="Graphics Card" :component="$component"
-                                                                  :product="$graphics_card_product" />
+                                                                  :product="$graphics_card_product"/>
 
                                         @elseif($graphics_card_product->status == 'Sold Out')
 
@@ -433,7 +485,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach($ram_products as $ram_product)
-                                        <tr>
+                                        <tr @if($ram_product->status != 'Available')
+                                            onclick="window.location='{{ route('user.profile.search', $ram_product->getCustomer()) }}'"
+                                            @endif>
                                             <td>
                                                 @if($ram_product->status != 'Available')
                                                     {{$ram_product->getCustomerFullName()}}
@@ -442,30 +496,41 @@
                                             <td>{{ $ram_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($ram_product->status_date)->diffForHumans() }}</td>
                                             <td>&#8369;{{ number_format($ram_product->price,2)  }}</td>
-                                            <td>
-                                                @if($ram_product->status == 'Available')
-                                                    <!-- Edit RAM Product -->
-                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                                data-bs-target="#edit_ram_product_{{ $ram_product->id }}">Edit</button>
+                                            <td onclick="event.stopPropagation();">
+                                            @if($ram_product->status == 'Available')
+                                                <!-- Edit RAM Product -->
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                            data-bs-target="#edit_ram_product_{{ $ram_product->id }}">
+                                                        Edit
+                                                    </button>
                                                     <!-- Delete RAM Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_ram_product_{{ $ram_product->id }}">
                                                         Delete
                                                     </button>
-                                                @elseif($ram_product->status == 'Ordered')
-                                                    <!-- Accept Order -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                            data-bs-target="#accept_ram_product_{{ $ram_product->id }}">Accept</button>
+                                            @elseif($ram_product->status == 'Ordered')
+                                                <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#accept_ram_product_{{ $ram_product->id }}">
+                                                        Accept
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_ram_product_{{ $ram_product->id }}">Cancel</button>
-                                                @elseif($ram_product->status == 'Confirmed')
-                                                    <!-- Done Order -->
+                                                            data-bs-target="#cancel_ram_product_{{ $ram_product->id }}">
+                                                        Cancel
+                                                    </button>
+                                            @elseif($ram_product->status == 'Confirmed')
+                                                <!-- Done Order -->
                                                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                            data-bs-target="#done_ram_product_{{ $ram_product->id }}">Done</button>
+                                                            data-bs-target="#done_ram_product_{{ $ram_product->id }}">
+                                                        Done
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_ram_product_{{ $ram_product->id }}">Cancel</button>
+                                                            data-bs-target="#cancel_ram_product_{{ $ram_product->id }}">
+                                                        Cancel
+                                                    </button>
                                                 @elseif($ram_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -476,7 +541,7 @@
 
                                             <!-- Edit RAM Product -->
                                             <x-order.edit-product type="RAM" :component="$component"
-                                                                  :product="$ram_product" />
+                                                                  :product="$ram_product"/>
 
                                             <!-- Delete RAM Product -->
                                             <x-order.delete-product type="RAM" :component="$component"
@@ -486,21 +551,21 @@
 
                                             <!-- Accept Order -->
                                             <x-order.accept-order type="RAM" :component="$component"
-                                                                  :product="$ram_product" />
+                                                                  :product="$ram_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="RAM" :component="$component"
-                                                                  :product="$ram_product" />
+                                                                  :product="$ram_product"/>
 
                                         @elseif($ram_product->status == 'Confirmed')
 
                                             <!-- Done Order -->
                                             <x-order.done-order type="RAM" :component="$component"
-                                                                  :product="$ram_product" />
+                                                                :product="$ram_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="RAM" :component="$component"
-                                                                  :product="$ram_product" />
+                                                                  :product="$ram_product"/>
 
                                         @elseif($ram_product->status == 'Sold Out')
 
@@ -528,7 +593,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach($storage_products as $storage_product)
-                                        <tr>
+                                        <tr @if($storage_product->status != 'Available')
+                                            onclick="window.location='{{ route('user.profile.search', $storage_product->getCustomer()) }}'"
+                                            @endif>
                                             <td>
                                                 @if($storage_product->status != 'Available')
                                                     {{$storage_product->getCustomerFullName()}}
@@ -537,30 +604,41 @@
                                             <td>{{ $storage_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($storage_product->status_date)->diffForHumans() }}</td>
                                             <td>&#8369;{{ number_format($storage_product->price,2)  }}</td>
-                                            <td>
-                                                @if($storage_product->status == 'Available')
-                                                    <!-- Edit Storage Product -->
-                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                                data-bs-target="#edit_storage_product_{{ $storage_product->id }}">Edit</button>
+                                            <td onclick="event.stopPropagation();">
+                                            @if($storage_product->status == 'Available')
+                                                <!-- Edit Storage Product -->
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                            data-bs-target="#edit_storage_product_{{ $storage_product->id }}">
+                                                        Edit
+                                                    </button>
                                                     <!-- Delete Storage Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_storage_product_{{ $storage_product->id }}">
                                                         Delete
                                                     </button>
-                                                @elseif($storage_product->status == 'Ordered')
-                                                    <!-- Accept Order -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                            data-bs-target="#accept_storage_product_{{ $storage_product->id }}">Accept</button>
+                                            @elseif($storage_product->status == 'Ordered')
+                                                <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#accept_storage_product_{{ $storage_product->id }}">
+                                                        Accept
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_storage_product_{{ $storage_product->id }}">Cancel</button>
-                                                @elseif($storage_product->status == 'Confirmed')
-                                                    <!-- Done Order -->
+                                                            data-bs-target="#cancel_storage_product_{{ $storage_product->id }}">
+                                                        Cancel
+                                                    </button>
+                                            @elseif($storage_product->status == 'Confirmed')
+                                                <!-- Done Order -->
                                                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                            data-bs-target="#done_storage_product_{{ $storage_product->id }}">Done</button>
+                                                            data-bs-target="#done_storage_product_{{ $storage_product->id }}">
+                                                        Done
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_storage_product_{{ $storage_product->id }}">Cancel</button>
+                                                            data-bs-target="#cancel_storage_product_{{ $storage_product->id }}">
+                                                        Cancel
+                                                    </button>
                                                 @elseif($storage_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -571,7 +649,7 @@
 
                                             <!-- Edit Storage Product -->
                                             <x-order.edit-product type="Storage" :component="$component"
-                                                                  :product="$storage_product" />
+                                                                  :product="$storage_product"/>
 
                                             <!-- Delete Storage Product -->
                                             <x-order.delete-product type="Storage" :component="$component"
@@ -581,21 +659,21 @@
 
                                             <!-- Accept Order -->
                                             <x-order.accept-order type="Storage" :component="$component"
-                                                                  :product="$storage_product" />
+                                                                  :product="$storage_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="Storage" :component="$component"
-                                                                  :product="$storage_product" />
+                                                                  :product="$storage_product"/>
 
                                         @elseif($storage_product->status == 'Confirmed')
 
                                             <!-- Done Order -->
                                             <x-order.done-order type="Storage" :component="$component"
-                                                                  :product="$storage_product" />
+                                                                :product="$storage_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="Storage" :component="$component"
-                                                                  :product="$storage_product" />
+                                                                  :product="$storage_product"/>
 
                                         @elseif($storage_product->status == 'Sold Out')
 
@@ -623,7 +701,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach($psu_products as $psu_product)
-                                        <tr>
+                                        <tr @if($psu_product->status != 'Available')
+                                            onclick="window.location='{{ route('user.profile.search', $psu_product->getCustomer()) }}'"
+                                            @endif>
                                             <td>
                                                 @if($psu_product->status != 'Available')
                                                     {{$psu_product->getCustomerFullName()}}
@@ -632,30 +712,41 @@
                                             <td>{{ $psu_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($psu_product->status_date)->diffForHumans() }}</td>
                                             <td>&#8369;{{ number_format($psu_product->price,2)  }}</td>
-                                            <td>
-                                                @if($psu_product->status == 'Available')
-                                                    <!-- Edit PSU Product -->
-                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                                data-bs-target="#edit_psu_product_{{ $psu_product->id }}">Edit</button>
+                                            <td onclick="event.stopPropagation();">
+                                            @if($psu_product->status == 'Available')
+                                                <!-- Edit PSU Product -->
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                            data-bs-target="#edit_psu_product_{{ $psu_product->id }}">
+                                                        Edit
+                                                    </button>
                                                     <!-- Delete PSU Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_psu_product_{{ $psu_product->id }}">
                                                         Delete
                                                     </button>
-                                                @elseif($psu_product->status == 'Ordered')
-                                                    <!-- Accept Order -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                            data-bs-target="#accept_psu_product_{{ $psu_product->id }}">Accept</button>
+                                            @elseif($psu_product->status == 'Ordered')
+                                                <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#accept_psu_product_{{ $psu_product->id }}">
+                                                        Accept
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_psu_product_{{ $psu_product->id }}">Cancel</button>
-                                                @elseif($psu_product->status == 'Confirmed')
-                                                    <!-- Done Order -->
+                                                            data-bs-target="#cancel_psu_product_{{ $psu_product->id }}">
+                                                        Cancel
+                                                    </button>
+                                            @elseif($psu_product->status == 'Confirmed')
+                                                <!-- Done Order -->
                                                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                            data-bs-target="#done_psu_product_{{ $psu_product->id }}">Done</button>
+                                                            data-bs-target="#done_psu_product_{{ $psu_product->id }}">
+                                                        Done
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_psu_product_{{ $psu_product->id }}">Cancel</button>
+                                                            data-bs-target="#cancel_psu_product_{{ $psu_product->id }}">
+                                                        Cancel
+                                                    </button>
                                                 @elseif($psu_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -666,7 +757,7 @@
 
                                             <!-- Edit PSU Product -->
                                             <x-order.edit-product type="PSU" :component="$component"
-                                                                  :product="$psu_product" />
+                                                                  :product="$psu_product"/>
 
                                             <!-- Delete PSU Product -->
                                             <x-order.delete-product type="PSU" :component="$component"
@@ -676,21 +767,21 @@
 
                                             <!-- Accept Order -->
                                             <x-order.accept-order type="PSU" :component="$component"
-                                                                  :product="$psu_product" />
+                                                                  :product="$psu_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="PSU" :component="$component"
-                                                                  :product="$psu_product" />
+                                                                  :product="$psu_product"/>
 
                                         @elseif($psu_product->status == 'Confirmed')
 
                                             <!-- Done Order -->
                                             <x-order.done-order type="PSU" :component="$component"
-                                                                  :product="$psu_product" />
+                                                                :product="$psu_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="PSU" :component="$component"
-                                                                  :product="$psu_product" />
+                                                                  :product="$psu_product"/>
 
                                         @elseif($psu_product->status == 'Sold Out')
 
@@ -718,7 +809,9 @@
                                     </thead>
                                     <tbody>
                                     @foreach($computer_case_products as $computer_case_product)
-                                        <tr>
+                                        <tr @if($computer_case_product->status != 'Available')
+                                            onclick="window.location='{{ route('user.profile.search', $computer_case_product->getCustomer()) }}'"
+                                            @endif>
                                             <td>
                                                 @if($computer_case_product->status != 'Available')
                                                     {{$computer_case_product->getCustomerFullName()}}
@@ -727,30 +820,41 @@
                                             <td>{{ $computer_case_product->status }}</td>
                                             <td>{{ \Carbon\Carbon::parse($computer_case_product->status_date)->diffForHumans() }}</td>
                                             <td>&#8369;{{ number_format($computer_case_product->price,2)  }}</td>
-                                            <td>
-                                                @if($computer_case_product->status == 'Available')
-                                                    <!-- Edit Computer Case Product -->
-                                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-                                                                data-bs-target="#edit_computer_case_product_{{ $computer_case_product->id }}">Edit</button>
+                                            <td onclick="event.stopPropagation();">
+                                            @if($computer_case_product->status == 'Available')
+                                                <!-- Edit Computer Case Product -->
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                            data-bs-target="#edit_computer_case_product_{{ $computer_case_product->id }}">
+                                                        Edit
+                                                    </button>
                                                     <!-- Delete Computer Case Product -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                             data-bs-target="#delete_computer_case_product_{{ $computer_case_product->id }}">
                                                         Delete
                                                     </button>
-                                                @elseif($computer_case_product->status == 'Ordered')
-                                                    <!-- Accept Order -->
-                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                                            data-bs-target="#accept_computer_case_product_{{ $computer_case_product->id }}">Accept</button>
+                                            @elseif($computer_case_product->status == 'Ordered')
+                                                <!-- Accept Order -->
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#accept_computer_case_product_{{ $computer_case_product->id }}">
+                                                        Accept
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_computer_case_product_{{ $computer_case_product->id }}">Cancel</button>
-                                                @elseif($computer_case_product->status == 'Confirmed')
-                                                    <!-- Done Order -->
+                                                            data-bs-target="#cancel_computer_case_product_{{ $computer_case_product->id }}">
+                                                        Cancel
+                                                    </button>
+                                            @elseif($computer_case_product->status == 'Confirmed')
+                                                <!-- Done Order -->
                                                     <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                                            data-bs-target="#done_computer_case_product_{{ $computer_case_product->id }}">Done</button>
+                                                            data-bs-target="#done_computer_case_product_{{ $computer_case_product->id }}">
+                                                        Done
+                                                    </button>
                                                     <!-- Cancel Order -->
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#cancel_computer_case_product_{{ $computer_case_product->id }}">Cancel</button>
+                                                            data-bs-target="#cancel_computer_case_product_{{ $computer_case_product->id }}">
+                                                        Cancel
+                                                    </button>
                                                 @elseif($computer_case_product->status == 'Sold Out')
                                                     <button disabled type="button" class="btn btn-success">Done</button>
                                                 @endif
@@ -761,7 +865,7 @@
 
                                             <!-- Edit Computer Case Product -->
                                             <x-order.edit-product type="Computer Case" :component="$component"
-                                                                  :product="$computer_case_product" />
+                                                                  :product="$computer_case_product"/>
 
                                             <!-- Delete Computer Case Product -->
                                             <x-order.delete-product type="Computer Case" :component="$component"
@@ -771,21 +875,21 @@
 
                                             <!-- Accept Order -->
                                             <x-order.accept-order type="Computer Case" :component="$component"
-                                                                  :product="$computer_case_product" />
+                                                                  :product="$computer_case_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="Computer Case" :component="$component"
-                                                                  :product="$computer_case_product" />
+                                                                  :product="$computer_case_product"/>
 
                                         @elseif($computer_case_product->status == 'Confirmed')
 
                                             <!-- Done Order -->
                                             <x-order.done-order type="Computer Case" :component="$component"
-                                                                  :product="$computer_case_product" />
+                                                                :product="$computer_case_product"/>
 
                                             <!-- Cancel Order -->
                                             <x-order.cancel-order type="Computer Case" :component="$component"
-                                                                  :product="$computer_case_product" />
+                                                                  :product="$computer_case_product"/>
 
                                         @elseif($computer_case_product->status == 'Sold Out')
 
