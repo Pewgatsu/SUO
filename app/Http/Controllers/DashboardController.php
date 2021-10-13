@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Build;
 use App\Models\Component;
 use App\Models\ComputerCase;
 use App\Models\CPU;
@@ -14,10 +15,12 @@ use App\Models\MOBOCase;
 use App\Models\MOBOFormFactor;
 use App\Models\MOBOMemorySpeed;
 use App\Models\Motherboard;
+use App\Models\Product;
 use App\Models\PSU;
 use App\Models\RAM;
 use App\Models\SocketCooler;
 use App\Models\Storage;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -25,6 +28,9 @@ class DashboardController extends Controller
     public function index()
     {
         $accounts_count = Account::count();
+        $sellers_count = Account::where('account_type','Seller')->count();
+        $customers_count = Account::where('account_type','Customer')->count();
+        $builds_count = Build::count();
         $components_count = Component::count();
         $motherboards_count = Motherboard::count();
         $cpus_count = CPU::count();
@@ -34,6 +40,15 @@ class DashboardController extends Controller
         $storages_count = Storage::count();
         $psus_count = PSU::count();
         $computer_cases_count = ComputerCase::count();
+        $products_count = Product::count();
+        $motherboard_products_count = Product::where('type','Motherboard')->count();
+        $cpu_products_count = Product::where('type','CPU')->count();
+        $cpu_cooler_products_count= Product::where('type','CPU Cooler')->count();
+        $graphics_card_products_count = Product::where('type','Graphics Card')->count();
+        $ram_products_count = Product::where('type','RAM')->count();
+        $storage_products_count = Product::where('type','Storage')->count();
+        $psu_products_count = Product::where('type','PSU')->count();
+        $computer_case_products_count = Product::where('type','Computer Case')->count();
         $recent_accounts = Account::latest()->limit(5)->get();
         $recent_components = Component::latest()->limit(5)->get();
 
@@ -43,6 +58,9 @@ class DashboardController extends Controller
 
         return view('admin.dashboard.index', [
             'accounts_count' => $accounts_count,
+            'sellers_count' => $sellers_count,
+            'customers_count' => $customers_count,
+            'builds_count' => $builds_count,
             'components_count' => $components_count,
             'motherboards_count' => $motherboards_count,
             'cpus_count' => $cpus_count,
@@ -52,6 +70,15 @@ class DashboardController extends Controller
             'storages_count' => $storages_count,
             'psus_count' => $psus_count,
             'computer_cases_count' => $computer_cases_count,
+            'products_count' => $products_count,
+            'motherboard_products_count' => $motherboard_products_count,
+            'cpu_products_count' => $cpu_products_count,
+            'cpu_cooler_products_count' => $cpu_cooler_products_count,
+            'graphics_card_products_count' => $graphics_card_products_count,
+            'ram_products_count' => $ram_products_count,
+            'storage_products_count' => $storage_products_count,
+            'psu_products_count' => $psu_products_count,
+            'computer_case_products_count' => $computer_case_products_count,
             'recent_accounts' => $recent_accounts,
             'recent_components' => $recent_components,
             'cpu_sockets' => $cpu_sockets,

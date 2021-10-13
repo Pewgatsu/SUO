@@ -31,7 +31,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($accounts as $account)
-                                    <tr>
+                                    <tr onclick="window.location='{{ route('user.profile.search', $account) }}'">
                                         <td>{{ $account->id }}</td>
                                         <td>{{ $account->username }}</td>
                                         <td>{{ $account->account_type }}</td>
@@ -50,7 +50,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $account->created_at->diffForHumans() }}</td>
-                                        <td>
+                                        <td onclick="event.stopPropagation();">
                                             @if($account->is_active)
                                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                         data-bs-target="#suspend_user_{{ $account->id }}">Suspend

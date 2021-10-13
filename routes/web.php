@@ -12,7 +12,6 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProductsInfoController;
-use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SystemBuilderController;
@@ -279,7 +278,7 @@ Route::any('/consumer/builds/edit/{build}', [SystemBuilderController::class, 'ed
 
 
 // User Profile Page
-Route::get('/profile',[\App\Http\Controllers\UserProfileController::class,'index'])->name('user.profile');
-
+Route::get('/profile',[UserProfileController::class,'index'])->name('user.profile');
+Route::get('/profile/{account}', [UserProfileController::class, 'index_user'])->name('user.profile.search');
 
 
