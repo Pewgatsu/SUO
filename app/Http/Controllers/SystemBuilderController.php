@@ -17,6 +17,7 @@ class SystemBuilderController extends Controller
 {
     private array $components=array('motherboards' ,'cpus', 'cpu_coolers', 'graphics_cards', 'rams', 'storages', 'psus' , 'computer_cases');
     private array $title=array('Motherboard' ,'CPU', 'CPU Cooler', 'Graphics Card', 'RAM', 'Storage', 'PSU' , 'Computer Case');
+    private array $componentStatus=array('','','','','','','','');
     private array $validate=array(0,0,0,0,0,0,0,0);
 
     public function index(){
@@ -30,7 +31,12 @@ class SystemBuilderController extends Controller
             session()->forget(['saveForm', 'userId']);
         }
 
-        return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
+        if(session()->has('buildInfo')){
+            $this->productStatusChecker(session('buildInfo.buildId'));
+            return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title,'componentStatus'=>$this->componentStatus]);
+        }else{
+            return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
+        }
 
     }
 
@@ -53,7 +59,16 @@ class SystemBuilderController extends Controller
         }elseif($request->exists('clearSelection')) {
             $this->unset($request);
         }
-        return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
+
+        if(session()->has('buildInfo')){
+            $this->productStatusChecker(session('buildInfo.buildId'));
+            return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title,'componentStatus'=>$this->componentStatus]);
+        }else{
+            return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
+        }
+
+
+
     }
 
 
@@ -220,7 +235,7 @@ class SystemBuilderController extends Controller
                                         'type' => $this->title[$key]] )->update([
                         'product_id' => $product[0]->id,
                         'type' => $product[0]->type,
-                        'description' => $product[0]->description,
+                        'status'=>$product[0]->status,
                         'status_date' => $product[0]->status_date,
                         'owned' => session($component.'.owned' )
                     ]);
@@ -245,8 +260,8 @@ class SystemBuilderController extends Controller
                     $build_product->build_id = $build->id;
                     $build_product->product_id = $product[0]->id;
                     $build_product->type = $product[0]->type;
-                    $build_product->description = $product[0]->description;
-                    $build_product->status_date = $product[0]->status_date;
+                    $build_product->status="Available";
+                    $build_product->status_date =Carbon::now()->toDateTimeString();
                     $build_product->owned = session($component.'.owned' );
 
                     $build_product->save();
@@ -266,13 +281,16 @@ class SystemBuilderController extends Controller
 
         $time =Carbon::now()->toDateTimeString();
 
-        $product->build_products[0]->status= "Ordered";
-        $product->status="Ordered";
-        $product->status_date = $time;
-        $product->build_products[0]->status_date = $time;
+        if($product->build_products[0]->status =="Available" && $product->status="Available"){
+            $product->build_products[0]->status= "Ordered";
+            $product->status="Ordered";
+            $product->status_date = $time;
+            $product->build_products[0]->status_date = $time;
 
-        $product->build_products[0]->save();
-        $product->save();
+            $product->build_products[0]->save();
+            $product->save();
+        }
+
 
     }
 
@@ -295,9 +313,24 @@ class SystemBuilderController extends Controller
                                     $build->products[$key]->component->name ,
                                     $build->products[$key]->price,
                                     (int)$build->build_products[$key]->owned);
+
+            $this->componentStatus[$key] =$build->build_products[$key]->status;
+
         }
 
-        return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
+//        dd($this->componentStatus);
+        return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title,'componentStatus'=>$this->componentStatus]);
+
+    }
+
+    public function productStatusChecker( $id){
+        if(session()->has('buildInfo')){
+            $build  = Build::with('build_products')->findOrFail($id);
+            //dd($build->build_products);
+            foreach ($build->products as $key=>$p){
+                $this->componentStatus[$key] =$build->build_products[$key]->status;
+            }
+        }
 
     }
 
@@ -306,8 +339,12 @@ class SystemBuilderController extends Controller
 
        // dd($product->component->name);
         $this->product_session($product->type,$product->id,$product->component->name,$product->price);
-        return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
-
+        if(session()->has('buildInfo')){
+            $this->productStatusChecker(session('buildInfo.buildId'));
+            return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title,'componentStatus'=>$this->componentStatus]);
+        }else{
+            return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title]);
+        }
     }
 
 }

@@ -33,7 +33,7 @@
             @foreach($components as $key=>$component)
                 <tr>
                     <td>{{$title[$key]}}</td>                                                <!--Name -->
-                    <td>
+                     <td>
                         <form action="{{route('products.'.$component)}}" method="post" class="d-inline">             <!--Button -->
                             @csrf
                             <input type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class=" btn btn-info col-10">
@@ -87,18 +87,77 @@
                         </form>
                     </td>
 
-                    @if( session()->has('buildInfo'))
+                    @if( session()->has('buildInfo'))                               <!-- ORDER -->
                         <td>
-                            <form method="post" action="{{route('control')}}">
-                                <input type="hidden" name="orderComponents" value="{{$component}}">
-                                @csrf
-                                <button type="submit" class="btn btn-info col-10"
+                            @if(!isset($componentStatus) || $componentStatus[$key]=='Available')
+                                <button type="button"   class="btn btn-info col-10"  data-bs-toggle="modal"
+                                        data-bs-target="#order_{{ $component }}"
                                         @if(session($component.'.owned') == "1" or !session()->has($component.'.name'))
                                         disabled
-                                        @endif
-                                        name="orderComponent">Order</button>
-                            </form>
+                                    @endif>
+                                    Order
+                                </button>
+                            @else
+                                @if($componentStatus[$key] == 'Ordered')
+                                    <button type="button"  disabled
+                                            class="btn btn-secondary col-10"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#order_{{ $component }}">
+                                        Ordered
+                                    </button>
+
+                                @elseif($componentStatus[$key] == 'Confirmed')
+                                    <button type="button"  disabled
+                                            class="btn btn-success col-10"
+                                            disabled
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#order_{{ $component }}">
+                                        Confirmed
+                                    </button>
+                                @elseif($componentStatus[$key] == 'Sold Out')
+                                    <button type="button"  disabled
+                                            class="btn btn-warning col-10"
+                                            disabled
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#order_{{ $component }}">
+                                        Sold Out
+                                    </button>
+
+                                @endif
+                            @endif
                         </td>
+
+                <!-- Order Component -->
+                <div class="modal fade"
+                     id="order_{{ $component }}" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title"
+                                    id="order_{{ $component }}">
+                                    Order Component</h5>
+                                <button type="button" class="btn-close"
+                                        data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                Order  {{ session($component.'.name') }}?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancel
+                                </button>
+                                <form
+                                    action="{{route('control')}}"
+                                    method="post">
+                                    <input type="hidden" name="orderComponents" value="{{$component}}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Order
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                      @endif
                 </tr>
             @endforeach
