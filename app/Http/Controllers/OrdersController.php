@@ -15,6 +15,7 @@ class OrdersController extends Controller
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
         $motherboard_products = Product::where('store_id',$store->id)
             ->where('component_id',$component->id)
+            ->orderByRaw("FIELD(status,'Confirmed','Ordered','Available','Sold Out')")
             ->paginate(10);
         return view('seller.products.orders.index', [
             'component' => $component,
@@ -26,6 +27,7 @@ class OrdersController extends Controller
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
         $cpu_products = Product::where('store_id',$store->id)
             ->where('component_id',$component->id)
+            ->orderByRaw("FIELD(status,'Confirmed','Ordered','Available','Sold Out')")
             ->paginate(10);
         return view('seller.products.orders.index', [
             'component' => $component,
@@ -37,6 +39,7 @@ class OrdersController extends Controller
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
         $cpu_cooler_products = Product::where('store_id',$store->id)
             ->where('component_id',$component->id)
+            ->orderByRaw("FIELD(status,'Confirmed','Ordered','Available','Sold Out')")
             ->paginate(10);
         return view('seller.products.orders.index', [
             'component' => $component,
@@ -48,6 +51,7 @@ class OrdersController extends Controller
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
         $graphics_card_products = Product::where('store_id',$store->id)
             ->where('component_id',$component->id)
+            ->orderByRaw("FIELD(status,'Confirmed','Ordered','Available','Sold Out')")
             ->paginate(10);
         return view('seller.products.orders.index', [
             'component' => $component,
@@ -59,6 +63,7 @@ class OrdersController extends Controller
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
         $ram_products = Product::where('store_id',$store->id)
             ->where('component_id',$component->id)
+            ->orderByRaw("FIELD(status,'Confirmed','Ordered','Available','Sold Out')")
             ->paginate(10);
         return view('seller.products.orders.index', [
             'component' => $component,
@@ -70,6 +75,7 @@ class OrdersController extends Controller
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
         $storage_products = Product::where('store_id',$store->id)
             ->where('component_id',$component->id)
+            ->orderByRaw("FIELD(status,'Confirmed','Ordered','Available','Sold Out')")
             ->paginate(10);
         return view('seller.products.orders.index', [
             'component' => $component,
@@ -81,6 +87,7 @@ class OrdersController extends Controller
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
         $psu_products = Product::where('store_id',$store->id)
             ->where('component_id',$component->id)
+            ->orderByRaw("FIELD(status,'Confirmed','Ordered','Available','Sold Out')")
             ->paginate(10);
         return view('seller.products.orders.index', [
             'component' => $component,
@@ -92,6 +99,7 @@ class OrdersController extends Controller
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
         $computer_case_products = Product::where('store_id',$store->id)
             ->where('component_id',$component->id)
+            ->orderByRaw("FIELD(status,'Confirmed','Ordered','Available','Sold Out')")
             ->paginate(10);
         return view('seller.products.orders.index', [
             'component' => $component,

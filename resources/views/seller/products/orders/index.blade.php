@@ -142,6 +142,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $motherboard_products->links() }}
+                                </div>
                             </div>
                         @else
                             <p class="lead text-center">No Motherboard Products</p>
@@ -250,6 +253,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $cpu_products->links() }}
+                                </div>
                             </div>
                         @else
                             <p class="lead text-center">No CPU Products</p>
@@ -358,6 +364,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $cpu_cooler_products->links() }}
+                                </div>
                             </div>
                         @else
                             <p class="lead text-center">No CPU Cooler Products</p>
@@ -466,6 +475,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $graphics_card_products->links() }}
+                                </div>
                             </div>
                         @else
                             <p class="lead text-center">No Graphics Card Products</p>
@@ -574,6 +586,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $ram_products->links() }}
+                                </div>
                             </div>
                         @else
                             <p class="lead text-center">No RAM Products</p>
@@ -682,6 +697,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $storage_products->links() }}
+                                </div>
                             </div>
                         @else
                             <p class="lead text-center">No Storage Products</p>
@@ -790,6 +808,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $psu_products->links() }}
+                                </div>
                             </div>
                         @else
                             <p class="lead text-center">No PSU Products</p>
@@ -898,6 +919,9 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $computer_case_products->links() }}
+                                </div>
                             </div>
                         @else
                             <p class="lead text-center">No Computer Case Products</p>
