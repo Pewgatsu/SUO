@@ -32,12 +32,12 @@
                         <h5 class="card-header">Account Information</h5>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Username:</b></li>
-                                <li class="list-group-item"><b>Email:</b></li>
-                                <li class="list-group-item"><b>Account Type:</b></li>
-                                <li class="list-group-item"><b>Verified:</b></li>
-                                <li class="list-group-item"><b>Active:</b></li>
-                                <li class="list-group-item"><b>Date Created:</b></li>
+                                <li class="list-group-item"><b>Username:&emsp;</b>{{ $account->username ?? '---' }}</li>
+                                <li class="list-group-item"><b>Email:&emsp;</b>{{ $account->email ?? '---' }}</li>
+                                <li class="list-group-item"><b>Account Type:&emsp;</b>{{ $account->account_type ?? '---' }}</li>
+                                <li class="list-group-item"><b>Verified:&emsp;</b>@if($account->is_verified) Yes @else No @endif</li>
+                                <li class="list-group-item"><b>Active:&emsp;</b>@if($account->is_active) Yes @else No @endif</li>
+                                <li class="list-group-item"><b>Date Created:&emsp;</b>{{ $account->created_at->diffForHumans() }}</li>
                             </ul>
                         </div>
                     </div>
@@ -47,12 +47,12 @@
                         <h5 class="card-header">Personal Information</h5>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>First Name:</b></li>
-                                <li class="list-group-item"><b>Last Name:</b></li>
-                                <li class="list-group-item"><b>Birthdate:</b></li>
-                                <li class="list-group-item"><b>Gender:</b></li>
-                                <li class="list-group-item"><b>Contact No.:</b></li>
-                                <li class="list-group-item"><b>Address:</b></li>
+                                <li class="list-group-item"><b>First Name:&emsp;</b>{{ $account->firstname }}</li>
+                                <li class="list-group-item"><b>Last Name:&emsp;</b>{{ $account->lastname }}</li>
+                                <li class="list-group-item"><b>Birthdate:&emsp;</b>@if(isset($account->birthdate)) {{ date('F j,Y',strtotime($account->birthdate)) }} @else --- @endif</li>
+                                <li class="list-group-item"><b>Gender:&emsp;</b>{{ $account->gender ?? '---' }}</li>
+                                <li class="list-group-item"><b>Contact No.:&emsp;</b>{{ $account->contact ?? '---' }}</li>
+                                <li class="list-group-item"><b>Address:&emsp;</b>{{ $account->address ?? '---' }}</li>
                             </ul>
                         </div>
                     </div>

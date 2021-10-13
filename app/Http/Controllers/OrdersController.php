@@ -15,6 +15,7 @@ class OrdersController extends Controller
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
         $motherboard_products = Product::where('store_id',$store->id)
             ->where('component_id',$component->id)
+            ->orderByRaw()
             ->paginate(10);
         return view('seller.products.orders.index', [
             'component' => $component,
