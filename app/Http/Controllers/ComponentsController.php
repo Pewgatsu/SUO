@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Component;
+use App\Models\ComponentDistance;
 use App\Models\ComputerCase;
 use App\Models\CPU;
 use App\Models\CPUCooler;
@@ -160,10 +161,6 @@ class ComponentsController extends Controller
         $component->width = $request->mobo_width;
         $component->height = $request->mobo_height;
 
-        if ($component->isDirty()) {
-            $component->save();
-        }
-
         // Motherboard Attributes
         $component->motherboard->cpu_socket = $request->mobo_cpu_socket;
         $component->motherboard->mobo_form_factor = $request->mobo_form_factor;
@@ -183,6 +180,16 @@ class ComponentsController extends Controller
         $component->motherboard->ecc_support = $request->mobo_ecc_support;
         $component->motherboard->raid_support = $request->mobo_raid_support;
         $component->motherboard->wireless_support = $request->mobo_wireless_support;
+
+        if ($component->isDirty() || $component->motherboard->isDirty()){
+            ComponentDistance::where('component_id_1',$component->id)
+                ->orWhere('component_id_2',$component->id)
+                ->delete();
+        }
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
 
         if ($component->motherboard->isDirty()) {
             $component->motherboard->save();
@@ -276,10 +283,6 @@ class ComponentsController extends Controller
         $component->width = $request->cpu_width;
         $component->height = $request->cpu_height;
 
-        if ($component->isDirty()) {
-            $component->save();
-        }
-
         // CPU Attributes
         $component->cpu->cpu_socket = $request->cpu_socket;
         $component->cpu->microarchitecture = $request->cpu_microarchitecture;
@@ -292,6 +295,16 @@ class ComponentsController extends Controller
         $component->cpu->smt_support = $request->cpu_smt_support;
         $component->cpu->ecc_support = $request->cpu_ecc_support;
         $component->cpu->integrated_graphics = $request->cpu_integrated_graphics;
+
+        if ($component->isDirty() || $component->cpu->isDirty()){
+            ComponentDistance::where('component_id_1',$component->id)
+                ->orWhere('component_id_2',$component->id)
+                ->delete();
+        }
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
 
         if ($component->cpu->isDirty()) {
             $component->cpu->save();
@@ -350,14 +363,20 @@ class ComponentsController extends Controller
         $component->width = $request->cpu_cooler_width;
         $component->height = $request->cpu_cooler_height;
 
-        if ($component->isDirty()) {
-            $component->save();
-        }
-
         // CPU Cooler Attributes
         $component->cpu_cooler->fan_speed = $request->cpu_cooler_fan_speed;
         $component->cpu_cooler->noise_level = $request->cpu_cooler_noise_level;
         $component->cpu_cooler->water_cooled_support = $request->cpu_cooler_water_cooled;
+
+        if ($component->isDirty() || $component->cpu_cooler->isDirty()){
+            ComponentDistance::where('component_id_1',$component->id)
+                ->orWhere('component_id_2',$component->id)
+                ->delete();
+        }
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
 
         if ($component->cpu_cooler->isDirty()) {
             $component->cpu_cooler->save();
@@ -452,10 +471,6 @@ class ComponentsController extends Controller
         $component->width = $request->graphics_card_width;
         $component->height = $request->graphics_card_height;
 
-        if ($component->isDirty()) {
-            $component->save();
-        }
-
         // Graphics Card Attributes
         $component->graphics_card->gpu_chipset = $request->graphics_card_chipset;
         $component->graphics_card->gpu_memory = $request->graphics_card_memory;
@@ -474,6 +489,16 @@ class ComponentsController extends Controller
         $component->graphics_card->e_slot_width = $request->graphics_card_e_slot_width;
         $component->graphics_card->external_power = $request->graphics_card_external_power;
         $component->graphics_card->cooling = $request->graphics_card_cooling;
+
+        if ($component->isDirty() || $component->graphics_card->isDirty()){
+            ComponentDistance::where('component_id_1',$component->id)
+                ->orWhere('component_id_2',$component->id)
+                ->delete();
+        }
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
 
         if ($component->graphics_card->isDirty()) {
             $component->graphics_card->save();
@@ -537,10 +562,6 @@ class ComponentsController extends Controller
         $component->width = $request->ram_width;
         $component->height = $request->ram_height;
 
-        if ($component->isDirty()) {
-            $component->save();
-        }
-
         // RAM Attributes
         $component->ram->memory_type = $request->ram_memory_type;
         $component->ram->memory_speed = $request->ram_memory_speed;
@@ -552,6 +573,16 @@ class ComponentsController extends Controller
         $component->ram->ecc = $request->ram_ecc_memory;
         $component->ram->registered = $request->ram_registered_memory;
         $component->ram->heat_spreader = $request->ram_heat_spreader;
+
+        if ($component->isDirty() || $component->ram->isDirty()){
+            ComponentDistance::where('component_id_1',$component->id)
+                ->orWhere('component_id_2',$component->id)
+                ->delete();
+        }
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
 
         if ($component->ram->isDirty()) {
             $component->ram->save();
@@ -611,10 +642,6 @@ class ComponentsController extends Controller
         $component->width = $request->storage_width;
         $component->height = $request->storage_height;
 
-        if ($component->isDirty()) {
-            $component->save();
-        }
-
         // Storage Attributes
         $component->storage->storage_type = $request->storage_type;
         $component->storage->storage_capacity = $request->storage_capacity;
@@ -622,6 +649,16 @@ class ComponentsController extends Controller
         $component->storage->storage_form_factor = $request->storage_form_factor;
         $component->storage->storage_cache = $request->storage_cache;
         $component->storage->nvme = $request->storage_nvme;
+
+        if ($component->isDirty() || $component->storage->isDirty()){
+            ComponentDistance::where('component_id_1',$component->id)
+                ->orWhere('component_id_2',$component->id)
+                ->delete();
+        }
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
 
         if ($component->storage->isDirty()) {
             $component->storage->save();
@@ -686,10 +723,6 @@ class ComponentsController extends Controller
         $component->width = $request->psu_width;
         $component->height = $request->psu_height;
 
-        if ($component->isDirty()) {
-            $component->save();
-        }
-
         // PSU Attributes
         $component->psu->psu_form_factor = $request->psu_form_factor;
         $component->psu->wattage = $request->psu_wattage;
@@ -702,6 +735,16 @@ class ComponentsController extends Controller
         $component->psu->pcie_8pin_connector = $request->psu_pcie_8pin_connector;
         $component->psu->{'pcie_6+2pin_connector'} = $request->psu_pcie_62pin_connector;
         $component->psu->pcie_6pin_connector = $request->psu_pcie_6pin_connector;
+
+        if ($component->isDirty() || $component->psu->isDirty()){
+            ComponentDistance::where('component_id_1',$component->id)
+                ->orWhere('component_id_2',$component->id)
+                ->delete();
+        }
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
 
         if ($component->psu->isDirty()) {
             $component->psu->save();
@@ -770,10 +813,6 @@ class ComponentsController extends Controller
         $component->width = $request->case_width;
         $component->height = $request->case_height;
 
-        if ($component->isDirty()) {
-            $component->save();
-        }
-
         // Computer Case Attributes
         $component->computer_case->case_type = $request->case_type;
         $component->computer_case->power_supply = $request->case_power_supply;
@@ -789,6 +828,16 @@ class ComponentsController extends Controller
         $component->computer_case->external_350_bay = $request->case_external_350_bay;
         $component->computer_case->internal_350_bay = $request->case_internal_350_bay;
         $component->computer_case->internal_250_bay = $request->case_internal_250_bay;
+
+        if ($component->isDirty() || $component->computer_case->isDirty()){
+            ComponentDistance::where('component_id_1',$component->id)
+                ->orWhere('component_id_2',$component->id)
+                ->delete();
+        }
+
+        if ($component->isDirty()) {
+            $component->save();
+        }
 
         if ($component->computer_case->isDirty()) {
             $component->computer_case->save();
