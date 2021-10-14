@@ -54,9 +54,9 @@ class CPUProducts extends Component
             }
         }
 
-        // Average the Distances
+        // Get Maximum Standard Score
         foreach ($cpu_distances as $id => $cpu_distance) {
-            $cpu_distances[$id] = array_sum($cpu_distance) / count($cpu_distance);
+            $cpu_distances[$id] = max($cpu_distance);
         }
 
         // Sort the Distance in Descending Order

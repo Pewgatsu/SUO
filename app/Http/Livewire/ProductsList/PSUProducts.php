@@ -54,9 +54,9 @@ class PSUProducts extends Component
             }
         }
 
-        // Average the Distances
+        // Get Maximum Standard Score
         foreach ($psu_distances as $id => $psu_distance) {
-            $psu_distances[$id] = array_sum($psu_distance) / count($psu_distance);
+            $psu_distances[$id] = max($psu_distance);
         }
 
         // Sort the Distance in Descending Order

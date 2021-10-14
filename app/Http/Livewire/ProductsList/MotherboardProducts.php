@@ -54,9 +54,9 @@ class MotherboardProducts extends Component
             }
         }
 
-        // Average the Distances
+        // Get Maximum Standard Score
         foreach ($motherboard_distances as $id => $motherboard_distance) {
-            $motherboard_distances[$id] = array_sum($motherboard_distance) / count($motherboard_distance);
+            $motherboard_distances[$id] = max($motherboard_distance);
         }
 
         // Sort the Distance in Descending Order

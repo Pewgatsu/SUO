@@ -54,9 +54,9 @@ class CPUCoolerProducts extends Component
             }
         }
 
-        // Average the Distances
+        // Get Maximum Standard Score
         foreach ($cpu_cooler_distances as $id => $cpu_cooler_distance) {
-            $cpu_cooler_distances[$id] = array_sum($cpu_cooler_distance) / count($cpu_cooler_distance);
+            $cpu_cooler_distances[$id] = max($cpu_cooler_distance);
         }
 
         // Sort the Distance in Descending Order

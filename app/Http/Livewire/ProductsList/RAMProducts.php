@@ -54,9 +54,9 @@ class RAMProducts extends Component
             }
         }
 
-        // Average the Distances
+        // Get Maximum Standard Score
         foreach ($ram_distances as $id => $ram_distance) {
-            $ram_distances[$id] = array_sum($ram_distance) / count($ram_distance);
+            $ram_distances[$id] = max($ram_distance);
         }
 
         // Sort the Distance in Descending Order

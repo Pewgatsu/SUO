@@ -54,9 +54,9 @@ class GraphicsCardProducts extends Component
             }
         }
 
-        // Average the Distances
+        // Get Maximum Standard Score
         foreach ($graphics_card_distances as $id => $graphics_card_distance) {
-            $graphics_card_distances[$id] = array_sum($graphics_card_distance) / count($graphics_card_distance);
+            $graphics_card_distances[$id] = max($graphics_card_distance);
         }
 
         // Sort the Distance in Descending Order
