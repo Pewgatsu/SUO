@@ -34,7 +34,7 @@ class StorageProducts extends Component
         if (empty($current_build)) {
             $product_storages = Product::with('store', 'component')
                 ->whereIn('id', $product_ids)->paginate(10);
-            
+
             return view('livewire.products-list.storage-products', [
                 'product_storages' => $product_storages
             ]);
@@ -54,9 +54,9 @@ class StorageProducts extends Component
             }
         }
 
-        // Average the Distances
+        // Get Maximum Standard Score
         foreach ($storage_distances as $id => $storage_distance) {
-            $storage_distances[$id] = array_sum($storage_distance) / count($storage_distance);
+            $storage_distances[$id] = max($storage_distance);
         }
 
         // Sort the Distance in Descending Order

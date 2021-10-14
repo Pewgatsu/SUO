@@ -54,9 +54,9 @@ class ComputerCaseProducts extends Component
             }
         }
 
-        // Average the Distances
+        // Get Maximum Standard Score
         foreach ($computer_case_distances as $id => $computer_case_distance) {
-            $computer_case_distances[$id] = array_sum($computer_case_distance) / count($computer_case_distance);
+            $computer_case_distances[$id] = max($computer_case_distance);
         }
 
         // Sort the Distance in Descending Order
