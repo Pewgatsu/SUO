@@ -8,7 +8,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Login</title>
 
 
     <script src="{{ asset('js/app.js') }}"></script>
@@ -17,13 +17,14 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+
     @livewireStyles
 
 </head>
-<body>
+<body style="background: #2d2d2d">
 
 
-@include('layouts.header')
+@include('auth.header')
 @livewire('auth.login')
 
 @livewireScripts

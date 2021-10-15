@@ -17302,7 +17302,7 @@ header.masthead {
     overflow: hidden;
     padding-top: calc(7rem + 72px);
     padding-bottom: 7rem;
-    background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
+    background: linear-gradient(0deg, #202020 0%, #2d2d2d 100%);
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: scroll;
@@ -17322,7 +17322,7 @@ header.masthead .bg-circle {
     z-index: 0;
     position: absolute;
     border-radius: 100%;
-    background: linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
+    background: linear-gradient(0deg, #202020 0%, #2d2d2d 100%);
 }
 header.masthead .bg-circle-1 {
     height: 90rem;
@@ -17358,7 +17358,37 @@ header.masthead .bg-circle-4 {
         font-size: 6rem;
     }
     header.masthead .masthead-content .masthead-subheading {
-        font-size: 4rem;
+        font-size: 2rem;
     }
 }
+
+/*
+ * Globals
+ */
+
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #333;
+    text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+
+/*
+ * Base structure
+ */
+
+
+
+
+/*
+ * Header
+ */
+
+
+
+
+
 
