@@ -44,14 +44,14 @@
                         </div>
                     </div>
 
-                    <button class="w-100 btn btn-primary" type="submit" id="login" name="login">Login</button>
+                    <button class="w-100 btn btn-secondary text-white" type="submit" id="login" name="login">Login</button>
                 </form>
 
                 <hr class="my-4">
 
 
                 <div class="text-center">
-                    <p>Not Yet Registered?<a href="{{route('register')}}"> Create an Account</a></p>
+                    <p class="text-white">Not Yet Registered? <a href="{{route('register')}}">Create an Account</a></p>
                 </div>
 
 

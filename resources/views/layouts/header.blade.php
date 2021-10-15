@@ -1,9 +1,10 @@
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-    <div class="container">
+<div>
+    <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container px-5">
 
         @guest
         <a class="navbar-brand" href="{{route('home')}}">
-            <img src="#" alt="" width="30" height="30" class="d-inline-block align-text-top">
             System Unit Optimizer
         </a>
         @endguest
@@ -60,5 +61,7 @@
         @endguest
     </div>
 </nav>
+
+</div>
 
 

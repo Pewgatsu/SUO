@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps();
 
+mix.postCss('resources/css/login_nav.css','public/css');
 mix.postCss('resources/css/styles.css','public/css');
 
 mix.js('resources/js/validate_login.js','public/js');
