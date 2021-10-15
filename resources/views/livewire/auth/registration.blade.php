@@ -1,4 +1,4 @@
-<div>
+<div xmlns:wire="http://www.w3.org/1999/xhtml">
     <form wire:submit.prevent="register">
         @csrf
 
@@ -92,7 +92,7 @@
 
                 <div class="row d-flex justify-content-center align-items-center h-250">
 
-                    <div class="col-md-5 mt-5">
+                    <div class="col-md-5 mt-5 mb-5">
                         <div class="card text-black">
                             <div class="card-body p-md-5">
                                 <div class="row justify-content-center">
