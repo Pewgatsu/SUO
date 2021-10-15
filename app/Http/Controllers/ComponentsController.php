@@ -25,7 +25,11 @@ class ComponentsController extends Controller
 {
     public function index_motherboards()
     {
-        $motherboards = Motherboard::with(['component', 'memory_speeds'])->paginate(10);
+        $motherboards = Motherboard::with(['component', 'memory_speeds'])
+            ->select('motherboards.*')
+            ->join('components','components.id','=','motherboards.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
         $memory_speeds = MemorySpeed::all();
 
         return view('admin.components.index', [
@@ -36,7 +40,11 @@ class ComponentsController extends Controller
 
     public function index_cpus()
     {
-        $cpus = CPU::with('component')->paginate(10);
+        $cpus = CPU::with('component')
+            ->select('cpus.*')
+            ->join('components','components.id','=','cpus.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
         return view('admin.components.index', [
             'cpus' => $cpus
         ]);
@@ -44,7 +52,11 @@ class ComponentsController extends Controller
 
     public function index_cpu_coolers()
     {
-        $cpu_coolers = CPUCooler::with(['component', 'cpu_sockets'])->paginate(10);
+        $cpu_coolers = CPUCooler::with(['component', 'cpu_sockets'])
+            ->select('cpu_coolers.*')
+            ->join('components','components.id','=','cpu_coolers.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
         $cpu_sockets = CPUSocket::all();
 
         return view('admin.components.index', [
@@ -55,7 +67,11 @@ class ComponentsController extends Controller
 
     public function index_graphics_cards()
     {
-        $graphics_cards = GraphicsCard::with('component')->paginate(10);
+        $graphics_cards = GraphicsCard::with('component')
+            ->select('graphics_cards.*')
+            ->join('components','components.id','=','graphics_cards.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
         return view('admin.components.index', [
             'graphics_cards' => $graphics_cards
         ]);
@@ -63,7 +79,11 @@ class ComponentsController extends Controller
 
     public function index_rams()
     {
-        $rams = RAM::with('component')->paginate(10);
+        $rams = RAM::with('component')
+            ->select('rams.*')
+            ->join('components','components.id','=','rams.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
         return view('admin.components.index', [
             'rams' => $rams
         ]);
@@ -71,7 +91,11 @@ class ComponentsController extends Controller
 
     public function index_storages()
     {
-        $storages = Storage::with('component')->paginate(10);
+        $storages = Storage::with('component')
+            ->select('storages.*')
+            ->join('components','components.id','=','storages.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
         return view('admin.components.index', [
             'storages' => $storages
         ]);
@@ -79,7 +103,11 @@ class ComponentsController extends Controller
 
     public function index_psus()
     {
-        $psus = PSU::with('component')->paginate(10);
+        $psus = PSU::with('component')
+            ->select('psus.*')
+            ->join('components','components.id','=','psus.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
         return view('admin.components.index', [
             'psus' => $psus
         ]);
@@ -87,7 +115,11 @@ class ComponentsController extends Controller
 
     public function index_computer_cases()
     {
-        $computer_cases = ComputerCase::with(['component', 'mobo_form_factors'])->paginate(10);
+        $computer_cases = ComputerCase::with(['component', 'mobo_form_factors'])
+            ->select('computer_cases.*')
+            ->join('components','components.id','=','computer_cases.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
         $mobo_form_factors = MOBOFormFactor::all();
 
         return view('admin.components.index', [
@@ -907,8 +939,109 @@ class ComponentsController extends Controller
             unlink(public_path($profile_path . $component->image_path));
         }
 
+        // Delete Specific Component Distances
+        ComponentDistance::where('component_id_1',$component->id)
+            ->orWhere('component_id_2',$component->id)
+            ->delete();
+
         $component->delete();
 
         return back();
+    }
+
+    public function index_motherboards_info(){
+        $motherboards = Motherboard::with('component')
+            ->select('motherboards.*')
+            ->join('components','components.id','=','motherboards.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
+        return view('admin.components.index', [
+            'motherboards' => $motherboards,
+            'is_info' => true
+        ]);
+    }
+
+    public function index_cpus_info(){
+        $cpus = CPU::with('component')
+            ->select('cpus.*')
+            ->join('components','components.id','=','cpus.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
+        return view('admin.components.index', [
+            'cpus' => $cpus,
+            'is_info' => true
+        ]);
+    }
+
+    public function index_cpu_coolers_info(){
+        $cpu_coolers = CPUCooler::with('component')
+            ->select('cpu_coolers.*')
+            ->join('components','components.id','=','cpu_coolers.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
+        return view('admin.components.index', [
+            'cpu_coolers' => $cpu_coolers,
+            'is_info' => true
+        ]);
+    }
+
+    public function index_graphics_cards_info(){
+        $graphics_cards = GraphicsCard::with('component')
+            ->select('graphics_cards.*')
+            ->join('components','components.id','=','graphics_cards.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
+        return view('admin.components.index', [
+            'graphics_cards' => $graphics_cards,
+            'is_info' => true
+        ]);
+    }
+
+    public function index_rams_info(){
+        $rams = RAM::with('component')
+            ->select('rams.*')
+            ->join('components','components.id','=','rams.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
+        return view('admin.components.index', [
+            'rams' => $rams,
+            'is_info' => true
+        ]);
+    }
+
+    public function index_storages_info(){
+        $storages = Storage::with('component')
+            ->select('storages.*')
+            ->join('components','components.id','=','storages.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
+        return view('admin.components.index', [
+            'storages' => $storages,
+            'is_info' => true
+        ]);
+    }
+
+    public function index_psus_info(){
+        $psus = PSU::with('component')
+            ->select('psus.*')
+            ->join('components','components.id','=','psus.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
+        return view('admin.components.index', [
+            'psus' => $psus,
+            'is_info' => true
+        ]);
+    }
+
+    public function index_computer_cases_info(){
+        $computer_cases = Motherboard::with('component')
+            ->select('computer_cases.*')
+            ->join('components','components.id','=','computer_cases.component_id')
+            ->orderBy('components.name')
+            ->paginate(10);
+        return view('admin.components.index', [
+            'computer_cases' => $computer_cases,
+            'is_info' => true
+        ]);
     }
 }

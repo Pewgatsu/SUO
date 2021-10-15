@@ -9,7 +9,9 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $accounts = Account::where('account_type','!=','Admin')->paginate(10);
+        $accounts = Account::where('account_type','!=','Admin')
+            ->orderBy('username')
+            ->paginate(10);
         return view('admin.users.index', [
             'accounts' => $accounts
         ]);

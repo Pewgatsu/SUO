@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="{{route('home')}}" onclick="$('#page-top').animatescroll()">System Unit Optimzer</a>
+        <a class="navbar-brand" href="{{route('home')}}" onclick="$('#page-top').animatescroll()">System Unit Optimizer</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
         @auth

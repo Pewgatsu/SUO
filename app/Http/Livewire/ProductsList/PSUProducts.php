@@ -23,6 +23,7 @@ class PSUProducts extends Component
         // Retrieve All Unique Available PSUs from Different Stores
         $store_products = Product::where('type', 'PSU')
             ->where('status', 'Available')
+            ->orderBy('created_at')
             ->groupBy(['store_id', 'component_id'])->get();
 
         $product_ids = array();
@@ -33,7 +34,11 @@ class PSUProducts extends Component
         // No Other Components Selected
         if (empty($current_build)) {
             $product_psus = Product::with('store', 'component')
-                ->whereIn('id', $product_ids)->paginate(10);
+                ->whereIn('products.id', $product_ids)
+                ->select('products.*')
+                ->join('components','components.id','=','products.component_id')
+                ->orderBy('components.name')
+                ->paginate(10);
 
             return view('livewire.products-list.psu-products', [
                 'product_psus' => $product_psus
