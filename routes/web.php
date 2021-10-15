@@ -253,12 +253,22 @@ Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
 // About System Page
 Route::get('/aboutsystem', [AboutSystemController::class, 'index'])->name('aboutsystem');
 
-// Detailed Product Page
-Route::get('/componentinfo', [ComponentInfoController::class, 'index'])->name('componentinfo');
+// Detailed Component Info
+Route::get('/components/motherboards/info/{id}', [ComponentInfoController::class, 'index'])->name('component.motherboards.info');
+Route::get('/components/cpus/info/{id}', [ComponentInfoController::class, 'index'])->name('component.cpus.info');
+Route::get('/components/cpu_coolers/info/{id}', [ComponentInfoController::class, 'index'])->name('component.cpu_coolers.info');
+Route::get('/components/graphics_cards/info/{id}', [ComponentInfoController::class, 'index'])->name('component.graphics_cards.info');
+Route::get('/components/rams/info/{id}', [ComponentInfoController::class, 'index'])->name('component.rams.info');
+Route::get('/components/storages/info/{id}', [ComponentInfoController::class, 'index'])->name('component.storages.info');
+Route::get('/components/psus/info/{id}', [ComponentInfoController::class, 'index'])->name('component.psus.info');
+Route::get('/components/computer_cases/info/{id}', [ComponentInfoController::class, 'index'])->name('component.computer_cases.info');
+
+Route::get('/components/info/{id}', [ComponentInfoController::class, 'index'])->name('componentinfo');
 
 // Store Page
 Route::get('/seller/{id}', [StoreController::class, 'index'])->name('viewStore');
 
+// Detailed Product Info
 Route::get('/products/motherboards/info/{id}', [ProductsInfoController::class, 'index'])->name('product.motherboards.info');
 Route::get('/products/cpus/info/{id}', [ProductsInfoController::class, 'index'])->name('product.cpus.info');
 Route::get('/products/cpu_coolers/info/{id}', [ProductsInfoController::class, 'index'])->name('product.cpu_coolers.info');
