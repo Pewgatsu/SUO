@@ -23,6 +23,7 @@ class CPUProducts extends Component
         // Retrieve All Unique Available CPUs from Different Stores
         $store_products = Product::where('type', 'CPU')
             ->where('status', 'Available')
+            ->orderBy('created_at')
             ->groupBy(['store_id', 'component_id'])->get();
 
         $product_ids = array();
@@ -33,7 +34,11 @@ class CPUProducts extends Component
         // No Other Components Selected
         if (empty($current_build)) {
             $product_cpus = Product::with('store', 'component')
-                ->whereIn('id', $product_ids)->paginate(10);
+                ->whereIn('products.id', $product_ids)
+                ->select('products.*')
+                ->join('components','components.id','=','products.component_id')
+                ->orderBy('components.name')
+                ->paginate(10);
 
             return view('livewire.products-list.cpu-products', [
                 'product_cpus' => $product_cpus

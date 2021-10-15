@@ -80,6 +80,6 @@ class Component extends Model
     }
 
     public function getProductsPrice(Store $store){
-        return $this->products->where('store_id',$store->id)->sortByDesc('price')->first()->price;
+        return $this->products->where('store_id',$store->id)->sortBy('created_at')->first()->price;
     }
 }

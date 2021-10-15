@@ -15,6 +15,7 @@ class ProductsController extends Controller
         $motherboard_components = Component::with('products')
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'Motherboard')
+            ->orderBy('name')
             ->paginate(10);
         return view('seller.products.index', [
             'store' => $store,
@@ -28,6 +29,7 @@ class ProductsController extends Controller
         $cpu_components = Component::with('products')
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'CPU')
+            ->orderBy('name')
             ->paginate(10);
         return view('seller.products.index', [
             'store' => $store,
@@ -41,6 +43,7 @@ class ProductsController extends Controller
         $cpu_cooler_components = Component::with('products')
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'CPU Cooler')
+            ->orderBy('name')
             ->paginate(10);
         return view('seller.products.index', [
             'store' => $store,
@@ -54,6 +57,7 @@ class ProductsController extends Controller
         $graphics_card_components = Component::with('products')
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'Graphics Card')
+            ->orderBy('name')
             ->paginate(10);
         return view('seller.products.index', [
             'store' => $store,
@@ -67,6 +71,7 @@ class ProductsController extends Controller
         $ram_components = Component::with('products')
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'RAM')
+            ->orderBy('name')
             ->paginate(10);
         return view('seller.products.index', [
             'store' => $store,
@@ -80,6 +85,7 @@ class ProductsController extends Controller
         $storage_components = Component::with('products')
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'Storage')
+            ->orderBy('name')
             ->paginate(10);
         return view('seller.products.index', [
             'store' => $store,
@@ -93,6 +99,7 @@ class ProductsController extends Controller
         $psu_components = Component::with('products')
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'PSU')
+            ->orderBy('name')
             ->paginate(10);
         return view('seller.products.index', [
             'store' => $store,
@@ -106,6 +113,7 @@ class ProductsController extends Controller
         $computer_case_components = Component::with('products')
             ->whereRelation('products', 'store_id', $store->id)
             ->whereRelation('products', 'type', 'Computer Case')
+            ->orderBy('name')
             ->paginate(10);
         return view('seller.products.index', [
             'store' => $store,

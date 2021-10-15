@@ -201,14 +201,14 @@ class StoreController extends Controller
     }
 
     public function return_my_store(){
-        $motherboard_components = Component::where('type','Motherboard')->get();
-        $cpu_components = Component::where('type','CPU')->get();
-        $cpu_cooler_components = Component::where('type','CPU Cooler')->get();
-        $graphics_card_components = Component::where('type','Graphics Card')->get();
-        $ram_components = Component::where('type','RAM')->get();
-        $storage_components = Component::where('type','Storage')->get();
-        $psu_components = Component::where('type','PSU')->get();
-        $computer_case_components = Component::where('type','Computer Case')->get();
+        $motherboard_components = Component::where('type','Motherboard')->orderBy('name')->get();
+        $cpu_components = Component::where('type','CPU')->orderBy('name')->get();
+        $cpu_cooler_components = Component::where('type','CPU Cooler')->orderBy('name')->get();
+        $graphics_card_components = Component::where('type','Graphics Card')->orderBy('name')->get();
+        $ram_components = Component::where('type','RAM')->orderBy('name')->get();
+        $storage_components = Component::where('type','Storage')->orderBy('name')->get();
+        $psu_components = Component::where('type','PSU')->orderBy('name')->get();
+        $computer_case_components = Component::where('type','Computer Case')->orderBy('name')->get();
 
         return view('store.store', [
             'motherboard_components' => $motherboard_components,
