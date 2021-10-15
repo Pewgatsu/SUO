@@ -11,7 +11,7 @@
         <div class="masthead-content">
             <div class="container px-5">
                 <h1 class="masthead-heading mb-2">System Unit Optimizer</h1>
-                <h2 class="masthead-subheading mb-0">Building your dream pc is only a click away!</h2>
+                <h2 class="masthead-subheading mb-0">Building your dream PC is only a click away!</h2>
                 <a class="btn btn-secondary btn-xl rounded-pill mt-5 text-white" href="#" onclick="$('#about_section').animatescroll()">Learn More</a>
             </div>
         </div>

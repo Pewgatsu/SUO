@@ -11,7 +11,7 @@
         </div>
 
         <div class="container justify-content-center">
-            <a class="navbar-brand nav_title" href="{{route('home')}}" onclick="$('#page-top').animatescroll()">System Unit Optimzer</a>
+            <a class="navbar-brand nav_title" href="{{route('home')}}" onclick="$('#page-top').animatescroll()">System Unit Optimizer</a>
         </div>
 
 </nav>

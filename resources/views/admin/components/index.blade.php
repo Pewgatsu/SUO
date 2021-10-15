@@ -58,18 +58,19 @@
                                         <th>CPU Socket</th>
                                         <th>Form Factor</th>
                                         <th>Chipset</th>
-                                        <th>Action</th>
+                                        @if(!isset($is_info))<th>Action</th>@endif
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($motherboards as $motherboard)
-                                        <tr>
+                                        <tr onclick="window.location='{{ route('component.motherboards.info',$motherboard) }}'">
                                             <td>{{ $motherboard->component->id }}</td>
-                                            <td>{{ $motherboard->component->name }}</td>
+                                            <td class="text-start">{{ $motherboard->component->name }}</td>
                                             <td>{{ $motherboard->cpu_socket }}</td>
                                             <td>{{ $motherboard->mobo_form_factor }}</td>
                                             <td>{{ $motherboard->mobo_chipset }}</td>
-                                            <td>
+                                            @if(!isset($is_info))
+                                            <td onclick="event.stopPropagation();">
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_motherboard_{{ $motherboard->component->id }}">
                                                     Edit
@@ -79,8 +80,10 @@
                                                     Delete
                                                 </button>
                                             </td>
+                                            @endif
                                         </tr>
 
+                                        @if(!isset($is_info))
                                         <!-- Edit Motherboard -->
                                         <x-component.motherboard :memorySpeeds="$memory_speeds" mode="edit"
                                                                  :motherboard="$motherboard"/>
@@ -116,6 +119,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -137,18 +142,19 @@
                                         <th>CPU Socket</th>
                                         <th>Microarchitecture</th>
                                         <th>Base Clock</th>
-                                        <th>Action</th>
+                                        @if(!isset($is_info))<th>Action</th>@endif
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($cpus as $cpu)
-                                        <tr>
+                                        <tr onclick="window.location='{{ route('component.cpus.info',$cpu) }}'">
                                             <td>{{ $cpu->component->id }}</td>
-                                            <td>{{ $cpu->component->name }}</td>
+                                            <td class="text-start">{{ $cpu->component->name }}</td>
                                             <td>{{ $cpu->cpu_socket }}</td>
                                             <td>{{ $cpu->microarchitecture }}</td>
                                             <td>{{ $cpu->base_clock }} GHz</td>
-                                            <td>
+                                            @if(!isset($is_info))
+                                            <td  onclick="event.stopPropagation();">
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_cpu_{{ $cpu->component->id }}">Edit
                                                 </button>
@@ -157,8 +163,10 @@
                                                     Delete
                                                 </button>
                                             </td>
+                                            @endif
                                         </tr>
 
+                                        @if(!isset($is_info))
                                         <!-- Edit CPU -->
                                         <x-component.cpu mode="edit" :cpu="$cpu"/>
 
@@ -193,6 +201,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -214,18 +224,19 @@
                                         <th>Fan Speed</th>
                                         <th>Noise Level</th>
                                         <th>Water Cooled Support</th>
-                                        <th>Action</th>
+                                        @if(!isset($is_info))<th>Action</th>@endif
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($cpu_coolers as $cpu_cooler)
-                                        <tr>
+                                        <tr onclick="window.location='{{ route('component.cpu_coolers.info',$cpu_cooler) }}'">
                                             <td>{{ $cpu_cooler->component->id }}</td>
-                                            <td>{{ $cpu_cooler->component->name }}</td>
+                                            <td class="text-start">{{ $cpu_cooler->component->name }}</td>
                                             <td>{{ $cpu_cooler->fan_speed }} rpm</td>
                                             <td>{{ $cpu_cooler->noise_level }} dB</td>
                                             <td>{{ $cpu_cooler->water_cooled_support }}</td>
-                                            <td>
+                                            @if(!isset($is_info))
+                                            <td onclick="event.stopPropagation();">
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_cpu_cooler_{{ $cpu_cooler->component->id }}">
                                                     Edit
@@ -235,8 +246,10 @@
                                                     Delete
                                                 </button>
                                             </td>
+                                            @endif
                                         </tr>
 
+                                        @if(!isset($is_info))
                                         <!-- Edit CPU Cooler -->
                                         <x-component.cpu-cooler :cpuSockets="$cpu_sockets" mode="edit"
                                                                 :cpuCooler="$cpu_cooler"/>
@@ -272,6 +285,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -293,18 +308,19 @@
                                         <th>Chipset</th>
                                         <th>Base Clock</th>
                                         <th>Interface</th>
-                                        <th>Action</th>
+                                        @if(!isset($is_info))<th>Action</th>@endif
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($graphics_cards as $graphics_card)
-                                        <tr>
+                                        <tr onclick="window.location='{{ route('component.graphics_cards.info',$graphics_card) }}'">
                                             <td>{{ $graphics_card->component->id }}</td>
-                                            <td>{{ $graphics_card->component->name }}</td>
+                                            <td class="text-start">{{ $graphics_card->component->name }}</td>
                                             <td>{{ $graphics_card->gpu_chipset }}</td>
                                             <td>{{ $graphics_card->base_clock }} MHz</td>
                                             <td>{{ $graphics_card->interface }}</td>
-                                            <td>
+                                            @if(!isset($is_info))
+                                            <td onclick="event.stopPropagation();">
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_graphics_card_{{ $graphics_card->component->id }}">
                                                     Edit
@@ -314,8 +330,10 @@
                                                     Delete
                                                 </button>
                                             </td>
+                                            @endif
                                         </tr>
 
+                                        @if(!isset($is_info))
                                         <!-- Edit Graphics Card -->
                                         <x-component.graphics-card mode="edit" :graphicsCard="$graphics_card"/>
 
@@ -351,6 +369,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -372,18 +392,19 @@
                                         <th>Type</th>
                                         <th>Speed</th>
                                         <th>Form Factor</th>
-                                        <th>Action</th>
+                                        @if(!isset($is_info))<th>Action</th>@endif
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($rams as $ram)
-                                        <tr>
+                                        <tr onclick="window.location='{{ route('component.rams.info',$ram) }}'">
                                             <td>{{ $ram->component->id }}</td>
-                                            <td>{{ $ram->component->name }}</td>
+                                            <td class="text-start">{{ $ram->component->name }}</td>
                                             <td>{{ $ram->memory_type }}</td>
                                             <td>{{ $ram->memory_speed }} MHz</td>
                                             <td>{{ $ram->memory_form_factor }}</td>
-                                            <td>
+                                            @if(!isset($is_info))
+                                            <td onclick="event.stopPropagation();">
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_ram_{{ $ram->component->id }}">Edit
                                                 </button>
@@ -392,8 +413,10 @@
                                                     Delete
                                                 </button>
                                             </td>
+                                            @endif
                                         </tr>
 
+                                        @if(!isset($is_info))
                                         <!-- Edit RAM -->
                                         <x-component.ram mode="edit" :ram="$ram"/>
 
@@ -429,6 +452,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -450,18 +475,19 @@
                                         <th>Type</th>
                                         <th>Interface</th>
                                         <th>Form Factor</th>
-                                        <th>Action</th>
+                                        @if(!isset($is_info))<th>Action</th>@endif
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($storages as $storage)
-                                        <tr>
+                                        <tr onclick="window.location='{{ route('component.storages.info',$storage) }}'">
                                             <td>{{ $storage->component->id }}</td>
-                                            <td>{{ $storage->component->name }}</td>
+                                            <td class="text-start">{{ $storage->component->name }}</td>
                                             <td>{{ $storage->storage_type }}</td>
                                             <td>{{ $storage->interface }}</td>
                                             <td>{{ $storage->storage_form_factor }}</td>
-                                            <td>
+                                            @if(!isset($is_info))
+                                            <td onclick="event.stopPropagation();">
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_storage_{{ $storage->component->id }}">
                                                     Edit
@@ -471,8 +497,10 @@
                                                     Delete
                                                 </button>
                                             </td>
+                                            @endif
                                         </tr>
 
+                                        @if(!isset($is_info))
                                         <!-- Edit Storage -->
                                         <x-component.storage mode="edit" :storage="$storage"/>
 
@@ -508,6 +536,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -529,18 +559,19 @@
                                         <th>Form Factor</th>
                                         <th>Wattage</th>
                                         <th>Efficiency Rating</th>
-                                        <th>Action</th>
+                                        @if(!isset($is_info))<th>Action</th>@endif
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($psus as $psu)
-                                        <tr>
+                                        <tr onclick="window.location='{{ route('component.psus.info',$psu) }}'">
                                             <td>{{ $psu->component->id }}</td>
-                                            <td>{{ $psu->component->name }}</td>
+                                            <td class="text-start">{{ $psu->component->name }}</td>
                                             <td>{{ $psu->psu_form_factor }}</td>
                                             <td>{{ $psu->wattage }} W</td>
                                             <td>{{ $psu->efficiency_rating }}</td>
-                                            <td>
+                                            @if(!isset($is_info))
+                                            <td onclick="event.stopPropagation();">
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_psu_{{ $psu->component->id }}">Edit
                                                 </button>
@@ -549,8 +580,10 @@
                                                     Delete
                                                 </button>
                                             </td>
+                                            @endif
                                         </tr>
 
+                                        @if(!isset($is_info))
                                         <!-- Edit PSU -->
                                         <x-component.psu mode="edit" :psu="$psu"/>
 
@@ -586,6 +619,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -607,14 +642,14 @@
                                         <th>Type</th>
                                         <th>Power Supply Shroud</th>
                                         <th>Side Panel Window</th>
-                                        <th>Action</th>
+                                        @if(!isset($is_info))<th>Action</th>@endif
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($computer_cases as $computer_case)
-                                        <tr>
+                                        <tr onclick="window.location='{{ route('component.computer_cases.info',$computer_case) }}'">
                                             <td>{{ $computer_case->component->id }}</td>
-                                            <td>{{ $computer_case->component->name }}</td>
+                                            <td class="text-start">{{ $computer_case->component->name }}</td>
                                             <td>{{ $computer_case->case_type }}</td>
                                             <td>
                                                 @if($computer_case->power_supply_shroud)
@@ -630,7 +665,8 @@
                                                     No
                                                 @endif
                                             </td>
-                                            <td>
+                                            @if(!isset($is_info))
+                                            <td onclick="event.stopPropagation();">
                                                 <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#edit_computer_case_{{ $computer_case->component->id }}">
                                                     Edit
@@ -640,8 +676,10 @@
                                                     Delete
                                                 </button>
                                             </td>
+                                            @endif
                                         </tr>
 
+                                        @if(!isset($is_info))
                                         <!-- Edit Computer Case -->
                                         <x-component.computer-case :moboFormFactors="$mobo_form_factors" mode="edit"
                                                                    :computerCase="$computer_case"/>
@@ -678,6 +716,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                     @endforeach
                                     </tbody>
                                 </table>
