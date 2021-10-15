@@ -64,7 +64,6 @@ class ProductsInfoController extends Controller
 
             //
             //dd($details->store);
-
             return view('products.index',['product_infos'=>$details, 'specific_details'=>$specific_details,'profile_path'=> $profile_path ]);
         }
 }

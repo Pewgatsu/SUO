@@ -123,17 +123,17 @@
                                 <tr>
                                     <td><h6>Length</h6></td>
                                     <td> <p class="float-end"> {{empty($product_infos->component->length)?
-                                                                 '--':$product_infos->component->length.'"' }}</p></td>
+                                                                 '--':$product_infos->component->length.' mm' }}</p></td>
                                 </tr>
                                 <tr>
                                     <td><h6>Width</h6></td>
                                     <td> <p class="float-end"> {{empty($product_infos->component->width)?
-                                                                 '--':$product_infos->component->width.'"'}}</p></td>
+                                                                 '--':$product_infos->component->width.' mm'}}</p></td>
                                 </tr>
                                 <tr>
                                     <td><h6>Height</h6></td>
                                     <td> <p class="float-end"> {{empty($product_infos->component->height)?
-                                                                 '--':$product_infos->component->height.'"'}}</p></td>
+                                                                 '--':$product_infos->component->height.' mm'}}</p></td>
                                 </tr>
 
                             </tbody>
@@ -155,10 +155,11 @@
                                     @else
                                         <td><h6>{{ucwords(str_replace('_',' ' ,$key))}}</h6></td>
                                         <td>
-                                            @if($product_info == NULL || $product_info == 0)
+                                            @if($product_info == 0 || $product_info == 1)
                                                 @if($key == 'raid_support' || $key == 'power_supply_shroud' ||
-                                                      $key == 'ecc_support'
-                                                  )
+                                                      $key == 'ecc_support' || $key == 'wireless_support'   ||
+                                                       $key == 'smt_support' || $key == 'ecc' ||
+                                                       $key == 'registered' || $key == 'heat_spreader' )
                                                     {{$product_info == 1? 'Yes':'No'}}
                                                 @elseif($key == 'power_supply' || $key == 'integrated_graphics' ||
                                                         $key == 'water_cooled_support'
@@ -168,11 +169,28 @@
                                                     {{$product_info}}
                                                 @endif
                                             @else
+                                                @if($key == 'max_mem_support' || $key == 'gpu_memory' ||
+                                                        $key == 'memory_capacity' || $key == 'storage_capacity')
+                                                        {{$product_info." GB"}}
+                                                @elseif($key == 'base_clock' ||$key == 'boost_clock' || $key == 'memory_speed' )
+                                                        {{$product_infos->type == 'CPU'? $product_info." GHz" : $product_info." MHz" }}
+                                                @elseif($key == 'tdp' || $key == 'wattage')
+                                                    {{$product_info." w"}}
+                                                @elseif($key == 'cooler_clearance' || $key == 'graphics_clearance'||
+                                                        $key == 'psu_clearance')
+                                                    {{$product_info." mm"}}
+                                                @elseif($key == 'fan_speed' )
+                                                    {{$product_info." rpm"}}
+                                                @elseif($key == 'noise_level' )
+                                                    {{$product_info." db"}}
+                                                @elseif($key == 'memory_voltage' )
+                                                    {{$product_info." V"}}
+                                                @elseif($key == 'storage_cache' )
+                                                    {{$product_info." MB"}}
+                                                @else
                                                 {{$product_info}}
+                                                @endif
                                             @endif
-
-
-
                                         </td>
                                     @endif
                                 </tr>

@@ -2,135 +2,67 @@
 
 namespace App\Http\Controllers;
 use App\Models;
+use App\Models\Component;
+use App\Models\ComputerCase;
+use App\Models\CPU;
+use App\Models\CPUCooler;
+use App\Models\GraphicsCard;
+use App\Models\Motherboard;
+use App\Models\PSU;
+use App\Models\RAM;
+use App\Models\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ComponentInfoController extends Controller
 {
-    public function index()
+    public function index($component_id)
     {
-        return view('componentinfo/componentinfo');
-    }
-    public function show($component_name){
-        $data = [
-            'component_id',
-            'component_name',
-            'component_type',
-            'component_price',
-            'manufacturer',
-            'series',
-            'model',
-            'color',
-            'length',
-            'width',
-            'height'
-        ];
+        //dd($product);
+        $component_info = Component::findOrFail($component_id);
+        //dd($component_info);
+        //$specific_details = null;
+        //dd($details);
 
-        return view( 'componentinfo/componentinfo',[
-           'componentinfo' => $data[$component_name]??'Product'.$component_name.'does not exist'
-        ]);
-    }
-    public function print(Request $request){
-
-        $holder = array();
-        $holder2 = array();
-        $components=array(
-            'motherboards' => '+',
-            'cpus'=> '+',
-            'cpu_coolers' => '+',
-            'graphics_cards' => '+',
-            'rams' => '+',
-            'storages' => '+',
-            'psus' => '+' ,
-            'computer_cases' => '+'
-        );
-
-        $component=array('type'=>'');
-        $component['type'] = $request->input('');
-        foreach ($components as $key=> $comp) {
-            if ($key == $component['type'] ){
-                $components[$key]=$component['type'];
-
-                switch ($key){
-                    case "motherboards":
-                        //Fetch the name and component id in the database using eloquent and query builder
-                        foreach (Models\Motherboard::all() as $hold){
-                            $id = DB::table('component')->find($hold->component_id);
-                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
-                        }
-
-                        break;
-
-                    case "cpus":
-
-                        //Fetch the name and component id in the database using eloquent and query builder
-                        foreach ( Models\CPU::all() as $hold){
-                            $id = DB::table('component')->find($hold->component_id);
-                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
-                        }
-
-                        break;
-
-                    case "cpu_coolers":
-
-                        //Fetch the name and component id in the database using eloquent and query builder
-                        foreach ( Models\CPUCooler::all() as $hold){
-                            $id = DB::table('component')->find($hold->component_id);
-                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
-                        }
-
-                        break;
-                    case "graphics_cards":
-
-                        //Fetch the name and component id in the database using eloquent and query builder
-                        foreach (Models\GraphicsCard::all() as $hold){
-                            $id = DB::table('component')->find($hold->component_id);
-                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
-                        }
-
-                        break;
-
-                    case "rams":
-
-                        //Fetch the name and component id in the database using eloquent and query builder
-                        foreach (Models\RAM::all() as $hold){
-                            $id = DB::table('component')->find($hold->component_id);
-                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
-                        }
-
-                        break;
-
-                    case "storages":
-
-                        //Fetch the name and component id in the database using eloquent and query builder
-                        foreach (Models\Storage::all() as $hold){
-                            $id = DB::table('component')->find($hold->component_id);
-                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
-                        }
-
-                        break;
-
-                    case "psus":
-
-                        //Fetch the name and component id in the database using eloquent and query builder
-                        foreach (Models\PSU::all() as $hold){
-                            $id = DB::table('component')->find($hold->component_id);
-                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
-                        }
-
-                        break;
-                    case "computer_cases":
-
-                        //Fetch the name and component id in the database using eloquent and query builder
-                        foreach (Models\ComputerCase::all() as $hold){
-                            $id = DB::table('component')->find($hold->component_id);
-                            array_push($holder, array('id' =>$id->id, 'name'=>$id->name));
-                        }
-
-                        break;
-                }
-            }
+        //dd($details);
+        $profile_path = null;
+        switch ($component_info->type) {
+            case "Motherboard":
+                $specific_details = Motherboard::where('component_id',$component_info->id)->first();
+                $profile_path = 'images/components/motherboards/';
+                break;
+            case "CPU":
+                $specific_details = CPU::where('component_id',$component_info->id)->first();
+                $profile_path = 'images/components/cpus/';
+                break;
+            case "CPU Cooler":
+                $specific_details = CPUCooler::where('component_id',$component_info->id)->first();
+                $profile_path = 'images/components/cpu_coolers/';
+                break;
+            case "Graphics Card":
+                $specific_details = GraphicsCard::where('component_id',$component_info->id)->first();
+                $profile_path = 'images/components/graphics_cards/';
+                break;
+            case "RAM":
+                $specific_details = RAM::where('component_id',$component_info->id)->first();
+                $profile_path = 'images/components/rams/';
+                break;
+            case "Storage":
+                $specific_details = Storage::where('component_id',$component_info->id)->first();
+                $profile_path = 'images/components/storages/';
+                break;
+            case "PSU":
+                $specific_details = PSU::where('component_id',$component_info->id)->first();
+                $profile_path = 'images/components/psus/';
+                break;
+            case "Computer Case":
+                $specific_details = ComputerCase::where('component_id',$component_info->id)->first();
+                $profile_path = 'images/components/computer_cases/';
+                break;
         }
-        return view('components/showComponents',compact('holder'));
+        //dd($specific_details);
+
+        return view('componentinfo.componentinfo',['component_infos'=>$component_info, 'specific_details'=>$specific_details,'profile_path'=> $profile_path ]);
     }
+
 }
