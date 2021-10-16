@@ -22,7 +22,7 @@
                 <th class="text-center" width="40%">Selection</th>
                 <th class="text-center" width="10%">Price</th>
                 <th class="text-center" width="10%">Owned</th>
-                @if( session()->has('buildInfo'))
+                @if( session()->has('buildInfo') && isset($is_view))
                     <th class="text-center" width="15%"></th>
                 @endif
 
@@ -36,7 +36,7 @@
                      <td>
                         <form action="{{route('products.'.$component)}}" method="post" class="d-inline">             <!--Button -->
                             @csrf
-                            <input type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class=" btn btn-info col-10">
+                            <input @if(isset($is_view)) disabled @endif type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class=" btn btn-info col-10">
                         </form>
                         <form method="post" action="{{route('control')}}"
                               @if(!session()->has($component.'.name'))
@@ -47,7 +47,7 @@
                         >
                             <input type="hidden" name="unsetSelected" value="{{$component}}">
                             @csrf
-                            <button type="submit" class="btn btn-info bg-danger">x</button>
+                            <button @if(isset($is_view)) disabled @endif type="submit" class="btn btn-info bg-danger">x</button>
                         </form>
 
 
@@ -70,7 +70,7 @@
                         <form name="ownedComponent">                                          <!--  Checkbox -->
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox"
+                                    <input @if(isset($is_view)) disabled @endif type="checkbox"
                                            id="ownedComponent"
                                            value="motherboards"
                                            name="ownedComponentMotherboard"
@@ -87,7 +87,7 @@
                         </form>
                     </td>
 
-                    @if( session()->has('buildInfo'))                               <!-- ORDER -->
+                    @if( session()->has('buildInfo') && isset($is_view))                               <!-- ORDER -->
                         <td>
                             @if(!isset($componentStatus) || $componentStatus[$key]=='Available')
                                 <button type="button"   class="btn btn-info col-10"  data-bs-toggle="modal"
@@ -174,7 +174,7 @@
                     @csrf
                     <div class="mb-3">
                     <label class="" for="form-label" > Build Name: </label>
-                    <input class="form-control @error('buildName') is-invalid @enderror" style="width: 100%;"  type="text"  name="buildName"
+                    <input @if(isset($is_view)) disabled @endif class="form-control @error('buildName') is-invalid @enderror" style="width: 100%;"  type="text"  name="buildName"
                            value="{{old('buildName') ?? session('buildInfo.build_name','')}}"
                            required >
                     @error('buildName')
@@ -185,7 +185,7 @@
                     <div class="mb-3">
                         <label class="" for="form-label"> Description: </label>
                         <div>
-                            <textarea class="form-control  @error('buildDescription') is-invalid @enderror"  rows="5" name="buildDescription"
+                            <textarea @if(isset($is_view)) disabled @endif class="form-control  @error('buildDescription') is-invalid @enderror"  rows="5" name="buildDescription"
                             >{{old('buildDescription') ?? session('buildInfo.build_description','')}}</textarea>
                         </div>
                         @error('buildDescription')
@@ -193,7 +193,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                    <button class="d-inline btn btn-info btn-block" type="submit" name="saveButton"  >
+                    <button @if(isset($is_view)) style="visibility: hidden;" @endif class="d-inline btn btn-info btn-block" type="submit" name="saveButton"  >
                         {{ session()->has('buildInfo') ? 'Update Build' : 'Save Build'}}
                         </button>
                     </div>

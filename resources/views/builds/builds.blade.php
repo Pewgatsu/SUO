@@ -33,12 +33,12 @@
                                 </thead>
                                 <tbody>
                                 @foreach($builds as $build)
-                                    <tr>
+                                    <tr onclick="window.location='{{ route('consumer.builds.view', $build) }}'">
                                         <td>{{ $build->build_name }}</td>
                                         <td>{{date('M d Y', strtotime($build->created_at))}}</td>
                                         <td>{{date('M d Y', strtotime($build->updated_at))}}</td>
                                         <td>&#8369;{{ number_format($build->total_price,2)  }}</td>
-                                        <td>
+                                        <td onclick="event.stopPropagation();">
                                             <button type="button" class="btn btn-info" value="{{ $build->id }}"
                                                     onclick="window.location='{{ route('consumer.builds.edit',$build->id) }}'">
                                                 Edit
