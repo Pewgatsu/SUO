@@ -294,6 +294,7 @@ Route::get('/products/info/{id}', [ProductsInfoController::class, 'index'])->nam
 Route::get('/consumer/builds', [BuildsController::class, 'index'])->name('builds')->middleware('auth');
 Route::delete('/consumer/builds/delete/{build}', [BuildsController::class, 'delete_build'])->name('consumer.builds.delete');
 Route::any('/consumer/builds/edit/{build}', [SystemBuilderController::class, 'edit_build'])->name('consumer.builds.edit');
+Route::any('/consumer/builds/view/{build}', [SystemBuilderController::class, 'view_build'])->name('consumer.builds.view');
 
 
 

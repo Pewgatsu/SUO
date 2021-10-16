@@ -333,7 +333,30 @@ class SystemBuilderController extends Controller
 
 //        dd($this->componentStatus);
         return view('systemBuilder.builder',['components' => $this->components,'title'=>$this->title,'componentStatus'=>$this->componentStatus]);
+    }
 
+    public function view_build(Build $build){
+        session()->forget(['motherboards', 'cpus','cpu_coolers','graphics_cards','rams','storages','psus','computer_cases','buildInfo']);
+
+        $buildInfo = array("buildId"=>$build->id,"build_name"=>$build->build_name,"build_description"=>$build->build_description);
+        session()->put('buildInfo', $buildInfo);
+
+        foreach ($build->products as $key=>$p){
+            $this->product_session($p->type,
+                $build->products[$key]->id,
+                $build->products[$key]->component->name ,
+                $build->products[$key]->price,
+                (int)$build->build_products[$key]->owned);
+
+            $this->componentStatus[$key] =$build->build_products[$key]->status;
+        }
+
+        return view('systemBuilder.builder',[
+            'components' => $this->components,
+            'title'=>$this->title,
+            'componentStatus'=>$this->componentStatus,
+            'is_view' => true
+        ]);
     }
 
     public function productStatusChecker( $id){
