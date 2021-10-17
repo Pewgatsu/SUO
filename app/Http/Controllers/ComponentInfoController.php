@@ -28,7 +28,7 @@ class ComponentInfoController extends Controller
         $profile_path = null;
         switch ($component_info->type) {
             case "Motherboard":
-                $specific_details = Motherboard::where('component_id',$component_info->id)->first();
+                $specific_details = Motherboard::with('memory_speeds')->where('component_id',$component_info->id)->first();
                 $profile_path = 'images/components/motherboards/';
                 break;
             case "CPU":
@@ -36,7 +36,7 @@ class ComponentInfoController extends Controller
                 $profile_path = 'images/components/cpus/';
                 break;
             case "CPU Cooler":
-                $specific_details = CPUCooler::where('component_id',$component_info->id)->first();
+                $specific_details = CPUCooler::with('cpu_sockets')->where('component_id',$component_info->id)->first();
                 $profile_path = 'images/components/cpu_coolers/';
                 break;
             case "Graphics Card":
@@ -56,7 +56,7 @@ class ComponentInfoController extends Controller
                 $profile_path = 'images/components/psus/';
                 break;
             case "Computer Case":
-                $specific_details = ComputerCase::where('component_id',$component_info->id)->first();
+                $specific_details = ComputerCase::with('mobo_form_factors')->where('component_id',$component_info->id)->first();
                 $profile_path = 'images/components/computer_cases/';
                 break;
         }

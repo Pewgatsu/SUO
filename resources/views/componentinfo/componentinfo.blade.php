@@ -168,6 +168,38 @@
                                         @endif
                                     </tr>
                                 @endforeach
+
+                                @if($component_infos->type =='CPU Cooler' )
+                                    <tr>
+                                        <td><h6>Socket Coolers</h6></td>
+                                        <td>
+                                            @foreach($specific_details->cpu_sockets as $cpu_socket )
+                                                <li>{{$cpu_socket->name}}</li>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                @elseif($component_infos->type == 'Motherboard')
+                                    <tr>
+                                        <td><h6>Memory Speed</h6></td>
+                                        <td>
+                                            @foreach($specific_details->memory_speeds as $memory_speed )
+                                                <li>{{$memory_speed->name}}</li>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                @elseif($component_infos->type == 'Computer Case')
+                                    <tr>
+                                        <td><h6>MOBO Cases</h6></td>
+                                        <td>
+                                            @foreach($specific_details->mobo_form_factors as $mobo_form_factor )
+                                                <li>{{$mobo_form_factor->name}}</li>
+                                            @endforeach
+
+
+                                        </td>
+                                    </tr>
+                                @endif
+
                                 </tbody>
                             </table>
 
