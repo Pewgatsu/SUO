@@ -6,6 +6,8 @@ use App\Models\ComputerCase;
 use App\Models\CPU;
 use App\Models\CPUCooler;
 use App\Models\GraphicsCard;
+use App\Models\MOBOCase;
+use App\Models\MOBOFormFactor;
 use App\Models\Motherboard;
 use App\Models\Product;
 use App\Models\PSU;
@@ -26,7 +28,7 @@ class ProductsInfoController extends Controller
             $profile_path = null;
             switch ($details->type) {
                 case "Motherboard":
-                    $specific_details = Motherboard::where('component_id',$details->component->id)->first();
+                    $specific_details = Motherboard::with('memory_speeds')->where('component_id',$details->component->id)->first();
                     $profile_path = 'images/components/motherboards/';
                     break;
                 case "CPU":
@@ -34,7 +36,7 @@ class ProductsInfoController extends Controller
                     $profile_path = 'images/components/cpus/';
                     break;
                 case "CPU Cooler":
-                    $specific_details = CPUCooler::where('component_id',$details->component->id)->first();
+                    $specific_details = CPUCooler::with('cpu_sockets')->where('component_id',$details->component->id)->first();
                     $profile_path = 'images/components/cpu_coolers/';
                     break;
                 case "Graphics Card":
@@ -54,14 +56,12 @@ class ProductsInfoController extends Controller
                     $profile_path = 'images/components/psus/';
                     break;
                 case "Computer Case":
-                    $specific_details = ComputerCase::where('component_id',$details->component->id)->first();
+                    $specific_details = ComputerCase::with('mobo_form_factors')->where('component_id',$details->component->id)->first();
                     $profile_path = 'images/components/computer_cases/';
                     break;
             }
-            //dd($specific_details);
-
-
-
+            //dd( $specific_details->cpu_sockets[0]->name );
+            //count($specific_details->cpu_sockets)
             //
             //dd($details->store);
             return view('products.index',['product_infos'=>$details, 'specific_details'=>$specific_details,'profile_path'=> $profile_path ]);
