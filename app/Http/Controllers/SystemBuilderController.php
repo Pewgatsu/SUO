@@ -48,6 +48,7 @@ class SystemBuilderController extends Controller
             $details = Product::with('build_products')->findOrFail($product_id);
 
             $this->orderComponent($details);
+
         }elseif($request->exists('buildName')){
             return $this->saveBuild($request);
         }elseif($request->exists('hold')){

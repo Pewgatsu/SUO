@@ -36,7 +36,7 @@
                      <td>
                         <form action="{{route('products.'.$component)}}" method="post" class="d-inline">             <!--Button -->
                             @csrf
-                            <input @if(isset($is_view)) disabled @endif type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class=" btn btn-info col-10">
+                            <input @if(isset($is_view) || $componentStatus[$key]!='Available') disabled @endif type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class=" btn btn-info col-10">
                         </form>
                         <form method="post" action="{{route('control')}}"
                               @if(!session()->has($component.'.name'))
@@ -47,7 +47,7 @@
                         >
                             <input type="hidden" name="unsetSelected" value="{{$component}}">
                             @csrf
-                            <button @if(isset($is_view)) disabled @endif type="submit" class="btn btn-info bg-danger">x</button>
+                            <button @if(isset($is_view) || $componentStatus[$key]!='Available') disabled @endif type="submit" class="btn btn-info bg-danger">x</button>
                         </form>
 
 
@@ -70,7 +70,7 @@
                         <form name="ownedComponent">                                          <!--  Checkbox -->
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input @if(isset($is_view)) disabled @endif type="checkbox"
+                                    <input @if(isset($is_view) || $componentStatus[$key]!='Available') disabled @endif type="checkbox"
                                            id="ownedComponent"
                                            value="motherboards"
                                            name="ownedComponentMotherboard"
