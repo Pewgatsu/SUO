@@ -356,13 +356,22 @@ class SystemBuilderController extends Controller
 
         $time =Carbon::now()->toDateTimeString();
 
-        if($product->build_products[0]->status =="Available" && $product->status="Available"){
-            $product->build_products[0]->status= "Ordered";
+
+        $index =   $product->build_products->where('build_id',session('buildInfo.buildId'))->keys()->first();
+
+        //pessimistic locking
+        $product =$product->lockForUpdate()->where('id',$product->id)->first();
+        //dd($product->status);
+       // dd($product);
+
+        //optimistic locking ->to follow
+        if($product->build_products[$index]->status =="Available" && $product->status=="Available"  ){
+            $product->build_products[$index]->status= "Ordered";
             $product->status="Ordered";
             $product->status_date = $time;
-            $product->build_products[0]->status_date = $time;
+            $product->build_products[$index]->status_date = $time;
 
-            $product->build_products[0]->save();
+            $product->build_products[$index]->save();
             $product->save();
 
             return back();
@@ -373,7 +382,14 @@ class SystemBuilderController extends Controller
               return back()->with('unavailable', $product->component->name);
 
         }
-
+        //dd($product);
+        // dd($product->getModel());
+        //dd($product->build_products[$index]->status);
+        //dd($product->status);
+        //dd( $product->build_products->where('build_id',session('buildInfo.buildId'))->keys()->first() );
+        //dd($product->build_products->build_id);
+        //        $products = Product::where('id',$product->id)->lockForUpdate();
+        //        dd($products);
 
     }
 
