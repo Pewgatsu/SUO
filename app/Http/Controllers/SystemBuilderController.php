@@ -47,9 +47,9 @@ class SystemBuilderController extends Controller
             $product_id = session($component.'.id');
             $details = Product::with('build_products')->findOrFail($product_id);
 
-            $this->orderComponent($details);
+            return $this->orderComponent($details);
 
-            return redirect()->route('consumer.builds.view', $details->builds->where('account_id',auth()->user()->getAuthIdentifier())->firstOrFail());
+            //return redirect()->route('consumer.builds.view', $details->builds->where('account_id',auth()->user()->getAuthIdentifier())->firstOrFail());
 
         }elseif($request->exists('buildName')){
             return $this->saveBuild($request);
@@ -364,7 +364,17 @@ class SystemBuilderController extends Controller
 
             $product->build_products[0]->save();
             $product->save();
+
+            return back();
+        }else{
+            $unavailable = $product->name;
+            //dd($product->component->name);
+            //with('error_code', 5)
+              return back()->with('unavailable', $product->component->name);
+
         }
+
+
     }
 
     public function edit_build(Build $build)

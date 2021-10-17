@@ -36,7 +36,9 @@
                      <td>
                         <form action="{{route('products.'.$component)}}" method="post" class="d-inline">             <!--Button -->
                             @csrf
-                            <input @if(isset($is_view) || $componentStatus[$key]!='Available') disabled @endif type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class=" btn btn-info col-10">
+                            <input @if(isset($is_view) ) disabled @endif
+                                   {{isset($componentStatus)?  $componentStatus[$key]!='Available'? 'disabled' :' ' : ' '  }}
+                            type="submit" name="selectedComponent" value="{{session($component.'.name','+')}}" class=" btn btn-info col-10">
                         </form>
                         <form method="post" action="{{route('control')}}"
                               @if(!session()->has($component.'.name'))
@@ -47,7 +49,9 @@
                         >
                             <input type="hidden" name="unsetSelected" value="{{$component}}">
                             @csrf
-                            <button @if(isset($is_view) || $componentStatus[$key]!='Available') disabled @endif type="submit" class="btn btn-info bg-danger">x</button>
+                            <button @if(isset($is_view)) disabled @endif
+                            {{isset($componentStatus)?  $componentStatus[$key]!='Available'? 'disabled' :' ' :' '  }}
+                            type="submit" class="btn btn-info bg-danger">x</button>
                         </form>
 
 
@@ -70,7 +74,9 @@
                         <form name="ownedComponent">                                          <!--  Checkbox -->
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input @if(isset($is_view) || $componentStatus[$key]!='Available') disabled @endif type="checkbox"
+                                    <input @if(isset($is_view)) disabled @endif
+                                    {{isset($componentStatus)?  $componentStatus[$key]!='Available'? 'disabled' :' ' :' '  }}
+                                            type="checkbox"
                                            id="ownedComponent"
                                            value="motherboards"
                                            name="ownedComponentMotherboard"
@@ -209,7 +215,40 @@
             </form>
         </div>
 
+
+        <div class="modal fade"
+             id="ordered_product" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"
+                            id="ordered_product">
+                            Product Unavailable</h5>
+                        <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        {{session('unavailable', ' ').' UNAVAILABLE!'}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">OK
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <!-- Modals -->
+    @if(!empty(session('unavailable')) || session()->has('unavailable'))
+        <script>
+            $(document).ready(function () {
+                $('#ordered_product').modal('show');
+            });
+        </script>
+    @endif
 
 
 <script>
