@@ -379,9 +379,9 @@ class ComponentDistance extends Model
 
                 $interface = strtolower($storage->interface);
 
-                if (strpos($interface, ' gb/s')) {
+                if (strpos($interface, ' gb/s') !== false) {
                     $storage_interface = str_replace(' ', '_', str_replace(' gb/s', 'gb', $interface)) . '_slot';
-                } elseif ($interface == 'm.2') {
+                } elseif (strpos($interface, 'm.2') !== false) {
                     $storage_interface = 'm2_slot';
                 } else {
                     $storage_interface = str_replace(' ', '_', $interface) . '_slot';
@@ -750,7 +750,7 @@ class ComponentDistance extends Model
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if ($specific_column == 'water_cooled_support') {
-                if ($computer_case->water_cooled_support && strpos($cpu_cooler->water_cooled_support, 'Yes'))
+                if ($computer_case->water_cooled_support && (strpos($cpu_cooler->water_cooled_support, 'Yes') !== false))
                     $distances["$specific_column"] = 0;
                 else
                     $distances["$specific_column"] = $specific_weight * 10;
