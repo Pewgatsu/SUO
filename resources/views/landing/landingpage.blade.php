@@ -48,9 +48,8 @@
                     <img src="{{asset('assets/img/landing/new.jpg')}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Mission</h1>
-                    <p class="lead">The developers aim to provide a platform for both consumers and seller/s, to build system units and sell components to consumers and to east the process
-                        of building a system unit and increase the quality of purchases.</p>
+                    <h1 class="display-5 fw-bold lh-1 mb-3">Vision</h1>
+                    <p class="lead">To ease the process of building a system unit and increase the quality of purchases</p>
 
                 </div>
             </div>
