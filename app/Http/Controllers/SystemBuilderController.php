@@ -17,7 +17,7 @@ class SystemBuilderController extends Controller
 {
     private array $components=array('cpus','motherboards' , 'graphics_cards', 'rams', 'storages', 'psus' ,'computer_cases', 'cpu_coolers');
     private array $title=array('CPU' ,'Motherboard' , 'Graphics Card', 'RAM', 'Storage', 'PSU','Computer Case' , 'CPU Cooler');
-    private array $componentStatus=array('','','','','','','','');
+    private array $componentStatus=array('','','','','','','','Available');
     private array $validate=array(0,0,0,0,0,0,0,0);
 
     public function index(){
