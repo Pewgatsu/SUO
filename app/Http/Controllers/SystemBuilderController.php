@@ -49,6 +49,8 @@ class SystemBuilderController extends Controller
 
             $this->orderComponent($details);
 
+            return redirect()->route('consumer.builds.view', $details->builds->where('account_id',auth()->user()->getAuthIdentifier())->firstOrFail());
+
         }elseif($request->exists('buildName')){
             return $this->saveBuild($request);
         }elseif($request->exists('hold')){
@@ -363,8 +365,6 @@ class SystemBuilderController extends Controller
             $product->build_products[0]->save();
             $product->save();
         }
-
-
     }
 
     public function edit_build(Build $build)
