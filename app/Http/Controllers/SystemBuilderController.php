@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Log;
 
 class SystemBuilderController extends Controller
 {
-    private array $components=array('motherboards' ,'cpus', 'cpu_coolers', 'graphics_cards', 'rams', 'storages', 'psus' , 'computer_cases');
-    private array $title=array('Motherboard' ,'CPU', 'CPU Cooler', 'Graphics Card', 'RAM', 'Storage', 'PSU' , 'Computer Case');
+    private array $components=array('cpus','motherboards' , 'graphics_cards', 'rams', 'storages', 'psus' ,'computer_cases', 'cpu_coolers');
+    private array $title=array('CPU' ,'Motherboard' , 'Graphics Card', 'RAM', 'Storage', 'PSU','Computer Case' , 'CPU Cooler');
     private array $componentStatus=array('','','','','','','','');
     private array $validate=array(0,0,0,0,0,0,0,0);
 
@@ -227,32 +227,73 @@ class SystemBuilderController extends Controller
             }
         }
 
+        $this->validate[7] =0;
+
         if (in_array(1, $this->validate)) {
             //dd($this->validate);
             return view('systemBuilder.builder',['validateComponents'=>$this->validate ,'components' => $this->components,'title'=>$this->title]);
         }else{
             if(session()->has('buildInfo')){
 
+                $build=Build::with('build_products','products')->where('id',session('buildInfo.buildId'))->first();
+                //dd(count($build->build_products));
 
-                Build::where('id',session('buildInfo.buildId'))->update([
-                    'build_name' => $request->buildName,
-                    'total_price' => $total_price,
-                    'build_description' => $request->buildDescription
-                ]);
+                $build->build_name =$request->buildName;
+                $build->total_price =$total_price ;
+                $build->build_description =$request->buildDescription ;
+                $build->save();
 
+                //dd($build->products[0]->type);
                 foreach($this->components as $key=>$component) {
-                    $product = Product::select('id','type','description','status','status_date')->where('id',session($component.'.id'))->get();
-                    if($product[0]->status=='Available'){
-                        BuildProduct::where(['build_id' => session('buildInfo.buildId'),
-                            'type' => $this->title[$key]] )->update([
-                            'product_id' => $product[0]->id,
-                            'type' => $product[0]->type,
-                            'status'=>$product[0]->status,
-                            'status_date' => $product[0]->status_date,
-                            'owned' => session($component.'.owned' )
-                        ]);
+                    if($component == 'cpu_coolers') {
+                        if (session()->has('cpu_coolers') ) {
+                            $product = Product::select('id','type','description','status','status_date')->where('id',session($component.'.id'))->get();
+                            if($product[0]->status=='Available' && count($build->build_products) ==8 ){
+                                BuildProduct::where(['build_id' => session('buildInfo.buildId'),
+                                    'type' => $this->title[$key]] )->update([
+                                    'product_id' => $product[0]->id,
+                                    'type' => $product[0]->type,
+                                    'status'=>$product[0]->status,
+                                    'status_date' => $product[0]->status_date,
+                                    'owned' => session($component.'.owned' )
+                                ]);
+                            }else{
+                                $build_product= new BuildProduct;
+                                $build_product->build_id = $build->id;
+                                $build_product->product_id = $product[0]->id;
+                                $build_product->type = $product[0]->type;
+                                $build_product->status="Available";
+                                $build_product->status_date =Carbon::now()->toDateTimeString();
+                                $build_product->owned = session($component.'.owned' );
+
+                                $build_product->save();
+                                unset($build_product);
+                            }
+
+                            unset($product);
+                        }else{
+                            if(count($build->build_products) == 8 && $build->build_products[7]->type == 'CPU Cooler' && $build->build_products[7]->status == 'Available' ){
+                                //dd($build->build_products[7]);
+                               BuildProduct::where(['id'=> $build->build_products[7]->id,  'type'=> 'CPU Cooler'])->delete();
+                            }
+
+                        }
+                        unset($build);
+                    }else{
+                        $product = Product::select('id','type','description','status','status_date')->where('id',session($component.'.id'))->get();
+                        if($product[0]->status=='Available'){
+                            BuildProduct::where(['build_id' => session('buildInfo.buildId'),
+                                'type' => $this->title[$key]] )->update([
+                                'product_id' => $product[0]->id,
+                                'type' => $product[0]->type,
+                                'status'=>$product[0]->status,
+                                'status_date' => $product[0]->status_date,
+                                'owned' => session($component.'.owned' )
+                            ]);
+                        }
+                        unset($product);
                     }
-                    unset($product);
+
                 }
             }else{
                 $build = new Build;
@@ -268,18 +309,36 @@ class SystemBuilderController extends Controller
                 //dd($product->id);
 
                 foreach($this->components as $component){
-                    $build_product= new BuildProduct;
-                    $product = Product::select('id','type','description','status_date')->where('id',session($component.'.id'))->get();
-                    $build_product->build_id = $build->id;
-                    $build_product->product_id = $product[0]->id;
-                    $build_product->type = $product[0]->type;
-                    $build_product->status="Available";
-                    $build_product->status_date =Carbon::now()->toDateTimeString();
-                    $build_product->owned = session($component.'.owned' );
+                    if($component == 'cpu_coolers'){
+                        if(session()->has('cpu_coolers')){
+                            $build_product= new BuildProduct;
+                            $product = Product::select('id','type','description','status_date')->where('id',session($component.'.id'))->get();
+                            $build_product->build_id = $build->id;
+                            $build_product->product_id = $product[0]->id;
+                            $build_product->type = $product[0]->type;
+                            $build_product->status="Available";
+                            $build_product->status_date =Carbon::now()->toDateTimeString();
+                            $build_product->owned = session($component.'.owned' );
 
-                    $build_product->save();
-                    unset($build_product);
-                    unset($product);
+                            $build_product->save();
+                            unset($build_product);
+                            unset($product);
+                        }
+                    }else{
+                        $build_product= new BuildProduct;
+                        $product = Product::select('id','type','description','status_date')->where('id',session($component.'.id'))->get();
+                        $build_product->build_id = $build->id;
+                        $build_product->product_id = $product[0]->id;
+                        $build_product->type = $product[0]->type;
+                        $build_product->status="Available";
+                        $build_product->status_date =Carbon::now()->toDateTimeString();
+                        $build_product->owned = session($component.'.owned' );
+
+                        $build_product->save();
+                        unset($build_product);
+                        unset($product);
+                    }
+
                 }
 
             }
@@ -380,9 +439,12 @@ class SystemBuilderController extends Controller
            // dd($this->componentStatus);
             //dd($product->type);
             foreach ($this->title as $key=>$component){
+
                 if ($component == $product->type AND $this->componentStatus[$key]=='Available'){
                     //dd($this->componentStatus[$key]);
                     //dd($component == $product->type AND $this->componentStatus[$key]=='Available');
+                    $this->product_session($product->type,$product->id,$product->component->name,$product->price);
+                }else if($component == 'CPU Cooler' && $this->componentStatus[$key]=='Available'){
                     $this->product_session($product->type,$product->id,$product->component->name,$product->price);
                 }
             }
