@@ -74,6 +74,8 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::post('dashboard/add/psu', [DashboardController::class, 'add_psu'])->name('admin.dashboard.add_psu');
             Route::post('dashboard/add/computer_case', [DashboardController::class, 'add_computer_case'])->name('admin.dashboard.add_computer_case');
 
+            // Compute Distance
+            Route::post('dashboard/compute', [DashboardController::class, 'compute_distances'])->name('admin.dashboard.compute');
 
             // Users Management Page
             Route::get('users', [UsersController::class, 'index'])->name('admin.users');

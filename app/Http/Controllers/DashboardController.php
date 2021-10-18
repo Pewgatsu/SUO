@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use App\Models\Build;
 use App\Models\Component;
+use App\Models\ComponentDistance;
 use App\Models\ComputerCase;
 use App\Models\CPU;
 use App\Models\CPUCooler;
@@ -25,12 +26,17 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        ini_set('max_execution_time', 6000);
+    }
+
     public function index()
     {
         $accounts_count = Account::count();
         $sellers_count = Account::where('account_type','Seller')->count();
         $customers_count = Account::where('account_type','Customer')->count();
-        $builds_count = Build::count();
+        $distances_count = ComponentDistance::count();
         $components_count = Component::count();
         $motherboards_count = Motherboard::count();
         $cpus_count = CPU::count();
@@ -60,7 +66,7 @@ class DashboardController extends Controller
             'accounts_count' => $accounts_count,
             'sellers_count' => $sellers_count,
             'customers_count' => $customers_count,
-            'builds_count' => $builds_count,
+            'distances_count' => $distances_count,
             'components_count' => $components_count,
             'motherboards_count' => $motherboards_count,
             'cpus_count' => $cpus_count,
@@ -661,6 +667,205 @@ class DashboardController extends Controller
                 'component_id' => $component->id,
                 'mobo_form_factor_id' => $mobo_form_factor_id
             ]);
+        }
+
+        return back();
+    }
+
+    public function compute_distances(){
+        $products = Product::with('component')->groupBy('component_id')->get();
+        $component_products = array();
+        $component_products['Motherboard'] = array();
+        $component_products['CPU'] = array();
+        $component_products['CPU Cooler'] = array();
+        $component_products['Graphics Card'] = array();
+        $component_products['RAM'] = array();
+        $component_products['Storage'] = array();
+        $component_products['Computer Case'] = array();
+        foreach ($products as $product){
+            $component_products[$product->type][] = $product;
+        }
+
+        foreach ($component_products['Motherboard'] as $motherboard){
+            foreach ($component_products['CPU'] as $cpu){
+                if (!(ComponentDistance::getDistanceIfExist($motherboard,$cpu))){
+                    ComponentDistance::ComputeDistance($motherboard,$cpu);
+                }
+            }
+
+            foreach ($component_products['CPU Cooler'] as $cpu_cooler){
+                if (!(ComponentDistance::getDistanceIfExist($motherboard,$cpu_cooler))){
+                    ComponentDistance::ComputeDistance($motherboard,$cpu_cooler);
+                }
+            }
+
+            foreach ($component_products['Graphics Card'] as $graphics_card){
+                if (!(ComponentDistance::getDistanceIfExist($motherboard,$graphics_card))){
+                    ComponentDistance::ComputeDistance($motherboard,$graphics_card);
+                }
+            }
+
+            foreach ($component_products['RAM'] as $ram){
+                if (!(ComponentDistance::getDistanceIfExist($motherboard,$ram))){
+                    ComponentDistance::ComputeDistance($motherboard,$ram);
+                }
+            }
+
+            foreach ($component_products['Storage'] as $storage){
+                if (!(ComponentDistance::getDistanceIfExist($motherboard,$storage))){
+                    ComponentDistance::ComputeDistance($motherboard,$storage);
+                }
+            }
+
+            foreach ($component_products['PSU'] as $psu){
+                if (!(ComponentDistance::getDistanceIfExist($motherboard,$psu))){
+                    ComponentDistance::ComputeDistance($motherboard,$psu);
+                }
+            }
+
+            foreach ($component_products['Computer Case'] as $computer_case){
+                if (!(ComponentDistance::getDistanceIfExist($motherboard,$computer_case))){
+                    ComponentDistance::ComputeDistance($motherboard,$computer_case);
+                }
+            }
+        }
+
+        foreach ($component_products['CPU'] as $cpu){
+            foreach ($component_products['CPU Cooler'] as $cpu_cooler){
+                if (!(ComponentDistance::getDistanceIfExist($cpu,$cpu_cooler))){
+                    ComponentDistance::ComputeDistance($cpu,$cpu_cooler);
+                }
+            }
+
+            foreach ($component_products['Graphics Card'] as $graphics_card){
+                if (!(ComponentDistance::getDistanceIfExist($cpu,$graphics_card))){
+                    ComponentDistance::ComputeDistance($cpu,$graphics_card);
+                }
+            }
+
+            foreach ($component_products['RAM'] as $ram){
+                if (!(ComponentDistance::getDistanceIfExist($cpu,$ram))){
+                    ComponentDistance::ComputeDistance($cpu,$ram);
+                }
+            }
+
+            foreach ($component_products['Storage'] as $storage){
+                if (!(ComponentDistance::getDistanceIfExist($cpu,$storage))){
+                    ComponentDistance::ComputeDistance($cpu,$storage);
+                }
+            }
+
+            foreach ($component_products['PSU'] as $psu){
+                if (!(ComponentDistance::getDistanceIfExist($cpu,$psu))){
+                    ComponentDistance::ComputeDistance($cpu,$psu);
+                }
+            }
+
+            foreach ($component_products['Computer Case'] as $computer_case){
+                if (!(ComponentDistance::getDistanceIfExist($cpu,$computer_case))){
+                    ComponentDistance::ComputeDistance($cpu,$computer_case);
+                }
+            }
+        }
+
+        foreach ($component_products['CPU Cooler'] as $cpu_cooler){
+            foreach ($component_products['Graphics Card'] as $graphics_card){
+                if (!(ComponentDistance::getDistanceIfExist($cpu_cooler,$graphics_card))){
+                    ComponentDistance::ComputeDistance($cpu_cooler,$graphics_card);
+                }
+            }
+
+            foreach ($component_products['RAM'] as $ram){
+                if (!(ComponentDistance::getDistanceIfExist($cpu_cooler,$ram))){
+                    ComponentDistance::ComputeDistance($cpu_cooler,$ram);
+                }
+            }
+
+            foreach ($component_products['Storage'] as $storage){
+                if (!(ComponentDistance::getDistanceIfExist($cpu_cooler,$storage))){
+                    ComponentDistance::ComputeDistance($cpu_cooler,$storage);
+                }
+            }
+
+            foreach ($component_products['PSU'] as $psu){
+                if (!(ComponentDistance::getDistanceIfExist($cpu_cooler,$psu))){
+                    ComponentDistance::ComputeDistance($cpu_cooler,$psu);
+                }
+            }
+
+            foreach ($component_products['Computer Case'] as $computer_case){
+                if (!(ComponentDistance::getDistanceIfExist($cpu_cooler,$computer_case))){
+                    ComponentDistance::ComputeDistance($cpu_cooler,$computer_case);
+                }
+            }
+        }
+
+        foreach ($component_products['Graphics Card'] as $graphics_card){
+            foreach ($component_products['RAM'] as $ram){
+                if (!(ComponentDistance::getDistanceIfExist($graphics_card,$ram))){
+                    ComponentDistance::ComputeDistance($graphics_card,$ram);
+                }
+            }
+
+            foreach ($component_products['Storage'] as $storage){
+                if (!(ComponentDistance::getDistanceIfExist($graphics_card,$storage))){
+                    ComponentDistance::ComputeDistance($graphics_card,$storage);
+                }
+            }
+
+            foreach ($component_products['PSU'] as $psu){
+                if (!(ComponentDistance::getDistanceIfExist($graphics_card,$psu))){
+                    ComponentDistance::ComputeDistance($graphics_card,$psu);
+                }
+            }
+
+            foreach ($component_products['Computer Case'] as $computer_case){
+                if (!(ComponentDistance::getDistanceIfExist($graphics_card,$computer_case))){
+                    ComponentDistance::ComputeDistance($graphics_card,$computer_case);
+                }
+            }
+        }
+
+        foreach ($component_products['RAM'] as $ram){
+            foreach ($component_products['Storage'] as $storage){
+                if (!(ComponentDistance::getDistanceIfExist($ram,$storage))){
+                    ComponentDistance::ComputeDistance($ram,$storage);
+                }
+            }
+
+            foreach ($component_products['PSU'] as $psu){
+                if (!(ComponentDistance::getDistanceIfExist($ram,$psu))){
+                    ComponentDistance::ComputeDistance($ram,$psu);
+                }
+            }
+
+            foreach ($component_products['Computer Case'] as $computer_case){
+                if (!(ComponentDistance::getDistanceIfExist($ram,$computer_case))){
+                    ComponentDistance::ComputeDistance($ram,$computer_case);
+                }
+            }
+        }
+
+        foreach ($component_products['Storage'] as $storage){
+            foreach ($component_products['PSU'] as $psu){
+                if (!(ComponentDistance::getDistanceIfExist($storage,$psu))){
+                    ComponentDistance::ComputeDistance($storage,$psu);
+                }
+            }
+
+            foreach ($component_products['Computer Case'] as $computer_case){
+                if (!(ComponentDistance::getDistanceIfExist($storage,$computer_case))){
+                    ComponentDistance::ComputeDistance($storage,$computer_case);
+                }
+            }
+        }
+
+        foreach ($component_products['PSU'] as $psu){
+            foreach ($component_products['Computer Case'] as $computer_case){
+                if (!(ComponentDistance::getDistanceIfExist($psu,$computer_case))){
+                    ComponentDistance::ComputeDistance($psu,$computer_case);
+                }
+            }
         }
 
         return back();

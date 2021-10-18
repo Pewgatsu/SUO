@@ -115,7 +115,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row text-center g-2">
+                            <div class="row text-center g-2 mb-2">
                                 <div class="col-md">
                                     <div class="card card-body bg-light">
                                         <div class="h3">
@@ -128,10 +128,10 @@
                                 <div class="col-md">
                                     <div class="card card-body bg-light">
                                         <div class="h3">
-                                            <i class="bi bi-gear"></i>
-                                            <small>{{ $builds_count }}</small>
+                                            <i class="fab fa-connectdevelop"></i>
+                                            <small>{{ $distances_count }}</small>
                                         </div>
-                                        Builds
+                                        Distances
                                     </div>
                                 </div>
                                 <div class="col-md">
@@ -141,6 +141,16 @@
                                             <small>{{ $components_count }}</small>
                                         </div>
                                         Components
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center g-2">
+                                <div class="col-md">
+                                    <div class="card card-body bg-light">
+                                        <form action="{{ route('admin.dashboard.compute') }}" method="post">
+                                            @csrf
+                                            <button class="btn btn-primary" type="submit">Compute All Distances</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
