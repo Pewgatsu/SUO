@@ -42,4 +42,18 @@ class UsersController extends Controller
         $account->save();
         return back();
     }
+
+    public function validate_id(Account $account)
+    {
+        $account->is_validated = 1;
+        $account->save();
+        return back();
+    }
+
+    public function invalidate_id(Account $account)
+    {
+        $account->is_validated = 0;
+        $account->save();
+        return back();
+    }
 }

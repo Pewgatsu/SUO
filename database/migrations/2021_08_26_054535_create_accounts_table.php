@@ -20,6 +20,7 @@ class CreateAccountsTable extends Migration
             $table->string('email');
             $table->string('account_type');
             $table->string('profile_path')->nullable();
+            $table->string('valid_id_path')->nullable();
             $table->string('firstname');
             $table->string('lastname');
             $table->string('birthdate')->nullable();
@@ -28,6 +29,7 @@ class CreateAccountsTable extends Migration
             $table->string('address')->nullable();
             $table->boolean('is_verified')->nullable();
             $table->boolean('is_active')->nullable();
+            $table->boolean('is_validated')->nullable();
             $table->boolean('is_admin')->nullable();
             $table->timestamps();
         });

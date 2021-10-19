@@ -74,7 +74,9 @@ class Registration extends Component
             'birthdate' => $this->date,
             'address' => $this->address,
             'contact' => $this->contact,
-            'is_active' => true
+            'is_active' => true,
+            'is_verified' => false,
+            'is_validated' => false
         ]);
 
         Auth::login($account);

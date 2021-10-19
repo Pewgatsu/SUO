@@ -83,6 +83,8 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::delete('users/remove/{account}', [UsersController::class, 'remove'])->name('admin.users.remove');
             Route::post('users/suspend/{account}', [UsersController::class, 'suspend'])->name('admin.users.suspend');
             Route::post('users/unsuspend/{account}', [UsersController::class, 'unsuspend'])->name('admin.users.unsuspend');
+            Route::post('users/validate/{account}', [UsersController::class, 'validate_id'])->name('admin.users.validate');
+            Route::post('users/invalidate/{account}', [UsersController::class, 'invalidate_id'])->name('admin.users.invalidate');
 
             // Components Management Page
             Route::get('components/motherboards', [ComponentsController::class, 'index_motherboards'])->name('admin.components.motherboards');
