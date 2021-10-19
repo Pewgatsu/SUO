@@ -57,6 +57,24 @@
                         </div>
                     </div>
                 </div>
+                @if($account->account_type == 'Seller')
+                    <div class="col-md-4">
+                        <div class="card">
+                            <h5 class="card-header">Valid Identification</h5>
+                            <div class="card-body">
+                                @if(isset($account->valid_id_path))
+{{--                                    Edit this image path--}}
+                                    <img src="{{ asset('storage/photos/' . $account->valid_id_path ) }}"
+                                         class="card-img-bottom">
+                                @else
+                                    <img src="{{ asset('images/placeholder.jpg') }}"
+                                         class="card-img-bottom">
+                                @endif
+                                    <li class="list-group-item"><b>Validated:&emsp;</b>@if($account->is_validated) Yes @else No @endif</li>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

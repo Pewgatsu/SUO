@@ -51,6 +51,17 @@
                                         </td>
                                         <td>{{ $account->created_at->diffForHumans() }}</td>
                                         <td onclick="event.stopPropagation();">
+                                            @if($account->account_type == 'Seller')
+                                                @if($account->is_validated)
+                                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                                            data-bs-target="#invalidate_user_{{ $account->id }}">Invalidate
+                                                    </button>
+                                                @else
+                                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                            data-bs-target="#validate_user_{{ $account->id }}">Validate
+                                                    </button>
+                                                @endif
+                                            @endif
                                             @if($account->is_active)
                                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                         data-bs-target="#suspend_user_{{ $account->id }}">Suspend
@@ -65,6 +76,67 @@
                                             </button>
                                         </td>
                                     </tr>
+
+                                    <!-- Validate Modal -->
+                                    @if($account->account_type == 'Seller')
+                                        @if($account->is_validated)
+                                            <div class="modal fade" id="invalidate_user_{{ $account->id }}" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"
+                                                                id="invalidate_user_{{ $account->id }}_label">
+                                                                Invalidate Seller</h5>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            Do you want to invalidate {{ $account->username }}?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Cancel
+                                                            </button>
+                                                            <form action="{{ route('admin.users.invalidate',$account) }}"
+                                                                  method="post">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-primary">Invalidate
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="modal fade" id="validate_user_{{ $account->id }}" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title"
+                                                                id="validate_user_{{ $account->id }}_label">
+                                                                Validate Seller</h5>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            Do you want to validate {{ $account->username }}?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-bs-dismiss="modal">Cancel
+                                                            </button>
+                                                            <form action="{{ route('admin.users.validate',$account) }}"
+                                                                  method="post">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-primary">Validate
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endif
 
                                     <!-- Suspend Modal -->
                                     @if($account->is_active)
