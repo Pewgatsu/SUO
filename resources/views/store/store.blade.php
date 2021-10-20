@@ -66,6 +66,18 @@
                 </form>
             </div>
         </div>
+        <div class="container-fluid">
+            @if(session('storeInfo.is_validated') == 1)
+                <div class="card m-2 bg-success" >
+                    <h6 class="text-center">Store VALIDATED </h6>
+                </div>
+            @else
+                <div class="card m-2 bg-secondary" >
+                    <h6 class="text-center">Store not yet VALIDATED</h6>
+                </div>
+            @endif
+
+        </div>
         <!-- Map and address and Featured components -->
         <div class="container-xl mt-3 mb-3 p3">
             <div class="row">
