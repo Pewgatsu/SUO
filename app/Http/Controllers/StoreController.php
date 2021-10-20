@@ -60,8 +60,8 @@ class StoreController extends Controller
     }
 
     public function getContent($id){
-        $findId=Store::where('id',$id)->get();
-
+        $findId=Store::with('account')->where('id',$id)->get();
+        //dd($findId[0]->account->is_validated);
         $contact = Store::select('name')->where('id',$id)->addSelect(['contact' => Account::select('contact')
             ->whereColumn('account_id','accounts.id')
         ])->addSelect(['email' => Account::select('email')
@@ -93,7 +93,8 @@ class StoreController extends Controller
             'email'   =>$contact[0]['email'],
             'ownerFN' =>$contact[0]['ownerFN'],
             'ownerLN' =>$contact[0]['ownerLN'],
-            'creation'=>$contact[0]['creation']
+            'creation'=>$contact[0]['creation'],
+            'is_validated'=>$findId[0]->account->is_validated
         );
 
         session()->put('storeInfo',$storeInfo);
