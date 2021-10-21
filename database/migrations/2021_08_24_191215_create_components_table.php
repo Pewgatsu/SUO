@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 
 class CreateComponentsTable extends Migration
 {
@@ -14,7 +15,10 @@ class CreateComponentsTable extends Migration
     public function up()
     {
         Schema::create('components', function (Blueprint $table) {
-            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
+
+            if(config('app.env') !== 'local'){
+                \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
+            }
             $table->id();
             $table->string('image_path')->nullable();
             $table->string('name');
