@@ -19,7 +19,9 @@ class Product extends Model
         'type',
         'status',
         'status_date',
-        'description'
+        'description',
+        'created_at',
+        'updated_at'
     ];
 
     public function component(){
