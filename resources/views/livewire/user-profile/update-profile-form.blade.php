@@ -31,7 +31,6 @@
                         <div class="col-md-6 mx-5">
                             <div class="col-md" style="height: 40%; width: 40%">
                                 @if($photo)
-
                                     <img id="profile_image" src="{{$photo->temporaryUrl()}}" class="rounded-circle mt-5" alt="img">
                                 @else
                                     <img id="profile_image" src="{{asset('storage/photos').'/'.auth()->user()->profile_path}}"  class="rounded-circle mt-5" alt="img" >
@@ -39,7 +38,6 @@
                                 @endif
                             </div>
                         </div>
-
 
                         <div class="col-md-6 mx-5 mt-3">
 
