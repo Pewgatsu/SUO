@@ -14,6 +14,7 @@ class CreateComponentsTable extends Migration
     public function up()
     {
         Schema::create('components', function (Blueprint $table) {
+            \Illuminate\Support\Facades\DB::statement('SET SESSION sql_require_primary_key=0');
             $table->id();
             $table->string('image_path')->nullable();
             $table->string('name');
