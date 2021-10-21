@@ -27,6 +27,7 @@ class Account extends Authenticatable
         'email',
         'account_type',
         'profile_path',
+        'valid_id_path',
         'firstname',
         'lastname',
         'gender',
