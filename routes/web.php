@@ -56,7 +56,6 @@ Route::get('/logout',[\App\Http\Controllers\LogoutController::class,'logout'])->
 
 
 Route::group(['middleware' => 'is_active'], function(){
-    Route::group(['middleware' => 'auth'], function (){
 
         //ROUTE GROUP FOR ADMIN
         Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
@@ -236,7 +235,7 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::post('products/psus/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.psus.orders.done');
             Route::post('products/computer_cases/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.computer_cases.orders.done');
         });
-    });
+
 });
 
 
