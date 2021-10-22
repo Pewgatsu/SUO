@@ -55,10 +55,10 @@ Route::get('/logout',[\App\Http\Controllers\LogoutController::class,'logout'])->
 
 
 
-Route::group(['middleware' => 'is_active'], function(){
+
 
         //ROUTE GROUP FOR ADMIN
-        Route::group(['prefix' => 'admin', 'middleware' => 'is_admin'], function(){
+        Route::group(['prefix' => 'admin'], function(){
             // Admin Dashboard Page
             Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -119,7 +119,7 @@ Route::group(['middleware' => 'is_active'], function(){
         //Route::get('seller/{id}', [StoreController::class, 'index'])->name('viewStore');
 
         //ROUTE GROUP FOR SELLER
-        Route::group(['prefix' => 'seller','middleware' => 'is_seller'], function (){
+        Route::group(['prefix' => 'seller'], function (){
             //Seller
             Route::get('store', [StoreController::class, 'myStore'])->name('myStore');
             Route::any('edit/store/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
@@ -236,7 +236,7 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::post('products/computer_cases/orders/{component}/done/{product}', [OrdersController::class, 'done_order'])->name('seller.products.computer_cases.orders.done');
         });
 
-});
+
 
 
 
