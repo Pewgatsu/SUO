@@ -23,8 +23,6 @@ class UpdateProfileForm extends Component
         return $account;
     }
 
-
-
     public function mount(){
         $this->username = Auth::user()->username;
         $this->email = Auth::user()->email;
