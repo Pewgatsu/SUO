@@ -49,11 +49,19 @@ class ValidateAccountForm extends Component
 
         $file_name = 'Account_'.$account->id;
 
-        $path = Storage::disk('do_spaces')->putFileAs('photos/id/'.$account->id,$this->valid_id,$file_name,'public');
+        if($this->valid_id === null){
+            $old_path = $account->valid_id_path;
+            $path = $old_path;
+        }else{
+            $new_path = Storage::disk('do_spaces')->putFileAs('photos/id/'.$account->id,$this->valid_id,$file_name,'public');
+            $path = Storage::disk('do_spaces')->url($new_path);
+        }
 
         $account->update([
-            'valid_id_path' => Storage::disk('do_spaces')->url($path),
+            'valid_id_path' => $path
         ]);
+
+        session()->flash('alert_message','ID submitted!');
 
     }
 

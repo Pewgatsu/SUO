@@ -59,19 +59,23 @@ class UpdateProfileForm extends Component
 
         $file_name = 'Account_'.$account->id;
 
-        if($this->photo == null){
-            $path = $this->profile_path;
-        }else{
-            $path = Storage::disk('do_spaces')->putFileAs('photos/profile/'.$account->id,$this->photo,$file_name,'public');
-        }
 
+        if($this->photo === null){
+            $old_path = $account->profile_path;
+            $path = $old_path;
+        }else{
+            $new_path = Storage::disk('do_spaces')->putFileAs('photos/profile/'.$account->id,$this->photo,$file_name,'public');
+            $path = Storage::disk('do_spaces')->url($new_path);
+        }
 
 
         $account->update([
             'username' => $this->username,
             'email' => $this->email,
-            'profile_path' => Storage::disk('do_spaces')->url($path),
+            'profile_path' => $path
         ]);
+
+        session()->flash('alert_message','Account successfully saved!');
 
     }
 

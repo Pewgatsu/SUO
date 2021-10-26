@@ -29,6 +29,13 @@
                     <form wire:submit.prevent="saveProfile">
                         @csrf
                         <div class="col-md-6 mx-5">
+
+                            @if(session()->has('alert_message'))
+                                <div class="alert alert-success mt-3">
+                                    {{session('alert_message')}}
+                                </div>
+                            @endif
+
                             <div class="col-md" style="height: 40%; width: 40%">
                                 @if($photo)
                                     <img id="profile_image" src="{{$photo->temporaryUrl()}}" class="rounded-circle mt-5" alt="img">

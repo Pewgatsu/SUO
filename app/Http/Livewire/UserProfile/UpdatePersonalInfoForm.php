@@ -76,6 +76,8 @@ class UpdatePersonalInfoForm extends Component
             'contact' => $this->contact,
         ]);
 
+        session()->flash('alert_message','Account successfully saved!');
+
     }
 
 
