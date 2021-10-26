@@ -26,7 +26,7 @@
 
                 <div class="card mb-5 mt-3"  style="border-radius: 15px;">
 
-                    <form wire:submit.prevent="saveProfile">
+                    <form wire:submit.prevent="saveProfile" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6 mx-5">
 
@@ -37,20 +37,20 @@
                             @endif
 
                             <div class="col-md" style="height: 40%; width: 40%">
-{{--                                @if($photo)--}}
-{{--                                    <img id="profile_image" src="{{$photo->temporaryUrl()}}" class="rounded-circle mt-5" alt="img">--}}
-{{--                                @else--}}
-{{--                                    <img id="profile_image" src="{{$profile_path}}"  class="rounded-circle mt-5" alt="img" >--}}
-{{--                                    @error('photo') <span class="error"><small>{{ $message }}</small></span> @enderror--}}
-{{--                                @endif--}}
-                                <img id="profile_image" src="{{$profile_path}}"  class="rounded-circle mt-5" alt="img" >
+                                @if($photo)
+                                    <img id="profile_image" src="{{$photo->temporaryUrl()}}" class="rounded-circle mt-5" alt="img">
+                                @else
+                                    <img id="profile_image" src="{{$profile_path}}"  class="rounded-circle mt-5" alt="img" >
+                                    @error('photo') <span class="error"><small>{{ $message }}</small></span> @enderror
+                                @endif
+
                             </div>
                         </div>
 
 
                         <div class="col-md-6 mx-5 mt-3">
 
-                            <input type="file" id="upload" class="form-control form-control-sm w-50" style="display:none" wire:model="photo">
+                            <input type="file" id="upload" class="form-control form-control-sm w-50"  wire:model="photo">
                             <label for="upload" class="btn btn-dark btn-sm mx-5">upload photo</label>
 
                         </div>
