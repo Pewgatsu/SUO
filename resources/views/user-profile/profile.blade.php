@@ -27,7 +27,6 @@
 @livewire('user-profile.update-profile-form')
 @livewire('user-profile.update-personal-info-form')
 @livewire('user-profile.update-password-form')
-@livewire('user-profile.validate-account-form')
 @livewire('user-profile.delete-account-form')
 
 @include('layouts.footer')

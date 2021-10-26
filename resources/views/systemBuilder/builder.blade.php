@@ -228,7 +228,7 @@
                                 data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body text-center">
-                        {{session('unavailable', ' ').' UNAVAILABLE!'}}
+                        {{session('unavailable', ' ').' UNAVAILABLE! PLease Select Another Product to order.'}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"

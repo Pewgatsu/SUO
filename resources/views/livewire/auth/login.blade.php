@@ -31,18 +31,6 @@
                         @enderror
                     </div>
 
-                    <div class="row mb-4">
-                        <div class="col d-flex justify-content-center">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="remember">
-                            </div>
-                            <label class="form-check-label" for="remember">Remember me</label>
-                        </div>
-
-                        <div class="col">
-                            <a href="#">Forgot Password?</a>
-                        </div>
-                    </div>
 
                     <button class="w-100 btn btn-secondary text-white" type="submit" id="login" name="login">Login</button>
                 </form>
