@@ -37,12 +37,13 @@
                             @endif
 
                             <div class="col-md" style="height: 40%; width: 40%">
-                                @if($photo)
-                                    <img id="profile_image" src="{{$photo->temporaryUrl()}}" class="rounded-circle mt-5" alt="img">
-                                @else
-                                    <img id="profile_image" src="{{$profile_path}}"  class="rounded-circle mt-5" alt="img" >
-                                    @error('photo') <span class="error"><small>{{ $message }}</small></span> @enderror
-                                @endif
+{{--                                @if($photo)--}}
+{{--                                    <img id="profile_image" src="{{$photo->temporaryUrl()}}" class="rounded-circle mt-5" alt="img">--}}
+{{--                                @else--}}
+{{--                                    <img id="profile_image" src="{{$profile_path}}"  class="rounded-circle mt-5" alt="img" >--}}
+{{--                                    @error('photo') <span class="error"><small>{{ $message }}</small></span> @enderror--}}
+{{--                                @endif--}}
+                                <img id="profile_image" src="{{$profile_path}}"  class="rounded-circle mt-5" alt="img" >
                             </div>
                         </div>
 
