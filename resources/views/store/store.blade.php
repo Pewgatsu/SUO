@@ -45,16 +45,18 @@
     @endif
 
 
+
         <!--
         'image display' -> store.blade components
         'linking of the components'
         -->
 
         <!-- Background image or store banner -->
-        <div class="card m-2" >
-            <div class="bg-image" style="background-image: url({{asset(empty(session('storeInfo.banner')) ? '/images/placeholder.jpg':session('storeInfo.banner') ) }}) ;
-                height:50vh;" >
 
+        <div class="card m-2" >
+            <div class="bg-image"
+                 style="background-image: url({{ empty(session('storeInfo.banner')) ? '"'.asset('/images/placeholder.jpg').'"'  : "'".session('storeInfo.banner')."'"  }});
+                    height:50vh " >
 
                 <br><br><br><br><br><br>
                 <span class="align-middle"> <h1 class="p-1 ps-4 align-middle bg-black text-white">  {{empty(session('storeInfo.storeName')) ? ' ':session('storeInfo.storeName')}}</h1> </span>
