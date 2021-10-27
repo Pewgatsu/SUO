@@ -28,7 +28,6 @@ class ValidateAccountForm extends Component
     public function getRules(){
         return [
             //
-
             'valid_id' => ['nullable','image','max:1024']
 
         ];
@@ -49,13 +48,14 @@ class ValidateAccountForm extends Component
 
         $file_name = 'Account_'.$account->id;
 
-        if($this->valid_id === null){
-            $old_path = $account->valid_id_path;
-            $path = $old_path;
-        }else{
+
+        if(isset($this->valid_id)){
             $new_path = Storage::disk('do_spaces')->putFileAs('photos/id/'.$account->id,$this->valid_id,$file_name,'public');
             $path = Storage::disk('do_spaces')->url($new_path);
+        }else{
+            $path = $account->valid_id_path;
         }
+
 
         $account->update([
             'valid_id_path' => $path
