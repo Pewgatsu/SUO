@@ -133,12 +133,14 @@ class DashboardController extends Controller
         if (isset($request->mobo_image)){
             // Image Upload
             $mobo_image_filename = time() . '-' . $request->mobo_name . '.' . $request->mobo_image->extension();
-            $request->mobo_image->move(public_path('images/components/motherboards'), $mobo_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/motherboards', $request->mobo_image, $mobo_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Store
         $component = Component::create([
-            'image_path' => $mobo_image_filename ?? null,
+            'image_path' => $path ?? null,
             'name' => $request->mobo_name,
             'type' => 'Motherboard',
             'manufacturer' => $request->mobo_manufacturer,
@@ -222,7 +224,7 @@ class DashboardController extends Controller
         if (isset($request->cpu_image)){
             // Image Upload
             $cpu_image_filename = time() . '-' . $request->cpu_name . '.' . $request->cpu_image->extension();
-//            $request->cpu_image->move(public_path('images/components/cpus'), $cpu_image_filename);
+
             $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/cpus', $request->cpu_image, $cpu_image_filename,'public');
             $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
@@ -283,12 +285,14 @@ class DashboardController extends Controller
         if (isset($request->cpu_cooler_image)) {
             // Image Upload
             $cpu_cooler_image_filename = time() . '-' . $request->cpu_cooler_name . '.' . $request->cpu_cooler_image->extension();
-            $request->cpu_cooler_image->move(public_path('images/components/cpu_coolers'), $cpu_cooler_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/cpu_coolers', $request->cpu_cooler_image, $cpu_cooler_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Store
         $component = Component::create([
-            'image_path' => $cpu_cooler_image_filename ?? null,
+            'image_path' => $path ?? null,
             'name' => $request->cpu_cooler_name,
             'type' => 'CPU Cooler',
             'manufacturer' => $request->cpu_cooler_manufacturer,
@@ -361,12 +365,14 @@ class DashboardController extends Controller
         if (isset($request->graphics_card_image)){
             // Image Upload
             $graphics_card_image_filename = time() . '-' . $request->graphics_card_name . '.' . $request->graphics_card_image->extension();
-            $request->graphics_card_image->move(public_path('images/components/graphics_cards'), $graphics_card_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/graphic_cards', $request->graphics_card_image, $graphics_card_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Store
         $component = Component::create([
-            'image_path' => $graphics_card_image_filename ?? null,
+            'image_path' => $path ?? null,
             'name' => $request->graphics_card_name,
             'type' => 'Graphics Card',
             'manufacturer' => $request->graphics_card_manufacturer,
@@ -432,12 +438,14 @@ class DashboardController extends Controller
         if (isset($request->ram_image)){
             // Image Upload
             $ram_image_filename = time() . '-' . $request->ram_name . '.' . $request->ram_image->extension();
-            $request->ram_image->move(public_path('images/components/rams'), $ram_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/rams', $request->ram_image, $ram_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Store
         $component = Component::create([
-            'image_path' => $ram_image_filename ?? null,
+            'image_path' => $path ?? null,
             'name' => $request->ram_name,
             'type' => 'RAM',
             'manufacturer' => $request->ram_manufacturer,
@@ -492,12 +500,14 @@ class DashboardController extends Controller
         if (isset($request->storage_image)){
             // Image Upload
             $storage_image_filename = time() . '-' . $request->storage_name . '.' . $request->storage_image->extension();
-            $request->storage_image->move(public_path('images/components/storages'), $storage_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/storages', $request->storage_image, $storage_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Store
         $component = Component::create([
-            'image_path' => $storage_image_filename ?? null,
+            'image_path' => $path ?? null,
             'name' => $request->storage_name,
             'type' => 'Storage',
             'manufacturer' => $request->storage_manufacturer,
@@ -553,12 +563,15 @@ class DashboardController extends Controller
         if (isset($request->psu_image)){
             // Image Upload
             $psu_image_filename = time() . '-' . $request->psu_name . '.' . $request->psu_image->extension();
-            $request->psu_image->move(public_path('images/components/psus'), $psu_image_filename);
+
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/psus', $request->psu_image, $psu_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Store
         $component = Component::create([
-            'image_path' => $psu_image_filename ?? null,
+            'image_path' => $path ?? null,
             'name' => $request->psu_name,
             'type' => 'PSU',
             'manufacturer' => $request->psu_manufacturer,
@@ -623,12 +636,16 @@ class DashboardController extends Controller
         if (isset($request->case_image)){
             // Image Upload
             $case_image_filename = time() . '-' . $request->case_name . '.' . $request->case_image->extension();
-            $request->case_image->move(public_path('images/components/computer_cases'), $case_image_filename);
+
+
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/computer_cases', $request->case_image, $case_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Store
         $component = Component::create([
-            'image_path' => $case_image_filename ?? null,
+            'image_path' => $path ?? null,
             'name' => $request->case_name,
             'type' => 'Computer Case',
             'manufacturer' => $request->case_manufacturer,

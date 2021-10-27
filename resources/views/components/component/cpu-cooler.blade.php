@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         @if($mode === 'edit' && isset($cpuCooler) && isset($cpuCooler->component->image_path))
                             <img class="img-fluid rounded mx-auto d-block mb-2"
-                                 src="{{ asset('images/components/cpu_coolers/' . $cpuCooler->component->image_path) }}" alt="">
+                                 src="{{ $cpuCooler->component->image_path }}" alt="">
                         @endif
                         <label for="cpu_cooler_image" class="form-label">Component Image</label>
                         <input class="form-control @error('cpu_cooler_image') is-invalid @enderror" type="file"
