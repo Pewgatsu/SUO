@@ -24,6 +24,7 @@ use App\Models\Storage;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
+
 class DashboardController extends Controller
 {
     public function __construct()
@@ -221,12 +222,14 @@ class DashboardController extends Controller
         if (isset($request->cpu_image)){
             // Image Upload
             $cpu_image_filename = time() . '-' . $request->cpu_name . '.' . $request->cpu_image->extension();
-            $request->cpu_image->move(public_path('images/components/cpus'), $cpu_image_filename);
+//            $request->cpu_image->move(public_path('images/components/cpus'), $cpu_image_filename);
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/cpus', $request->cpu_image, $cpu_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Store
         $component = Component::create([
-            'image_path' => $cpu_image_filename ?? null,
+            'image_path' => $path ?? null,
             'name' => $request->cpu_name,
             'type' => 'CPU',
             'manufacturer' => $request->cpu_manufacturer,
