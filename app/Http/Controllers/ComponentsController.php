@@ -172,17 +172,19 @@ class ComponentsController extends Controller
 
         if (isset($request->mobo_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/components/motherboards/' . $component->image_path))) {
-                unlink(public_path('images/components/motherboards/' . $component->image_path));
+            $mobo_image_filename = time() . '-' . $request->mobo_name . '.' . $request->mobo_image->extension();
+
+            if(\Illuminate\Support\Facades\Storage::disk('do_spaces')->exists($component->image_path)){
+                \Illuminate\Support\Facades\Storage::delete($component->image_path);
             }
 
             // Image Upload
-            $mobo_image_filename = time() . '-' . $request->mobo_name . '.' . $request->mobo_image->extension();
-            $request->mobo_image->move(public_path('images/components/motherboards'), $mobo_image_filename);
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/motherboards', $request->mobo_image, $mobo_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Component Attributes
-        $component->image_path = $mobo_image_filename ?? $component->image_path ?? null;
+        $component->image_path = $path ?? $component->image_path ?? null;
         $component->name = $request->mobo_name;
         $component->type = 'Motherboard';
         $component->manufacturer = $request->mobo_manufacturer;
@@ -294,17 +296,22 @@ class ComponentsController extends Controller
 
         if (isset($request->cpu_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/components/cpus/' . $component->image_path))) {
-                unlink(public_path('images/components/cpus/' . $component->image_path));
+
+            $cpu_image_filename = time() . '-' . $request->cpu_name . '.' . $request->cpu_image->extension();
+
+            if(\Illuminate\Support\Facades\Storage::disk('do_spaces')->exists($component->image_path)){
+                \Illuminate\Support\Facades\Storage::delete($component->image_path);
             }
 
             // Image Upload
-            $cpu_image_filename = time() . '-' . $request->cpu_name . '.' . $request->cpu_image->extension();
-            $request->cpu_image->move(public_path('images/components/cpus'), $cpu_image_filename);
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/cpus', $request->cpu_image, $cpu_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
+
+
         }
 
         // Component Attributes
-        $component->image_path = $cpu_image_filename ?? $component->image_path ?? null;
+        $component->image_path = $path ?? $component->image_path ?? null;
         $component->name = $request->cpu_name;
         $component->type = 'CPU';
         $component->manufacturer = $request->cpu_manufacturer;
@@ -374,17 +381,22 @@ class ComponentsController extends Controller
 
         if (isset($request->cpu_cooler_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/components/cpu_coolers/' . $component->image_path))) {
-                unlink(public_path('images/components/cpu_coolers/' . $component->image_path));
+
+
+            $cpu_cooler_image_filename = time() . '-' . $request->cpu_cooler_name . '.' . $request->cpu_cooler_image->extension();
+
+            if(\Illuminate\Support\Facades\Storage::disk('do_spaces')->exists($component->image_path)){
+                \Illuminate\Support\Facades\Storage::delete($component->image_path);
             }
 
             // Image Upload
-            $cpu_cooler_image_filename = time() . '-' . $request->cpu_cooler_name . '.' . $request->cpu_cooler_image->extension();
-            $request->cpu_cooler_image->move(public_path('images/components/cpu_coolers'), $cpu_cooler_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/cpu_coolers', $request->cpu_cooler_image, $cpu_cooler_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Component Attributes
-        $component->image_path = $cpu_cooler_image_filename ?? $component->image_path ?? null;
+        $component->image_path = $path ?? $component->image_path ?? null;
         $component->name = $request->cpu_cooler_name;
         $component->type = 'CPU Cooler';
         $component->manufacturer = $request->cpu_cooler_manufacturer;
@@ -482,17 +494,18 @@ class ComponentsController extends Controller
 
         if (isset($request->graphics_card_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/components/graphics_cards/' . $component->image_path))) {
-                unlink(public_path('images/components/graphics_cards/' . $component->image_path));
-            }
-
-            // Image Upload
             $graphics_card_image_filename = time() . '-' . $request->graphics_card_name . '.' . $request->graphics_card_image->extension();
-            $request->graphics_card_image->move(public_path('images/components/graphics_cards'), $graphics_card_image_filename);
+
+            if(\Illuminate\Support\Facades\Storage::disk('do_spaces')->exists($component->image_path)){
+                \Illuminate\Support\Facades\Storage::delete($component->image_path);
+            }
+            // Image Upload
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/graphic_cards', $request->graphics_card_image, $graphics_card_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Component Attributes
-        $component->image_path = $graphics_card_image_filename ?? $component->image_path ?? null;
+        $component->image_path = $path ?? $component->image_path ?? null;
         $component->name = $request->graphics_card_name;
         $component->type = 'Graphics Card';
         $component->manufacturer = $request->graphics_card_manufacturer;
@@ -572,18 +585,20 @@ class ComponentsController extends Controller
         $validator->validate();
 
         if (isset($request->ram_image)) {
+            $ram_image_filename = time() . '-' . $request->ram_name . '.' . $request->ram_image->extension();
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/components/rams/' . $component->image_path))) {
-                unlink(public_path('images/components/rams/' . $component->image_path));
+            if(\Illuminate\Support\Facades\Storage::disk('do_spaces')->exists($component->image_path)){
+                \Illuminate\Support\Facades\Storage::delete($component->image_path);
             }
 
             // Image Upload
-            $ram_image_filename = time() . '-' . $request->ram_name . '.' . $request->ram_image->extension();
-            $request->ram_image->move(public_path('images/components/rams'), $ram_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/rams', $request->ram_image, $ram_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Component Attributes
-        $component->image_path = $ram_image_filename ?? $component->image_path ?? null;
+        $component->image_path = $path ?? $component->image_path ?? null;
         $component->name = $request->ram_name;
         $component->type = 'RAM';
         $component->manufacturer = $request->ram_manufacturer;
@@ -653,17 +668,19 @@ class ComponentsController extends Controller
 
         if (isset($request->storage_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/components/storages/' . $component->image_path))) {
-                unlink(public_path('images/components/storages/' . $component->image_path));
+            $storage_image_filename = time() . '-' . $request->storage_name . '.' . $request->storage_image->extension();
+            if(\Illuminate\Support\Facades\Storage::disk('do_spaces')->exists($component->image_path)){
+                \Illuminate\Support\Facades\Storage::delete($component->image_path);
             }
 
             // Image Upload
-            $storage_image_filename = time() . '-' . $request->storage_name . '.' . $request->storage_image->extension();
-            $request->storage_image->move(public_path('images/components/storages'), $storage_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/storages', $request->storage_image, $storage_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Component Attributes
-        $component->image_path = $storage_image_filename ?? $component->image_path ?? null;
+        $component->image_path = $path ?? $component->image_path ?? null;
         $component->name = $request->storage_name;
         $component->type = 'Storage';
         $component->manufacturer = $request->storage_manufacturer;
@@ -734,17 +751,19 @@ class ComponentsController extends Controller
 
         if (isset($request->psu_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/components/psus/' . $component->image_path))) {
-                unlink(public_path('images/components/psus/' . $component->image_path));
+            $psu_image_filename = time() . '-' . $request->psu_name . '.' . $request->psu_image->extension();
+            if(\Illuminate\Support\Facades\Storage::disk('do_spaces')->exists($component->image_path)){
+                \Illuminate\Support\Facades\Storage::delete($component->image_path);
             }
 
             // Image Upload
-            $psu_image_filename = time() . '-' . $request->psu_name . '.' . $request->psu_image->extension();
-            $request->psu_image->move(public_path('images/components/psus'), $psu_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/psus', $request->psu_image, $psu_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Component Attributes
-        $component->image_path = $psu_image_filename ?? $component->image_path ?? null;
+        $component->image_path = $path ?? $component->image_path ?? null;
         $component->name = $request->psu_name;
         $component->type = 'PSU';
         $component->manufacturer = $request->psu_manufacturer;
@@ -824,17 +843,20 @@ class ComponentsController extends Controller
 
         if (isset($request->case_image)) {
             // Remove Old Image
-            if (isset($component->image_path) && file_exists(public_path('images/components/computer_cases/' . $component->image_path))) {
-                unlink(public_path('images/components/computer_cases/' . $component->image_path));
+            $case_image_filename = time() . '-' . $request->case_name . '.' . $request->case_image->extension();
+
+            if(\Illuminate\Support\Facades\Storage::disk('do_spaces')->exists($component->image_path)){
+                \Illuminate\Support\Facades\Storage::delete($component->image_path);
             }
 
             // Image Upload
-            $case_image_filename = time() . '-' . $request->case_name . '.' . $request->case_image->extension();
-            $request->case_image->move(public_path('images/components/computer_cases'), $case_image_filename);
+
+            $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/computer_cases', $request->case_image, $case_image_filename,'public');
+            $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }
 
         // Component Attributes
-        $component->image_path = $case_image_filename ?? $component->image_path ?? null;
+        $component->image_path = $path ?? $component->image_path ?? null;
         $component->name = $request->case_name;
         $component->type = 'Computer Case';
         $component->manufacturer = $request->case_manufacturer;

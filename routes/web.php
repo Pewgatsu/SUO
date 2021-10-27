@@ -126,6 +126,9 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::any('edit/store/save', [EditStoreController::class, 'saveInfo'])->name('saveInfo');
             Route::get('edit/store', [EditStoreController::class, 'index'])->name('editStore');
 
+            //Validation of account
+            Route::get('validate',[UserProfileController::class,'validate_account'])->name('seller.validate');
+
             // Add Products
             Route::post('store/add/motherboard', [StoreController::class, 'add_motherboard'])->name('seller.store.add_motherboard');
             Route::post('store/add/cpu', [StoreController::class, 'add_cpu'])->name('seller.store.add_cpu');

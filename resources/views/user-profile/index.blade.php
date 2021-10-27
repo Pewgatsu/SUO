@@ -18,7 +18,7 @@
                         <h5 class="card-header">Profile Picture</h5>
                         <div class="card-body">
                             @if(isset($account->profile_path))
-                                <img src="{{ asset('storage/photos/' . $account->profile_path ) }}"
+                                <img src="{{ $account->profile_path}}"
                                      class="card-img-bottom">
                             @else
                                 <img src="{{ asset('images/placeholder.jpg') }}"
@@ -64,7 +64,7 @@
                             <div class="card-body">
                                 @if(isset($account->valid_id_path))
 {{--                                    Edit this image path--}}
-                                    <img src="{{ asset('storage/photos/id/' . $account->valid_id_path ) }}"
+                                    <img src="{{ $account->valid_id_path }}"
                                          class="card-img-bottom">
                                 @else
                                     <img src="{{ asset('images/placeholder.jpg') }}"

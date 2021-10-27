@@ -5,6 +5,7 @@ namespace App\Http\Livewire\UserProfile;
 
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,6 +17,7 @@ class UpdateProfileForm extends Component
     public $username;
     public $email;
     public $photo;
+    public $profile_path;
 
 
     public function getUser(){
@@ -26,6 +28,7 @@ class UpdateProfileForm extends Component
     public function mount(){
         $this->username = Auth::user()->username;
         $this->email = Auth::user()->email;
+        $this->profile_path = Auth::user()->profile_path;
     }
 
 
@@ -54,17 +57,25 @@ class UpdateProfileForm extends Component
 
         $account = $this->getUser();
 
-        $file_name = $this->photo->getClientOriginalName('photo');
+        $file_name = 'Account_'.$account->id;
 
-        $this->photo->storeAs('public/photos', $file_name);
 
+        if($this->photo === null){
+            $old_path = $account->profile_path;
+            $path = $old_path;
+        }else{
+            $new_path = Storage::disk('do_spaces')->putFileAs('photos/profile/'.$account->id,$this->photo,$file_name,'public');
+            $path = Storage::disk('do_spaces')->url($new_path);
+        }
 
 
         $account->update([
             'username' => $this->username,
             'email' => $this->email,
-            'profile_path' => $file_name
+            'profile_path' => $path
         ]);
+
+        session()->flash('alert_message','Account successfully saved!');
 
     }
 

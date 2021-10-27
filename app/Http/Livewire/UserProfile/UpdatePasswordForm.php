@@ -48,6 +48,8 @@ class UpdatePasswordForm extends Component
         ]);
 
         $this->reset();
+
+        session()->flash('alert_message','Password successfully updated!');
     }
 
 

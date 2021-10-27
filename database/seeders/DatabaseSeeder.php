@@ -687,6 +687,216 @@ class DatabaseSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '151',
+            'price' => '4588',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '152',
+            'price' => '7287.7',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '153',
+            'price' => '6937',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '154',
+            'price' => '7033.38',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '155',
+            'price' => '4498',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '156',
+            'price' => '2759',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '157',
+            'price' => '17540.74',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '158',
+            'price' => '153887.57',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '159',
+            'price' => '68353.09',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '160',
+            'price' => '43476.91',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '161',
+            'price' => '7535.98',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '162',
+            'price' => '26635.28',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '163',
+            'price' => '43675.94',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '164',
+            'price' => '25066.67',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '165',
+            'price' => '18595.6974',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '166',
+            'price' => '62824.49',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '167',
+            'price' => '21511.28',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '168',
+            'price' => '9800.7',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '169',
+            'price' => '21014.20',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '170',
+            'price' => '30608.34',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
+            'component_id' => '171',
+            'price' => '40610.08',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
 
 
         //Dummy Store 2 & Products
@@ -1043,6 +1253,216 @@ class DatabaseSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '172',
+            'price' => '42670.74',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '173',
+            'price' => '12816.3',
+            'type' => 'CPU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '174',
+            'price' => '15529.83',
+            'type' => 'CPU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '175',
+            'price' => '9700.18',
+            'type' => 'CPU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '176',
+            'price' => '7035.89',
+            'type' => 'CPU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '177',
+            'price' => '284069.52',
+            'type' => 'CPU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '178',
+            'price' => '344.281',
+            'type' => 'CPU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '179',
+            'price' => '55285.49',
+            'type' => 'CPU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '180',
+            'price' => '49161.81',
+            'type' => 'Motherboard',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '181',
+            'price' => '79260.02',
+            'type' => 'CPU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '182',
+            'price' => '2513',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '183',
+            'price' => '6483.54',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '184',
+            'price' => '?',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '185',
+            'price' => '1512.14',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '186',
+            'price' => '634',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '187',
+            'price' => '8085.32',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '188',
+            'price' => '?',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '189',
+            'price' => '3573.98',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '190',
+            'price' => '10250.02',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '191',
+            'price' => '10604.35',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '3',
+            'component_id' => '192',
+            'price' => '12112.66',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
 
         //Dummy Store 3 & Products
         Account::insert([
@@ -1388,6 +1808,216 @@ class DatabaseSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date,
         ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '193',
+            'price' => '38197.09',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '194',
+            'price' => '7923.99',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '195',
+            'price' => '15027.74',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '196',
+            'price' => '57425.06',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '197',
+            'price' => '10001.74',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '198',
+            'price' => '9799',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '199',
+            'price' => '133214.63',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '200',
+            'price' => '14574.89',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '201',
+            'price' => '43479.23',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '202',
+            'price' => '2513',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '203',
+            'price' => '17222.59',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '204',
+            'price' => '6483.54',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '205',
+            'price' => '?',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '206',
+            'price' => '5779.39',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '207',
+            'price' => '10554.09',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '208',
+            'price' => '16406.37',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '209',
+            'price' => '35383.04',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '210',
+            'price' => '20807.64',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '211',
+            'price' => '58452.38',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '212',
+            'price' => '3716.11',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '4',
+            'component_id' => '213',
+            'price' => '4473.14',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
 
 
         //Dummy Store 4 & Products
@@ -1699,6 +2329,226 @@ class DatabaseSeeder extends Seeder
             'component_id' => '150',
             'price' => '33673.697',
             'type' => 'Graphics Card',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '214',
+            'price' => '602.11',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '215',
+            'price' => '2255.16',
+            'type' => 'RAM',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '216',
+            'price' => '3466.93',
+            'type' => 'Graphics Card',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '217',
+            'price' => '3546.34',
+            'type' => 'Graphics Card',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '218',
+            'price' => '3015.09',
+            'type' => 'Graphics Card',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '219',
+            'price' => '3417.17',
+            'type' => 'Graphics Card',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '220',
+            'price' => '3417.17',
+            'type' => 'Storage',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '221',
+            'price' => '7538.49',
+            'type' => 'Storage',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '222',
+            'price' => '91645.75',
+            'type' => 'Storage',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '223',
+            'price' => '14574.89',
+            'type' => 'Storage',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '224',
+            'price' => '28145.09',
+            'type' => 'Storage',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '225',
+            'price' => '4019.79',
+            'type' => 'Storage',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '226',
+            'price' => '19991.92',
+            'type' => 'Storage',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '227',
+            'price' => '35181.49',
+            'type' => 'Storage',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '228',
+            'price' => '6030.69',
+            'type' => 'Computer Case',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '229',
+            'price' => '2261.19',
+            'type' => 'Computer Case',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '230',
+            'price' => '3015.09',
+            'type' => 'CPU Cooler',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '231',
+            'price' => '2513',
+            'type' => 'CPU Cooler',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '232',
+            'price' => '1004.19',
+            'type' => 'CPU Cooler',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '233',
+            'price' => '1507.29',
+            'type' => 'CPU Cooler',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '234',
+            'price' => '5578.35',
+            'type' => 'PSU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        Product::insert([
+            'store_id' => '5',
+            'component_id' => '235',
+            'price' => '3163.86',
+            'type' => 'PSU',
             'status' => 'Available',
             'status_date' => $date,
             'created_at' => $date,

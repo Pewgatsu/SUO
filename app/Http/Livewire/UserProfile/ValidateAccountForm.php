@@ -5,7 +5,7 @@ namespace App\Http\Livewire\UserProfile;
 
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -14,7 +14,7 @@ class ValidateAccountForm extends Component
     use WithFileUploads;
 
     public $valid_id;
-
+    public $valid_id_path;
 
     public function getUser(){
         $account = Auth::user();
@@ -22,9 +22,8 @@ class ValidateAccountForm extends Component
     }
 
     public function mount(){
-
+        $this->valid_id_path = Auth::user()->valid_id_path;
     }
-
 
     public function getRules(){
         return [
@@ -38,7 +37,6 @@ class ValidateAccountForm extends Component
     public function getMessages(){
         return [
             'unique' => ':Attribute is already taken!',
-
         ];
     }
 
@@ -49,15 +47,21 @@ class ValidateAccountForm extends Component
 
         $account = $this->getUser();
 
+        $file_name = 'Account_'.$account->id;
 
-        $file_name = $this->valid_id->getClientOriginalName('photo');
-
-        $this->valid_id->storeAs('public/photos/id', $file_name);
-
+        if($this->valid_id === null){
+            $old_path = $account->valid_id_path;
+            $path = $old_path;
+        }else{
+            $new_path = Storage::disk('do_spaces')->putFileAs('photos/id/'.$account->id,$this->valid_id,$file_name,'public');
+            $path = Storage::disk('do_spaces')->url($new_path);
+        }
 
         $account->update([
-            'valid_id_path' => $file_name
+            'valid_id_path' => $path
         ]);
+
+        session()->flash('alert_message','ID submitted!');
 
     }
 
