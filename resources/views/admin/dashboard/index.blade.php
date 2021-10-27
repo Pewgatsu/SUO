@@ -159,7 +159,7 @@
                 </div>
 
                 <!-- Component Breakdown -->
-                <div class="col-md-3">
+                <div class="col-md-3 mb-3 my-md-0">
                     <ul class="list-group">
                         <li
                             class="list-group-item d-flex justify-content-between align-items-center disabled">
