@@ -49,11 +49,17 @@
         'image display' -> store.blade components
         'linking of the components'
         -->
-
+    {{session('storeInfo.banner')}}
         <!-- Background image or store banner -->
+
         <div class="card m-2" >
-            <div class="bg-image" style="background-image: url({{asset(empty(session('storeInfo.banner')) ? '/images/placeholder.jpg':session('storeInfo.banner') ) }}) ;
-                height:50vh;" >
+            <div class="bg-image"
+                 style="background-image: url({{ empty(session('storeInfo.banner')) ? '"'.asset('/images/placeholder.jpg').'"'  : "'".session('storeInfo.banner')."'"  }});
+                    height:50vh " >
+
+{{--            background-image: url("https://amymhaddad.s3.amazonaws.com/morocco-blue.png");--}}
+{{--            height: 400px;--}}
+{{--            width: 100%;--}}
 
 
                 <br><br><br><br><br><br>

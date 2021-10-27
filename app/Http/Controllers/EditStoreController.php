@@ -8,6 +8,7 @@ use App\Models\Store;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EditStoreController extends Controller
 {
@@ -49,7 +50,7 @@ class EditStoreController extends Controller
         $userId = Auth::user()->getAuthIdentifier();
         //dd($store->account->id);
         $store = Store::where('account_id', auth()->user()->getAuthIdentifier())->firstOrFail();
-
+        $path = "";
         //validate the input fields
         if(!Auth::check() || $userId != $store->account_id ){
             return view('landing.landingpage');
@@ -71,12 +72,16 @@ class EditStoreController extends Controller
             ]);
             if($request->hasFile('storeBanner')){
                 $store_banner = time().'-'.$request->storeBanner.'.'.$request->storeBanner->extension();
-                $request->storeBanner->move(public_path('images/Store_Banner'), $store_banner);
-            }
 
+                $new_path = Storage::disk('do_spaces')->putFileAs('images/Store_Banner', $request->storeBanner, $store_banner,'public');
+                $path = Storage::disk('do_spaces')->url($new_path);
+
+                //$request->storeBanner->move(public_path('images/Store_Banner'), $store_banner);
+            }
+            //dd($path);
             if(!$request->hasFile('storeBanner') || !$request->has('storeLocation')){
                 if($request->hasFile('storeBanner')){
-                    $store->update(['banner'=> $store_banner]);
+                    $store->update(['banner'=> $path]);
                 }
                 if($request->has('storeLocation')) {
                     $store->update(['location'=> $request->storeLocation]);
@@ -100,7 +105,7 @@ class EditStoreController extends Controller
                 $input = $request->all();
                 $store->update(
                     ['account_id' => session('userId'),
-                        'banner' => $store_banner,
+                        'banner' => $path,
                         'name' => $request->storeName,
                         'address' => $request->storeAddress,
                         'location' =>$request->storeLocation,
