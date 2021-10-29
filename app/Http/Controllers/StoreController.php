@@ -74,9 +74,12 @@ class StoreController extends Controller
             ->whereColumn('account_id','accounts.id')
         ])->get();
 
-        $banner = explode('\\', $findId[0]->banner);
+
+        //$banner = explode('.', $findId[0]->banner);
+
+        //dd($findId[0]->banner);
         $storeInfo = array(
-            'banner'=> '/images/Store_Banner/'.end($banner) ,
+            'banner'=> $findId[0]->banner,
             'storeName'=>$findId[0]->name,
             'storeAddress' =>$findId[0]->address,
             'storeLocation' =>$findId[0]->location,
