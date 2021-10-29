@@ -61,6 +61,7 @@ class UpdateProfileForm extends Component
 
 
         if(isset($this->photo)){
+            dd($this->photo);
             $new_path = Storage::disk('do_spaces')->putFileAs('photos/profile/'.$account->id,$this->photo,$file_name,'public');
             $path = Storage::disk('do_spaces')->url($new_path);
         }else{
