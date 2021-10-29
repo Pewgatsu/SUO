@@ -4,10 +4,12 @@ namespace App\Http\Livewire\UserProfile;
 
 
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+
 use Livewire\WithFileUploads;
 
 class UpdateProfileForm extends Component
@@ -61,6 +63,7 @@ class UpdateProfileForm extends Component
 
 
         if(isset($this->photo)){
+
             $new_path = Storage::disk('do_spaces')->putFileAs('photos/profile/'.$account->id,$this->photo,$file_name,'public');
             $path = Storage::disk('do_spaces')->url($new_path);
         }else{

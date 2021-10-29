@@ -307,6 +307,8 @@ Route::any('/consumer/builds/view/{build}', [SystemBuilderController::class, 'vi
 
 // User Profile Page
 Route::get('/profile',[UserProfileController::class,'index'])->name('user.profile');
+
+
 Route::get('/profile/{account}', [UserProfileController::class, 'index_user'])->name('user.profile.search');
 
 
