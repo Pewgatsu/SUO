@@ -55,7 +55,11 @@
 
 {{--STORE INFORMATION    --}}
     <div class="card m-2" >
-        <div class="bg-image" style="background-image: url({{asset(empty($product_infos->store->banner) ? '/images/placeholder.jpg': asset('/images/Store_Banner/'.$product_infos->store->banner) ) }}) ;
+        <div class="bg-image"
+{{--             style="background-image: url({{ empty(session('storeInfo.banner')) ? '"'.asset('/images/placeholder.jpg').'"'  : "'".session('storeInfo.banner')."'"  }});--}}
+
+
+             style="background-image: url({{empty($product_infos->store->banner) ? '"'.asset('/images/placeholder.jpg').'"' : "'".$product_infos->store->banner."'" }}) ;
             height:50vh;" >
 
 
