@@ -32,6 +32,11 @@ class UserProfileController extends Controller
         $file_name = 'Account_'.$account->id;
 
         if(isset($request->photo)){
+
+            if(Storage::disk('do_spaces')->exists($account->profile_path)){
+                Storage::delete($account->profile_path);
+            }
+
             $new_path = Storage::disk('do_spaces')->putFileAs('photos/profile/'.$account->id,$request->photo,$file_name,'public');
             $path = Storage::disk('do_spaces')->url($new_path);
 
@@ -45,11 +50,9 @@ class UserProfileController extends Controller
             'profile_path' => $path
         ]);
 
-
-
         session()->flash('alert_message','Account successfully saved!');
 
-        return back();
+        return redirect()->route('user.profile');
     }
 
     public function index_user(Account $account){
@@ -58,8 +61,42 @@ class UserProfileController extends Controller
         ]);
     }
 
-    public function validate_account(){
-        return view('user-profile.validate-account');
+    public function index_verify_account(){
+        $account = $this->getUser();
+
+        return view('user-profile.verify-account',['valid_id_path' => $account->valid_id_path]);
+    }
+
+    public function verify_account(Request $request){
+
+        $this->validate($request,['nullable','image','5048']);
+
+        $account = $this->getUser();
+
+        $file_name = 'Account_'.$account->id;
+
+
+
+        if(isset($request->valid_id)){
+
+            if(Storage::disk('do_spaces')->exists($account->valid_id_path)){
+                Storage::delete($account->valid_id_path);
+            }
+
+            $new_path = Storage::disk('do_spaces')->putFileAs('photos/id/'.$account->id,$request->valid_id,$file_name,'public');
+            $path = Storage::disk('do_spaces')->url($new_path);
+        }else{
+            $path = $account->valid_id_path;
+        }
+
+        $account->update([
+            'valid_id_path' => $path
+        ]);
+
+
+        session()->flash('alert_message','ID submitted!');
+
+        return redirect()->route('seller.verify');
     }
 
 
