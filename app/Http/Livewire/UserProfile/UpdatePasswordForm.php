@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\UserProfile;
 
-use App\Models\Account;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

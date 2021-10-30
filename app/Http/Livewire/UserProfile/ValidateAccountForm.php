@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\UserProfile;
 
-
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
