@@ -529,6 +529,16 @@ class DatabaseSeeder extends Seeder
         ]);
         Product::insert([
             'store_id' => '2',
+            'component_id' => '89',
+            'price' => '2009.89',
+            'type' => 'PSU',
+            'status' => 'Available',
+            'status_date' => $date,
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
+        Product::insert([
+            'store_id' => '2',
             'component_id' => '90',
             'price' => '37688.466',
             'type' => 'PSU',
