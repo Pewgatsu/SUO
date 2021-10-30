@@ -66,12 +66,16 @@
                             @endif
 
                             <div class="col-md" style="height: 40%; width: 40%">
-                                {{--                                @if($photo)--}}
-                                {{--                                    <img id="profile_image" src="{{$photo->temporaryUrl()}}" class="rounded-circle mt-5" alt="img">--}}
-                                {{--                                @else--}}
-                                <img id="profile_image" src="{{$profile_path}}"  class="rounded-circle mt-5" alt="img" >
+
+                                @if($profile_path === "")
+                                    <img id="profile_image" src="{{asset('images/profile-placeholder.png')}}"  class="rounded-circle mt-5" alt="" >
+                                @else
+                                    <img id="profile_image" src="{{$profile_path}}"  class="rounded-circle mt-5" alt="" >
+                                @endif
+
+
                                 @error('photo') <span class="error"><small>{{ $message }}</small></span> @enderror
-                                {{--                                @endif--}}
+
 
                             </div>
                         </div>
@@ -79,7 +83,7 @@
 
                         <div class="col-md-6 mx-5 mt-3">
 
-                            <input type="file" id="upload" class="form-control form-control-sm w-50" name="photo" id="photo" style="display: none">
+                            <input type="file" class="form-control form-control-sm w-50" name="photo" id="upload" style="display: none">
                             <label for="upload" class="btn btn-dark btn-sm mx-5">upload photo</label>
 
                         </div>
@@ -132,7 +136,7 @@
 @livewire('user-profile.update-password-form')
 @livewire('user-profile.delete-account-form')
 
-@include('layouts.footer')
+
 
 
 
@@ -141,6 +145,24 @@
 </body>
 
 <script>
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#profile_image').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#upload").change(function(){
+        readURL(this);
+    });
+
+
     window.addEventListener('show-delete-modal',event => {
         $('#confirmationModal').modal('show');
     })

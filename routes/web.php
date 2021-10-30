@@ -127,7 +127,8 @@ Route::group(['middleware' => 'is_active'], function(){
             Route::get('edit/store', [EditStoreController::class, 'index'])->name('editStore');
 
             //Validation of account
-            Route::get('validate',[UserProfileController::class,'validate_account'])->name('seller.validate');
+            Route::get('verify',[UserProfileController::class,'index_verify_account'])->name('seller.verify');
+            Route::post('/profile/verify_account',[UserProfileController::class,'verify_account'])->name('seller.verify.account');
 
             // Add Products
             Route::post('store/add/motherboard', [StoreController::class, 'add_motherboard'])->name('seller.store.add_motherboard');
@@ -307,7 +308,10 @@ Route::any('/consumer/builds/view/{build}', [SystemBuilderController::class, 'vi
 
 // User Profile Page
 Route::get('/profile',[UserProfileController::class,'index'])->name('user.profile');
+
+
 Route::post('/profile/update',[UserProfileController::class,'update_profile'])->name('user.profile.update');
+
 
 Route::get('/profile/{account}', [UserProfileController::class, 'index_user'])->name('user.profile.search');
 

@@ -44,7 +44,7 @@
                             <li class="dropdown-header">Manage Account</li>
                             <li><a class="dropdown-item" href="{{route('user.profile')}}"><small>Profile</small></a></li>
                             @if(auth()->user()->account_type == 'Seller')
-                                <li><a class="dropdown-item" href="{{route('seller.validate')}}"><small>Validate Account</small></a></li>
+                                <li><a class="dropdown-item" href="{{route('seller.verify')}}"><small>Validate Account</small></a></li>
                             @endif
                             <li class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{route('user.logout')}}"><small>Logout</small></a></li>
