@@ -346,6 +346,7 @@ class SystemBuilderController extends Controller
 
             }
             session()->forget(['motherboards', 'cpus','cpu_coolers','graphics_cards','rams','storages','psus','computer_cases','buildInfo']);
+            session()->flash('alert_message','Build Saved!');
             return redirect()->route('builds');
         }
 

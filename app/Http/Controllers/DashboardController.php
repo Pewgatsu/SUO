@@ -637,8 +637,6 @@ class DashboardController extends Controller
             // Image Upload
             $case_image_filename = time() . '-' . $request->case_name . '.' . $request->case_image->extension();
 
-
-
             $new_path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->putFileAs('images/components/computer_cases', $request->case_image, $case_image_filename,'public');
             $path = \Illuminate\Support\Facades\Storage::disk('do_spaces')->url($new_path);
         }

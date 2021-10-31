@@ -1,5 +1,18 @@
  <!-- Footer -->
-    <footer class="text-center text-light"style="background: #202020">
+ <style>
+     .fl-page {
+         position: relative;
+         min-height: 10vh;
+         padding-bottom: 60px; /* Should be equal to the height of your footer */
+         
+     }
+     .fl-page-footer-wrap {
+         width: 100%;
+         position: absolute;
+         bottom: 0px;
+     }
+ </style>
+    <footer class="text-center text-light fl-page"style="background: #03045e">
 
         <div class="container">
 

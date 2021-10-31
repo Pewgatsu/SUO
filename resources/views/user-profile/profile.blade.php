@@ -11,11 +11,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
-
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
 
     @livewireStyles
 
@@ -24,7 +24,7 @@
 
 
 @include('layouts.header')
-{{--@livewire('user-profile.update-profile-form')--}}
+
 
 <div>
     <style>
@@ -36,12 +36,18 @@
         .error{
             color: red;
         }
+
     </style>
 
-    <div class="container" id="alert">
+    @auth()
+        @include('layouts.subheader')
+    @endauth
 
-    </div>
     <div class="container">
+
+        <div class="toast-custom-pos">
+
+        </div>
 
         <div class="row mt-5">
 
@@ -57,13 +63,6 @@
                     <form  method="POST" enctype="multipart/form-data" action="{{route('user.profile.update')}}">
                         @csrf
                         <div class="col-md-6 mx-5">
-
-
-                            @if(session()->has('alert_message'))
-                                <div class="alert alert-success mt-3">
-                                    {{session('alert_message')}}
-                                </div>
-                            @endif
 
                             <div class="col-md" style="height: 40%; width: 40%">
 
@@ -128,7 +127,6 @@
     </div>
 
 
-
 </div>
 
 
@@ -138,11 +136,36 @@
 
 
 
-
-
 @livewireScripts
 
+<script src="{{ asset('js/app.js') }}"></script>
+
 </body>
+
+@if(session()->has('alert_message'))
+    <script>
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-custom-pos",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        };
+        toastr.success("{{ \Illuminate\Support\Facades\Session::get('alert_message') }}")
+
+    </script>
+@endif
 
 <script>
 
@@ -160,6 +183,27 @@
 
     $("#upload").change(function(){
         readURL(this);
+    });
+
+    window.addEventListener('alert', event => {
+        toastr[event.detail.type](event.detail.message,
+            event.detail.title ?? ''), toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-custom-pos",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        }
     });
 
 

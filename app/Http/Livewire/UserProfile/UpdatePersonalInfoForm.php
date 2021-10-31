@@ -61,6 +61,16 @@ class UpdatePersonalInfoForm extends Component
         $this->validateOnly($propertyName);
     }
 
+    public function alertSuccess()
+    {
+        $this->dispatchBrowserEvent('alert',[
+            'type'=>'success',
+            'message'=>"Account Updated!"
+        ]);
+    }
+
+
+
     public function savePersonalInfo(){
 
         $this->validate($this->getRules(),$this->getMessages());
@@ -75,8 +85,8 @@ class UpdatePersonalInfoForm extends Component
             'address' => $this->address,
             'contact' => $this->contact,
         ]);
+        $this->alertSuccess();
 
-        session()->flash('alert_message','Account successfully saved!');
 
     }
 

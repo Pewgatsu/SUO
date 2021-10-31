@@ -2,6 +2,7 @@
 @section('content')
 
     @include('layouts.subheader')
+
     <div class="container">
         <div class="d-sm-flex my-2 justify-content-between align-items-center">
             <div class="h1">
@@ -107,3 +108,29 @@
         </div>
     </div>
 @endsection
+
+
+
+@if(session()->has('alert_message'))
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-custom-pos",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        };
+        toastr.success("{{ \Illuminate\Support\Facades\Session::get('alert_message') }}")
+    </script>
+
+@endif

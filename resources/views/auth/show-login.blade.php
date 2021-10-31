@@ -21,7 +21,7 @@
     @livewireStyles
 
 </head>
-<body style="background: #2d2d2d">
+<body class="bg-light">
 
 
 @include('auth.header')
@@ -30,5 +30,52 @@
 @livewireScripts
 
 </body>
+
+@if(session()->has('alert_message'))
+    <script>
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-custom-pos",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        };
+        toastr.success("{{ \Illuminate\Support\Facades\Session::get('alert_message') }}")
+    </script>
+@endif
+
+<script>
+    window.addEventListener('alert', event => {
+        toastr[event.detail.type](event.detail.message,
+            event.detail.title ?? ''), toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-custom-pos",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        }
+    });
+</script>
 
 </html>

@@ -249,7 +249,7 @@ class StoreController extends Controller
                 'description' => $request->mobo_description
             ]);
         }
-
+        session()->flash('alert_message','Product Added!');
         return back();
     }
 
@@ -276,7 +276,7 @@ class StoreController extends Controller
                 'description' => $request->cpu_description
             ]);
         }
-
+        session()->flash('alert_message','Product Added!');
         return back();
     }
 
@@ -303,7 +303,7 @@ class StoreController extends Controller
                 'description' => $request->cpu_cooler_description
             ]);
         }
-
+        session()->flash('alert_message','Product Added!');
         return back();
     }
 
@@ -330,7 +330,7 @@ class StoreController extends Controller
                 'description' => $request->graphics_card_description
             ]);
         }
-
+        session()->flash('alert_message','Product Added!');
         return back();
     }
 
@@ -357,7 +357,7 @@ class StoreController extends Controller
                 'description' => $request->ram_description
             ]);
         }
-
+        session()->flash('alert_message','Product Added!');
         return back();
     }
 
@@ -384,7 +384,7 @@ class StoreController extends Controller
                 'description' => $request->storage_description
             ]);
         }
-
+        session()->flash('alert_message','Product Added!');
         return back();
     }
 
@@ -411,7 +411,7 @@ class StoreController extends Controller
                 'description' => $request->psu_description
             ]);
         }
-
+        session()->flash('alert_message','Product Added!');
         return back();
     }
 
@@ -438,7 +438,7 @@ class StoreController extends Controller
                 'description' => $request->case_description
             ]);
         }
-
+        session()->flash('alert_message','Product Added!');
         return back();
     }
 }

@@ -22,6 +22,14 @@ class UpdatePasswordForm extends Component
         ];
     }
 
+    public function alertSuccess()
+    {
+        $this->dispatchBrowserEvent('alert',[
+            'type'=>'success',
+            'message'=>"Password Updated!"
+        ]);
+    }
+
     public function getMessages()
     {
         return [
@@ -48,7 +56,7 @@ class UpdatePasswordForm extends Component
 
         $this->reset();
 
-        session()->flash('alert_message','Password successfully updated!');
+        $this->alertSuccess();
     }
 
 

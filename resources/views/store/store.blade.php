@@ -46,10 +46,6 @@
 
 
 
-        <!--
-        'image display' -> store.blade components
-        'linking of the components'
-        -->
 
         <!-- Background image or store banner -->
 
@@ -64,7 +60,7 @@
                 <br><br>
                 <form class="d-inline" method="get" action="{{route('editStore')}}">
                     @csrf
-                    <button type="submit" name="editStore"  {{session('seller','style=display:none;')}} class="btn btn-info  float-end ">Edit Profile</button>
+                    <button type="submit" name="editStore"  {{session('seller','style=display:none;')}} class="btn custom-btn  float-end ">Edit Profile</button>
                 </form>
             </div>
         </div>
@@ -416,8 +412,33 @@
         </script>
     @endif
 
+    @if(session()->has('alert_message'))
+        <script>
 
-        @if (session('seller'))
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-custom-pos",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+            };
+            toastr.success("{{ \Illuminate\Support\Facades\Session::get('alert_message') }}")
+
+        </script>
+    @endif
+
+
+    @if (session('seller'))
     <!-- Add Motherboard Product -->
     <x-product.motherboard mode="add" :motherboardComponents="$motherboard_components" />
 

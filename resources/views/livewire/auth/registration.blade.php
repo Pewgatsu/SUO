@@ -177,7 +177,7 @@
                                         </div>
 
                                         <div class="d-grid gap  pt-3">
-                                            <button type="submit" name="register" class="btn btn-secondary text-white">Register</button>
+                                            <button type="submit" name="register" class="btn custom-btn text-white">Register</button>
                                         </div>
 
                                         <p class="text-center text-muted mt-5 mb-0">Already have an account? <a

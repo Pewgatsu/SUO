@@ -11,19 +11,19 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
-
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    @livewireStyles
 
 </head>
 <body>
 
 
 @include('layouts.header')
+@auth()
+    @include('layouts.subheader')
+@endauth
 
 <div>
     <style>
@@ -37,9 +37,11 @@
         }
     </style>
 
-    <div class="container" id="alert">
+    <div class="toast-custom-pos toast-success">
 
     </div>
+
+
     <div class="container">
 
         <div class="row mt-5">
@@ -57,13 +59,6 @@
                         @csrf
                         <div class="col-md-6 mx-5">
 
-
-                            @if(session()->has('alert_message'))
-                                <div class="alert alert-success mt-3">
-                                    {{session('alert_message')}}
-                                </div>
-                            @endif
-
                             <div class="col-md" style="height: 40%; width: 40%">
 
                                 @if($valid_id_path === " ")
@@ -73,7 +68,6 @@
                                 @endif
 
                                 @error('photo') <span class="error"><small>{{ $message }}</small></span> @enderror
-
 
                             </div>
                         </div>
@@ -114,8 +108,33 @@
 
 </div>
 
+<script src="{{ asset('js/app.js') }}"></script>
 
 </body>
+
+@if(session()->has('alert_message'))
+    <script>
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-custom-pos",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        };
+        toastr.success("{{ \Illuminate\Support\Facades\Session::get('alert_message') }}")
+
+    </script>
+@endif
 
 
 <script>

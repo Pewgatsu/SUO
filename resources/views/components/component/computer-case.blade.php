@@ -286,8 +286,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">{{ $setTitle() }}</button>
+                    <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-dark">{{ $setTitle() }}</button>
                 </div>
             </div>
         </form>

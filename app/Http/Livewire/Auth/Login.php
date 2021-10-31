@@ -20,6 +20,12 @@ class Login extends Component
         ];
     }
 
+    public function alertError(){
+        $this->dispatchBrowserEvent('alert',[
+            'type'=>'error',
+            'message'=>"Invalid Credentials!"
+        ]);
+    }
 
     public function login(){
         $this->validate($this->getRules());
@@ -34,7 +40,8 @@ class Login extends Component
             }
         }else{
             $this->reset('password');
-            return redirect()->back()->with('error','Invalid Credentials');
+            $this->alertError();
+            return redirect()->back();
         }
 
 

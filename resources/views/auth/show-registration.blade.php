@@ -20,7 +20,7 @@
     @livewireStyles
 
 </head>
-<body style="background: #2d2d2d">
+<body class="bg-light">
 
 
 @include('auth.header')

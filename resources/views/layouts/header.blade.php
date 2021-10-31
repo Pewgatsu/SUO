@@ -1,8 +1,9 @@
 <div>
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <div class="container container-fluid px-5">
-
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container container-fluid">
         @guest
         <a class="navbar-brand" href="{{route('home')}}">
             System Unit Optimizer

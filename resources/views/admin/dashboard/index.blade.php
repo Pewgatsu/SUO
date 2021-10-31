@@ -9,7 +9,7 @@
                 <small> Dashboard</small>
             </div>
             <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                <button class="btn custom-btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                     Add Component
                 </button>
@@ -48,35 +48,35 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Motherboard
-                            <span class="badge bg-primary rounded-pill">{{ $motherboard_products_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $motherboard_products_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             CPU
-                            <span class="badge bg-primary rounded-pill">{{ $cpu_products_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $cpu_products_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             CPU Cooler
-                            <span class="badge bg-primary rounded-pill">{{ $cpu_cooler_products_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $cpu_cooler_products_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Graphics Card
-                            <span class="badge bg-primary rounded-pill">{{ $graphics_card_products_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $graphics_card_products_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             RAM
-                            <span class="badge bg-primary rounded-pill">{{ $ram_products_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $ram_products_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Storage
-                            <span class="badge bg-primary rounded-pill">{{ $storage_products_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $storage_products_count }}</span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <li class="list-group-item  d-flex justify-content-between align-items-center">
                             PSU
-                            <span class="badge bg-primary rounded-pill">{{ $psu_products_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $psu_products_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Computer Case
-                            <span class="badge bg-primary rounded-pill">{{ $computer_case_products_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $computer_case_products_count }}</span>
                         </li>
                     </ul>
                 </div>
@@ -149,7 +149,7 @@
                                     <div class="card card-body bg-light">
                                         <form action="{{ route('admin.dashboard.compute') }}" method="post">
                                             @csrf
-                                            <button class="btn btn-primary" type="submit">Compute All Distances</button>
+                                            <button class="btn custom-btn" type="submit">Compute All Distances</button>
                                         </form>
                                     </div>
                                 </div>
@@ -167,35 +167,35 @@
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Motherboard
-                            <span class="badge bg-primary rounded-pill">{{ $motherboards_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $motherboards_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             CPU
-                            <span class="badge bg-primary rounded-pill">{{ $cpus_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $cpus_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             CPU Cooler
-                            <span class="badge bg-primary rounded-pill">{{ $cpu_coolers_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $cpu_coolers_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Graphics Card
-                            <span class="badge bg-primary rounded-pill">{{ $graphics_cards_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $graphics_cards_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             RAM
-                            <span class="badge bg-primary rounded-pill">{{ $rams_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $rams_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Storage
-                            <span class="badge bg-primary rounded-pill">{{ $storages_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $storages_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             PSU
-                            <span class="badge bg-primary rounded-pill">{{ $psus_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $psus_count }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Computer Case
-                            <span class="badge bg-primary rounded-pill">{{ $computer_cases_count }}</span>
+                            <span class="badge custom-bg rounded-pill">{{ $computer_cases_count }}</span>
                         </li>
                     </ul>
                 </div>

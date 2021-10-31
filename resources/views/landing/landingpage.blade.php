@@ -2,8 +2,16 @@
 
 @section('content')
 
+
+
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
     <script src="{{asset('js/scripts.js')}}"></script>
+
+    <style>
+        .navbar-custom li a{
+            color: #FFFFFF;
+        }
+    </style>
 
     <body id="page-top">
     <!-- Header-->
@@ -12,7 +20,7 @@
             <div class="container px-5">
                 <h1 class="masthead-heading mb-2">System Unit Optimizer</h1>
                 <h2 class="masthead-subheading mb-0">Building your dream PC is only a click away!</h2>
-                <a class="btn btn-secondary btn-xl rounded-pill mt-5 text-white" href="#" onclick="$('#about_section').animatescroll()">Learn More</a>
+                <a class="btn custom-btn btn-xl rounded-pill mt-5" href="#" onclick="$('#about_section').animatescroll()">Learn More</a>
             </div>
         </div>
         <div class="bg-circle-1 bg-circle"></div>
@@ -23,7 +31,6 @@
     </header>
 
 <!-- Content section 1-->
-
 
     <section id="about_section">
         <div class="container col-xxl-8 px-4 py-5">

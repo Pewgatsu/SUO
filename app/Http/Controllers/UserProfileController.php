@@ -36,7 +36,6 @@ class UserProfileController extends Controller
             if(Storage::disk('do_spaces')->exists($account->profile_path)){
                 Storage::delete($account->profile_path);
             }
-
             $new_path = Storage::disk('do_spaces')->putFileAs('photos/profile/'.$account->id,$request->photo,$file_name,'public');
             $path = Storage::disk('do_spaces')->url($new_path);
 
@@ -50,7 +49,7 @@ class UserProfileController extends Controller
             'profile_path' => $path
         ]);
 
-        session()->flash('alert_message','Account successfully saved!');
+        session()->flash('alert_message','Account updated!');
 
         return redirect()->route('user.profile');
     }
@@ -74,7 +73,6 @@ class UserProfileController extends Controller
         $account = $this->getUser();
 
         $file_name = 'Account_'.$account->id;
-
 
 
         if(isset($request->valid_id)){

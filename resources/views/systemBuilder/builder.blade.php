@@ -199,7 +199,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                    <button @if(isset($is_view)) style="visibility: hidden;" @endif class="d-inline btn btn-info btn-block" type="submit" name="saveButton"  >
+                    <button @if(isset($is_view)) style="visibility: hidden;" @endif class="d-inline btn custom-btn btn-block" type="submit" name="saveButton"  >
                         {{ session()->has('buildInfo') ? 'Update Build' : 'Save Build'}}
                         </button>
                     </div>
@@ -211,7 +211,7 @@
             <form  action="{{route('control')}}" method="post">
                 @csrf
                 <input type="hidden" name="clearSelection" value="clearSelection">
-                <button class="d-inline btn btn-info btn-block bg-danger" name="clearSelection" type="submit"   >Clear Selection</button>
+                <button class="d-inline btn btn-info btn-block bg-danger text-white" name="clearSelection" type="submit"   >Clear Selection</button>
             </form>
         </div>
 
@@ -248,6 +248,30 @@
                 $('#ordered_product').modal('show');
             });
         </script>
+    @endif
+
+    @if(session()->has('alert_message'))
+        <script>
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-custom-pos",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+            };
+            toastr.success("{{ \Illuminate\Support\Facades\Session::get('alert_message') }}")
+        </script>
+
     @endif
 
 

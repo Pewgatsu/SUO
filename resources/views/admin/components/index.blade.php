@@ -71,7 +71,7 @@
                                             <td>{{ $motherboard->mobo_chipset }}</td>
                                             @if(!isset($is_info))
                                             <td onclick="event.stopPropagation();">
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
                                                         data-bs-target="#edit_motherboard_{{ $motherboard->component->id }}">
                                                     Edit
                                                 </button>
@@ -104,7 +104,7 @@
                                                         Do you want to delete {{ $motherboard->component->name }}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button" class="btn btn-secondary text-white"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
                                                         <form
@@ -155,7 +155,7 @@
                                             <td>{{ $cpu->base_clock }} GHz</td>
                                             @if(!isset($is_info))
                                             <td  onclick="event.stopPropagation();">
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
                                                         data-bs-target="#edit_cpu_{{ $cpu->component->id }}">Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
@@ -186,7 +186,7 @@
                                                         Do you want to delete {{ $cpu->component->name }}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button" class="btn btn-secondary text-white"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
                                                         <form
@@ -237,7 +237,7 @@
                                             <td>{{ $cpu_cooler->water_cooled_support }}</td>
                                             @if(!isset($is_info))
                                             <td onclick="event.stopPropagation();">
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
                                                         data-bs-target="#edit_cpu_cooler_{{ $cpu_cooler->component->id }}">
                                                     Edit
                                                 </button>
@@ -270,7 +270,7 @@
                                                         Do you want to delete {{ $cpu_cooler->component->name }}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button" class="btn btn-secondary text-white"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
                                                         <form
@@ -321,7 +321,7 @@
                                             <td>{{ $graphics_card->interface }}</td>
                                             @if(!isset($is_info))
                                             <td onclick="event.stopPropagation();">
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
                                                         data-bs-target="#edit_graphics_card_{{ $graphics_card->component->id }}">
                                                     Edit
                                                 </button>
@@ -354,7 +354,7 @@
                                                         Do you want to delete {{ $graphics_card->component->name }}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button" class="btn btn-secondary text-white"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
                                                         <form
@@ -405,7 +405,7 @@
                                             <td>{{ $ram->memory_form_factor }}</td>
                                             @if(!isset($is_info))
                                             <td onclick="event.stopPropagation();">
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
                                                         data-bs-target="#edit_ram_{{ $ram->component->id }}">Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
@@ -437,7 +437,7 @@
                                                         Do you want to delete {{ $ram->component->name }}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button" class="btn btn-secondary text-white"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
                                                         <form
@@ -488,7 +488,7 @@
                                             <td>{{ $storage->storage_form_factor }}</td>
                                             @if(!isset($is_info))
                                             <td onclick="event.stopPropagation();">
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
                                                         data-bs-target="#edit_storage_{{ $storage->component->id }}">
                                                     Edit
                                                 </button>
@@ -521,7 +521,7 @@
                                                         Do you want to delete {{ $storage->component->name }}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button" class="btn btn-secondary text-white"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
                                                         <form
@@ -572,7 +572,7 @@
                                             <td>{{ $psu->efficiency_rating }}</td>
                                             @if(!isset($is_info))
                                             <td onclick="event.stopPropagation();">
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
                                                         data-bs-target="#edit_psu_{{ $psu->component->id }}">Edit
                                                 </button>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
@@ -604,7 +604,7 @@
                                                         Do you want to delete {{ $psu->component->name }}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button" class="btn btn-secondary text-white"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
                                                         <form
@@ -667,7 +667,7 @@
                                             </td>
                                             @if(!isset($is_info))
                                             <td onclick="event.stopPropagation();">
-                                                <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                <button type="button" class="btn btn-secondary text-white" data-bs-toggle="modal"
                                                         data-bs-target="#edit_computer_case_{{ $computer_case->component->id }}">
                                                     Edit
                                                 </button>
@@ -701,7 +701,7 @@
                                                         Do you want to delete {{ $computer_case->component->name }}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
+                                                        <button type="button" class="btn btn-secondary text-white"
                                                                 data-bs-dismiss="modal">Cancel
                                                         </button>
                                                         <form
