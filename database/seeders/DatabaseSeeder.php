@@ -37,21 +37,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Account::insert([
-            'username' => 'seller',
-            'email' => Str::random(10).'@gmail.com',
-            'password' => Hash::make('password'),
-            'account_type' => 'Seller',
-            'is_admin' => false,
-            'is_verified' => false,
-            'is_validated' => false,
-            'firstname' => 'Test',
-            'lastname' => 'Seller',
-            'is_active' => true,
-            'created_at' => $date,
-            'updated_at' => $date,
-        ]);
-
-        Account::insert([
             'username' => 'customer',
             'email' => Str::random(10).'@gmail.com',
             'password' => Hash::make('password'),
@@ -82,7 +67,7 @@ class DatabaseSeeder extends Seeder
 
         //LemTech Store Details
         Store::insert([
-            'account_id' => '4',
+            'account_id' => '3',
             'banner' => 'lemtech_banner.jpg',
             'name' => 'LemTech',
             'address' => 'Makati City, Philippines',
@@ -349,7 +334,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => $date,
         ]);
         Store::insert([
-            'account_id' => '5',
+            'account_id' => '4',
             'name' => 'System Store 1',
             'address' => 'Quezon City, Philippines',
             'location' => '14.676208, 121.043861',
@@ -925,7 +910,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => $date,
         ]);
         Store::insert([
-            'account_id' => '6',
+            'account_id' => '5',
             'name' => 'System Store 1',
             'address' => 'Quezon City, Philippines',
             'location' => '14.676208, 121.043861',
@@ -1490,7 +1475,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => $date,
         ]);
         Store::insert([
-            'account_id' => '7',
+            'account_id' => '6',
             'name' => 'System Store 1',
             'address' => 'Quezon City, Philippines',
             'location' => '14.676208, 121.043861',
@@ -2046,7 +2031,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => $date,
         ]);
         Store::insert([
-            'account_id' => '8',
+            'account_id' => '7',
             'name' => 'System Store 1',
             'address' => 'Quezon City, Philippines',
             'location' => '14.676208, 121.043861',
