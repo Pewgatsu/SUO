@@ -280,7 +280,7 @@ class ComponentDistance extends Model
         $graphics_card = $component_1->type == 'Graphics Card' ? $component_1->graphics_card : $component_2->graphics_card;
 
         $specific_weights = [
-            'interface' => 1000
+            'interface' => 10
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -314,7 +314,7 @@ class ComponentDistance extends Model
 
         $specific_weights = [
             'memory_slot' => 1,
-            'memory_type' => 1000,
+            'memory_type' => 10,
             'memory_speed' => 10,
             'max_memory_support' => 0.001,
             'ecc_support' => 1
@@ -371,7 +371,7 @@ class ComponentDistance extends Model
         $storage = $component_1->type == 'Storage' ? $component_1->storage : $component_2->storage;
 
         $specific_weights = [
-            'interface' => 1000
+            'interface' => 10
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -436,7 +436,7 @@ class ComponentDistance extends Model
         $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
 
         $specific_weights = [
-            'mobo_form_factor' => 1000
+            'mobo_form_factor' => 10
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -974,7 +974,7 @@ class ComponentDistance extends Model
         $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
 
         $specific_weights = [
-            'storage_form_factor' => 1000
+            'storage_form_factor' => 10
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
