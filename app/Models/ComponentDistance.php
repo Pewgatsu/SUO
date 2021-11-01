@@ -175,7 +175,7 @@ class ComponentDistance extends Model
         $component_weights = [
             'id' => 0,
             'image_path' => 0,
-            'name' => 0.000001,
+            'name' => 0,
             'type' => 0,
             'manufacturer' => 0.001,
             'series' => 0.001,
