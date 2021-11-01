@@ -175,17 +175,17 @@ class ComponentDistance extends Model
         $component_weights = [
             'id' => 0,
             'image_path' => 0,
-            'name' => 1,
+            'name' => 0,
             'type' => 0,
-            'manufacturer' => 1,
-            'series' => 1,
-            'model' => 1,
-            'color' => 1,
+            'manufacturer' => 0,
+            'series' => 0,
+            'model' => 0,
+            'color' => 0,
             'length' => 0,
             'width' => 0,
             'height' => 0,
-            'created_at' => 0,
-            'updated_at' => 0
+            'created_at' => 0.000001,
+            'updated_at' => 0.000001
         ];
 
         $component_distances = array();
@@ -195,7 +195,7 @@ class ComponentDistance extends Model
                 $component_distances["$component_column"] = $component_weight * (($component_1->{$component_column} - $component_2->{$component_column}) ** 2);
             } elseif (($component_time_1 = strtotime($component_1->{$component_column})) && ($component_time_2 = strtotime($component_2->{$component_column}))) {
                 $component_distances["$component_column"] = $component_weight * (($component_time_1 - $component_time_2) ** 2);
-            } else {
+            } elseif (isset($component_1->{$component_column}, $component_2->{$component_column})) {
                 $component_distances["$component_column"] = $component_weight * (levenshtein($component_1->{$component_column}, $component_2->{$component_column}) ** 2);
             }
         }
@@ -211,14 +211,14 @@ class ComponentDistance extends Model
         $cpu = $component_1->type == 'CPU' ? $component_1->cpu : $component_2->cpu;
 
         $specific_weights = [
-            'cpu_socket' => 10,
-            'max_mem_support' => 0.1,
+            'cpu_socket' => 1000,
+            'max_mem_support' => 0.001,
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($motherboard->{$specific_column}) || is_numeric($cpu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $cpu->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($motherboard->{$specific_column}, $cpu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $cpu->{$specific_column}) ** 2);
             }
         }
@@ -236,7 +236,7 @@ class ComponentDistance extends Model
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1->cpu_cooler : $component_2->cpu_cooler;
 
         $specific_weights = [
-            'cpu_socket' => 10
+            'cpu_socket' => 1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -262,7 +262,7 @@ class ComponentDistance extends Model
 
             } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($cpu_cooler->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $cpu_cooler->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($motherboard->{$specific_column}, $cpu_cooler->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $cpu_cooler->{$specific_column}) ** 2);
             }
         }
@@ -280,7 +280,7 @@ class ComponentDistance extends Model
         $graphics_card = $component_1->type == 'Graphics Card' ? $component_1->graphics_card : $component_2->graphics_card;
 
         $specific_weights = [
-            'interface' => 10
+            'interface' => 1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -295,7 +295,7 @@ class ComponentDistance extends Model
 
             } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($graphics_card->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $graphics_card->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($motherboard->{$specific_column}, $graphics_card->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $graphics_card->{$specific_column}) ** 2);
             }
         }
@@ -313,11 +313,11 @@ class ComponentDistance extends Model
         $ram = $component_1->type == 'RAM' ? $component_1->ram : $component_2->ram;
 
         $specific_weights = [
-            'memory_slot' => 5,
-            'memory_type' => 10,
+            'memory_slot' => 1,
+            'memory_type' => 1000,
             'memory_speed' => 10,
-            'max_memory_support' => 0.1,
-            'ecc_support' => 10
+            'max_memory_support' => 0.001,
+            'ecc_support' => 1
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -353,7 +353,7 @@ class ComponentDistance extends Model
             } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($ram->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $ram->{$specific_column}) ** 2);
 
-            } else {
+            } elseif (isset($motherboard->{$specific_column}, $ram->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $ram->{$specific_column}) ** 2);
             }
         }
@@ -371,7 +371,7 @@ class ComponentDistance extends Model
         $storage = $component_1->type == 'Storage' ? $component_1->storage : $component_2->storage;
 
         $specific_weights = [
-            'interface' => 10
+            'interface' => 1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -394,7 +394,7 @@ class ComponentDistance extends Model
 
             } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $storage->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($motherboard->{$specific_column}, $storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $storage->{$specific_column}) ** 2);
             }
         }
@@ -418,7 +418,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($motherboard->{$specific_column}) || is_numeric($psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $psu->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($motherboard->{$specific_column}, $psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $psu->{$specific_column}) ** 2);
             }
         }
@@ -436,7 +436,7 @@ class ComponentDistance extends Model
         $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
 
         $specific_weights = [
-            'mobo_form_factor' => 10
+            'mobo_form_factor' => 1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -462,7 +462,7 @@ class ComponentDistance extends Model
 
             } elseif (is_numeric($motherboard->{$specific_column}) || is_numeric($computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($motherboard->{$specific_column} - $computer_case->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($motherboard->{$specific_column}, $computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($motherboard->{$specific_column}, $computer_case->{$specific_column}) ** 2);
             }
         }
@@ -480,7 +480,7 @@ class ComponentDistance extends Model
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1->cpu_cooler : $component_2->cpu_cooler;
 
         $specific_weights = [
-            'cpu_socket' => 10
+            'cpu_socket' => 1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -506,7 +506,7 @@ class ComponentDistance extends Model
 
             } elseif (is_numeric($cpu->{$specific_column}) || is_numeric($cpu_cooler->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu->{$specific_column} - $cpu_cooler->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($cpu->{$specific_column}, $cpu_cooler->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu->{$specific_column}, $cpu_cooler->{$specific_column}) ** 2);
             }
         }
@@ -530,7 +530,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($cpu->{$specific_column}) || is_numeric($graphics_card->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu->{$specific_column} - $graphics_card->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($cpu->{$specific_column}, $graphics_card->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu->{$specific_column}, $graphics_card->{$specific_column}) ** 2);
             }
         }
@@ -548,7 +548,7 @@ class ComponentDistance extends Model
         $ram = $component_1->type == 'RAM' ? $component_1->ram : $component_2->ram;
 
         $specific_weights = [
-            'max_memory_support' => 0.1
+            'max_memory_support' => 0.001
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -558,7 +558,7 @@ class ComponentDistance extends Model
             } elseif (is_numeric($cpu->{$specific_column}) || is_numeric($ram->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu->{$specific_column} - $ram->{$specific_column}) ** 2);
 
-            } else {
+            } elseif (isset($cpu->{$specific_column}, $ram->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu->{$specific_column}, $ram->{$specific_column}) ** 2);
             }
         }
@@ -582,7 +582,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($cpu->{$specific_column}) || is_numeric($storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu->{$specific_column} - $storage->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($cpu->{$specific_column}, $storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu->{$specific_column}, $storage->{$specific_column}) ** 2);
             }
         }
@@ -606,7 +606,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($cpu->{$specific_column}) || is_numeric($psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu->{$specific_column} - $psu->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($cpu->{$specific_column}, $psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu->{$specific_column}, $psu->{$specific_column}) ** 2);
             }
         }
@@ -630,7 +630,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($cpu->{$specific_column}) || is_numeric($computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu->{$specific_column} - $computer_case->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($cpu->{$specific_column}, $computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu->{$specific_column}, $computer_case->{$specific_column}) ** 2);
             }
         }
@@ -654,7 +654,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($graphics_card->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $graphics_card->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($cpu_cooler->{$specific_column}, $graphics_card->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $graphics_card->{$specific_column}) ** 2);
             }
         }
@@ -678,7 +678,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($ram->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $ram->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($cpu_cooler->{$specific_column}, $ram->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $ram->{$specific_column}) ** 2);
             }
         }
@@ -702,7 +702,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $storage->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($cpu_cooler->{$specific_column}, $storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $storage->{$specific_column}) ** 2);
             }
         }
@@ -726,7 +726,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $psu->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($cpu_cooler->{$specific_column}, $psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $psu->{$specific_column}) ** 2);
             }
         }
@@ -745,7 +745,7 @@ class ComponentDistance extends Model
 
         $specific_weights = [
             'water_cooled_support' => 10,
-            'cooler_clearance' => 0.1
+            'cooler_clearance' => 0.001
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -761,7 +761,7 @@ class ComponentDistance extends Model
             } elseif (is_numeric($cpu_cooler->{$specific_column}) || is_numeric($computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($cpu_cooler->{$specific_column} - $computer_case->{$specific_column}) ** 2);
 
-            } else {
+            } elseif (isset($cpu_cooler->{$specific_column}, $computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($cpu_cooler->{$specific_column}, $computer_case->{$specific_column}) ** 2);
             }
         }
@@ -785,7 +785,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($graphics_card->{$specific_column}) || is_numeric($ram->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($graphics_card->{$specific_column} - $ram->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($graphics_card->{$specific_column}, $ram->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($graphics_card->{$specific_column}, $ram->{$specific_column}) ** 2);
             }
         }
@@ -809,7 +809,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($graphics_card->{$specific_column}) || is_numeric($storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($graphics_card->{$specific_column} - $storage->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($graphics_card->{$specific_column}, $storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($graphics_card->{$specific_column}, $storage->{$specific_column}) ** 2);
             }
         }
@@ -833,7 +833,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($graphics_card->{$specific_column}) || is_numeric($psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($graphics_card->{$specific_column} - $psu->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($graphics_card->{$specific_column}, $psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($graphics_card->{$specific_column}, $psu->{$specific_column}) ** 2);
             }
         }
@@ -851,7 +851,7 @@ class ComponentDistance extends Model
         $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
 
         $specific_weights = [
-            'graphics_clearance' => 0.1
+            'graphics_clearance' => 0.001
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -860,7 +860,7 @@ class ComponentDistance extends Model
 
             } elseif (is_numeric($graphics_card->{$specific_column}) || is_numeric($computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($graphics_card->{$specific_column} - $computer_case->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($graphics_card->{$specific_column}, $computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($graphics_card->{$specific_column}, $computer_case->{$specific_column}) ** 2);
             }
         }
@@ -884,7 +884,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($ram->{$specific_column}) || is_numeric($storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($ram->{$specific_column} - $storage->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($ram->{$specific_column}, $storage->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($ram->{$specific_column}, $storage->{$specific_column}) ** 2);
             }
         }
@@ -908,7 +908,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($ram->{$specific_column}) || is_numeric($psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($ram->{$specific_column} - $psu->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($ram->{$specific_column}, $psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($ram->{$specific_column}, $psu->{$specific_column}) ** 2);
             }
         }
@@ -932,7 +932,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($ram->{$specific_column}) || is_numeric($computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($ram->{$specific_column} - $computer_case->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($ram->{$specific_column}, $computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($ram->{$specific_column}, $computer_case->{$specific_column}) ** 2);
             }
         }
@@ -956,7 +956,7 @@ class ComponentDistance extends Model
         foreach ($specific_weights as $specific_column => $specific_weight) {
             if (is_numeric($storage->{$specific_column}) || is_numeric($psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($storage->{$specific_column} - $psu->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($storage->{$specific_column}, $psu->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($storage->{$specific_column}, $psu->{$specific_column}) ** 2);
             }
         }
@@ -974,7 +974,7 @@ class ComponentDistance extends Model
         $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
 
         $specific_weights = [
-            'storage_form_factor' => 10
+            'storage_form_factor' => 1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -988,7 +988,7 @@ class ComponentDistance extends Model
 
             } elseif (is_numeric($storage->{$specific_column}) || is_numeric($computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($storage->{$specific_column} - $computer_case->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($storage->{$specific_column}, $computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($storage->{$specific_column}, $computer_case->{$specific_column}) ** 2);
             }
         }
@@ -1006,7 +1006,7 @@ class ComponentDistance extends Model
         $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
 
         $specific_weights = [
-            'psu_clearance' => 0.1
+            'psu_clearance' => 0.001
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -1014,7 +1014,7 @@ class ComponentDistance extends Model
                 $distances["$specific_column"] = $specific_weight * (($psu->component->height - $computer_case->{$specific_column}) ** 2);
             } elseif (is_numeric($psu->{$specific_column}) || is_numeric($computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (($psu->{$specific_column} - $computer_case->{$specific_column}) ** 2);
-            } else {
+            } elseif (isset($psu->{$specific_column}, $computer_case->{$specific_column})) {
                 $distances["$specific_column"] = $specific_weight * (levenshtein($psu->{$specific_column}, $computer_case->{$specific_column}) ** 2);
             }
         }
