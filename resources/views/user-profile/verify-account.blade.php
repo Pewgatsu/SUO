@@ -61,7 +61,7 @@
 
                             <div class="col-md" style="height: 40%; width: 40%">
 
-                                @if($valid_id_path === " ")
+                                @if($valid_id_path == null)
                                 <img id="profile_id" src="{{asset('images/profile-placeholder.png')}}"  class="rounded-circle mt-5" alt="" >
                                 @else
                                 <img id="profile_id" src="{{$valid_id_path}}"  class="rounded-circle mt-5" alt="" >

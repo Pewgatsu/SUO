@@ -17,7 +17,7 @@
                     <small> My Store</small>
                 </div>
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    <button class="btn custom-btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
                         Add Products
                     </button>
@@ -71,7 +71,7 @@
                 </div>
             @else
                 <div class="card m-2 bg-secondary" >
-                    <h6 class="text-center">Store not yet VALIDATED</h6>
+                    <h6 class="text-center text-white">Seller not yet verified!</h6>
                 </div>
             @endif
 
