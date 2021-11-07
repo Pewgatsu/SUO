@@ -33,7 +33,7 @@
                                     <td>
                                         @if(isset($product_storage->component->image_path))
                                             <img
-                                                src="{{ asset('images/components/storages/' . $product_storage->component->image_path) }}"
+                                                src="{{ $product_storage->component->image_path }}"
                                                 class="img-thumbnail img-fluid" style="height: 50px; width: 50px" alt="">
                                         @endif
                                     </td>
