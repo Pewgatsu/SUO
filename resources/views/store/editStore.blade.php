@@ -191,3 +191,4 @@
 
 </div>
 @endsection
+@section('title','Edit Store')

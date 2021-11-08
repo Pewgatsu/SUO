@@ -343,3 +343,7 @@
         });
     </script>
 @endpush
+
+@section('title','Dashboard')
+
+

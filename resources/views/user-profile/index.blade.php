@@ -80,3 +80,4 @@
     </section>
 
 @endsection
+@section('title','Profile')

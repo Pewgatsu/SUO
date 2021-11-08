@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title','Orders')
 @section('content')
     @include('layouts.subheader')
     <div class="container">
@@ -41,6 +42,7 @@
                 <div class="card-body">
                     <!-- Motherboard Table -->
                     @if(isset($motherboard_products))
+
                         @if($motherboard_products->count())
                             <div class="table-responsive text-center">
                                 <table class="table table-striped table-hover">

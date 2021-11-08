@@ -464,3 +464,5 @@
     <x-product.computer-case mode="add" :computerCaseComponents="$computer_case_components" />
     @endif
 @endsection
+
+@section('title','My Store')

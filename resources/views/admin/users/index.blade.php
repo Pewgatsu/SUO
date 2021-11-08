@@ -240,3 +240,4 @@
     </section>
 
 @endsection
+@section('title','Users')

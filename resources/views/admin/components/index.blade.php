@@ -48,6 +48,7 @@
             <div class="card">
                 <div class="card-body">
                     @if(isset($motherboards))
+                        @section('title','Motherboard')
                         @if($motherboards->count())
                             <div class="table-responsive text-center">
                                 <table id="motherboard_table" class="table table-striped table-hover">
@@ -132,6 +133,7 @@
                             <p class="lead text-center">No Motherboards</p>
                         @endif
                     @elseif(isset($cpus))
+                            @section('title','CPU')
                         @if($cpus->count())
                             <div class="table-responsive text-center">
                                 <table id="cpu_table" class="table table-striped table-hover">
@@ -214,6 +216,7 @@
                             <p class="lead text-center">No CPUS</p>
                         @endif
                     @elseif(isset($cpu_coolers))
+                            @section('title','Cpu Coolers')
                         @if($cpu_coolers->count())
                             <div class="table-responsive text-center">
                                 <table id="cpu_cooler_table" class="table table-striped table-hover">
@@ -298,6 +301,7 @@
                             <p class="lead text-center">No CPU Coolers</p>
                         @endif
                     @elseif(isset($graphics_cards))
+                            @section('title','Graphics Card')
                         @if($graphics_cards->count())
                             <div class="table-responsive text-center">
                                 <table id="graphics_card_table" class="table table-striped table-hover">
@@ -382,6 +386,7 @@
                             <p class="lead text-center">No Graphics Cards</p>
                         @endif
                     @elseif(isset($rams))
+                            @section('title','RAM')
                         @if($rams->count())
                             <div class="table-responsive text-center">
                                 <table id="ram_table" class="table table-striped table-hover">
@@ -465,6 +470,7 @@
                             <p class="lead text-center">No RAMS</p>
                         @endif
                     @elseif(isset($storages))
+                            @section('title','Storage')
                         @if($storages->count())
                             <div class="table-responsive text-center">
                                 <table id="storage_table" class="table table-striped table-hover">
@@ -549,6 +555,7 @@
                             <p class="lead text-center">No Storages</p>
                         @endif
                     @elseif(isset($psus))
+                            @section('title','Power Supply')
                         @if($psus->count())
                             <div class="table-responsive text-center">
                                 <table id="psu_table" class="table table-striped table-hover">
@@ -632,6 +639,7 @@
                             <p class="lead text-center">No PSUS</p>
                         @endif
                     @elseif(isset($computer_cases))
+                            @section('title','Computer Case')
                         @if($computer_cases->count())
                             <div class="table-responsive text-center">
                                 <table id="computer_case_table" class="table table-striped table-hover">
@@ -745,3 +753,5 @@
         });
     </script>
 @endpush
+
+

@@ -62,6 +62,7 @@
                 <div class="card-body">
                     <!-- Motherboard Table -->
                     @if(isset($motherboard_components))
+                        @section('title','Motherboards')
                         @if($motherboard_components->count())
                             <div class="table-responsive text-center">
                                 <table id="motherboard_table" class="table table-striped table-hover">
@@ -123,6 +124,7 @@
                         @endif
                     <!-- CPU Table -->
                     @elseif(isset($cpu_components))
+                        @section('title','CPU')
                         @if($cpu_components->count())
                             <div class="table-responsive text-center">
                                 <table id="cpu_table" class="table table-striped table-hover">
@@ -182,6 +184,7 @@
                         @endif
                     <!-- CPU Cooler Table -->
                     @elseif(isset($cpu_cooler_components))
+                        @section('title','CPU Coolers')
                         @if($cpu_cooler_components->count())
                             <div class="table-responsive text-center">
                                 <table id="cpu_cooler_table" class="table table-striped table-hover">
@@ -242,6 +245,7 @@
                         @endif
                     <!-- Graphics Card Table -->
                     @elseif(isset($graphics_card_components))
+                        @section('title','Graphics Card')
                         @if($graphics_card_components->count())
                             <div class="table-responsive text-center">
                                 <table id="graphics_card_table" class="table table-striped table-hover">
@@ -304,6 +308,7 @@
                         @endif
                     <!-- RAM Table -->
                     @elseif(isset($ram_components))
+                        @section('title','RAM')
                         @if($ram_components->count())
                             <div class="table-responsive text-center">
                                 <table id="ram_table" class="table table-striped table-hover">
@@ -363,6 +368,7 @@
                         @endif
                     <!-- Storage Table -->
                     @elseif(isset($storage_components))
+                        @section('title','Storage')
                         @if($storage_components->count())
                             <div class="table-responsive text-center">
                                 <table id="storage_table" class="table table-striped table-hover">
@@ -423,6 +429,7 @@
                         @endif
                     <!-- PSU Table -->
                     @elseif(isset($psu_components))
+                        @section('title','Power Supply')
                         @if($psu_components->count())
                             <div class="table-responsive text-center">
                                 <table id="psu_table" class="table table-striped table-hover">
@@ -482,6 +489,7 @@
                         @endif
                     <!-- Computer Case Table -->
                     @elseif(isset($computer_case_components))
+                        @section('title','Computer Case')
                         @if($computer_case_components->count())
                             <div class="table-responsive text-center">
                                 <table id="computer_case_table" class="table table-striped table-hover">
