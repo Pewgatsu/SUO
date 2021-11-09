@@ -9,41 +9,49 @@
     <div class="container">
         <div class="d-sm-flex my-2 justify-content-between align-items-center">
             @if($product_infos->type == 'Motherboard')
+                @section('title','Motherboards')
                 <div class="h1">
                     <i class="fas fa-microchip"></i>
                     <small> Motherboard</small>
                 </div>
             @elseif($product_infos->type == 'CPU')
+                    @section('title','CPU')
                 <div class="h1">
                     <i class="bi bi-cpu-fill"></i>
                     <small> CPU</small>
                 </div>
             @elseif($product_infos->type =='CPU Cooler' )
+                    @section('title','CPU Cooler')
                 <div class="h1">
                     <i class="far fa-snowflake"></i>
                     <small> CPU Cooler</small>
                 </div>
             @elseif($product_infos->type =='Graphics Card' )
+                    @section('title','Graphics Card')
                 <div class="h1">
                     <i class="fas fa-tv"></i>
                     <small> Graphics Card</small>
                 </div>
             @elseif($product_infos->type =='RAM' )
+                    @section('title','RAM')
                 <div class="h1">
                     <i class="fas fa-memory"></i>
                     <small> RAM</small>
                 </div>
             @elseif($product_infos->type =='Storage' )
+                    @section('title','Storage')
                 <div class="h1">
                     <i class="fas fa-hdd"></i>
                     <small> Storage</small>
                 </div>
             @elseif($product_infos->type == 'PSU' )
+                    @section('title','Power Supply')
                 <div class="h1">
                     <i class="fas fa-plug"></i>
                     <small> PSU</small>
                 </div>
             @elseif($product_infos->type == 'Computer Case' )
+                    @section('title','Computer Case')
                 <div class="h1">
                     <i class="fas fa-suitcase"></i>
                     <small> Computer Case</small>
@@ -91,7 +99,7 @@
                         <div class="card-img-actions">
                             <img src="{{empty($product_infos->component->image_path)?
                                         asset('/images/Store_Placeholder/motherboard_placeholder.png') :
-                                        asset($profile_path.$product_infos->component->image_path)}}"
+                                       $product_infos->component->image_path}}"
                                  class="card-img img-fluid"  height="650" alt="">
                         </div>
                         <table class="table table-hover">
