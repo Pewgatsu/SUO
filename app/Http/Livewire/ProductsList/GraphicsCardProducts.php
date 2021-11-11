@@ -61,7 +61,7 @@ class GraphicsCardProducts extends Component
 
         // Get Maximum Standard Score
         foreach ($graphics_card_distances as $id => $graphics_card_distance) {
-            if (is_nan(min($graphics_card_distance)) || min($graphics_card_distance) == 0){
+            if (min($graphics_card_distance) < 0){
                 unset($graphics_card_distances[$id]);
             }
             else {

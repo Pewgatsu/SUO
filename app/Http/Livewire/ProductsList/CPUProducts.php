@@ -61,7 +61,7 @@ class CPUProducts extends Component
 
         // Get Maximum Standard Score
         foreach ($cpu_distances as $id => $cpu_distance) {
-            if (is_nan(min($cpu_distance)) || min($cpu_distance) == 0){
+            if (min($cpu_distance) < 0){
                 unset($cpu_distances[$id]);
             }
             else {

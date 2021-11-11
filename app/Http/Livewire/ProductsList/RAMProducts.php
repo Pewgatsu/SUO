@@ -61,7 +61,7 @@ class RAMProducts extends Component
 
         // Get Maximum Standard Score
         foreach ($ram_distances as $id => $ram_distance) {
-            if (is_nan(min($ram_distance)) || min($ram_distance) == 0){
+            if (min($ram_distance) < 0){
                 unset($ram_distances[$id]);
             }
             else {

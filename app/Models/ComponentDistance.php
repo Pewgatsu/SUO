@@ -173,19 +173,19 @@ class ComponentDistance extends Model
     private static function ComponentSimilarity(Component $component_1, Component $component_2)
     {
         $component_weights = [
-            'id' => 0,
-            'image_path' => 0,
+            // 'id' => 0,
+            // 'image_path' => 0,
             'name' => 0.001,
-            'type' => 0,
-            'manufacturer' => 0.01,
-            'series' => 0.01,
-            'model' => 0.01,
+            // 'type' => 0,
+            'manufacturer' => 0.001,
+            'series' => 0.001,
+            'model' => 0.001,
             'color' => 0.001,
-            'length' => 0,
-            'width' => 0,
-            'height' => 0,
-            'created_at' => 0,
-            'updated_at' => 0
+            // 'length' => 0,
+            // 'width' => 0,
+            // 'height' => 0,
+            // 'created_at' => 0,
+            // 'updated_at' => 0
         ];
 
         $component_distances = array();
@@ -223,7 +223,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -267,7 +268,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -300,7 +302,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -358,7 +361,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -399,7 +403,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -423,7 +428,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -467,7 +473,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -511,7 +518,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -535,7 +543,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -563,7 +572,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -587,7 +597,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -611,7 +622,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -635,7 +647,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -659,7 +672,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -683,7 +697,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -707,7 +722,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -731,7 +747,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -766,7 +783,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -790,7 +808,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -814,7 +833,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -838,7 +858,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -865,7 +886,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -889,7 +911,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -913,7 +936,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -937,7 +961,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -961,7 +986,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -993,7 +1019,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
@@ -1019,7 +1046,8 @@ class ComponentDistance extends Model
             }
         }
 
-        $result = sqrt(array_sum($distances));
+        $total = array_sum($distances);
+        $result = $total >= 0 ? sqrt($total) : -1;
 
         return $result;
     }
