@@ -52,20 +52,25 @@ class CPUProducts extends Component
             $cpu_distances["$cpu->id"] = array();
             foreach ($current_build as $product) {
                 if ($distance = ComponentDistance::getDistanceIfExist($product, $cpu)) {
-                    $cpu_distances["$cpu->id"]["$product->type"] = 1 / (1 + $distance);
+                    $cpu_distances["$cpu->id"]["$product->type"] = $distance;
                 } else {
-                    $cpu_distances["$cpu->id"]["$product->type"] = 1 / (1 + ComponentDistance::ComputeDistance($product, $cpu));
+                    $cpu_distances["$cpu->id"]["$product->type"] = ComponentDistance::ComputeDistance($product, $cpu);
                 }
             }
         }
 
         // Get Maximum Standard Score
         foreach ($cpu_distances as $id => $cpu_distance) {
-            $cpu_distances[$id] = max($cpu_distance);
+            if (is_nan(min($cpu_distance)) || min($cpu_distance) == 0){
+                unset($cpu_distances[$id]);
+            }
+            else {
+                $cpu_distances[$id] = min($cpu_distance);
+            }
         }
 
         // Sort the Distance in Descending Order
-        arsort($cpu_distances);
+        asort($cpu_distances);
 
         // Get the Order of Product IDs
         $product_ids = array_keys($cpu_distances);

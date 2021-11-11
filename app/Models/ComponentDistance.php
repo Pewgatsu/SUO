@@ -175,12 +175,12 @@ class ComponentDistance extends Model
         $component_weights = [
             'id' => 0,
             'image_path' => 0,
-            'name' => 0,
+            'name' => 0.001,
             'type' => 0,
-            'manufacturer' => 0,
-            'series' => 0,
-            'model' => 0,
-            'color' => 0,
+            'manufacturer' => 0.01,
+            'series' => 0.01,
+            'model' => 0.01,
+            'color' => 0.001,
             'length' => 0,
             'width' => 0,
             'height' => 0,
@@ -211,7 +211,7 @@ class ComponentDistance extends Model
         $cpu = $component_1->type == 'CPU' ? $component_1->cpu : $component_2->cpu;
 
         $specific_weights = [
-            'cpu_socket' => 1000,
+            'cpu_socket' => -1000,
             'max_mem_support' => 0.001,
         ];
 
@@ -236,7 +236,7 @@ class ComponentDistance extends Model
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1->cpu_cooler : $component_2->cpu_cooler;
 
         $specific_weights = [
-            'cpu_socket' => 1000
+            'cpu_socket' => -1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -280,7 +280,7 @@ class ComponentDistance extends Model
         $graphics_card = $component_1->type == 'Graphics Card' ? $component_1->graphics_card : $component_2->graphics_card;
 
         $specific_weights = [
-            'interface' => 10
+            'interface' => -1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -314,7 +314,7 @@ class ComponentDistance extends Model
 
         $specific_weights = [
             'memory_slot' => 1,
-            'memory_type' => 10,
+            'memory_type' => -1000,
             'memory_speed' => 10,
             'max_memory_support' => 0.001,
             'ecc_support' => 1
@@ -436,7 +436,7 @@ class ComponentDistance extends Model
         $computer_case = $component_1->type == 'Computer Case' ? $component_1->computer_case : $component_2->computer_case;
 
         $specific_weights = [
-            'mobo_form_factor' => 10
+            'mobo_form_factor' => -1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {
@@ -480,7 +480,7 @@ class ComponentDistance extends Model
         $cpu_cooler = $component_1->type == 'CPU Cooler' ? $component_1->cpu_cooler : $component_2->cpu_cooler;
 
         $specific_weights = [
-            'cpu_socket' => 1000
+            'cpu_socket' => -1000
         ];
 
         foreach ($specific_weights as $specific_column => $specific_weight) {

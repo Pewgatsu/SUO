@@ -52,20 +52,25 @@ class MotherboardProducts extends Component
             $motherboard_distances["$motherboard->id"] = array();
             foreach ($current_build as $product) {
                 if ($distance = ComponentDistance::getDistanceIfExist($product, $motherboard)) {
-                    $motherboard_distances["$motherboard->id"]["$product->type"] = 1 / (1 + $distance);
+                    $motherboard_distances["$motherboard->id"]["$product->type"] = $distance;
                 } else {
-                    $motherboard_distances["$motherboard->id"]["$product->type"] = 1 / (1 + ComponentDistance::ComputeDistance($product, $motherboard));
+                    $motherboard_distances["$motherboard->id"]["$product->type"] = ComponentDistance::ComputeDistance($product, $motherboard);
                 }
             }
         }
 
         // Get Maximum Standard Score
         foreach ($motherboard_distances as $id => $motherboard_distance) {
-            $motherboard_distances[$id] = max($motherboard_distance);
+            if (is_nan(min($motherboard_distance)) || min($motherboard_distance) == 0){
+                unset($motherboard_distances[$id]);
+            }
+            else {
+                $motherboard_distances[$id] = min($motherboard_distance);
+            }
         }
 
         // Sort the Distance in Descending Order
-        arsort($motherboard_distances);
+        asort($motherboard_distances);
 
         // Get the Order of Product IDs
         $product_ids = array_keys($motherboard_distances);

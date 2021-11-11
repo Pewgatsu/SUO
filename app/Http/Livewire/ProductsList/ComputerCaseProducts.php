@@ -52,20 +52,25 @@ class ComputerCaseProducts extends Component
             $computer_case_distances["$computer_case->id"] = array();
             foreach ($current_build as $product) {
                 if ($distance = ComponentDistance::getDistanceIfExist($product, $computer_case)) {
-                    $computer_case_distances["$computer_case->id"]["$product->type"] = 1 / (1 + $distance);
+                    $computer_case_distances["$computer_case->id"]["$product->type"] = $distance;
                 } else {
-                    $computer_case_distances["$computer_case->id"]["$product->type"] = 1 / (1 + ComponentDistance::ComputeDistance($product, $computer_case));
+                    $computer_case_distances["$computer_case->id"]["$product->type"] = ComponentDistance::ComputeDistance($product, $computer_case);
                 }
             }
         }
 
         // Get Maximum Standard Score
         foreach ($computer_case_distances as $id => $computer_case_distance) {
-            $computer_case_distances[$id] = max($computer_case_distance);
+            if (is_nan(min($computer_case_distance)) || min($computer_case_distance) == 0){
+                unset($computer_case_distances[$id]);
+            }
+            else {
+                $computer_case_distances[$id] = min($computer_case_distance);
+            }
         }
 
         // Sort the Distance in Descending Order
-        arsort($computer_case_distances);
+        asort($computer_case_distances);
 
         // Get the Order of Product IDs
         $product_ids = array_keys($computer_case_distances);
