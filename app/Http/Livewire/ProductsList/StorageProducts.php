@@ -52,20 +52,25 @@ class StorageProducts extends Component
             $storage_distances["$storage->id"] = array();
             foreach ($current_build as $product) {
                 if ($distance = ComponentDistance::getDistanceIfExist($product, $storage)) {
-                    $storage_distances["$storage->id"]["$product->type"] = 1 / (1 + $distance);
+                    $storage_distances["$storage->id"]["$product->type"] = $distance;
                 } else {
-                    $storage_distances["$storage->id"]["$product->type"] = 1 / (1 + ComponentDistance::ComputeDistance($product, $storage));
+                    $storage_distances["$storage->id"]["$product->type"] = ComponentDistance::ComputeDistance($product, $storage);
                 }
             }
         }
 
         // Get Maximum Standard Score
         foreach ($storage_distances as $id => $storage_distance) {
-            $storage_distances[$id] = max($storage_distance);
+            if (is_nan(min($storage_distance)) || min($storage_distance) == 0){
+                unset($storage_distances[$id]);
+            }
+            else {
+                $storage_distances[$id] = min($storage_distance);
+            }
         }
 
         // Sort the Distance in Descending Order
-        arsort($storage_distances);
+        asort($storage_distances);
 
         // Get the Order of Product IDs
         $product_ids = array_keys($storage_distances);

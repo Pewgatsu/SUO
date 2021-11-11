@@ -52,20 +52,25 @@ class RAMProducts extends Component
             $ram_distances["$ram->id"] = array();
             foreach ($current_build as $product) {
                 if ($distance = ComponentDistance::getDistanceIfExist($product, $ram)) {
-                    $ram_distances["$ram->id"]["$product->type"] = 1 / (1 + $distance);
+                    $ram_distances["$ram->id"]["$product->type"] = $distance;
                 } else {
-                    $ram_distances["$ram->id"]["$product->type"] = 1 / (1 + ComponentDistance::ComputeDistance($product, $ram));
+                    $ram_distances["$ram->id"]["$product->type"] = ComponentDistance::ComputeDistance($product, $ram);
                 }
             }
         }
 
         // Get Maximum Standard Score
         foreach ($ram_distances as $id => $ram_distance) {
-            $ram_distances[$id] = max($ram_distance);
+            if (is_nan(min($ram_distance)) || min($ram_distance) == 0){
+                unset($ram_distances[$id]);
+            }
+            else {
+                $ram_distances[$id] = min($ram_distance);
+            }
         }
 
         // Sort the Distance in Descending Order
-        arsort($ram_distances);
+        asort($ram_distances);
 
         // Get the Order of Product IDs
         $product_ids = array_keys($ram_distances);

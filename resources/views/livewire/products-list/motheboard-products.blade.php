@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title','Motherboard')
 @section('content')
     @include('layouts.subheader')
     <div class="container">
@@ -14,49 +15,54 @@
         <div class="container">
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive text-center">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Product Name</th>
-                                <th>CPU Socket</th>
-                                <th>Form Factor</th>
-                                <th>Store</th>
-                                <th>Price</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($product_motherboards as $product_motherboard)
-                                <tr onclick="window.location='{{ route('product.motherboards.info',$product_motherboard->id) }}'">
-                                    <td>
-                                        @if(isset($product_motherboard->component->image_path))
-                                            <img
-                                                src="{{ $product_motherboard->component->image_path }}"
-                                                class="img-thumbnail img-fluid" style="height: 50px; width: 50px"
-                                                alt="">
-                                        @endif
-                                    </td>
-                                    <td>{{ $product_motherboard->component->name }}</td>
-                                    <td>{{ $product_motherboard->component->motherboard->cpu_socket ?? null }}</td>
-                                    <td>{{ $product_motherboard->component->motherboard->mobo_form_factor ?? null }}</td>
-                                    <td>{{ $product_motherboard->store->name }}</td>
-                                    <td>&#8369; {{ number_format($product_motherboard->price,2) }}</td>
-                                    <td>
-                                        <form action="{{ route('add_product', $product_motherboard) }}" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-primary">Add</button>
-                                        </form>
-                                    </td>
+                    @if($product_motherboards->count())
+                        <div class="table-responsive text-center">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>CPU Socket</th>
+                                    <th>Form Factor</th>
+                                    <th>Store</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                        <div class="d-flex justify-content-center">
-                            {{ $product_motherboards->links() }}
+                                </thead>
+                                <tbody>
+                                @foreach($product_motherboards as $product_motherboard)
+                                    <tr onclick="window.location='{{ route('product.motherboards.info',$product_motherboard->id) }}'">
+                                        <td>
+                                            @if(isset($product_motherboard->component->image_path))
+                                                <img
+                                                    src="{{ $product_motherboard->component->image_path }}"
+                                                    class="img-thumbnail img-fluid" style="height: 50px; width: 50px"
+                                                    alt="">
+                                            @endif
+                                        </td>
+                                        <td>{{ $product_motherboard->component->name }}</td>
+                                        <td>{{ $product_motherboard->component->motherboard->cpu_socket ?? null }}</td>
+                                        <td>{{ $product_motherboard->component->motherboard->mobo_form_factor ?? null }}</td>
+                                        <td>{{ $product_motherboard->store->name }}</td>
+                                        <td>&#8369; {{ number_format($product_motherboard->price,2) }}</td>
+                                        <td>
+                                            <form action="{{ route('add_product', $product_motherboard) }}"
+                                                  method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary">Add</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-center">
+                                {{ $product_motherboards->links() }}
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <p class="lead text-center">No Compatible Motherboards</p>
+                    @endif
                 </div>
             </div>
         </div>

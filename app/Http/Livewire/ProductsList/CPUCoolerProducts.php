@@ -52,20 +52,25 @@ class CPUCoolerProducts extends Component
             $cpu_cooler_distances["$cpu_cooler->id"] = array();
             foreach ($current_build as $product) {
                 if ($distance = ComponentDistance::getDistanceIfExist($product, $cpu_cooler)) {
-                    $cpu_cooler_distances["$cpu_cooler->id"]["$product->type"] = 1 / (1 + $distance);
+                    $cpu_cooler_distances["$cpu_cooler->id"]["$product->type"] = $distance;
                 } else {
-                    $cpu_cooler_distances["$cpu_cooler->id"]["$product->type"] = 1 / (1 + ComponentDistance::ComputeDistance($product, $cpu_cooler));
+                    $cpu_cooler_distances["$cpu_cooler->id"]["$product->type"] = ComponentDistance::ComputeDistance($product, $cpu_cooler);
                 }
             }
         }
 
         // Get Maximum Standard Score
         foreach ($cpu_cooler_distances as $id => $cpu_cooler_distance) {
-            $cpu_cooler_distances[$id] = max($cpu_cooler_distance);
+            if (is_nan(min($cpu_cooler_distance)) || min($cpu_cooler_distance) == 0){
+                unset($cpu_cooler_distances[$id]);
+            }
+            else {
+                $cpu_cooler_distances[$id] = min($cpu_cooler_distance);
+            }
         }
 
         // Sort the Distance in Descending Order
-        arsort($cpu_cooler_distances);
+        asort($cpu_cooler_distances);
 
         // Get the Order of Product IDs
         $product_ids = array_keys($cpu_cooler_distances);

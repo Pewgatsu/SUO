@@ -52,20 +52,25 @@ class GraphicsCardProducts extends Component
             $graphics_card_distances["$graphics_card->id"] = array();
             foreach ($current_build as $product) {
                 if ($distance = ComponentDistance::getDistanceIfExist($product, $graphics_card)) {
-                    $graphics_card_distances["$graphics_card->id"]["$product->type"] = 1 / (1 + $distance);
+                    $graphics_card_distances["$graphics_card->id"]["$product->type"] = $distance;
                 } else {
-                    $graphics_card_distances["$graphics_card->id"]["$product->type"] = 1 / (1 + ComponentDistance::ComputeDistance($product, $graphics_card));
+                    $graphics_card_distances["$graphics_card->id"]["$product->type"] = ComponentDistance::ComputeDistance($product, $graphics_card);
                 }
             }
         }
 
         // Get Maximum Standard Score
         foreach ($graphics_card_distances as $id => $graphics_card_distance) {
-            $graphics_card_distances[$id] = max($graphics_card_distance);
+            if (is_nan(min($graphics_card_distance)) || min($graphics_card_distance) == 0){
+                unset($graphics_card_distances[$id]);
+            }
+            else {
+                $graphics_card_distances[$id] = min($graphics_card_distance);
+            }
         }
 
         // Sort the Distance in Descending Order
-        arsort($graphics_card_distances);
+        asort($graphics_card_distances);
 
         // Get the Order of Product IDs
         $product_ids = array_keys($graphics_card_distances);

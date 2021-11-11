@@ -52,20 +52,25 @@ class PSUProducts extends Component
             $psu_distances["$psu->id"] = array();
             foreach ($current_build as $product) {
                 if ($distance = ComponentDistance::getDistanceIfExist($product, $psu)) {
-                    $psu_distances["$psu->id"]["$product->type"] = 1 / (1 + $distance);
+                    $psu_distances["$psu->id"]["$product->type"] = $distance;
                 } else {
-                    $psu_distances["$psu->id"]["$product->type"] = 1 / (1 + ComponentDistance::ComputeDistance($product, $psu));
+                    $psu_distances["$psu->id"]["$product->type"] = ComponentDistance::ComputeDistance($product, $psu);
                 }
             }
         }
 
         // Get Maximum Standard Score
         foreach ($psu_distances as $id => $psu_distance) {
-            $psu_distances[$id] = max($psu_distance);
+            if (is_nan(min($psu_distance)) || min($psu_distance) == 0){
+                unset($psu_distances[$id]);
+            }
+            else {
+                $psu_distances[$id] = min($psu_distance);
+            }
         }
 
         // Sort the Distance in Descending Order
-        arsort($psu_distances);
+        asort($psu_distances);
 
         // Get the Order of Product IDs
         $product_ids = array_keys($psu_distances);
