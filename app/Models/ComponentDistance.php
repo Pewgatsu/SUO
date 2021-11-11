@@ -184,8 +184,8 @@ class ComponentDistance extends Model
             'length' => 0,
             'width' => 0,
             'height' => 0,
-            'created_at' => 0.000001,
-            'updated_at' => 0.000001
+            'created_at' => 0,
+            'updated_at' => 0
         ];
 
         $component_distances = array();

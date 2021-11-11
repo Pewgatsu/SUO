@@ -72,6 +72,7 @@ class MotherboardProducts extends Component
         // Sort the Distance in Descending Order
         asort($motherboard_distances);
 
+
         // Get the Order of Product IDs
         $product_ids = array_keys($motherboard_distances);
 
