@@ -61,7 +61,7 @@ class ComputerCaseProducts extends Component
 
         // Get Maximum Standard Score
         foreach ($computer_case_distances as $id => $computer_case_distance) {
-            if (is_nan(min($computer_case_distance)) || min($computer_case_distance) == 0){
+            if (min($computer_case_distance) < 0){
                 unset($computer_case_distances[$id]);
             }
             else {

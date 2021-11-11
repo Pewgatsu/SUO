@@ -61,7 +61,7 @@ class PSUProducts extends Component
 
         // Get Maximum Standard Score
         foreach ($psu_distances as $id => $psu_distance) {
-            if (is_nan(min($psu_distance)) || min($psu_distance) == 0){
+            if (min($psu_distance) < 0){
                 unset($psu_distances[$id]);
             }
             else {

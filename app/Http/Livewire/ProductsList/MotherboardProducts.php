@@ -61,7 +61,7 @@ class MotherboardProducts extends Component
 
         // Get Maximum Standard Score
         foreach ($motherboard_distances as $id => $motherboard_distance) {
-            if (is_nan(min($motherboard_distance)) || min($motherboard_distance) == 0){
+            if (min($motherboard_distance) < 0){
                 unset($motherboard_distances[$id]);
             }
             else {

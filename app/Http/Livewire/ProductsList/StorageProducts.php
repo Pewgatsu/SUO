@@ -61,7 +61,7 @@ class StorageProducts extends Component
 
         // Get Maximum Standard Score
         foreach ($storage_distances as $id => $storage_distance) {
-            if (is_nan(min($storage_distance)) || min($storage_distance) == 0){
+            if (min($storage_distance) < 0){
                 unset($storage_distances[$id]);
             }
             else {

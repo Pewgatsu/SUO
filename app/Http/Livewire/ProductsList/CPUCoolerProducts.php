@@ -61,7 +61,7 @@ class CPUCoolerProducts extends Component
 
         // Get Maximum Standard Score
         foreach ($cpu_cooler_distances as $id => $cpu_cooler_distance) {
-            if (is_nan(min($cpu_cooler_distance)) || min($cpu_cooler_distance) == 0){
+            if (min($cpu_cooler_distance) < 0){
                 unset($cpu_cooler_distances[$id]);
             }
             else {
