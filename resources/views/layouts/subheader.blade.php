@@ -108,6 +108,9 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-decoration-none text-white" href="{{ route('help') }}">Help</a>
+                        </li>
                     </ul>
                 </div>
                 @endif

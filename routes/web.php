@@ -53,6 +53,8 @@ Route::get('/login',[\App\Http\Controllers\AuthController::class,'loginPage'])->
 Route::get('/register',[\App\Http\Controllers\AuthController::class,'registerPage'])->name('register');
 Route::get('/logout',[\App\Http\Controllers\LogoutController::class,'logout'])->name('user.logout');
 
+// Help Page
+Route::get('/help',[\App\Http\Controllers\HelpController::class,'index'])->name('help');
 
 
 Route::group(['middleware' => 'is_active'], function(){
