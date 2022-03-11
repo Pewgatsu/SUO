@@ -64,7 +64,7 @@
                                 @if($valid_id_path == null)
                                 <img id="profile_id" src="{{asset('images/profile-placeholder.png')}}"  class="rounded-circle mt-5" alt="" >
                                 @else
-                                <img id="profile_id" src="{{$valid_id_path}}"  class="rounded-circle mt-5" alt="" >
+                                <img id="profile_id" src="{{asset('images/profile/id/' . $valid_id_path)}}"  class="rounded-circle mt-5" alt="" >
                                 @endif
 
                                 @error('photo') <span class="error"><small>{{ $message }}</small></span> @enderror

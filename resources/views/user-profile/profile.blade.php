@@ -69,7 +69,7 @@
                                 @if($profile_path == null)
                                     <img id="profile_image" src="{{asset('images/profile-placeholder.png')}}"  class="rounded-circle mt-5" alt="" >
                                 @else
-                                    <img id="profile_image" src="{{$profile_path}}"  class="rounded-circle mt-5" alt="" >
+                                    <img id="profile_image" src="{{asset('images/profile/' . $profile_path) }}"  class="rounded-circle mt-5" alt="" >
                                 @endif
 
 

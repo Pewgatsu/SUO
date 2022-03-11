@@ -35,7 +35,8 @@
                                         <td>
                                             @if(isset($product_ram->component->image_path))
                                                 <img
-                                                    src="{{ $product_ram->component->image_path }}"
+{{--                                                    src="{{ $product_ram->component->image_path }}"--}}
+                                                    src="{{ asset('images/components/rams/' . $product_ram->component->image_path) }}"
                                                     class="img-thumbnail img-fluid" style="height: 50px; width: 50px"
                                                     alt="">
                                             @endif

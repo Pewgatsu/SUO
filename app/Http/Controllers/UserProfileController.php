@@ -31,22 +31,29 @@ class UserProfileController extends Controller
 
         $file_name = 'Account_'.$account->id;
 
+
+
         if(isset($request->photo)){
 
-            if(Storage::disk('do_spaces')->exists($account->profile_path)){
-                Storage::delete($account->profile_path);
-            }
-            $new_path = Storage::disk('do_spaces')->putFileAs('photos/profile/'.$account->id,$request->photo,$file_name,'public');
-            $path = Storage::disk('do_spaces')->url($new_path);
+              if(isset($account->profile_path) && file_exists(public_path('images/profile/') . $account->profile_path)){
+                  unlink(public_path('images/profile/' . $account->profile_path));
+              }
 
-        }else{
-            $path = $account->profile_path;
+                $profile_path = time() . '-' . $file_name . '.' . $request->photo->extension();
+                $request->photo->move(public_path('images/profile'), $profile_path);
+
+//            if(Storage::disk('do_spaces')->exists($account->profile_path)){
+//                Storage::delete($account->profile_path);
+//            }
+//            $new_path = Storage::disk('do_spaces')->putFileAs('photos/profile/'.$account->id,$request->photo,$file_name,'public');
+//            $path = Storage::disk('do_spaces')->url($new_path);
+
         }
 
         $account->update([
             'username' => $request->username,
             'email' => $request->email,
-            'profile_path' => $path
+            'profile_path' => $profile_path
         ]);
 
         session()->flash('alert_message','Account updated!');
@@ -77,18 +84,29 @@ class UserProfileController extends Controller
 
         if(isset($request->valid_id)){
 
-            if(Storage::disk('do_spaces')->exists($account->valid_id_path)){
-                Storage::delete($account->valid_id_path);
+            if(isset($account->valid_id_path) && file_exists(public_path('images/profile/id') . $account->valid_id_path)){
+                unlink(public_path('images/profile/id/' . $account->valid_id_path));
             }
 
-            $new_path = Storage::disk('do_spaces')->putFileAs('photos/id/'.$account->id,$request->valid_id,$file_name,'public');
-            $path = Storage::disk('do_spaces')->url($new_path);
-        }else{
-            $path = $account->valid_id_path;
+            $id_path = time() . '-' . $file_name . '.' . $request->valid_id->extension();
+            $request->valid_id->move(public_path('images/profile/id'), $id_path);
+
+//            if(Storage::disk('do_spaces')->exists($account->valid_id_path)){
+//                Storage::delete($account->valid_id_path);
+//            }
+//
+//            $new_path = Storage::disk('do_spaces')->putFileAs('photos/id/'.$account->id,$request->valid_id,$file_name,'public');
+//            $path = Storage::disk('do_spaces')->url($new_path);
+//        }else{
+//            $path = $account->valid_id_path;
         }
 
+
+
+
+
         $account->update([
-            'valid_id_path' => $path
+            'valid_id_path' => $id_path
         ]);
 
 

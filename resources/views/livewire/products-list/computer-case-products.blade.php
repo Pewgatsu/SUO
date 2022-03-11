@@ -35,7 +35,8 @@
                                         <td>
                                             @if(isset($product_computer_case->component->image_path))
                                                 <img
-                                                    src="{{ $product_computer_case->component->image_path }}"
+                                                    src="{{ asset('images/components/computer_cases/' . $product_computer_case->component->image_path) }}"
+{{--                                                    src="{{ $product_computer_case->component->image_path }}"--}}
                                                     class="img-thumbnail img-fluid" style="height: 50px; width: 50px"
                                                     alt="">
                                             @endif

@@ -33,7 +33,7 @@
                                     @if($valid_id)
                                         <img id="valid_id_img" src="{{$valid_id->temporaryUrl()}}" class="mt-5" alt="img">
                                     @else
-                                        <img id="valid_id_img" src="{{$valid_id_path}}"  class="mt-5" alt="img" >
+                                        <img id="valid_id_img" src="{{asset('images/profile/id/' . $valid_id_path)}}"  class="mt-5" alt="img" >
                                         @error('valid_id') <span class="error"><small>{{ $message }}</small></span> @enderror
                                     @endif
                                 </div>

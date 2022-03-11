@@ -72,21 +72,24 @@ class EditStoreController extends Controller
             ]);
             if($request->hasFile('storeBanner')){
                 $store_banner = time().'-'."banner".'.'.$request->storeBanner->extension();
-               // $mobo_image_filename = time() . '-' . $request->mobo_name . '.' . $request->mobo_image->extension();
 
-                $new_path = Storage::disk('do_spaces')->putFileAs('images/Store_Banner', $request->storeBanner, $store_banner,'public');
-                $path = Storage::disk('do_spaces')->url($new_path);
+//                $mobo_image_filename = time() . '-' . $request->mobo_name . '.' . $request->mobo_image->extension();
+//                $new_path = Storage::disk('do_spaces')->putFileAs('images/Store_Banner', $request->storeBanner, $store_banner,'public');
+//                $path = Storage::disk('do_spaces')->url($new_path);
 
-                //$request->storeBanner->move(public_path('images/Store_Banner'), $store_banner);
+                $request->storeBanner->move(public_path('images/Store_Banner'), $store_banner);
+
             }
             //dd($path);
             if(!$request->hasFile('storeBanner') || !$request->has('storeLocation')){
+
                 if($request->hasFile('storeBanner')){
                     $store->update(['banner'=> $path]);
                 }
                 if($request->has('storeLocation')) {
                     $store->update(['location'=> $request->storeLocation]);
                 }
+
 
                 Store::where('account_id', session('userId'))->update(
                     ['account_id' => session('userId'),

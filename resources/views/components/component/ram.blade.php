@@ -15,7 +15,7 @@
                     <div class="mb-3">
                         @if($mode === 'edit' && isset($ram) && isset($ram->component->image_path))
                             <img class="img-fluid rounded mx-auto d-block mb-2"
-                                 src="{{  $ram->component->image_path }}" alt="">
+                                 src="{{ asset('images/components/rams/' . $ram->component->image_path) }}" alt="">
                         @endif
                         <label for="ram_image" class="form-label">Component Image</label>
                         <input class="form-control @error('ram_image') is-invalid @enderror" type="file"

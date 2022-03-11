@@ -64,7 +64,7 @@
                             <div class="card-img-actions">
                                 <img src="{{empty($component_infos->image_path)?
                                         asset('/images/Store_Placeholder/motherboard_placeholder.png') :
-                                        $component_infos->image_path}}"
+                                        asset($profile_path.$component_infos->image_path)}}"
                                      class="card-img img-fluid"  height="650" alt="">
                             </div>
                             <table class="table table-hover">
