@@ -71,6 +71,8 @@ class EditStoreController extends Controller
                 'computer_cases' => 'nullable|numeric|min:0'
             ]);
             if($request->hasFile('storeBanner')){
+
+
                 $store_banner = time().'-'."banner".'.'.$request->storeBanner->extension();
 
 //                $mobo_image_filename = time() . '-' . $request->mobo_name . '.' . $request->mobo_image->extension();
@@ -109,7 +111,7 @@ class EditStoreController extends Controller
                 $input = $request->all();
                 $store->update(
                     ['account_id' => session('userId'),
-                        'banner' => $path,
+                        'banner' => $store_banner,
                         'name' => $request->storeName,
                         'address' => $request->storeAddress,
                         'location' =>$request->storeLocation,
