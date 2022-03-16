@@ -51,7 +51,7 @@
 
         <div class="card m-2" >
             <div class="bg-image"
-                 style="background-image: url({{ empty(session('storeInfo.banner')) ? '"'.asset('/images/placeholder.jpg').'"'  : "'".session('storeInfo.banner')."'"  }});
+                 style="background-image: url({{ empty(session('storeInfo.banner')) ? '"'.asset('/images/placeholder.jpg').'"'  : "'".asset('/images/Store_Banner/').'/'. session('storeInfo.banner')."'"  }});
                     height:50vh " >
 
                 <br><br><br><br><br><br>
